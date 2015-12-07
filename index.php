@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-echo 'mabite';
+echo BITASSE;
 
 include_once("controllers/Controller.php");
 
