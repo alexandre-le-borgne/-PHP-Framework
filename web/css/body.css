@@ -4,3 +4,7 @@ De base le CSS s'applique pour les mobiles pour une raison d'obtimisation du tem
 
 body.css contient les règles css concernant la structure globale du site
 */
+
+html, body {
+
+}
