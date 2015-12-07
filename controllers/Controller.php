@@ -1,5 +1,5 @@
 <?php
-include_once("models/Model.php");
+require_once("models/Model.php");
 
 class Controller {
     public $model;
@@ -11,11 +11,11 @@ class Controller {
 
     public function invoke()
     {
-        include "views/persists/head.php";
-        include "views/persists/header.php";
-        include "views/persists/nav.php";
-        include "views/index.php";
-        include "views/persists/footer.php";
-        include "views/persists/end.php";
+        require "views/persists/head.php";
+        require "views/persists/header.php";
+        require "views/persists/nav.php";
+        require "views/index.php";
+        require "views/persists/footer.php";
+        require "views/persists/end.php";
     }
 }
