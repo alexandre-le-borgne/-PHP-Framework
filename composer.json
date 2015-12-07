@@ -1,0 +1,11 @@
+{
+    "name": "aaron/fbconnect",
+    "description": "Cuscom <maxime.junique@cuscom.fr>",
+    "authors": [
+        {
+            "name": "darkicex3",
+            "email": "maxime.junique@gmail.com"
+        }
+    ],
+    "require": {}
+}
