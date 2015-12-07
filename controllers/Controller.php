@@ -6,7 +6,7 @@ class Controller {
 
     public function __construct()
     {
-   //     $this->model = new Model();
+        $this->model = new Model();
     }
 
     public function invoke()
