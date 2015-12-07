@@ -1,10 +1,8 @@
 <?php
 
-//Gestion des erreurs
 error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
 
-//Facebook Connect
 
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookSessionPersistentDataHandler;
@@ -19,11 +17,5 @@ $appSecret = 'd8e2cb9e079641dcae34aca3e356bc4e';
 FacebookSession::setDefaultApplication($appId, $appSecret);
 $helper = new \Facebook\Helpers\FacebookRedirectLoginHelper('http://cuscom.fr/aaron/index.php');
 
-echo $helper->getLoginUrl();
-
-
-include_once("controllers/Controller.php");
-
-$controller = new Controller();
-$controller->invoke();
+//echo $helper->getLoginUrl();
 

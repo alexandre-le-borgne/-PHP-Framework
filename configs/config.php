@@ -20,7 +20,7 @@ class Configuration {
         if (self::$parameters == null) {
             $filePath = "config.ini";
             if (!file_exists($filePath)) {
-                throw new Exception("Aucun fichier de configuration trouvé");
+                throw new Exception("Fichier de configuration trouvé");
             }
             else {
                 self::$parameters = parse_ini_file($filePath);
