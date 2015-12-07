@@ -11,6 +11,8 @@ use Facebook\FacebookSessionPersistentDataHandler;
 
 require 'vendor/autoload.php';
 
+session_start();
+
 $appId = '1148334785195709';
 $appSecret = 'd8e2cb9e079641dcae34aca3e356bc4e';
 
