@@ -16,6 +16,6 @@ class Controller {
         include "views/persists/nav.php";
         include "views/index.php";
         include "views/persists/footer.php";
-        include "../views/persists/end.php";
+        include "views/persists/end.php";
     }
 }
