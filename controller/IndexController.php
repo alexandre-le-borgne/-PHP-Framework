@@ -19,11 +19,14 @@ class IndexController extends Controller
 
     public function RegisterAction()
     {
-        $username = '';
-        if(isset($_POST['username']))
-            $username = $_POST['username'];
-        $data = array('username' => $username);
-        $this->render('forms/registerForm', $data);
+        if(isset($_POST['username'], $_POST['email'])) {
+            $data = array(
+                'username' => $_POST['username'],
+                'email' => $_POST['email']
+            );
+            $this->render('forms/registerForm', $data);
+        }
+        $this->render('persists/home');
     }
 
     public function LoginAction()
