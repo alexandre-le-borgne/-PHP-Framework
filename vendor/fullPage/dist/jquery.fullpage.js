@@ -8,7 +8,7 @@
 (function(global, factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
-        define(['jquery.fullpage'], function($) {
+        define(['jquery.fullpage.js'], function($) {
           return factory($, global, global.document, global.Math);
         });
     } else if (typeof exports !== 'undefined') {
