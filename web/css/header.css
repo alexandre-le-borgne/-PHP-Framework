@@ -7,8 +7,6 @@ body.css contient les règles css concernant la structure globale du site
 
 header
 {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
     border-bottom: 1px solid #e1e8ed;
     border-bottom: 1px solid rgba(0,0,0,0.05);
     top: 0;
@@ -19,6 +17,5 @@ header
     background-color: #ffffff;
     border-bottom: 1px solid rgba(0,0,0,0.15);
     height: 46px;
-    position: relative;
     width: 100%;
 }
