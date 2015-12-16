@@ -14,6 +14,8 @@
         if($result != NULL){
             echo "Nom d'utilisateur non disponible";
         }
+        elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
+            echo'Email non valide';
         else{
             session_start();
             $_SESSION['username'] = $username;
