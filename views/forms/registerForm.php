@@ -17,7 +17,7 @@ include("../persists/head.php");
 
 <div class="registerDiv">
 
-    <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
+    <h2><strong>Finalisez votre inscription !</h2>
 
     <form id="register" method="post" name="register" action="../../models/Inscription.php">
 

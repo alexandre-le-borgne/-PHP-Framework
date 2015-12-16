@@ -15,7 +15,7 @@ include("../persists/head.php");
 
 <div class="preRegisterDiv">
 
-    <h2><strong>Nouveau sur Aaron ?</strong> Inscrivz-vous ! </h2>
+    <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
 
     <form class="preRegisterForm" method="post" name="register" action="../../models/Inscription.php">
 
