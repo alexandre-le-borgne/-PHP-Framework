@@ -12,6 +12,7 @@ e-mail et mot de passe (encodé) et éventuellement d’autres informations de
 
 l’internaute ;
 */
+include("../../web/css/form.css")
 ?>
 
 <form method="post" name="register">
