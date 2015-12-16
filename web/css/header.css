@@ -4,3 +4,18 @@ De base le CSS s'applique pour les mobiles pour une raison d'obtimisation du tem
 
 body.css contient les règles css concernant la structure globale du site
 */
+
+header
+{
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-bottom: 1px solid #e1e8ed;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    height: 50px;
+    width: 100%;
+}
