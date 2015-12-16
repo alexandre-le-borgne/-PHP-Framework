@@ -11,7 +11,7 @@ class Database
     private $bdd;
 
     // Exécute une requête SQL éventuellement paramétrée
-    protected function execute($sql, $params = null) {
+    public function execute($sql, $params = null) {
         if ($params == null) {
             $resultat = $this->getBdd()->query($sql);    // exécution directe
         }
