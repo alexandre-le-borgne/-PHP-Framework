@@ -13,6 +13,10 @@ include("../persists/head.php");
 
 ?>
 
+<h2>
+    <strong>Nouveau sur Aaron ?</strong> Inscrivez-vous !
+</h2>
+
 <form id="preRegister" method="post" name="register">
     <div class="formRegister">
         <input type="text" name="username" placeholder="Pseudonyme" required>
