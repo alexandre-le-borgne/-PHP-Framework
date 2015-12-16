@@ -3,12 +3,15 @@
 error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
 
-require 'class/Router.php';
+require_once 'app/Kernel.php';
+require_once 'app/View.php';
+require_once 'app/Controller.php';
+require_once 'app/Database.php';
+require_once 'app/Model.php';
+require_once 'app/Route.php';
+require_once 'app/Router.php';
 
-$router = new Router($_GET['url']);
-$router->addGet('/', function(){ echo "Bienvenue sur ma homepage !"; });
-$router->addGet('/posts/:id', function($id){ echo "Voila l'article $id"; });
-$router->run();
+require_once 'controller/IndexController.php';
+require_once 'model/IndexModel.php';
 
-//echo $helper->getLoginUrl();
-
+Kernel::getInstance()->response();
