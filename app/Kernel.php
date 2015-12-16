@@ -26,7 +26,7 @@ class Kernel
         if (isset($_GET['controller']) && isset($_GET['action']))
         {
             $controller = ucfirst($_GET['controller']).'Controller';
-            $action = $_GET['action'];
+            $action = ucfirst($_GET['action']);
         } else
         {
             $controller = 'IndexController';
