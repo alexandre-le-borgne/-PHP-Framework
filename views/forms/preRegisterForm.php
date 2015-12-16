@@ -9,6 +9,7 @@
  * déjà remplis
  *
  */
+include("../persists/head.php");
 
 ?>
 
