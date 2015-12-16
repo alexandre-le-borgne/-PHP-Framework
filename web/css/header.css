@@ -18,4 +18,6 @@ header
 header #logo_txt
 {
     width: 100px;
+    text-align: center;
+    margin-top: 11px;
 }

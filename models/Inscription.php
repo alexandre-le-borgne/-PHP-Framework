@@ -1,11 +1,12 @@
 <?php
-    require('../class/Securite.php');
-    require('../app/Database.php');
+
+require('../class/Securite.php');
+require('../app/Database.php');
 
 
-    $username = Securite::insertBD($_POST['username']);
-    $email = Securite::insertBD($_POST['email']);
-    $birthDate = Securite::insertBD($_POST['birthDate']);
+$username = Securite::insertBD($_POST['username']);
+$email = Securite::insertBD($_POST['email']);
+$birthDate = Securite::insertBD($_POST['birthDate']);
 
 
 if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && isset($_POST['password']))
@@ -33,7 +34,8 @@ if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && is
         $_SESSION['password'] = $password;
         header("Location: '../views/forms/registerForm.php");
     }
-} elseif ($_POST['action'] == 'register' && isset($username) && isset($email) && isset($password) && isset($_POST['pwdConfirm']) && isset($birthDate))
+}
+elseif ($_POST['action'] == 'register' && isset($username) && isset($email) && isset($password) && isset($_POST['pwdConfirm']) && isset($birthDate))
 {
     $password = Securite::encode($_POST['password']);
     $pwdConfirm = Securite::encode($_POST['pwdConfirm']);
@@ -49,7 +51,8 @@ if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && is
         header('Location: ../views/forms/registerForm.php');
     }
 
-} else
+}
+else
 {
     echo '<br/><strong>Veuillez remplir tous les champs</strong><br/>';
 }

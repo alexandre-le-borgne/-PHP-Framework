@@ -17,3 +17,11 @@ body
     line-height: 18px;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+.section1
+{
+    background-image: url("https://badtouristpictures.files.wordpress.com/2015/06/yosemite-2.jpg");
+    background-size: 80%;
+    background-repeat: no-repeat;
+
+}
