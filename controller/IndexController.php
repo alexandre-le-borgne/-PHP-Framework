@@ -8,8 +8,8 @@
  */
 class IndexController extends Controller
 {
-    public function __construct(IndexModel $model) {
-        parent::__construct($model);
+    public function __construct() {
+        parent::__construct(new IndexModel());
     }
 
     public function IndexAction()
