@@ -13,7 +13,7 @@
 if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && isset($password))
 {
     $verifUser = "Select * From User Where username = $username";
-    $result = Database::excecute($verifUser);
+    $result = Database::execute($verifUser);
 
     if ($result == NULL)
     {
@@ -36,7 +36,7 @@ if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && is
     if ($password == $pwdConfirm)
     {
         $insert = "Insert Into User ('username', 'email', 'password', 'pwdConfirm', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
-        $result = Database::excecute($sql);
+        $result = Database::execute($sql);
     } else
     {
         echo 'Le mot de passe et la confirmation doivent etre identiques';
