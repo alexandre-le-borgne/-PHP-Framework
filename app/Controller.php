@@ -15,8 +15,8 @@ abstract class Controller {
         $this->model = $model;
     }
 
-    public function render($view) {
+    public function render($view, $data = array()) {
         $view = new View($view);
-        $view->render();
+        $view->render($data);
     }
 }

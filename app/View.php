@@ -14,7 +14,9 @@ class View
         $this->view = $view;
     }
 
-    public function render() {
+    public function render($data = array()) {
+        if(!empty($data))
+            extract($data);
         $path = __DIR__.DIRECTORY_SEPARATOR.'../views/'.$this->view.'.php';
         if(file_exists($path))
             include_once $path;

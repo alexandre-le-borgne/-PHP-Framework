@@ -22,7 +22,8 @@ class IndexController extends Controller
         $username = '';
         if(isset($_POST['username']))
             $username = $_POST['username'];
-        $this->render('forms/registerForm');
+        $data = array('username' => $username);
+        $this->render('forms/registerForm', $data);
     }
 
     public function LoginAction()
