@@ -18,13 +18,13 @@ include("../persists/head.php");
     <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
 
     <form class="preRegisterForm" method="post" name="register">
-        <div class="registerInput">
+        <div class="registerField">
             <input type="text" name="username" placeholder="Pseudonyme" required>
         </div>
-        <div class="registerInput">
+        <div class="registerField">
             <input type="email" name="email" placeholder="E-mail" required>
         </div>
-        <div class="registerInput">
+        <div class="registerField">
             <input type="text" name="password" placeholder="Mot de passe" required>
         </div>
 
@@ -34,7 +34,7 @@ include("../persists/head.php");
 
 </div>
 
-
+<!--
 <div class="front-signup js-front-signup">
     <h2><strong>Nouveau sur Twitter ?</strong> Inscrivez-vous</h2>
 
@@ -58,4 +58,4 @@ include("../persists/head.php");
             S'inscrire sur Twitter
         </button>
     </form>
-</div>
+</div>-->
