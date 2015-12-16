@@ -1,6 +1,4 @@
-
-
-.registerInput
+.registerField
 {
     width: 100%;
     padding: 12px 20px;
@@ -11,7 +9,12 @@
     outline: none;
 }
 
-#preRegister
+.registerField:focus
+{
+    border: 3px solid #444;
+}
+
+.preRegisterDiv
 {
     border: 1px solid #e1e8ed;
     background: #fff;
@@ -20,9 +23,4 @@
     height: 206px;
     float: right;
     width: 300px;
-}
-
-input[type=text]:focus, input[type=email]:focus
-{
-    border: 3px solid #444;
 }
