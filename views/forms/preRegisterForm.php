@@ -23,7 +23,6 @@
         <input type="text" name="password" placeholder="Mot de passe" required>
     </div>
 
-    <input type="submit" name="action" value="register">
-    <button type="submit" class="buttonSignup">S'inscrire</button>
+    <button type="submit" class="buttonSignup">S'inscrire sur Aaron</button>
 
 </form>
