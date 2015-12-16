@@ -1,11 +1,11 @@
 <?php
-    require('Securite.php');
+    require('../class/Securite.php');
 
-$username = Securite::insertBD($_POST['username']);
-$email = Securite::insertBD($_POST['email']);
-$password = crypt(Securite::insertBD($_POST['password']), CRYPT_SHA512);
-$pwdConfirm = crypt(Securite::insertBD($_POST['pwdConfirm']), CRYPT_SHA512);
-$birthDate = Securite::insertBD($_POST['birthDate']);
+    $username = Securite::insertBD($_POST['username']);
+    $email = Securite::insertBD($_POST['email']);
+    $password = crypt(Securite::insertBD($_POST['password']), CRYPT_SHA512);
+    $pwdConfirm = crypt(Securite::insertBD($_POST['pwdConfirm']), CRYPT_SHA512);
+    $birthDate = Securite::insertBD($_POST['birthDate']);
 
 
 if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && isset($password))
