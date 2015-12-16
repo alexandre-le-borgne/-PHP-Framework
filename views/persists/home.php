@@ -7,9 +7,9 @@
 </head>
 
 <body>
-<?php include 'header.php' ?>
     <div id="fullpage">
         <div class="section">
+            <?php include 'header.php' ?>
             <h1>HOME</h1>
             <?php include '../forms/preRegisterForm.php' ?>
         </div>
