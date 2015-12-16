@@ -15,7 +15,7 @@
 
     <form id="register" method="post" name="register" action="../../models/Inscription.php">
 
-            <input type="text" name="username" value="password" required>
+            <input type="text" name="username" value="username" required>
             <input type="email" name="email" placeholder="E-mail" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
             <input type="password" name="pwdConfirm" placeholder="Mot de passe" required>
