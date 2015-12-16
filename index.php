@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
 
 require 'class/Router.php';
+
 $router = new Router($_GET['url']);
 $router->addGet('/', function(){ echo "Bienvenue sur ma homepage !"; });
 $router->addGet('/posts/:id', function($id){ echo "Voila l'article $id"; });
