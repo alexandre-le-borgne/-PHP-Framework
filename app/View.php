@@ -19,6 +19,6 @@ class View
         if(file_exists($path))
             include_once $path;
         else
-            throw new Exception("VIEW NOT FOUND | $this->view |");
+            throw new Exception("VIEW NOT FOUND | ".__DIR__.$path." |");
     }
 }
