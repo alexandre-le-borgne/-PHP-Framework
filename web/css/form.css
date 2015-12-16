@@ -1,12 +1,17 @@
-.registerField
+.input[type=text], input[type=email]
 {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
     border: 3px solid #ccc;
     transition: 0.5s;
     outline: none;
-    background-color: #2EBE21;
+}
+
+input[type=text]:focus, input[type=email]:focus
+{
+    border: 3px solid #444;
 }
 
 .registerField:focus
@@ -17,17 +22,10 @@
 .preRegisterDiv
 {
     border: 1px solid #e1e8ed;
+    background: #fff;
     box-shadow: none;
     border-radius: 4px;
     height: 206px;
     float: right;
     width: 300px;
-    background-color: hotpink;
-}
-
-input[type=text]:focus, input[type=email]:focus
-{
-    width: 100%;
-    border: 3px solid #444;
-    background-color: #2f96b4;
 }
