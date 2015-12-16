@@ -1,23 +1,19 @@
 <?php
 /**
- * un formulaire d’authentification par e-mail et mot de passe (et, optionnellement : avec un
+ * un formulaire d’authentification par pseudonyme et mot de passe
+ * et avec compte Google, Facebook ou Twitter
  *
- * compte Google, Facebook, Twitter, etc.) ;
  */
 ?>
 
-<!-- w=302, h=119 -->
-<div class="loginDiv">
+<div class="loginDiv"><!-- w=302, h=119 -->
 
-    <!-- w=276, h=99 -->
-    <form class="loginForm" method="post" name="register">
+    <form class="loginForm" method="post" name="register"><!-- w=276, h=99 -->
 
-        <!-- w=276, h=30  + margin-bottom=? -->
-        <div class="field">
+        <div class="field"><!-- w=276, h=30  + margin-bottom=? -->
             <input type="text" name="username" placeholder="Pseudonyme" required>
         </div>
 
-        <!-- w=276, h=30  + margin-top=? -->
         <div class="field">
             <input type="text" name="password" placeholder="Mot de passe" required>
         </div>

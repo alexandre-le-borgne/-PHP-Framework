@@ -1,16 +1,11 @@
 <?php
 /**
  * un formulaire d’inscription pour les internautes souhaitant créer un compte permettant au
- *
  * minimum :
- *
- * - d’enregistrer en base de données, obligatoirement, le nom complet (ou pseudonyme),
- *
+ * - d’enregistrer en base de données, obligatoirement, le pseudonyme,
+ * - d'enregistrer e-mail et mot de passe (encodé)
  * - d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
  *
- * e-mail et mot de passe (encodé) et éventuellement d’autres informations de
- *
- * l’internaute ;
  */
 include("../persists/head.php");
 ?>
