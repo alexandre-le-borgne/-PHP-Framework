@@ -7,7 +7,6 @@
  * - d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
  *
  */
-include("../persists/head.php");
 ?>
 
 <div class="registerDiv">
