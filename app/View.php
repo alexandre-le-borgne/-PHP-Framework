@@ -15,7 +15,7 @@ class View
     }
 
     public function render() {
-        $path = '../views/'.$this->view.'.html';
+        $path = '../views/'.$this->view.'.php';
         if(file_exists($path))
             include_once $path;
         else
