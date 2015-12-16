@@ -10,7 +10,7 @@
 
 if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && isset($_POST['password']))
 {
-    $password = Securite::encode($_POST['password']);
+    $password = $_POST['password'];
 
     $verifUser = "Select * From User Where username = $username";
     $result = Database::execute($verifUser);
@@ -19,11 +19,13 @@ if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && is
     {
         echo "Nom d'utilisateur non disponible, redirection vers l'inscription";
         header("refresh:3; url=../views/forms/registerForm.php");
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL))
+    }
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL))
     {
         echo 'Email non valide, redirection vers l\'inscription';
         header("refresh:3; url=../views/forms/registerForm.php");
-    } else
+    }
+    else
     {
         session_start();
         $_SESSION['username'] = $username;
@@ -33,13 +35,15 @@ if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && is
     }
 } elseif ($_POST['action'] == 'register' && isset($username) && isset($email) && isset($password) && isset($_POST['pwdConfirm']) && isset($birthDate))
 {
+    $password = Securite::encode($_POST['password']);
     $pwdConfirm = Securite::encode($_POST['pwdConfirm']);
 
     if ($password == $pwdConfirm)
     {
         $insert = "Insert Into User ('username', 'email', 'password', 'pwdConfirm', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
         $result = Database::execute($insert);
-    } else
+    }
+    else
     {
         echo 'Le mot de passe et la confirmation doivent etre identiques';
         header('Location: ../views/forms/registerForm.php');
