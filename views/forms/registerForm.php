@@ -15,7 +15,7 @@ l’internaute ;
 include("../persists/head.php");
 ?>
 
-<form method="post" name="register">
+<form id="register" method="post" name="register">
     <div class="formRegister">
         <input type="text" name="username" placeholder="Pseudonyme" required>
     </div>
