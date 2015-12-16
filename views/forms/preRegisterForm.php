@@ -17,7 +17,7 @@ include("../persists/head.php");
 
     <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
 
-    <form class="preRegisterForm" method="post" name="register">
+    <form class="preRegisterForm" method="post" name="register" action="../../models/Inscription.php">
         <div class="registerField">
             <input type="text" name="username" placeholder="Pseudonyme" required>
         </div>
@@ -28,34 +28,8 @@ include("../persists/head.php");
             <input type="text" name="password" placeholder="Mot de passe" required>
         </div>
 
-        <button type="submit" class="buttonSignup">S'inscrire sur Aaron</button>
+        <button type="submit" name="action" value="preRegister" class="buttonSignup">S'inscrire sur Aaron</button>
 
     </form>
 
 </div>
-
-<!--
-<div class="front-signup js-front-signup">
-    <h2><strong>Nouveau sur Twitter ?</strong> Inscrivez-vous</h2>
-
-    <form action="https://twitter.com/signup" class="t1-form signup" id="frontpage-signup-form" method="post">
-
-        <div class="field">
-            <input type="text" class="text-input" autocomplete="off" name="user[name]" maxlength="20"
-                   placeholder="Nom complet">
-        </div>
-        <div class="field">
-            <input type="text" class="text-input email-input" autocomplete="off" name="user[email]"
-                   placeholder="Adresse email">
-        </div>
-        <div class="field">
-            <input type="password" class="text-input" name="user[user_password]" placeholder="Mot de passe">
-        </div>
-
-        <input type="hidden" value="" name="context">
-        <input type="hidden" value="ad507ee0b360c2c5e7400acb480ceaaac37beb31" name="authenticity_token">
-        <button type="submit" class="btn signup-btn u-floatRight">
-            S'inscrire sur Twitter
-        </button>
-    </form>
-</div>-->

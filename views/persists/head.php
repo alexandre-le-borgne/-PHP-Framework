@@ -5,6 +5,7 @@
         <title>ProjetPHP - Aaron</title>
         <link rel="stylesheet" href="../../web/css/body.css">
         <link rel="stylesheet" href="../../web/css/form.css">
+        <link rel="stylesheet" href="../../web/css/header.css">
         <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
