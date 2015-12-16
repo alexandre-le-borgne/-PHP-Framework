@@ -1,13 +1,13 @@
 <?php
 
-    $username = Securite::insertBD($_GET['username']);
-    $email = Securite::insertBD($_GET['email']);
-    $password = crypt(Securite::insertBD($_GET['password']), CRYPT_SHA512);
-    $pwdConfirm = crypt(Securite::insertBD($_GET['pwdConfirm']), CRYPT_SHA512);
-    $birthDate = Securite::insertBD($_GET['birthDate']);
+    $username = Securite::insertBD($_POST['username']);
+    $email = Securite::insertBD($_POST['email']);
+    $password = crypt(Securite::insertBD($_POST['password']), CRYPT_SHA512);
+    $pwdConfirm = crypt(Securite::insertBD($_POST['pwdConfirm']), CRYPT_SHA512);
+    $birthDate = Securite::insertBD($_POST['birthDate']);
 
 
-    if($_GET['action'] == 'preRegister' && isset($username) && isset($email) && isset($password)) {
+    if($_POST['action'] == 'preRegister' && isset($username) && isset($email) && isset($password)) {
         $verifUser = "Select * From maTable Where username = $username";
         $result = Model::excecute($verifUser);
 
@@ -27,7 +27,7 @@
             header("Location: '../views/forms/registerForm.php");
         }
     }
-    elseif($_GET['action'] == 'register' && isset($username) && isset($email) && isset($password) && isset($pwdConfirm) && isset($birthDate)){
+    elseif($_POST['action'] == 'register' && isset($username) && isset($email) && isset($password) && isset($pwdConfirm) && isset($birthDate)){
         if ($password == $pwdConfirm){
             $insert = "Insert Into maTable ('username', 'email', 'password', 'pwdConfirm', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
             $result = Model::excecute($sql);
