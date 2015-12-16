@@ -28,14 +28,14 @@
             <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
         </div>
 
-        <div class="socialConnect">
-
-            <button type="submit">Fb</button>
-            <button type="submit">Tw</button>
-            <button type="submit">Gg</button>
-
-        </div>
-
     </form>
+
+    <div class="socialConnect">
+
+        <button type="submit">Fb</button>
+        <button type="submit">Tw</button>
+        <button type="submit">Gg</button>
+
+    </div>
 
 </div>
