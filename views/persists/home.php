@@ -31,7 +31,7 @@
         $(document).ready(function() {
             $('#fullpage').fullpage({
                 //Navigation
-                menu: '#menu',
+                menu: 'header',
                 lockAnchors: false,
                 anchors:['firstPage', 'secondPage'],
                 navigation: false,
