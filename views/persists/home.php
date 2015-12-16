@@ -10,7 +10,7 @@
     <h1>Mon super blog !</h1>
     <p>Derniers billets du blog :</p>
 
-    <?php include '../views/registerForm.php' ?>
+    <?php include '../forms/registerForm.php' ?>
 
 </body>
 </html>
