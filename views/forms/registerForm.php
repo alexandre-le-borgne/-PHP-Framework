@@ -15,13 +15,13 @@
 
     <form id="register" method="post" name="register" action="../../models/Inscription.php">
 
-            <input type="text" name="username" value="username" required>
-            <input type="email" name="email" placeholder="E-mail" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
-            <input type="password" name="pwdConfirm" placeholder="Mot de passe" required>
-            <input type="date" name="birthDate" placeholder="Date de naissance" required>
+        <input type="text" name="username" value="username" required>
+        <input type="email" name="email" placeholder="E-mail" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <input type="password" name="pwdConfirm" placeholder="Mot de passe" required>
+        <input type="date" name="birthDate" placeholder="Date de naissance" required>
 
-        <input type="submit" name="action" value="register" >
+        <button type="submit" name="action" value="register" class="buttonSignup">S'inscrire</button>
 
     </form>
 
