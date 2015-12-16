@@ -19,6 +19,9 @@ class IndexController extends Controller
 
     public function RegisterAction()
     {
+        $username = '';
+        if(isset($_POST['username']))
+            $username = $_POST['username'];
         $this->render('forms/registerForm');
     }
 
