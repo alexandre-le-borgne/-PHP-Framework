@@ -1,16 +1,12 @@
 <?php
 /**
- *
  * Formulaire sur la page d'accueil pour s'enregistrer,
- *
  * Comporte seulement username,email et mot de passe
- *
  * puis redirige vers registerForm, plus complet avec les champs username,email et mot de passe
  * déjà remplis
  *
  */
 include("../persists/head.php");
-
 ?>
 
 <div class="preRegisterDiv">

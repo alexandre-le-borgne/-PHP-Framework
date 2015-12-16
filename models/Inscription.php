@@ -1,5 +1,7 @@
 <?php
     require('../class/Securite.php');
+    require('../app/Database.php');
+
 
     $username = Securite::insertBD($_POST['username']);
     $email = Securite::insertBD($_POST['email']);
@@ -10,8 +12,8 @@
 
 if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && isset($password))
 {
-    $verifUser = "Select * From maTable Where username = $username";
-    $result = Model::excecute($verifUser);
+    $verifUser = "Select * From User Where username = $username";
+    $result = Database::excecute($verifUser);
 
     if ($result == NULL)
     {
@@ -33,8 +35,8 @@ if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && is
 {
     if ($password == $pwdConfirm)
     {
-        $insert = "Insert Into maTable ('username', 'email', 'password', 'pwdConfirm', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
-        $result = Model::excecute($sql);
+        $insert = "Insert Into User ('username', 'email', 'password', 'pwdConfirm', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
+        $result = Database::excecute($sql);
     } else
     {
         echo 'Le mot de passe et la confirmation doivent etre identiques';
