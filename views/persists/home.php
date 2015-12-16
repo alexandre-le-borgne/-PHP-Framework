@@ -3,14 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <title>Mon blog</title>
-    <link href="vue/blog/style.css" rel="stylesheet" />
+    <?php include '../head.php' ?>
 </head>
 
 <body>
-    <h1>Mon super blog !</h1>
-    <p>Derniers billets du blog :</p>
 
-    <?php include '../forms/registerForm.php' ?>
+    <div id="slide1">
+
+    </div>
+    <?php include '../forms/preRegisterForm.php' ?>
 
 </body>
 </html>
