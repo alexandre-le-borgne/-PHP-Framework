@@ -9,9 +9,12 @@ input[type=text], input[type=email]
     outline: none;
 }
 
-#register
+#preRegister
 {
-    background-color: aliceblue;
+    background-color: hotpink;
+    width: 302px;
+    height: 208px;
+
 }
 
 input[type=text]:focus, input[type=email]:focus

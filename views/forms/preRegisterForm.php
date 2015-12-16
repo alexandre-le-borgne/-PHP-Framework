@@ -13,7 +13,7 @@ include("../persists/head.php");
 
 ?>
 
-<form id="register" method="post" name="register">
+<form id="preRegister" method="post" name="register">
     <div class="formRegister">
         <input type="text" name="username" placeholder="Pseudonyme" required>
     </div>
