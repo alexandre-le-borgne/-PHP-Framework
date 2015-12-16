@@ -11,7 +11,8 @@
         <div class="section">
             <?php include 'header.php' ?>
             <h1>HOME</h1>
-            <?php include '../forms/preRegisterForm.php' ?>
+            <?php include '../forms/loginForm.php'; ?>
+            <?php include '../forms/preRegisterForm.php'; ?>
         </div>
         <div class="section">
             <h1>HOME</h1>
