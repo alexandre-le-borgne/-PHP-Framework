@@ -27,6 +27,6 @@ class Kernel {
             $controller = 'IndexController';
             $action     = 'index';
         }
-        return $controller->{$action.'Action'}();
+        return new $controller->{$action.'Action'}();
     }
 }
