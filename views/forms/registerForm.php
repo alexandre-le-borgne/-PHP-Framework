@@ -1,17 +1,17 @@
 <?php
 /**
-un formulaire d’inscription pour les internautes souhaitant créer un compte permettant au
-
-minimum :
-
-- d’enregistrer en base de données, obligatoirement, le nom complet (ou pseudonyme),
-
-- d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
-
-e-mail et mot de passe (encodé) et éventuellement d’autres informations de
-
-l’internaute ;
-*/
+ * un formulaire d’inscription pour les internautes souhaitant créer un compte permettant au
+ *
+ * minimum :
+ *
+ * - d’enregistrer en base de données, obligatoirement, le nom complet (ou pseudonyme),
+ *
+ * - d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
+ *
+ * e-mail et mot de passe (encodé) et éventuellement d’autres informations de
+ *
+ * l’internaute ;
+ */
 include("../persists/head.php");
 ?>
 
@@ -33,7 +33,12 @@ include("../persists/head.php");
     </div>
 
     <!-- pour que les bots se trompent -->
-    <input type="submit" class="hide">
+    <input type="submit" name="action" value="register"><!--class="hide"-->
+
+</form>
+
+
+    <!--
     <input type="hidden" name="register">
     <fieldset id="captchafield">
         <div id="captcha"></div>
