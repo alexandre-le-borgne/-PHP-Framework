@@ -11,13 +11,13 @@ input[type=text], input[type=email]
 
 #preRegister
 {
-    background-color: hotpink;
-    width: 302px;
-    max-width: 302px;
-    max-height: 208px;
-
-    height: 208px;
-    padding: 20px;
+    border: 1px solid #e1e8ed;
+    background: #fff;
+    box-shadow: none;
+    border-radius: 4px;
+    height: 206px;
+    float: right;
+    width: 300px;
 }
 
 input[type=text]:focus, input[type=email]:focus
