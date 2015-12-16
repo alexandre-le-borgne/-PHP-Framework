@@ -25,7 +25,7 @@ class Kernel
     {
         if (isset($_GET['controller']) && isset($_GET['action']))
         {
-            $controller = $_GET['controller'];
+            $controller = ucfirst($_GET['controller']).'Controller';
             $action = $_GET['action'];
         } else
         {
