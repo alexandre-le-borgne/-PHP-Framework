@@ -6,28 +6,33 @@
  * Date: 16/12/2015
  * Time: 14:36
  */
-class Kernel {
-    private static $instance;
+class Kernel
+{
+    private static $instance = null;
 
-    private function __construct() {
-        Kernel::$instance = $this;
+    private function __construct()
+    {
     }
 
-    public static function getInstance(){
-        if(!Kernel::$instance)
-            Kernel::$instance = new Kernel();
-        return Kernel::$instance;
+    public static function getInstance()
+    {
+        if (!(self::$instance))
+            self::$instance = new Kernel();
+        return self::$instance;
     }
 
-    public function response() {
-        if (isset($_GET['controller']) && isset($_GET['action'])) {
+    public function response()
+    {
+        if (isset($_GET['controller']) && isset($_GET['action']))
+        {
             $controller = $_GET['controller'];
-            $action     = $_GET['action'];
-        } else {
+            $action = $_GET['action'];
+        } else
+        {
             $controller = 'IndexController';
-            $action     = 'index';
+            $action = 'index';
         }
         $controller = new $controller();
-        return $controller->{$action.'Action'}();
+        return $controller->{$action . 'Action'}();
     }
 }
