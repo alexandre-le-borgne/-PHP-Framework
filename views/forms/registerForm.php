@@ -40,7 +40,6 @@ l’internaute ;
 
 </form>
 
-
 <script type="text/javascript">
     $(function() {
         var s = new Slider("captchafield",{
