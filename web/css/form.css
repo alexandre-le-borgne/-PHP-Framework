@@ -7,6 +7,7 @@
     margin-bottom: 11px;
     width: 320px;
     padding:15px;
+    display: inline-block;
 }
 
 input, button, .loginDiv, .preRegisterDiv
@@ -14,7 +15,7 @@ input, button, .loginDiv, .preRegisterDiv
     border-radius: 4px;
 }
 
-.loginDiv input
+input
 {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -25,17 +26,17 @@ input, button, .loginDiv, .preRegisterDiv
     padding: 5px;
 }
 
-.loginDiv input[type="text"]
+input[type="text"]
 {
     width: 100%;
 }
 
-.loginDiv input[type="password"]
+input[type="password"]
 {
     float: left;
 }
 
-.loginDiv .buttonSignup
+.buttonSignup
 {
     color: #fff;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05)) #55acee;
@@ -46,22 +47,17 @@ input, button, .loginDiv, .preRegisterDiv
 
 }
 
-.loginDiv .buttonSignup:active
+.buttonSignup:active
 {
     background: #3b88c3 linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#26000000, endColorstr=#26000000)";
     border-color: #3b88c3;
 }
 
-.loginDiv .buttonSignup:hover
+.buttonSignup:hover
 {
     background: #55acee linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000, endColorstr=#26000000)";
-}
-
-.preRegisterDiv
-{
-
 }
 
 
