@@ -18,15 +18,10 @@ include("../persists/head.php");
     <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
 
     <form class="preRegisterForm" method="post" name="register" action="../../models/Inscription.php">
-        <div class="registerField">
-            <input type="text" name="username" placeholder="Pseudonyme" required>
-        </div>
-        <div class="registerField">
-            <input type="email" name="email" placeholder="E-mail" required>
-        </div>
-        <div class="registerField">
-            <input type="text" name="password" placeholder="Mot de passe" required>
-        </div>
+
+        <input type="text" name="username" placeholder="Pseudonyme" required>
+        <input type="email" name="email" placeholder="E-mail" required>
+        <input type="text" name="password" placeholder="Mot de passe" required>
 
         <button type="submit" name="action" value="preRegister" class="buttonSignup">S'inscrire sur Aaron</button>
 
