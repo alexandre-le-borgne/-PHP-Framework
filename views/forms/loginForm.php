@@ -15,7 +15,7 @@
         </div>
 
         <div class="field">
-            <input type="text" name="password" placeholder="Mot de passe" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
         </div>
         <button type="submit" class="buttonSignup">Connexion</button>
 
