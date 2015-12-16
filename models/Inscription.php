@@ -12,7 +12,7 @@
 
 if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && isset($password))
 {
-    $verifUser = "Select * From maTable Where username = $username";
+    $verifUser = "Select * From User Where username = $username";
     $result = Database::excecute($verifUser);
 
     if ($result == NULL)
@@ -35,7 +35,7 @@ if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && is
 {
     if ($password == $pwdConfirm)
     {
-        $insert = "Insert Into maTable ('username', 'email', 'password', 'pwdConfirm', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
+        $insert = "Insert Into User ('username', 'email', 'password', 'pwdConfirm', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
         $result = Database::excecute($sql);
     } else
     {
