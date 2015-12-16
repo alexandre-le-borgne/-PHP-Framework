@@ -12,7 +12,7 @@
 
     <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
 
-    <form class="preRegisterForm" method="post" name="register" action="../../models/Inscription.php">
+    <form class="preRegisterForm" method="post" name="register" action="index.php?controller=index&action=register">
 
         <input type="text" name="username" placeholder="Pseudonyme" required>
         <input type="email" name="email" placeholder="E-mail" required>
