@@ -34,7 +34,6 @@
             <button type="submit">Tw</button>
             <button type="submit">Gg</button>
 
-
         </div>
 
     </form>
