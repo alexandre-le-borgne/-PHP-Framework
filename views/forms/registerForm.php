@@ -16,19 +16,19 @@ l’internaute ;
 
 <form method="post" name="register">
     <div class="formRegister">
-        <input type="text" name="username" placeholder="Pseudonyme" requiered>
+        <input type="text" name="username" placeholder="Pseudonyme" required>
     </div>
     <div class="formRegister">
-        <input type="email" name="email" placeholder="E-mail" requiered>
+        <input type="email" name="email" placeholder="E-mail" required>
     </div>
     <div class="formRegister">
-        <input type="text" name="password" placeholder="Mot de passe" requiered>
+        <input type="text" name="password" placeholder="Mot de passe" required>
     </div>
     <div class="formRegister">
-        <input type="text" name="pwdConfirm" placeholder="Mot de passe" requiered>
+        <input type="text" name="pwdConfirm" placeholder="Mot de passe" required>
     </div>
     <div class="formRegister">
-        <input type="date" name="birthDate" placeholder="Date de naissance" requiered>
+        <input type="date" name="birthDate" placeholder="Date de naissance" required>
     </div>
 
     <!-- pour que les bots se trompent -->
