@@ -1,11 +1,11 @@
-.loginDiv
+.loginDiv, .preRegisterDiv
 {
     border: 1px solid #e1e8ed;
     background: white;
     box-shadow: none;
     float: right;
     margin-bottom: 11px;
-    width: 300px;
+    width: 320px;
     padding:15px;
 }
 
