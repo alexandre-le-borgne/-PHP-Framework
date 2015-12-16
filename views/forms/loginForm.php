@@ -13,10 +13,14 @@
     <form class="loginForm" method="post" name="register">
 
         <!-- w=276, h=30  + margin-bottom=? -->
-        <input type="text" name="username" placeholder="Pseudonyme" required>
+        <div class="field">
+            <input type="text" name="username" placeholder="Pseudonyme" required>
+        </div>
 
         <!-- w=276, h=30  + margin-top=? -->
-        <input type="text" name="password" placeholder="Mot de passe" required>
+        <div class="field">
+            <input type="text" name="password" placeholder="Mot de passe" required>
+        </div>
         <button type="submit" class="buttonSignup">Connexion</button>
 
         <div class="rememberAndForgot">
