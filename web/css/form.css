@@ -13,11 +13,14 @@ input[type=text], input[type=email]
 {
     background-color: hotpink;
     width: 302px;
+    max-width: 302px;
+    max-height: 208px;
+
     height: 208px;
     padding: 20px;
 }
 
 input[type=text]:focus, input[type=email]:focus
 {
-    border: 3px solid #555;
+    border: 3px solid #444;
 }
