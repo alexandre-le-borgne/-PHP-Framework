@@ -13,18 +13,18 @@
 
         if($result == NULL){
             echo "Nom d'utilisateur non disponible, redirection vers l'inscription";
-            header("refresh:3; url=registerForm.php");
+            header("refresh:3; url=../views/forms/registerForm.php");
         }
         elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo 'Email non valide, redirection vers l\'inscription';
-            header("refresh:3; url=registerForm.php");
+            header("refresh:3; url=../views/forms/registerForm.php");
         }
         else{
             session_start();
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
-            header("Location: registerForm.php");
+            header("Location: '../views/forms/registerForm.php");
         }
     }
     elseif($_GET['action'] == 'register' && isset($username) && isset($email) && isset($password) && isset($pwdConfirm) && isset($birthDate)){
@@ -34,7 +34,7 @@
         }
         else {
             echo 'Le mot de passe et la confirmation doivent etre identiques';
-            header('Location: registerForm.php');
+            header('Location: ../views/forms/registerForm.php');
         }
 
     }
