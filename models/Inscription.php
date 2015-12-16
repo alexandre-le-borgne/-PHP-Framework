@@ -11,18 +11,21 @@
         $verifUser = "Select * From maTable Where username = $username";
         $result = Model::excecute($verifUser);
 
-        if($result != NULL){
-            echo "Nom d'utilisateur non disponible";
+        if($result == NULL){
+            echo "Nom d'utilisateur non disponible, redirection vers l'inscription";
+            header("refresh:3; url=registerForm.php");
         }
-        elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
-            echo'Email non valide';
+        elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo 'Email non valide, redirection vers l\'inscription';
+            header("refresh:3; url=registerForm.php");
+        }
         else{
             session_start();
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
+            header("Location: registerForm.php");
         }
-
     }
     elseif($_GET['action'] == 'register' && isset($username) && isset($email) && isset($password) && isset($pwdConfirm) && isset($birthDate)){
         if ($password == $pwdConfirm){
