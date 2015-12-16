@@ -22,6 +22,7 @@ input, button, .loginDiv, .preRegisterDiv
     border: 1px solid #ccd6dd;
     height: 30px;
     margin-bottom: 10px;
+    padding: 5px;
 }
 
 .loginDiv input[type="text"]
