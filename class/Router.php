@@ -1,5 +1,7 @@
 <?php
 
+require 'Route.php';
+
 class Router {
 
     private $url;
