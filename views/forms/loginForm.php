@@ -37,9 +37,6 @@
 
         </div>
 
-        <button type="submit" class="buttonSignup">Connexion</button>
-
-
     </form>
 
 </div>
