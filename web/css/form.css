@@ -1,4 +1,17 @@
 .loginDiv
 {
+    border: 1px solid #e1e8ed;
+    background: white;
+    box-shadow: none;
+    float: right;
+    margin-bottom: 11px;
+    width: 300px;
+}
 
+.loginDiv .field
+{
+    display: block;
+    margin: 6px auto;
+    width: 276px;
+    font-size: 12px;
 }
