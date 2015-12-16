@@ -21,4 +21,7 @@ body
 .section1
 {
     background-image: url("https://badtouristpictures.files.wordpress.com/2015/06/yosemite-2.jpg");
+    background-size: 80%;
+    background-repeat: no-repeat;
+
 }
