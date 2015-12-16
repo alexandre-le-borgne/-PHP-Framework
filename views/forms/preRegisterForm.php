@@ -28,7 +28,7 @@ include("../persists/head.php");
             <input type="text" name="password" placeholder="Mot de passe" required>
         </div>
 
-        <button type="submit" class="buttonSignup">S'inscrire sur Aaron</button>
+        <button type="submit" name="action" value="preRegister" class="buttonSignup">S'inscrire sur Aaron</button>
 
     </form>
 
