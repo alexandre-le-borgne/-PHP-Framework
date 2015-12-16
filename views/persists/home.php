@@ -9,10 +9,10 @@
 <body>
     <div id="fullpage">
         <div class="section">
-            <?php include 'header.php' ?>
+            <?php View::getView("persists/header"); ?>
             <h1>HOME</h1>
-            <?php include '../forms/loginForm.php'; ?>
-            <?php include '../forms/preRegisterForm.php'; ?>
+            <?php View::getView("forms/loginForm"); ?>
+            <?php View::getView("forms/preRegisterForm"); ?>
         </div>
         <div class="section">
             <h1>HOME</h1>

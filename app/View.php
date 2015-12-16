@@ -21,4 +21,9 @@ class View
         else
             throw new Exception("VIEW NOT FOUND | ".$path." |");
     }
+
+    public static function getView($view) {
+        $view = new View($view);
+        $view->render();
+    }
 }
