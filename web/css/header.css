@@ -17,5 +17,7 @@ header
 
 header img
 {
+    vertical-align: middle;
+    line-height: 46px;
     width:100px;
 }
