@@ -1,4 +1,5 @@
 <?php
+    require('Securite.php');
 
 $username = Securite::insertBD($_POST['username']);
 $email = Securite::insertBD($_POST['email']);
