@@ -1,28 +1,34 @@
 <?php
 
-class Configuration {
+class Configuration
+{
 
     private static $parameters;
 
     // Renvoie la valeur d'un paramètre de configuration
-    public static function get($name, $defaultValue = null) {
-        if (isset(self::getParameters()[$name])) {
+    public static function get($name, $defaultValue = null)
+    {
+        if (isset(self::getParameters()[$name]))
+        {
             $value = self::getParameters()[$name];
-        }
-        else {
+        } else
+        {
             $value = $defaultValue;
         }
         return $value;
     }
 
     // Renvoie le tableau des paramètres en le chargeant au besoin
-    private static function getParameters() {
-        if (self::$parameters == null) {
+    private static function getParameters()
+    {
+        if (self::$parameters == null)
+        {
             $filePath = "config.ini";
-            if (!file_exists($filePath)) {
+            if (!file_exists($filePath))
+            {
                 throw new Exception("Fichier de configuration trouvé");
-            }
-            else {
+            } else
+            {
                 self::$parameters = parse_ini_file($filePath);
             }
         }
