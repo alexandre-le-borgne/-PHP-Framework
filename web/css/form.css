@@ -14,7 +14,7 @@ input[type=text], input[type=email]
     background-color: hotpink;
     width: 302px;
     height: 208px;
-
+    margin: 20px;
 }
 
 input[type=text]:focus, input[type=email]:focus
