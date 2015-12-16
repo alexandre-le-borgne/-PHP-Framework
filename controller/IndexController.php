@@ -17,7 +17,7 @@ class IndexController extends Controller
         $this->render('persists/home');
     }
 
-    public function ResisterAction()
+    public function RegisterAction()
     {
         $this->render('forms/registerForm');
     }
