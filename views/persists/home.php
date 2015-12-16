@@ -7,7 +7,7 @@
 </head>
 
 <body>
-
+<?php include 'header.php' ?>
     <div id="fullpage">
         <div class="section">
             <h1>HOME</h1>
@@ -47,7 +47,7 @@
                 autoScrolling: true,
                 fitToSection: true,
                 fitToSectionDelay: 1000,
-                scrollBar: false,
+                scrollBar: true,
                 easing: 'easeInOutCubic',
                 easingcss3: 'ease',
                 loopBottom: false,
@@ -71,7 +71,7 @@
                 sectionsColor : ['#ccc', '#fff'],
                 paddingTop: '3em',
                 paddingBottom: '10px',
-                fixedElements: '#header, .footer',
+                fixedElements: 'header, footer',
                 responsiveWidth: 0,
                 responsiveHeight: 0,
 
