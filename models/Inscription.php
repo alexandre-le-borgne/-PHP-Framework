@@ -2,8 +2,8 @@
 
     $username = Securite::insertBD($_GET['username']);
     $email = Securite::insertBD($_GET['email']);
-    $password = Securite::insertBD($_GET['password']);
-    $pwdConfirm = Securite::insertBD($_GET['pwdConfirm']);
+    $password = crypt(Securite::insertBD($_GET['password']), CRYPT_SHA512);
+    $pwdConfirm = crypt(Securite::insertBD($_GET['pwdConfirm']), CRYPT_SHA512);
     $birthDate = Securite::insertBD($_GET['birthDate']);
 
 
