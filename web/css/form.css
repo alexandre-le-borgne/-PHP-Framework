@@ -11,10 +11,10 @@ input[type=text], input[type=email]
 
 #preRegister
 {
-    background-color: deeppink;
+    background-color: hotpink;
     width: 302px;
     height: 208px;
-    margin: 20px;
+    padding: 20px;
 }
 
 input[type=text]:focus, input[type=email]:focus
