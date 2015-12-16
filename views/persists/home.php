@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Mon blog</title>
-    <?php include 'head.php' ?>
+    <?php View::getView("persists/head"); ?>
 </head>
 
 <body>
