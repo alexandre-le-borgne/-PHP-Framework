@@ -6,7 +6,6 @@
  * déjà remplis
  *
  */
-include("../persists/head.php");
 ?>
 
 <div class="preRegisterDiv">
