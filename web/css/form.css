@@ -1,3 +1,17 @@
+/* Div Totale de preRegister */
+.preRegisterDiv
+{
+    border: 1px solid #e1e8ed;
+    box-shadow: none;
+    border-radius: 4px;
+    height: 206px;
+    float: right;
+    width: 300px;
+
+    background-color: hotpink;
+}
+
+/* Les input des formulaires  */
 input[type=text], input[type=email]
 {
     width: 100%;
@@ -14,18 +28,8 @@ input[type=text]:focus, input[type=email]:focus
     border: 3px solid #444;
 }
 
-.registerField:focus
+/* la div des input de formulaires */
+.registerField
 {
-    border: 3px solid #444;
-}
-
-.preRegisterDiv
-{
-    border: 1px solid #e1e8ed;
-    background: #fff;
-    box-shadow: none;
-    border-radius: 4px;
-    height: 206px;
-    float: right;
-    width: 300px;
+    background-color: #2EBE21;
 }
