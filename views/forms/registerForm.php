@@ -7,7 +7,6 @@
  * - d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
  *
  */
-include("../persists/head.php");
 ?>
 
 <div class="registerDiv">
@@ -16,7 +15,7 @@ include("../persists/head.php");
 
     <form id="register" method="post" name="register" action="../../models/Inscription.php">
 
-            <input type="text" name="username" placeholder="Pseudonyme" required>
+            <input type="text" name="username" placeholder="<?php echo $_SESSION['username'];?>Pseudonyme" required>
             <input type="email" name="email" placeholder="E-mail" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
             <input type="password" name="pwdConfirm" placeholder="Mot de passe" required>
