@@ -13,15 +13,6 @@
 
     <!--PRE SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="preregister">
-        <!--USERNAME-->
-        <div class="control-group">
-            <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on">@</span>
-                    <input class="span2" id="prependedInput" name="username" type="text" placeholder="Username" required>
-                </div>
-            </div>
-        </div>
         <!--EMAIL-->
         <div class="control-group">
             <div class="controls">
