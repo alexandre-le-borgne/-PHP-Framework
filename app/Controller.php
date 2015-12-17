@@ -20,7 +20,7 @@ abstract class Controller {
         $modelspath = __DIR__.DIRECTORY_SEPARATOR.'../model/';
         require_once($modelspath.$model.'.php');
         $model = strtolower($model);
-        return $this->$model = new $model;
+        $this->$model = new $model;
     }
 
     public function render($view, $data = array()) {

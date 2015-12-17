@@ -3,6 +3,7 @@
 error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
 
+require_once 'app/Request.php';
 require_once 'app/Kernel.php';
 require_once 'app/View.php';
 require_once 'app/Controller.php';
