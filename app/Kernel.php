@@ -23,6 +23,7 @@ class Kernel
 
     public function response()
     {
+        var_dump($params);
         $request = new Request();
         $params = explode('/', $request->get('url'));
         $controller = 'indexController';
