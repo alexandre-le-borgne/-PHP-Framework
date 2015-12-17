@@ -14,19 +14,17 @@ class IndexController extends Controller
         $this->render('persists/home');
     }
 
-    public function PreregisterAction()
+    public function PreregisterAction(Request $request)
     {
         $this->loadModel('IndexModel');
 
-        if (isset($_POST['username'], $_POST['email'], $_POST['password']))
-        {
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+        $email = $request->post('email');
+        $password = $request->post('password');
+        $confirmPwd = $request->post('confirmPwd');
 
+        if ($email && $password && $confirmPwd)
+        {
             $errors = array();
-            if (!($this->indexmodel->availableUser($username)))
-                $errors['username'] = 'Pseudonyme déjà utilisé !';
             if (!($this->indexmodel->availableEmail($email)))
                 $errors['email'] = 'Email non valide';
 
@@ -62,13 +60,13 @@ class IndexController extends Controller
                 'errors' => $errors
             );
 
-            if(!($this->indexmodel->availableUser($_POST['username'])))
+            if (!($this->indexmodel->availableUser($_POST['username'])))
                 $errors['username'] = 'Pseudonyme déjà utilisé !';
 
-            if(!($this->indexmodel->availableEmail($_POST['email'])))
+            if (!($this->indexmodel->availableEmail($_POST['email'])))
                 $errors['email'] = 'Email non valide';
 
-            if(!($this->indexmodel->availablePwd($_POST['password'])))
+            if (!($this->indexmodel->availablePwd($_POST['password'])))
                 $errors['password'] = 'Mot de passe invalide';
 
             $this->render('forms/registerForm', $data);
