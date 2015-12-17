@@ -14,7 +14,7 @@ class IndexController extends Controller
         $this->render('persists/home');
     }
 
-    public function PreregisterAction(Request $request)
+    public function PreregisterAction()
     {
         $this->loadModel('IndexModel');
 
@@ -28,15 +28,13 @@ class IndexController extends Controller
             if (!($this->indexmodel->availableUser($username)))
                 $errors['username'] = 'Pseudonyme déjà utilisé !';
             if (!($this->indexmodel->availableEmail($email)))
-                $errors['email'] = 'email non valide';
-            if (!($this->indexmodel->availablePwd($password)))
-                $errors['password'] = 'Mot de passe invalide';
+                $errors['email'] = 'Email non valide';
+
 
             $data = array
             (
                 'username' => $username,
                 'email' => $email,
-                'password' => $password,
                 'errors' => $errors
             );
 
@@ -50,18 +48,35 @@ class IndexController extends Controller
         if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['pwdConfirm'], $_POST['birthDate']) && ($_POST['password'] == $_POST['pwdConfirm']))
         {
             $this->loadModel('IndexModel');
+
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $errors = array();
+
+            $data = array
+            (
+                'username' => $username,
+                'email' => $email,
+                'password' => $password,
+                'errors' => $errors
+            );
+
             if(!($this->indexmodel->availableUser($_POST['username'])))
-                return;
+                $errors['username'] = 'Pseudonyme déjà utilisé !';
 
             if(!($this->indexmodel->availableEmail($_POST['email'])))
-                return;
+                $errors['email'] = 'Email non valide';
 
             if(!($this->indexmodel->availablePwd($_POST['password'])))
-                return;
+                $errors['password'] = 'Mot de passe invalide';
+
+            $this->render('forms/registerForm', $data);
 
             $this->indexmodel->addUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['birthdate']);
 
         }
+
     }
 
     public
