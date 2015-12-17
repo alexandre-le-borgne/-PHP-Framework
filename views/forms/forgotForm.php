@@ -18,7 +18,7 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <button type="submit" name="action" value="forgotPwd" class="btn">Réinitialiser</button>
+                <button type="submit" name="action" value="forgotPwd" class="btn">R&eacute;initialiser</button>
             </div>
         </div>
     </form>
