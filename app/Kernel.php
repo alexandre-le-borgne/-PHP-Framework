@@ -23,16 +23,15 @@ class Kernel
 
     public function response()
     {
+        $router = new Router();
         $request = new Request();
         $params = explode('/', $request->get('url'));
-        $controller = 'index';
-        $action = 'index';
         if (isset($params[0]) && $params[0] != '')
-            $controller = ucfirst($params[0]);
-        if (isset($params[1]) && $params[1] != '')
-            $action = ($params[1]) . 'Action';
-        $controller = ucfirst($controller) . 'Controller';
-        $action = ucfirst($action) . 'Action';
+            $route = $router->getRoute($params[0]);
+        else
+            $route = $router->getDefaultRoute();
+        $controller = $route->getController();
+        $action = $route->getAction();
         $controller = new $controller();
         $r = new ReflectionMethod($controller, $action);
         $params = $r->getParameters();

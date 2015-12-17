@@ -1,28 +1,38 @@
 <?php
-class Route {
 
-    public $view;
+class Route
+{
 
-    public $controller;
+    private $name;
+    private $controller;
+    private $action;
 
-
-
-    public function __construct($model, $view, $controller) {
-
-        $this->view = $view;
+    public function __construct($name, $controller, $action)
+    {
+        $this->name = $name;
         $this->controller = $controller;
+        $this->action = $action;
 
     }
 
-    public function getView() {
+    public function getName()
+    {
 
-        return $this->view;
+        return $this->name;
 
     }
 
-    public function getController() {
+    public function getController()
+    {
 
-        return $this->controller;
+        return ucfirst($this->controller.'Controller');
+
+    }
+
+    public function getAction()
+    {
+
+        return ucfirst($this->action.'Action');
 
     }
 }

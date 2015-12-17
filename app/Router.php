@@ -9,16 +9,21 @@ class Router {
         //"exampleroute" is the name of the route, e.g. /exampleroute
         //Here, class names are used rather than instances so instances are only ever created when needed, otherwise every model, view and
         //controller in the system would be instantiated on every request, which obviously isn't good!
-
-        $this->table['index'] = new Route('IndexModel', 'IndexView', 'IndexController');
-
+        // Route(routename, controllername, actionname);
+        $this->table[] = $this->getDefaultRoute();
+        $this->table[] = new Route('preregister', 'index', 'preregister');
+        $this->table[] = new Route('register', 'index', 'register');
     }
 
     public function getRoute($route) {
         $route = strtolower($route);
-        if(isset($this->table[$route]))
-            return $this->table[$route];
-        return $this->table['index'];
+        foreach($this->table as $route)
+            if($route->getName() == $route)
+                return $route;
+
     }
 
+    public function getDefaultRoute() {
+        return new Route('index', 'index', 'index');
+    }
 }
