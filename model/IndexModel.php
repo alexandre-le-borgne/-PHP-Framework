@@ -9,7 +9,7 @@
 class IndexModel extends Model
 {
 
-    public function availableAccount($username) {
+    public function availableUser($username) {
 
         $db = new Database();
 
@@ -19,6 +19,26 @@ class IndexModel extends Model
 
         return ($db->execute($sql) == NULL);
     }
+
+    public function availableEmail($email)
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            return false;
+        else {
+            $db = new Database();
+
+            $email = Securite::escape($email);
+
+            $sql = "Select * From User Where email = '$email'";
+
+            return ($db->execute($sql));
+        }
+    }
+
+    public function availablePwd($password){
+        return (6 <= strlen($password) && strlen($password) <= 20);
+    }
+
 
     public function addUser($username, $email, $password, $birthDate){
         $db = new Database();
