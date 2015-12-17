@@ -23,6 +23,7 @@ class Kernel
 
     public function response()
     {
+        var_dump($_GET);
         $request = new Request();
         var_dump($request->get('url'));
 
