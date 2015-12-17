@@ -36,9 +36,11 @@ class Kernel
         $r = new ReflectionMethod($controller, $action);
         $params = $r->getParameters();
         foreach ($params as $param) {
-            echo "required".$param->getClass();
-            if($param->getClass() == 'Request')
+
+            if($param->getClass() == 'Request') {
+                echo $controller."required Request";
                 return $controller->{$action}($request);
+            }
         }
         return $controller->{$action}();
     }
