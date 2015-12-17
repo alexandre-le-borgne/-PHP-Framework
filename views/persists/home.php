@@ -8,8 +8,8 @@
 
 <body>
     <div id="fullpage">
+        <?php View::getView("persists/header"); ?>
         <div class="section">
-            <?php View::getView("persists/header"); ?>
             <?php View::getView("forms/loginForm"); ?>
             <?php View::getView("forms/preRegisterForm"); ?>
         </div>
