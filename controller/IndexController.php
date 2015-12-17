@@ -21,7 +21,7 @@ class IndexController extends Controller
             $data = array(
                 'username' => $_POST['username'],
                 'email' => $_POST['email'],
-                'password' => count($_POST['password'])
+                'password' => strlen($_POST['password'])
             );
             $this->render('forms/registerForm', $data);
         }
