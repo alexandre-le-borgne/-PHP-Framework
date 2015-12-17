@@ -16,21 +16,37 @@ class IndexController extends Controller
 
     public function PreregisterAction(Request $request)
     {
-        $session = $request->getSession();
-        $session->set('', 'grosse');
+        $this->loadModel('IndexModel');
 
         if (isset($_POST['username'], $_POST['email'], $_POST['password']))
         {
-            $data = array(
-                'username' => $_POST['username'],
-                'email' => $_POST['email'],
-                'password' => strlen($_POST['password'])
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $errors = array();
+            if (!($this->indexmodel->availableUser($username)))
+                $errors['username'] = 'Pseudonyme déjà utilisé !';
+            if (!($this->indexmodel->availableEmail($email)))
+                $errors['email'] = 'email non valide';
+            if (!($this->indexmodel->availablePwd($password)))
+                $errors['password'] = 'Mot de passe invalide';
+
+            $data = array
+            (
+                'username' => $username,
+                'email' => $email,
+                'password' => $password,
+                'errors' => $errors
             );
+
             $this->render('forms/registerForm', $data);
         }
     }
 
-    public function RegisterAction()
+
+    public
+    function RegisterAction()
     {
         if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['pwdConfirm'], $_POST['birthDate']) && ($_POST['password'] == $_POST['pwdConfirm']))
         {
@@ -39,7 +55,8 @@ class IndexController extends Controller
         }
     }
 
-    public function LoginAction()
+    public
+    function LoginAction()
     {
         $this->render('persists/home');
     }
