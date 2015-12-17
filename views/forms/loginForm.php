@@ -34,6 +34,7 @@
         <div class="control-group">
             <div class="controls">
                 <input type="password" id="inputPassword" placeholder="Password">
+                <button type="submit" class="btn">Sign in</button>
             </div>
         </div>
         <div class="control-group">
@@ -41,19 +42,15 @@
                 <label class="checkbox">
                     <input type="checkbox"> Remember me
                 </label>
-                <button type="submit" class="btn">Sign in</button>
+                <div class="socialConnect">
+                    <button type="submit">Fb</button>
+                    <button type="submit">Tw</button>
+                    <button type="submit">Gg</button>
+                </div>
             </div>
         </div>
     </form>
 </div>
-
-    <div class="socialConnect">
-
-        <button type="submit">Fb</button>
-        <button type="submit">Tw</button>
-        <button type="submit">Gg</button>
-
-    </div>
 
 </div>
 <br>
