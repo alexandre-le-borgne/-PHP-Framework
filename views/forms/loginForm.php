@@ -33,8 +33,10 @@
         <!--USERNAME-->
         <div class="control-group">
             <div class="controls">
-                <span class="add-on">@</span>
-                <input class="span2" id="prependedInput" type="text" placeholder="Username">
+                <div class="input-prepend">
+                    <span class="add-on">@</span>
+                    <input class="span2" id="prependedInput" type="text" placeholder="Username">
+                </div>
             </div>
         </div>
         <!--PASSWORD-->
