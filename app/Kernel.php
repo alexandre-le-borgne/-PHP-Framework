@@ -32,7 +32,7 @@ class Kernel
             $controller = 'IndexController';
             $action = 'index';
         }
-        $controller = new $controller();
+        $controller = new $controller(new Request());
         return $controller->{$action . 'Action'}();
     }
 }

@@ -19,4 +19,8 @@ class Request
     public function post($name) {
         return isset($_POST[$name]) ? $_POST[$name] : null;
     }
+
+    public function getSession() {
+        return Session::getInstance();
+    }
 }
