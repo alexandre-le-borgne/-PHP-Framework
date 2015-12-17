@@ -34,7 +34,8 @@ class IndexController extends Controller
     {
         if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['pwdConfirm'], $_POST['birthDate']) && ($_POST['password'] == $_POST['pwdConfirm']))
         {
-
+            $this->loadModel('IndexModel');
+            $indexmodel->addUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['birthdate']);
         }
     }
 
