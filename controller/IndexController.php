@@ -44,7 +44,7 @@ class IndexController extends Controller
             if ($isError)
             {
                 $data = array('errors' => $errors);
-                $this->render('', $data);
+                $this->render('home', $data);
                 return;
             }
 
