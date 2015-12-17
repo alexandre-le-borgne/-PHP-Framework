@@ -15,14 +15,18 @@ class Router {
         $this->table[] = new Route('register', 'index', 'register');
     }
 
-    public function getRoute($route) {
+    public function getRoute($route)
+    {
         echo $route;
         echo "compare with <br>";
         var_dump($this->table);
         $route = strtolower($route);
-        foreach($this->table as $route)
-            if($route->getName() == $route)
+        foreach ($this->table as $route) {
+            if ($route->getName() == $route) {
+                echo "ROUTE FOUND";
                 return $route;
+            }
+        }
         return $this->getDefaultRoute();
     }
 
