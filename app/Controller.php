@@ -9,14 +9,27 @@
  */
 
 abstract class Controller {
-    protected $model;
+    protected $models;
 
-    public function __construct(Model $model) {
-        $this->model = $model;
+    public function loadModel($model) {
+        require_once('../models/'.$model.'.php');
+        $this->$model = new $model;
     }
 
     public function render($view, $data = array()) {
         $view = new View($view);
         $view->render($data);
+    }
+
+    public function redirect($url) {
+        header('Location: '.$url);
+    }
+
+    public function redirectToRoute($route, $data) {
+
+    }
+
+    public function createNotFoundException($description) {
+        throw new Exception($description);
     }
 }

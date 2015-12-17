@@ -9,19 +9,29 @@
 class View
 {
     private $view;
+    private $layout;
 
     public function __construct($view) {
         $this->view = $view;
     }
 
     public function render($data = array()) {
-        if(!empty($data))
-            extract($data);
-        $path = __DIR__.DIRECTORY_SEPARATOR.'../views/'.$this->view.'.php';
-        if(file_exists($path))
-            include_once $path;
-        else
+        $viewspath = $path = __DIR__.DIRECTORY_SEPARATOR.'../views/';
+        $path = $viewspath.$this->view.'.php';
+        if(file_exists($path)) {
+            if(!empty($data))
+                extract($data);
+            ob_start();
+            require $path;
+            $content_for_layout = ob_get_clean();
+            if($this->layout == false)
+                echo $content_for_layout;
+            else
+                require ($viewspath.$this->layout.'.php');
+        }
+        else {
             throw new Exception("VIEW NOT FOUND | ".$path." |");
+        }
     }
 
     public static function getView($view) {
