@@ -21,7 +21,6 @@ class Securite {
     public static function encode($str){
         $key = hash('sha512', $str);
         $encoded = crypt($str, '$6$rounds=5000$' . $key . '$');
-
         return $encoded;
     }
 }
