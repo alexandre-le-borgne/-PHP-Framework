@@ -31,28 +31,23 @@
     <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" name="register">
         <!--USERNAME-->
-
-                <input type="text" placeholder="Identifiant">
-
-        <!--PASSWORD-->
-
-                <input type="password" id="inputPassword" placeholder="Password">
-
-
-
-                <button type="submit" class="btn">Sign in</button>
-
-
-        <!--REMEMBER ME + FORGOT PWD-->
         <div class="control-group">
-              <div class="controls">
+            <div class="controls">
+                <input type="text" placeholder="Identifiant">
+            </div>
+            <div class="controls">
+                <input type="password" id="inputPassword" placeholder="Password">
+            </div>
+            <div class="controls">
+                <button type="submit" class="btn">Sign in</button>
+            </div>
+            <div class="controls">
                 <label class="checkbox">
                     <input type="checkbox"> Remember me
                 </label>
                 <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
             </div>
         </div>
-
         <hr>
         <!--SOCIAL CONNECT-->
         <div class="socialConnect">
