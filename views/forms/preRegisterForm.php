@@ -14,29 +14,16 @@
     <!--PRE SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="preregister">
         <!--EMAIL-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" id="inputEmail" name="email" placeholder="Email" required>
-            </div>
-        </div>
+        <input type="text" id="inputEmail" name="email" placeholder="Email" required><br>
+
         <!--PASSWORD-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required>
-            </div>
-        </div>
+        <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br>
+
         <!--CONFIRM PASSWORD-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe"
-                       required>
-            </div>
-        </div>
+        <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br>
+
         <!--SUBMIT ACTION-->
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" name="action" value="register" class="btn">S'inscrire sur Aaron</button>
-            </div>
-        </div>
+        <button type="submit" name="action" value="register" class="btn">S'inscrire sur Aaron</button>
+
     </form>
 </div>
