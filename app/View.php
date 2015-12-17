@@ -16,7 +16,7 @@ class View
     }
 
     public function render($data = array()) {
-        $viewspath = $path = __DIR__.DIRECTORY_SEPARATOR.'../views/';
+        $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$this->view.'.php';
         if(file_exists($path)) {
             if(!empty($data))
