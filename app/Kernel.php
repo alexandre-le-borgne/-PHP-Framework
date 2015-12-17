@@ -23,9 +23,10 @@ class Kernel
 
     public function response()
     {
-        var_dump($params);
+
         $request = new Request();
         $params = explode('/', $request->get('url'));
+        var_dump($params);
         $controller = 'indexController';
         $action = 'indexAction';
         if (isset($params[0]))
