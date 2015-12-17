@@ -15,13 +15,15 @@ class Session
         session_start();
     }
 
-    public function get($name) {
-        if(isset($_SESSION[$name]))
+    public function get($name)
+    {
+        if (isset($_SESSION[$name]))
             return $_SESSION($name);
         return null;
     }
 
-    public function set($name, $value) {
+    public function set($name, $value)
+    {
         $_SESSION[$name] = $value;
     }
 
@@ -31,8 +33,9 @@ class Session
         unset($_SESSION);
     }
 
-    public static function getInstance() {
-        if(!Session::$instance)
+    public static function getInstance()
+    {
+        if (!Session::$instance)
             Session::$instance = new self;
         return Session::$instance;
     }

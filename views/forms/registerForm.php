@@ -13,7 +13,7 @@
 
     <h2><strong>Finalisez votre inscription !</h2>
 
-    <form id="register" method="post" name="register" action="../../models/Inscription.php">
+    <form id="register" method="post" name="register" action="index.php?controller=index&action=register">
 
         <input type="text" name="username" value="<?php echo $username; ?>" required>
         <input type="email" name="email" value="<?php echo $email; ?>" required>

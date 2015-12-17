@@ -14,8 +14,11 @@ class IndexController extends Controller
         $this->render('persists/home');
     }
 
-    public function PreregisterAction()
+    public function PreregisterAction(Request $request)
     {
+        $session = $request->getSession();
+        $session->set('', 'grosse');
+
         if (isset($_POST['username'], $_POST['email'], $_POST['password']))
         {
             $data = array(
