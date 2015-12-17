@@ -18,8 +18,7 @@
             <div class="controls">
                 <div class="input-prepend">
                     <span class="add-on">@</span>
-                    <input class="span2" id="prependedInput" name="username" type="text" placeholder="Username"
-                           required>
+                    <input class="span2" id="prependedInput" name="username" type="text" placeholder="Username" required>
                 </div>
             </div>
         </div>
@@ -38,7 +37,8 @@
         <!--CONFIRM PASSWORD-->
         <div class="control-group">
             <div class="controls">
-                <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe">
+                <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe"
+                       required>
             </div>
         </div>
         <!--SUBMIT ACTION-->
