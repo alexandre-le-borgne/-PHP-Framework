@@ -23,17 +23,13 @@ class Kernel
 
     public function response()
     {
-        var_dump($_GET);
         $request = new Request();
-        var_dump($request->get('url'));
-
         $params = explode('/', $request->get('url'));
-        var_dump($params);
         $controller = 'indexController';
         $action = 'indexAction';
-        if (isset($params[0]))
+        if (isset($params[0]) && $params[0] != '')
             $controller = ucfirst($params[0]);
-        if (isset($params[1]))
+        if (isset($params[1]) && $params[1] != '')
             $action = ($params[1]) . 'Action';
         $controller = ucfirst($controller) . 'Controller';
         $action = ucfirst($action) . 'Action';
