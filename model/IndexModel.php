@@ -20,17 +20,17 @@ class IndexModel extends Model
         return ($db->execute($sql) == NULL);
     }
 
-    public function addUser($username, $email, $password, $birthdate){
+    public function addUser($username, $email, $password, $birthDate){
         $db = new Database();
 
         $username = Securite::escape($username);
         $email = Securite::escape($email);
         $password = Securite::escape($password);
-        $birthdate = Securite::escape($birthdate);
+        $birthDate = Securite::escape($birthDate);
 
         $password = Securite::encode($password);
 
-        $insert = "Insert Into User ('username', 'email', 'password', 'birthDate') Values ('$username', '$email', '$password', '$birthdate')";
+        $insert = "Insert Into User ('username', 'email', 'password', 'birthDate') Values ('$username', '$email', '$password', '$birthDate')";
         $db->execute($insert);
     }
 }
