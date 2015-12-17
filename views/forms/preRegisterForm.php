@@ -9,7 +9,7 @@
 
 <div class="preRegisterDiv">
 
-    <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
+    <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
     <!--PRE SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="preregister">
