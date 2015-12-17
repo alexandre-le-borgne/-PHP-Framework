@@ -16,7 +16,6 @@
         <input type="text" placeholder="Identifiant">
         <input type="password" id="inputPassword" placeholder="Password">
         <input class="btn" type="submit" value="Submit">
-        <button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
         <label class="checkbox">
             <input type="checkbox"> Remember me
         </label>
