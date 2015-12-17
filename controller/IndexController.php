@@ -8,12 +8,9 @@
  */
 class IndexController extends Controller
 {
-    public function __construct() {
-        parent::__construct(new IndexModel());
-    }
-
     public function IndexAction()
     {
+        $this->loadModel('IndexModel');
         $this->render('persists/home');
     }
 
