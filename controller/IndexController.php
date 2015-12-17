@@ -16,10 +16,12 @@ class IndexController extends Controller
 
     public function RegisterAction()
     {
-        if(isset($_POST['username'], $_POST['email'])) {
+        if (isset($_POST['username'], $_POST['email'], $_POST['password']))
+        {
             $data = array(
                 'username' => $_POST['username'],
-                'email' => $_POST['email']
+                'email' => $_POST['email'],
+                'password' => count($_POST['password'])
             );
             $this->render('forms/registerForm', $data);
         }
