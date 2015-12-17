@@ -16,9 +16,13 @@
     <!--SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="../../models/Inscription.php">
         <!--USERNAME-->
-        <div class="input-prepend">
-            <span class="add-on">@</span>
-            <input class="span2" id="prependedInput" type="text" placeholder="Identifiant" value="<?php echo $username; ?>" required>
+        <div class="control-group">
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on">@</span>
+                    <input class="span2" id="prependedInput" type="text" placeholder="Username" value="<?php echo $username; ?>" required>
+                </div>
+            </div>
         </div>
         <!--EMAIL-->
         <div class="control-group">

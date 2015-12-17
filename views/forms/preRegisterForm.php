@@ -15,9 +15,13 @@
     <!--PRE SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="index.php?controller=index&action=register">
         <!--USERNAME-->
-        <div class="input-prepend">
-            <span class="add-on">@</span>
-            <input class="span2" id="prependedInput" type="text" placeholder="Identifiant" required>
+        <div class="control-group">
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on">@</span>
+                    <input class="span2" id="prependedInput" type="text" placeholder="Username" required>
+                </div>
+            </div>
         </div>
         <!--EMAIL-->
         <div class="control-group">
@@ -28,7 +32,7 @@
         <!--PASSWORD-->
         <div class="control-group">
             <div class="controls">
-                <input type="password" id="inputPassword" placeholder="Mot de passe">
+                <input type="password" id="inputPassword" placeholder="Mot de passe" required>
             </div>
         </div>
         <!--SUBMIT ACTION-->
