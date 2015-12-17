@@ -31,9 +31,11 @@
     <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" name="register">
         <!--USERNAME-->
-        <div class="input-prepend">
-            <span class="add-on">@</span>
-            <input class="span2" id="prependedInput" type="text" placeholder="Username">
+        <div class="control-group">
+            <div class="controls">
+                <span class="add-on">@</span>
+                <input class="span2" id="prependedInput" type="text" placeholder="Username">
+            </div>
         </div>
         <!--PASSWORD-->
         <div class="control-group">
