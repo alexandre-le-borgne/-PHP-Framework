@@ -32,6 +32,5 @@ class IndexModel extends Model
 
         $insert = "Insert Into User ('username', 'email', 'password', 'birthDate') Values ('$username', '$email', '$password', '$birthdate')";
         $db->execute($insert);
-
     }
 }
