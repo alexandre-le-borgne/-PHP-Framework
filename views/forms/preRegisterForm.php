@@ -30,12 +30,12 @@
         <!--USERNAME-->
         <div class="input-prepend">
             <span class="add-on">@</span>
-            <input class="span2" id="prependedInput" type="text" placeholder="Identifiant" value="<?php echo $username; ?>" required>
+            <input class="span2" id="prependedInput" type="text" placeholder="Identifiant" required>
         </div>
         <!--EMAIL-->
         <div class="control-group">
             <div class="controls">
-                <input type="text" id="inputEmail" placeholder="Email" value="<?php echo $email; ?>" required>
+                <input type="text" id="inputEmail" placeholder="Email" required>
             </div>
         </div>
         <!--PASSWORD-->

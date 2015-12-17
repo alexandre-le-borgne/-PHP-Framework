@@ -9,24 +9,6 @@
  */
 ?>
 
-<!--<div class="registerDiv">-->
-<!---->
-<!---->
-<!---->
-<!--    <form id="register" method="post" name="register" action="../../models/Inscription.php">-->
-<!---->
-<!--        <input type="text" name="username" value="--><?php //echo $username; ?><!--" required>-->
-<!--        <input type="email" name="email" value="--><?php //echo $email; ?><!--" required>-->
-<!--        <input type="password" name="password" placeholder="Mot de passe" required>-->
-<!--        <input type="password" name="pwdConfirm" placeholder="Mot de passe" required>-->
-<!--        <input type="date" name="birthDate" placeholder="Date de naissance" required>-->
-<!---->
-<!--        <button type="submit" name="action" value="register" class="buttonSignup">S'inscrire</button>-->
-<!---->
-<!--    </form>-->
-<!---->
-<!--</div>-->
-
 <div class="registerDiv">
 
     <h2><strong>Finalisez votre inscription !</h2>
@@ -63,17 +45,17 @@
         </div>
         <!--SUBMIT ACTION-->
         <button type="submit" name="action" value="register" class="btn">S'inscrire</button>
+
+        <!--CAPTCHA-->
+        <input type="hidden" name="register">
+        <fieldset id="captchafield">
+            <div id="captcha"></div>
+        </fieldset>
+
     </form>
 </div>
 
 
-<!--
-<input type="hidden" name="register">
-<fieldset id="captchafield">
-    <div id="captcha"></div>
-</fieldset>
-
-</form>
 
 <script type="text/javascript">
 $(function() {
