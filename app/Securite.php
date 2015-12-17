@@ -2,7 +2,7 @@
 
 class Securite {
 
-    public static function insertBD($string)
+    public static function escape($string)
     {
         if (ctype_digit($string))
             return intval($string);

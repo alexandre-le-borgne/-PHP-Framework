@@ -8,5 +8,8 @@
  */
 class IndexModel extends Model
 {
+    public function availableAccount() {
+        $db = new Database();
 
+    }
 }
