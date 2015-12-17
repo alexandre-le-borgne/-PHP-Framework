@@ -52,6 +52,7 @@ class IndexController extends Controller
         {
             $this->loadModel('IndexModel');
             $this->indexmodel->addUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['birthdate']);
+
         }
     }
 
