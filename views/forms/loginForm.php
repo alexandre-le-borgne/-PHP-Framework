@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="control-group">
-            <div class="controls">
+              <div class="controls">
                 <label class="checkbox">
                     <input type="checkbox"> Remember me
                 </label>
