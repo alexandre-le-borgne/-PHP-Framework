@@ -30,18 +30,6 @@
                 <input type="text" id="inputEmail" placeholder="Email" value="<?php echo $email; ?>" required>
             </div>
         </div>
-        <!--PASSWORD-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="password" id="inputPassword" placeholder="Mot de passe">
-            </div>
-        </div>
-        <!--CONFIRM PASSWORD-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="password" id="inputPassword" placeholder="Confirmez votre mot de passe">
-            </div>
-        </div>
         <!--BIRTH DATE-->
         <div class="input-prepend">
             <span class="add-on">@</span>

@@ -9,8 +9,8 @@
 <body>
     <div id="fullpage">
         <div class="section">
-            <?php View::getView("forms/preRegisterForm"); ?>
             <?php View::getView("forms/loginForm"); ?>
+            <?php View::getView("forms/preRegisterForm"); ?>
         </div>
         <div class="section">
             <h1>HOME</h1>
