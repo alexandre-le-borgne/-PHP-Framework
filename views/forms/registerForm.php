@@ -17,7 +17,7 @@
 
         <input type="text" name="username" value="<?php echo $username; ?>" required>
         <input type="email" name="email" value="<?php echo $email; ?>" required>
-        <input type="password" name="password" placeholder="Mot de passe" required>
+        <input type="password" name="password" value="<?php for($i = 0; $i < $password; ++$i) echo '*'; ?>" required>
         <input type="password" name="pwdConfirm" placeholder="Mot de passe" required>
         <input type="date" name="birthDate" placeholder="Date de naissance" required>
 
