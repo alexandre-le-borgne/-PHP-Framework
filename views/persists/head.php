@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="web/css/bootstrap.min.css">
         <link rel="stylesheet" href="web/css/bootstrap-responsive.css">
         <link rel="stylesheet" href="web/css/bootstrap-responsive.min.css">
-        <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+        <link rel="stylesheet" type="text/css" href="web/js/fullpage/jquery.fullPage.css" />
         <link rel="stylesheet" href="web/css/body.css">
         <link rel="stylesheet" href="web/css/footer.css">
         <link rel="stylesheet" href="web/css/form.css">
