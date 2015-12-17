@@ -8,6 +8,12 @@
         <link rel="stylesheet" href="web/css/bootstrap-responsive.css">
         <link rel="stylesheet" href="web/css/bootstrap-responsive.min.css">
         <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+        <link rel="stylesheet" href="web/css/body.css">
+        <link rel="stylesheet" href="web/css/footer.css">
+        <link rel="stylesheet" href="web/css/form.css">
+        <link rel="stylesheet" href="web/css/nav.css">
+        <link rel="stylesheet" href="web/css/home.css">
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
         <script src="web/js/fullPage/vendors/jquery.easings.min.js"></script>
