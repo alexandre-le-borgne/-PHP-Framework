@@ -39,7 +39,7 @@
         <!--CONFIRM PASSWORD-->
         <div class="control-group">
             <div class="controls">
-                <input type="password" id="inputPassword" placeholder="Confirmer votre mot de passe">
+                <input type="password" id="inputPassword" placeholder="Confirmez votre mot de passe">
             </div>
         </div>
         <!--BIRTH DATE-->

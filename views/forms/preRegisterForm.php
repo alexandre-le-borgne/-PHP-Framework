@@ -28,7 +28,7 @@
                 <input type="text" id="inputEmail" placeholder="Email" required>
             </div>
         </div>
-        <!--PASSWORD-->
+        <!--PASSWORD
         <div class="control-group">
             <div class="controls">
                 <input type="password" id="inputPassword" placeholder="Mot de passe" required>
