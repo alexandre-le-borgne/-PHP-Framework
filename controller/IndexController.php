@@ -14,16 +14,30 @@ class IndexController extends Controller
         $this->render('persists/home');
     }
 
-    public function RegisterAction()
+    public function PreregisterAction()
     {
-        if(isset($_POST['username'], $_POST['email'])) {
+        if (isset($_POST['username'], $_POST['email'], $_POST['password']))
+        {
             $data = array(
                 'username' => $_POST['username'],
-                'email' => $_POST['email']
+                'email' => $_POST['email'],
+                'password' => strlen($_POST['password'])
             );
             $this->render('forms/registerForm', $data);
         }
-        $this->render('persists/home');
+    }
+
+    public function RegisterAction()
+    {
+        if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST))
+        {
+            $data = array(
+                'username' => $_POST['username'],
+                'email' => $_POST['email'],
+                'password' => strlen($_POST['password'])
+            );
+            $this->render('forms/registerForm', $data);
+        }
     }
 
     public function LoginAction()

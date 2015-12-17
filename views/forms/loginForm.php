@@ -26,10 +26,9 @@
 
 <div class="loginDiv">
     <form class="form-horizontal" method="post" name="register">
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" id="inputEmail" placeholder="Email">
-            </div>
+        <div class="input-prepend">
+            <span class="add-on">@</span>
+            <input class="span2" id="prependedInput" type="text" placeholder="Username">
         </div>
         <div class="control-group">
             <div class="controls">
@@ -42,12 +41,15 @@
                 <label class="checkbox">
                     <input type="checkbox"> Remember me
                 </label>
-                <div class="socialConnect">
-                    <button type="submit">Fb</button>
-                    <button type="submit">Tw</button>
-                    <button type="submit">Gg</button>
-                </div>
+                <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
             </div>
+        </div>
+        <hr>
+        <div class="socialConnect">
+<!--            <button type="submit"><img src="web/img/fb_icon_325x325.png" class="img-rounded"></button>-->
+<!--            <button type="submit"><img src="web/img/share-googleplus.png" class="img-rounded"></button>-->
+            <button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
+            <button class="btn btn-large btn-block" type="button">Block level button</button>
         </div>
     </form>
 </div>
