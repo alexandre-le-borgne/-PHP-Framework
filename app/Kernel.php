@@ -23,20 +23,23 @@ class Kernel
 
     public function response()
     {
-        if (isset($_GET['controller']) && isset($_GET['action'])) {
-            $controller = ucfirst($_GET['controller']) . 'Controller';
-            $action = ucfirst($_GET['action']);
-        } else {
-            $controller = 'IndexController';
-            $action = 'index';
-        }
+        $request = new Request();
+        $params = explode('/', $request->get('url'));
+        $controller = 'indexController';
+        $action = 'indexAction';
+        if (isset($params[0]))
+            $controller = ucfirst($params[0]);
+        if (isset($params[1]))
+            $action = ($params[1]) . 'Action';
+        $controller = ucfirst($controller) . 'Controller';
+        $action = ucfirst($action) . 'Action';
         $controller = new $controller();
-        $r = new ReflectionMethod($controller, $action . 'Action');
+        $r = new ReflectionMethod($controller, $action);
         $params = $r->getParameters();
         foreach ($params as $param) {
             if($param->getClass() == 'Request')
-                return $controller->{$action . 'Action'}(new Request());
+                return $controller->{$action}($request);
         }
-        return $controller->{$action . 'Action'}();
+        return $controller->{$action}();
     }
 }
