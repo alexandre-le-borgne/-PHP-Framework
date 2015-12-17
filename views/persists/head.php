@@ -19,6 +19,7 @@
         <!-- This following line is only necessary in the case of using the plugin option `scrollOverflow:true` -->
         <script type="text/javascript" src="web/js/fullPage/vendors/jquery.slimscroll.min.js"></script>
         <script type="text/javascript" src="web/js/fullPage/jquery.fullPage.js"></script>
+        <script type="text/javascript" src="web/js/slide.js"></script>
         <script src="web/js/script.js"></script>
     </head>
     <body>
