@@ -13,8 +13,8 @@
     <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" name="register">
         <!--USERNAME-->
-        <input type="text" placeholder="Identifiant">
-        <input type="password" id="inputPassword" placeholder="Password">
+        <input type="text" placeholder="Identifiant"><br>
+        <input type="password" id="inputPassword" placeholder="Password"><br>
         <input class="btn" type="submit" value="Submit">
         <label class="checkbox">
             <input type="checkbox"> Remember me
