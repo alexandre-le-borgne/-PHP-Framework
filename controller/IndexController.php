@@ -1,11 +1,11 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: Alexandre
  * Date: 16/12/2015
  * Time: 14:37
  */
+
 class IndexController extends Controller
 {
     public function IndexAction()
@@ -44,7 +44,7 @@ class IndexController extends Controller
             if ($isError)
             {
                 $data = array('errors' => $errors);
-                $this->render('home', $data);
+                $this->render('persists/home', $data);
                 return;
             }
 
