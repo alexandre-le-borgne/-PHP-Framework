@@ -11,6 +11,7 @@ require_once 'app/Database.php';
 require_once 'app/Model.php';
 require_once 'app/Route.php';
 require_once 'app/Router.php';
+require_once 'app/Securite.php';
 
 require_once 'controller/IndexController.php';
 require_once 'model/IndexModel.php';
