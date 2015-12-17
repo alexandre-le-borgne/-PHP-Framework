@@ -8,14 +8,18 @@
 ?>
 
 <div class="forgotDiv">
+
     <h2><strong>Retrouvez votre mot de passe !</strong></h2>
 
+    <!--FORGOT PWD FORM-->
     <form class="form-horizontal" method="post" name="register">
+        <!--E-MAIL-->
         <div class="control-group">
             <div class="controls">
                 <input type="email" id="inputEmail" placeholder="Email">
             </div>
         </div>
+        <!--SUBMIT-->
         <div class="control-group">
             <div class="controls">
                 <button type="submit" name="action" value="forgotPwd" class="btn">R&eacute; initialiser</button>

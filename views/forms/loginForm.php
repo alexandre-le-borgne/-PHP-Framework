@@ -25,17 +25,24 @@
 <!--    </form>-->
 
 <div class="loginDiv">
+
+    <h2>Connectez-vous ?</h2>
+
+    <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" name="register">
+        <!--USERNAME-->
         <div class="input-prepend">
             <span class="add-on">@</span>
             <input class="span2" id="prependedInput" type="text" placeholder="Username">
         </div>
+        <!--PASSWORD-->
         <div class="control-group">
             <div class="controls">
                 <input type="password" id="inputPassword" placeholder="Password">
                 <button type="submit" class="btn">Sign in</button>
             </div>
         </div>
+        <!--REMEMBER ME + FORGOT PWD-->
         <div class="control-group">
               <div class="controls">
                 <label class="checkbox">
@@ -45,6 +52,7 @@
             </div>
         </div>
         <hr>
+        <!--SOCIAL CONNECT-->
         <div class="socialConnect">
 <!--            <button type="submit"><img src="web/img/fb_icon_325x325.png" class="img-rounded"></button>-->
 <!--            <button type="submit"><img src="web/img/share-googleplus.png" class="img-rounded"></button>-->
@@ -53,6 +61,3 @@
         </div>
     </form>
 </div>
-
-</div>
-<br>
