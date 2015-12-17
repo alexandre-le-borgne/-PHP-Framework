@@ -18,13 +18,9 @@ class Router {
     public function getRoute($name)
     {
         $name = strtolower($name);
-        foreach ($this->table as $route) {
-            echo $route->getName() ."***". $name;
-            if ($route->getName() == $route) {
-                echo "ROUTE FOUND";
+        foreach ($this->table as $route)
+            if ($route->getName() == $name)
                 return $route;
-            }
-        }
         return $this->getDefaultRoute();
     }
 
