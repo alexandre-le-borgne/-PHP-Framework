@@ -25,8 +25,8 @@ class Kernel
     {
         $request = new Request();
         $params = explode('/', $request->get('url'));
-        $controller = 'indexController';
-        $action = 'indexAction';
+        $controller = 'index';
+        $action = 'index';
         if (isset($params[0]) && $params[0] != '')
             $controller = ucfirst($params[0]);
         if (isset($params[1]) && $params[1] != '')
