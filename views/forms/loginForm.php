@@ -31,23 +31,17 @@
     <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" name="register">
         <!--USERNAME-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" placeholder="Identifiant">
-            </div>
-        </div>
-        <!--PASSWORD-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="password" id="inputPassword" placeholder="Password">
-            </div>
-        </div>
 
-        <div class="control-group">
-            <div class="controls">
+                <input type="text" placeholder="Identifiant">
+
+        <!--PASSWORD-->
+
+                <input type="password" id="inputPassword" placeholder="Password">
+
+
+
                 <button type="submit" class="btn">Sign in</button>
-            </div>
-        </div>
+
 
         <!--REMEMBER ME + FORGOT PWD-->
         <div class="control-group">
