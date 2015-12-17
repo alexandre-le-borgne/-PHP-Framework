@@ -12,7 +12,7 @@
 
     <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
 
-    <!--PRE SIGN UP FORM-->
+    <!--PRE SIGN UP FORMbite-->
     <form class="form-horizontal" method="post" name="register" action="index.php?controller=index&action=register">
         <!--USERNAME-->
         <div class="control-group">
