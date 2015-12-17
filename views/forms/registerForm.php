@@ -24,22 +24,19 @@
                 </div>
             </div>
         </div>
-        <!--EMAIL-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" id="inputEmail" placeholder="Email" value="<?php echo $email; ?>" required>
-            </div>
-        </div>
+
         <!--BIRTH DATE-->
         <div class="input-prepend">
             <span class="add-on">@</span>
             <input class="span2" id="prependedInput" type="date" placeholder="Identifiant" required>
         </div>
+
         <!--SUBMIT ACTION-->
         <button type="submit" name="action" value="register" class="btn">S'inscrire</button>
 
         <!--CAPTCHA-->
-        <input type="hidden" name="register">
+
+        <input type="text" name="register">
         <fieldset id="captchafield">
             <div id="captcha"></div>
         </fieldset>
