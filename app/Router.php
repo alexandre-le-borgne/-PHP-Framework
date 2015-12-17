@@ -16,11 +16,14 @@ class Router {
     }
 
     public function getRoute($route) {
+        echo $route;
+        echo "compare with <br>";
+        var_dump($this->table);
         $route = strtolower($route);
         foreach($this->table as $route)
             if($route->getName() == $route)
                 return $route;
-
+        return $this->getDefaultRoute();
     }
 
     public function getDefaultRoute() {
