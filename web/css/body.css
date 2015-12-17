@@ -8,6 +8,7 @@ body.css contient les règles css concernant la structure globale du site
 html, body {
     padding: 0;
     margin: 0;
+    background-image: url("https://wallpaperscraft.com/image/usa_yosemite_national_park_california_mountains_fog_trees_101111_1920x1080.jpg");
 }
 
 body
