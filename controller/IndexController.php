@@ -60,13 +60,14 @@ class IndexController extends Controller
                 'errors' => $errors
             );
 
-            if(!($this->indexmodel->availableUser($_POST['username'])))
+            if(!($this->indexmodel->availableUser($_POST['username']))) {
                 $errors['username'] = 'Pseudonyme déjà utilisé !';
+                $this->render('forms/registerForm', $data);
+            }
 
 
-            $this->render('forms/registerForm', $data);
 
-            $this->indexmodel->addUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['birthdate']);
+            $this->indexmodel->addUser($username, $_POST['email'], $_POST['password'], $_POST['birthdate']);
 
         }
 
