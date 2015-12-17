@@ -23,7 +23,6 @@ class IndexController extends Controller
             );
             $this->render('forms/registerForm', $data);
         }
-        $this->render('persists/home');
     }
 
     public function LoginAction()
