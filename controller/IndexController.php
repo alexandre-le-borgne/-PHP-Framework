@@ -14,31 +14,41 @@ class IndexController extends Controller
         $this->render('persists/home');
     }
 
-    public function PreregisterAction()
+    public function PreregisterAction(Request $request)
     {
         $this->loadModel('IndexModel');
 
-        if (isset($_POST['username'], $_POST['email'], $_POST['password']))
+        $email = $request->post('email');
+        $password = $request->post('password');
+        $confirmPwd = $request->post('confirmPwd');
+
+        if ($email && $password && $confirmPwd)
         {
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-
+            $isError = false;
             $errors = array();
-            if (!($this->indexmodel->availableUser($username)))
-                $errors['username'] = 'Pseudonyme déjà utilisé !';
             if (!($this->indexmodel->availableEmail($email)))
+            {
                 $errors['email'] = 'Email non valide';
+                $isError = true;
+            }
+            if ($password != $confirmPwd)
+            {
+                $errors['password'] = 'Mot de passe différent';
+                $isError = true;
+            }
+            if (!($this->indexmodel->availablePwd($password)))
+            {
+                $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
+                $isError = true;
+            }
+            if ($isError)
+            {
+                $data = array('errors' => $errors);
+                $this->render('', $data);
+                return;
+            }
 
-
-            $data = array
-            (
-                'username' => $username,
-                'email' => $email,
-                'errors' => $errors
-            );
-
-            $this->render('forms/registerForm', $data);
+            $this->render('forms/registerForm');
         }
     }
 
@@ -60,14 +70,13 @@ class IndexController extends Controller
                 'errors' => $errors
             );
 
-            if(!($this->indexmodel->availableUser($_POST['username']))) {
+            if(!($this->indexmodel->availableUser($_POST['username'])))
                 $errors['username'] = 'Pseudonyme déjà utilisé !';
-                $this->render('forms/registerForm', $data);
-            }
 
 
+            $this->render('forms/registerForm', $data);
 
-            $this->indexmodel->addUser($username, $_POST['email'], $_POST['password'], $_POST['birthdate']);
+            $this->indexmodel->addUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['birthdate']);
 
         }
 
