@@ -17,7 +17,7 @@ abstract class Controller {
     }
 
     public function loadModel($model) {
-        $modelspath = __DIR__.DIRECTORY_SEPARATOR.'models/';
+        $modelspath = __DIR__.DIRECTORY_SEPARATOR.'../model/';
         require_once($modelspath.$model.'.php');
         $this->$model = new $model;
     }
