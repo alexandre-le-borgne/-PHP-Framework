@@ -36,6 +36,10 @@
             </div>
         </div>
         <!--SUBMIT ACTION-->
-        <button type="submit" name="action" value="register" class="btn">S'inscrire sur Aaron</button>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" name="action" value="register" class="btn">S'inscrire sur Aaron</button>
+            </div>
+        </div>
     </form>
 </div>

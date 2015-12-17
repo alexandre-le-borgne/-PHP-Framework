@@ -43,9 +43,15 @@
         <div class="control-group">
             <div class="controls">
                 <input type="password" id="inputPassword" placeholder="Password">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
                 <button type="submit" class="btn">Sign in</button>
             </div>
         </div>
+
         <!--REMEMBER ME + FORGOT PWD-->
         <div class="control-group">
               <div class="controls">
@@ -55,6 +61,7 @@
                 <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
             </div>
         </div>
+
         <hr>
         <!--SOCIAL CONNECT-->
         <div class="socialConnect">

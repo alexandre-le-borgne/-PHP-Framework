@@ -8,8 +8,29 @@
  */
 class IndexModel extends Model
 {
-    public function availableAccount() {
+
+    public function availableAccount($username) {
+
         $db = new Database();
 
+        $user = Securite::escape($username);
+
+        $sql = "Select * From User Where username = '$user'";
+
+        return ($db->execute($sql) == NULL);
+    }
+
+    public function addUser($username, $email, $password, $birthDate){
+        $db = new Database();
+
+        $username = Securite::escape($username);
+        $email = Securite::escape($email);
+        $password = Securite::escape($password);
+        $birthDate = Securite::escape($birthDate);
+
+        $password = Securite::encode($password);
+
+        $insert = "Insert Into User ('username', 'email', 'password', 'birthDate') Values ('$username', '$email', '$password', '$birthDate')";
+        $db->execute($insert);
     }
 }

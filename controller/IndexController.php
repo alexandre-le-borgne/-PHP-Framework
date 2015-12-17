@@ -32,14 +32,9 @@ class IndexController extends Controller
 
     public function RegisterAction()
     {
-        if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST))
+        if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['pwdConfirm'], $_POST['birthDate']) && ($_POST['password'] == $_POST['pwdConfirm']))
         {
-            $data = array(
-                'username' => $_POST['username'],
-                'email' => $_POST['email'],
-                'password' => strlen($_POST['password'])
-            );
-            $this->render('forms/registerForm', $data);
+
         }
     }
 

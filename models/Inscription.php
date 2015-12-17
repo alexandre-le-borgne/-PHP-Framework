@@ -32,7 +32,7 @@ if ($_POST['action'] == 'preRegister' && isset($username) && isset($email) && is
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
         $_SESSION['password'] = $password;
-        header("Location: '../views/forms/registerForm.php");
+        header("Location: '../views/forms/registerForm.php'");
     }
 }
 else*/if ($_POST['action'] == 'register' && isset($username) && isset($email) && isset($password) && isset($_POST['pwdConfirm']) && isset($birthDate))
@@ -42,7 +42,7 @@ else*/if ($_POST['action'] == 'register' && isset($username) && isset($email) &&
 
     if ($password == $pwdConfirm)
     {
-        $insert = "Insert Into User ('username', 'email', 'password', 'pwdConfirm', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
+        $insert = "Insert Into User ('username', 'email', 'password', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
         $result = Database::execute($insert);
     }
     else
