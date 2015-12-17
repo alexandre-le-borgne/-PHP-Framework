@@ -10,6 +10,11 @@
 
 abstract class Controller {
     protected $models;
+    private $data = array();
+
+    public function set($data) {
+        $this->data = array_merge($this->data, $data);
+    }
 
     public function loadModel($model) {
         require_once('../models/'.$model.'.php');
