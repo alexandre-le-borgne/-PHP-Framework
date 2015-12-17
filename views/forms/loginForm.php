@@ -7,8 +7,6 @@
 ?>
 
 <!-- w=302, h=119 -->
-
-
 <!---->
 <!--            <input type="text" name="username" placeholder="Pseudonyme" required>-->
 <!--            <input type="password" name="password" placeholder="Mot de passe" required>-->
