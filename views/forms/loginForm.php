@@ -31,7 +31,7 @@
     <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" name="register">
         <!--USERNAME-->
-        <div class="control-group">
+
             <div class="controls">
                 <input type="text" placeholder="Identifiant">
             </div>
@@ -47,7 +47,7 @@
                 </label>
                 <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
             </div>
-        </div>
+
         <hr>
         <!--SOCIAL CONNECT-->
         <div class="socialConnect">
