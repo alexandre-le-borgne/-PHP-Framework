@@ -23,6 +23,8 @@
         width: 70%;
         margin: auto;
         background-color: snow;
+        padding: 20px;
+        margin-top: 20px;
     }
 
     .table {
@@ -97,8 +99,9 @@
         <h4>In file : <?= $file ?></h4>
         <h5>Ligne : <?= $line ?></h5>
         <pre><?php
-            foreach(array_reverse($trace) as $t) {
-                echo $t."\n";
+            //foreach(array_reverse($trace) as $t)
+            for($i = count($trace) - 1; $i >= 0; --$i) {
+                echo $i.') '.$trace[$i]."\n";
             };
         ?></pre>
     </main>
