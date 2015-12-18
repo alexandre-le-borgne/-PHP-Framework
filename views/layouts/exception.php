@@ -11,12 +11,18 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 70%;
+        margin: auto;
     }
 
     .table {
         display: table;
         table-layout: fixed;
-        padding: 0;
     }
 
     .table_col {
@@ -40,11 +46,8 @@
     }
 
     header {
-
         border-bottom: 1px solid grey;
         padding-bottom: 10px;
-        min-width: 70%;
-        margin: auto;
     }
 </style>
 <header class="table">
