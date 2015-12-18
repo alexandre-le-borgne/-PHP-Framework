@@ -21,10 +21,12 @@
 <main>
     <h3>[<?= $code ?>] <?= $message ?></h3>
     <h4>In file : <?= $file ?></h4>
-    <h5>Ligne :<?= $line ?></h5>
+    <h5>Ligne : <?= $line ?></h5>
     <pre>
         <?php
-        var_dump($trace);
+        foreach($trace as $t) {
+            echo $t."\n";
+        };
         ?>
     </pre>
 </main>
