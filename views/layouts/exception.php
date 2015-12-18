@@ -7,13 +7,39 @@
  */
 ?>
 <style>
-    header {
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 
+    .table {
+        display: table;
+        table-layout: fixed;
+        padding: 0;
+    }
+
+    .table_col {
+        list-style: none;
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    .table_col_right {
+        padding-left: 10px;
+        vertical-align: middle;
+    }
+
+    img {
+        border: none;
+        max-width: 100%;
     }
 </style>
-<header>
-    <img src="https://raw.githubusercontent.com/poulfoged/WebApiExceptionPipeline/master/logo.png">
-    <div>
+<header class="table">
+    <div class="table_col">
+        <img src="https://raw.githubusercontent.com/poulfoged/WebApiExceptionPipeline/master/logo.png">
+    </div>
+    <div class="table_col table_col_right">
         <h1>Une exception est survenue !</h1>
         <h2><?= $name ?></h2>
     </div>
