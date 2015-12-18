@@ -11,7 +11,7 @@ class IndexController extends Controller
     public function IndexAction()
     {
         $this->loadModel('IndexModel');
-        $this->render('persists/hom');
+        $this->render('persists/home');
     }
 
     public function PreregisterAction(Request $request)
