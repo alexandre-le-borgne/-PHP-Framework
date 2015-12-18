@@ -100,8 +100,8 @@
         <h5>Ligne : <?= $line ?></h5>
         <pre><?php
             //foreach(array_reverse($trace) as $t)
-            for($i = count($trace) - 1; $i >= 0;) {
-                echo ($i--).') '.$trace[$i]."\n";
+            for($i = count($trace) - 1; $i >= 0; --$i) {
+                echo ($i + 1).') '.$trace[$i]."\n";
             };
         ?></pre>
     </main>
