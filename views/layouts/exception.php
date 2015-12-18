@@ -16,13 +16,19 @@
     }
 
     body {
+        background-color: firebrick;
+    }
+
+    #content {
         width: 70%;
         margin: auto;
+        background-color: snow;
     }
 
     .table {
         display: table;
         table-layout: fixed;
+        width: 100%;
     }
 
     .table_col {
@@ -46,26 +52,54 @@
     }
 
     header {
-        border-bottom: 1px solid grey;
-        padding-bottom: 10px;
+        border-bottom: 1px solid #CA412F;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    main {
+        margin-top: 30px;
+    }
+
+    pre {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        color: #CA412F;
+    }
+
+    h2 {
+        color: #F44336;
+    }
+
+    h3 {
+        color: #495E68;
+    }
+
+    h4, h5 {
+        color: #607D8B;
     }
 </style>
-<header class="table">
-    <div class="table_col table_col_left">
-        <img src="https://raw.githubusercontent.com/poulfoged/WebApiExceptionPipeline/master/logo.png">
-    </div>
-    <div class="table_col table_col_right">
-        <h1>Une exception est survenue !</h1>
-        <h2><?= $name ?></h2>
-    </div>
-</header>
-<content>
-    <h3>[<?= $code ?>] <?= $message ?></h3>
-    <h4>In file : <?= $file ?></h4>
-    <h5>Ligne : <?= $line ?></h5>
-    <pre><?php
-        foreach(array_reverse($trace) as $t) {
-            echo $t."\n";
-        };
-    ?></pre>
-</content>
+<div id="content">
+    <header class="table">
+        <div class="table_col table_col_left">
+            <img src="https://raw.githubusercontent.com/poulfoged/WebApiExceptionPipeline/master/logo.png">
+        </div>
+        <div class="table_col table_col_right">
+            <h1>Une exception est survenue !</h1>
+            <h2><?= $name ?></h2>
+        </div>
+    </header>
+    <main>
+        <h3>[<?= $code ?>] <?= $message ?></h3>
+        <h4>In file : <?= $file ?></h4>
+        <h5>Ligne : <?= $line ?></h5>
+        <pre><?php
+            foreach(array_reverse($trace) as $t) {
+                echo $t."\n";
+            };
+        ?></pre>
+    </main>
+</div>
