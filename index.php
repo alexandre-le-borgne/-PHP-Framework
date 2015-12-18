@@ -16,4 +16,9 @@ require_once 'app/Securite.php';
 require_once 'controller/IndexController.php';
 require_once 'model/IndexModel.php';
 
-Kernel::getInstance()->response();
+try {
+    Kernel::getInstance()->response();
+}
+catch(TraceableException $e) {
+    $e->generateCallTrace();
+}
