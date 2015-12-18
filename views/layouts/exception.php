@@ -24,7 +24,7 @@
     <h5>Ligne : <?= $line ?></h5>
     <pre>
         <?php
-        foreach($trace as $t) {
+        foreach(array_reverse($trace) as $t) {
             echo $t."\n";
         };
         ?>
