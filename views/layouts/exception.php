@@ -22,11 +22,9 @@
     <h3>[<?= $code ?>] <?= $message ?></h3>
     <h4>In file : <?= $file ?></h4>
     <h5>Ligne : <?= $line ?></h5>
-    <pre>
-        <?php
+    <pre><?php
         foreach(array_reverse($trace) as $t) {
             echo $t."\n";
         };
-        ?>
-    </pre>
+    ?></pre>
 </main>
