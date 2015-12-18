@@ -17,9 +17,9 @@ class TraceableException extends Exception
         array_pop($trace); // remove call to this method
         $length = count($trace);
         $result = array();
-
+        // replace '#someNum' with '$i)', set the right ordering
         for ($i = 0; $i < $length; $i++) {
-            $result[] = ($i + 1)  . ')' . substr($trace[$i], strpos($trace[$i], ' ')); // replace '#someNum' with '$i)', set the right ordering
+            $result[] = ($i + 1)  . ')' . substr($trace[$i], strpos($trace[$i], ' '))."<br>";
         }
 
         return "\t" . implode("\n\t", $result);
