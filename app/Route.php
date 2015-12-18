@@ -25,14 +25,14 @@ class Route
     public function getController()
     {
 
-        return ucfirst($this->controller.'Controller');
+        return ucfirst($this->controller . 'Controller');
 
     }
 
     public function getAction()
     {
 
-        return ucfirst($this->action.'Action');
+        return ucfirst($this->action . 'Action');
 
     }
 }

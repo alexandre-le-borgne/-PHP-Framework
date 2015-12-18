@@ -11,7 +11,7 @@ class IndexController extends Controller
     public function IndexAction()
     {
         $this->loadModel('IndexModel');
-        $this->render('persists/home');
+        $this->render('persists/hom');
     }
 
     public function PreregisterAction(Request $request)
@@ -53,8 +53,9 @@ class IndexController extends Controller
     }
 
 
-    public function RegisterAction()
+    public function RegisterAction(Request $request)
     {
+        $session = $request->getSession();
         if (isset($_POST['username'], $_POST['birthDate']))
         {
             $this->loadModel('IndexModel');

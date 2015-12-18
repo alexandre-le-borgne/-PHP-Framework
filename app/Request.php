@@ -23,6 +23,9 @@ class Request
         return isset($_POST[$name]) ? $_POST[$name] : null;
     }
 
+    /**
+     * @return Session
+     */
     public function getSession()
     {
         return Session::getInstance();

@@ -33,10 +33,13 @@ class Session
         unset($_SESSION);
     }
 
+    /**
+     * @return Session
+     */
     public static function getInstance()
     {
         if (!Session::$instance)
-            Session::$instance = new self;
+            Session::$instance = new Session();
         return Session::$instance;
     }
 }
