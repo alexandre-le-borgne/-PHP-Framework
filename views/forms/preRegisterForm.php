@@ -9,18 +9,18 @@
 
 <div class="preRegisterDiv">
 
-    <h2><strong>Nouveau sur Aaron ?</strong> Inscrivez-vous ! </h2>
+    <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
     <!--PRE SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="preregister">
         <!--EMAIL-->
-        <input type="text" id="inputEmail" name="email" placeholder="Email" required><br>
+        <input type="text" id="inputEmail" name="email" placeholder="Email" required><br><br>
 
         <!--PASSWORD-->
-        <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br>
+        <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
 
         <!--CONFIRM PASSWORD-->
-        <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br>
+        <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
 
         <!--SUBMIT ACTION-->
         <button type="submit" name="action" value="register" class="btn">S'inscrire sur Aaron</button>

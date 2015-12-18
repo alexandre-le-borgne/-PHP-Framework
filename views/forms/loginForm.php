@@ -8,14 +8,17 @@
 
 <div class="loginDiv">
 
-    <h2>Connectez-vous ?</h2>
+    <h4>Connectez-vous ?</h4>
 
     <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" name="register">
         <!--USERNAME-->
         <input type="text" placeholder="Identifiant"><br><br>
+        <!--PASSWORD-->
         <input type="password" id="inputPassword" placeholder="Password"><br><br>
+        <!--SUBMIT-->
         <input class="btn" type="submit" value="Submit">
+        <!--SUBMIT-->
         <label class="checkbox">
             <input type="checkbox"> Remember me
         </label>
