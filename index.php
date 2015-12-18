@@ -21,5 +21,5 @@ try {
     Kernel::getInstance()->response();
 }
 catch(TraceableException $e) {
-    echo $e->generateCallTrace();
+    echo $e->show();
 }

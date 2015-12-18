@@ -19,9 +19,22 @@ class TraceableException extends Exception
         $result = array();
         // replace '#someNum' with '$i)', set the right ordering
         for ($i = 0; $i < $length; $i++) {
-            $result[] = ($i + 1)  . ')' . substr($trace[$i], strpos($trace[$i], ' '))."<br>";
+            $result[$i] = substr($trace[$i], strpos($trace[$i], ' '));
         }
+        return $result;
+    }
 
-        return "\t" . implode("\n\t", $result);
+    public function getData() {
+        return array(
+            'code' => $this->getCode(),
+            'message' => $this->getMessage(),
+            'file' => $this->getFile(),
+            'line' => $this->getLine(),
+            'trace' => $this->generateCallTrace()
+        );
+    }
+
+    public function show() {
+        View::getView('layouts/exception', $this->getData());
     }
 }

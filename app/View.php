@@ -34,8 +34,8 @@ class View
         }
     }
 
-    public static function getView($view) {
+    public static function getView($view, $data = array()) {
         $view = new View($view);
-        $view->render();
+        $view->render($data);
     }
 }

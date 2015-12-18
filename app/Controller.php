@@ -12,7 +12,7 @@ abstract class Controller {
     protected $models;
     private $data = array();
 
-    public function set($data) {
+    public function set($data) { // NOT USEFUL, KEEP IT ?
         $this->data = array_merge($this->data, $data);
     }
 
