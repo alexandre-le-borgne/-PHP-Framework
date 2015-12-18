@@ -25,6 +25,10 @@
         vertical-align: top;
     }
 
+    .table_col_left {
+        width: 128px;
+    }
+
     .table_col_right {
         padding-left: 10px;
         vertical-align: middle;
@@ -34,9 +38,16 @@
         border: none;
         max-width: 100%;
     }
+
+    header {
+        border-bottom: 1px solid grey;
+        padding-bottom: 10px;
+        min-width: 70%;
+        margin: auto;
+    }
 </style>
 <header class="table">
-    <div class="table_col">
+    <div class="table_col table_col_left">
         <img src="https://raw.githubusercontent.com/poulfoged/WebApiExceptionPipeline/master/logo.png">
     </div>
     <div class="table_col table_col_right">
@@ -44,7 +55,7 @@
         <h2><?= $name ?></h2>
     </div>
 </header>
-<main>
+<content>
     <h3>[<?= $code ?>] <?= $message ?></h3>
     <h4>In file : <?= $file ?></h4>
     <h5>Ligne : <?= $line ?></h5>
@@ -53,4 +64,4 @@
             echo $t."\n";
         };
     ?></pre>
-</main>
+</content>
