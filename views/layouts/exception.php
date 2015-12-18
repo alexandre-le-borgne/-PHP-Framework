@@ -40,6 +40,7 @@
     }
 
     header {
+
         border-bottom: 1px solid grey;
         padding-bottom: 10px;
         min-width: 70%;
