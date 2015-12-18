@@ -27,6 +27,7 @@ class TraceableException extends Exception
     public function getData() {
         return array(
             'code' => $this->getCode(),
+            'name' => get_class($this),
             'message' => $this->getMessage(),
             'file' => $this->getFile(),
             'line' => $this->getLine(),

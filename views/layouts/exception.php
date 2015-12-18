@@ -19,7 +19,9 @@
     </div>
 </header>
 <main>
-    <h3>[<?= $code ?>] <?= $message ?> [<?= $file ?> - Ligne <?= $line ?>]</h3>
+    <h3>[<?= $code ?>] <?= $message ?></h3>
+    <h4>In file : <?= $file ?></h4>
+    <h5>Ligne :<?= $line ?></h5>
     <pre>
         <?php
         var_dump($trace);
