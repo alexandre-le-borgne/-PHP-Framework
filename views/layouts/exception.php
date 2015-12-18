@@ -16,7 +16,7 @@
     }
 
     body {
-        background-color: firebrick;
+        background-color: #607D8B;
     }
 
     #content {
