@@ -6,6 +6,9 @@
  * Date: 16/12/2015
  * Time: 15:08
  */
+
+require_once("../app/Securite.php");
+
 class IndexModel extends Model
 {
 
