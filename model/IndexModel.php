@@ -7,8 +7,6 @@
  * Time: 15:08
  */
 
-require_once("../app/Securite.php");
-
 class IndexModel extends Model
 {
 
@@ -16,7 +14,8 @@ class IndexModel extends Model
 
         $db = new Database();
 
-        $user = Securite::escape($username);
+        $user =
+            Security::escape($username);
 
         $sql = "Select * From User Where username = '$user'";
 
@@ -30,7 +29,7 @@ class IndexModel extends Model
         else {
             $db = new Database();
 
-            $email = Securite::escape($email);
+            $email = Security::escape($email);
 
             $sql = "Select * From User Where email = '$email'";
 
@@ -46,12 +45,12 @@ class IndexModel extends Model
     public function addUser($username, $email, $password, $birthDate){
         $db = new Database();
 
-        $username = Securite::escape($username);
-        $email = Securite::escape($email);
-        $password = Securite::escape($password);
-        $birthDate = Securite::escape($birthDate);
+        $username = Security::escape($username);
+        $email = Security::escape($email);
+        $password = Security::escape($password);
+        $birthDate = Security::escape($birthDate);
 
-        $password = Securite::encode($password);
+        $password = Security::encode($password);
 
         $insert = "Insert Into User ('username', 'email', 'password', 'birthDate') Values ('$username', '$email', '$password', '$birthDate')";
         $db->execute($insert);
