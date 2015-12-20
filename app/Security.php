@@ -2,7 +2,6 @@
 
 class Security
 {
-    /*
     public static function escape($string)
     {
         if (ctype_digit($string))
@@ -15,7 +14,7 @@ class Security
 
         return $string;
     }
-    */
+
     public static function display($string)
     {
         return htmlentities($string);
