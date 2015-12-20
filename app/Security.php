@@ -2,6 +2,7 @@
 
 class Security
 {
+    /* http://stackoverflow.com/questions/134099/are-pdo-prepared-statements-sufficient-to-prevent-sql-injection
     public static function escape($string)
     {
         if (ctype_digit($string))
@@ -14,6 +15,7 @@ class Security
 
         return $string;
     }
+    */
 
     public static function display($string)
     {

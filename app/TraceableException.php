@@ -6,6 +6,7 @@
  * Date: 18/12/2015
  * Time: 08:33
  */
+
 class TraceableException extends Exception
 {
     public function generateCallTrace()
@@ -18,13 +19,15 @@ class TraceableException extends Exception
         $length = count($trace);
         $result = array();
         // replace '#someNum' with '$i)', set the right ordering
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; $i++)
+        {
             $result[$i] = substr($trace[$i], strpos($trace[$i], ' '));
         }
         return $result;
     }
 
-    public function getData() {
+    public function getData()
+    {
         return array(
             'code' => $this->getCode(),
             'name' => get_class($this),
@@ -35,7 +38,8 @@ class TraceableException extends Exception
         );
     }
 
-    public function show() {
+    public function show()
+    {
         View::getView('layouts/exception', $this->getData());
     }
 }
