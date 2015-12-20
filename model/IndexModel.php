@@ -9,16 +9,11 @@
 
 class IndexModel extends Model
 {
-
-    public function availableUser($username) {
+    public function availableUser($username)
+    {
 
         $db = new Database();
-
-        $user =
-            Security::escape($username);
-
-        $sql = "Select * From User Where username = '$user'";
-
+        $sql = "Select * From User Where username = '$username'";
         return ($db->execute($sql) == NULL);
     }
 
@@ -26,7 +21,8 @@ class IndexModel extends Model
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             return false;
-        else {
+        else
+        {
             $db = new Database();
 
             $email = Security::escape($email);
@@ -37,18 +33,15 @@ class IndexModel extends Model
         }
     }
 
-    public function availablePwd($password){
+    public function availablePwd($password)
+    {
         return (6 <= strlen($password) && strlen($password) <= 20);
     }
 
 
-    public function addUser($username, $email, $password, $birthDate){
+    public function addUser($username, $email, $password, $birthDate)
+    {
         $db = new Database();
-
-        $username = Security::escape($username);
-        $email = Security::escape($email);
-        $password = Security::escape($password);
-        $birthDate = Security::escape($birthDate);
 
         $password = Security::encode($password);
 
