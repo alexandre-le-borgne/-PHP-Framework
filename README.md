@@ -41,15 +41,14 @@ $this->render('persists/home', $data);
 * redirectToRoute($route, $data) : NOT IMPLEMENTED
 * createNotFoundException($description) : Lève une exception traçable.
 
-
-* #### I.1.b. Database
+#### I.1.b. Database
 
 Fournit un accès simple à la base de donnée.
 
 * execute($sql, $params = null) : Execute la requete (paramétré si nécéssaire) passé en 1er paramètre avec les paramètres passé en 2nd paramètre.
 * [private] getBdd() : Fournit un accès la base de données.
 
-* #### I.1.c. Kernel
+#### I.1.c. Kernel
  
 La mission de ce singleton est d'appelé le controleur et l'action correspondant à l'url de la page demandé en la passant au routeur et de fournir un objet Request à l'action si celui ci est présent dans ses paramètres.
 
@@ -77,11 +76,12 @@ La mission de ce singleton est d'appelé le controleur et l'action correspondant
         return $controller->{$action}();
     }
 ```
-* #### I.1.d. Model
+
+#### I.1.d. Model
 
 C'est une classe abstraite, mère de tout les models. 
 
-* #### I.1.e. Request
+#### I.1.e. Request
 
 Fournit un moyen unique d'accéder aux variables $_POST, $_GET et à l'objet Session.
 * isAjaxRequest() : Renvoie vraie si la requête HTTP est une requête faite par Ajax.
@@ -89,7 +89,7 @@ Fournit un moyen unique d'accéder aux variables $_POST, $_GET et à l'objet Ses
 * post($name) : Renvoie la variable $_POST[$name] ou null si elle n'est pas définie.
 * getSession() : Retourne l'instance unique de l'objet Session.
 
-* #### I.1.f. Route
+#### I.1.f. Route
  
 Représente une route associant une url à un controlleur et à une action de celui ci.
 
@@ -112,14 +112,14 @@ public function __construct() {
 }
 ```
 
-* #### I.1.h. Security
+#### I.1.h. Security
 
 Fournit des fonctions concernant la protection globale du site. 
 
 * display($string) : Echape la chaîne de caractères $string.
 * encode($str) : Crypte la chaîne $str.
 
-* #### I.1.i. Session
+#### I.1.i. Session
 
 Commence une session et fournit un moyen unique d'y accéder.
 
@@ -127,7 +127,7 @@ Commence une session et fournit un moyen unique d'y accéder.
 * set($name, $value) : $_SESSION[$name] = $value.
 * clear() : Réinitialise et détruit la session.
 
-* #### I.1.j. TraceableException
+#### I.1.j. TraceableException
 
 Implémente la classe Exception de base et lui ajoute quelques fonctions.
 
@@ -149,7 +149,7 @@ public function getData()
 }
 ```
 
-* #### I.1.k. View
+#### I.1.k. View
 
 * __construct($view) : Construit un objet Vue avec $view comme chemin relatif à la vue.
 * [static] getView($view, $data = array()) : Créer un object Vue avec $view comme paramètre et appel la fonction render() sur cet objet.
