@@ -98,7 +98,7 @@ Représente une route associant une url à un controlleur et à une action de ce
 * getController()
 * getAction()
 
-* #### I.1.g. Router
+#### I.1.g. Router
 
 Le routeur construit les différentes routes et fournit y moyen de récupérer la route voulue.
 
