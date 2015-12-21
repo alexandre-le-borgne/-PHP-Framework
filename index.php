@@ -1,5 +1,4 @@
 <?php
-//http://www.grafikart.fr/formations/programmation-objet-php/mvc-model-view-controller
 error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
 
