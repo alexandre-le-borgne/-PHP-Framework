@@ -77,7 +77,6 @@ La mission de ce singleton est d'appelé le controleur et l'action correspondant
         return $controller->{$action}();
     }
 ```
-
 * #### I.1.d. Model
 
 C'est une classe abstraite, mère de tout les models. 
