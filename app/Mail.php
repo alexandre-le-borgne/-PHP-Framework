@@ -8,7 +8,7 @@
  */
 class Mail
 {
-    public static function sendMail($user, $email, $key)
+    public static function sendVerificationMail($user, $email, $key)
     {
         $subject = "Activation de votre compte Aaron";
         $head = "From : inscription@aaron.fr";
@@ -20,6 +20,20 @@ class Mail
         'cuscom.fr/aaron/mailValidation.php?user=$user&key=$key'
 
         Ce message est automatique, merci de ne pas y repondre.
+
+        L'equipe AaronProject";
+
+        mail($email, $subject, $message, $head);
+    }
+
+    public static function sendWelcomingMail($email)
+    {
+        $subject = "Activation de votre compte Aaron";
+        $head = "From : welcome@aaron.fr";
+
+        $message = "Merci d'avoir validé votre inscription !
+
+        Vous pouvez désormais suivre vos actualités à partir de votre page personnelle.
 
         L'equipe AaronProject";
 
