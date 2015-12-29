@@ -38,9 +38,11 @@ class IndexModel extends Model
     public function addUser($username, $email, $password, $birthDate)
     {
         $db = new Database();
+        $key = Security::getKey($password);
         $password = Security::encode($password);
 
-        $insert = "Insert Into User ('username', 'email', 'password', 'birthDate') Values ('$username', '$email', '$password', '$birthDate')";
+
+        $insert = "Insert Into User ('username', 'email', 'password', 'birthDate', 'cle') Values ('$username', '$email', '$password', '$birthDate', '$key')";
         $db->execute($insert);
     }
 }

@@ -22,9 +22,14 @@ class Security
         return htmlentities($string);
     }
 
+    public static function getKey($str)
+    {
+        return $key = hash('sha512', $str);
+    }
+
     public static function encode($str)
     {
-        $key = hash('sha512', $str);
+        $key = self::getKey($str);
         $encoded = crypt($str, '$6$rounds=5000$' . $key . '$');
         return $encoded;
     }
