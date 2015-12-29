@@ -12,6 +12,6 @@ $req = "Select username From User Where email = $email";
 
 $db = new Database();
 
-$data = $db->execute($req);
+$user = $db->execute($req);
 
-Mail::sendResetMail($email, $data);
+Mail::sendResetMail($email, $user);
