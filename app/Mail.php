@@ -35,8 +35,31 @@ class Mail
 
         Vous pouvez désormais suivre vos actualités à partir de votre page personnelle.
 
+        Ce message est automatique, merci de ne pas y repondre.
+
         L'equipe AaronProject";
 
         mail($email, $subject, $message, $head);
     }
+
+    public static function sendResetMail($email, $user)
+    {
+        $subject = "Reinitialisation de votre mot de passe Aaron";
+        $head = "From : reset@aaron.fr";
+
+        $message = "Une demande de réinitialisation de mot de passe vient d'être effectuée.
+        Supprimez immédiatement de message si vous n'en être pas l'auteur.
+
+        Sinon, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
+
+        'cuscom.fr/aaron/reset.php?user=$user';
+
+
+        Ce message est automatique, merci de ne pas y repondre.
+
+        L'equipe AaronProject";
+
+        mail($email, $subject, $message, $head);
+    }
+
 }
