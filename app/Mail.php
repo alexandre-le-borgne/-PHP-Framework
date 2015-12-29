@@ -17,7 +17,7 @@ class Mail
 
         Pour activer votre compte, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
 
-        'cuscom.fr/aaron/validation.php?user=$user&key=$key'
+        'cuscom.fr/aaron/mailValidation.php?user=$user&key=$key'
 
         Ce message est automatique, merci de ne pas y repondre.
 
