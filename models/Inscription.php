@@ -41,6 +41,7 @@ else*/if ($_POST['action'] == 'register' && isset($username) && isset($email) &&
     {
         $insert = "Insert Into User ('username', 'email', 'password', 'birthDate') VALUES ('$username', '$email', '$password', '$birthDate')";
         $result = Database::execute($insert);
+
     }
     else
     {

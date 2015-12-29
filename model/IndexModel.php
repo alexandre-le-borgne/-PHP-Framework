@@ -44,5 +44,7 @@ class IndexModel extends Model
 
         $insert = "Insert Into User ('username', 'email', 'password', 'birthDate', 'cle') Values ('$username', '$email', '$password', '$birthDate', '$key')";
         $db->execute($insert);
+
+        Mail::sendMail($username, $email, $key);
     }
 }
