@@ -15,3 +15,5 @@ $db = new Database();
 $user = $db->execute($req);
 
 Mail::sendResetMail($email, $user);
+
+echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
