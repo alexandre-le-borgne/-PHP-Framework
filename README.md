@@ -19,9 +19,9 @@
 
 #### I.1.a. Controller
 
-C'est une classe abstraite, mère de tout les controlleurs.
+C'est une classe abstraite, mère de tous les controlleurs.
 * set($data) : NOT IMPLEMENTED
-* loadModel($model) : Charge un model est fournit une variable portant son nom.
+* loadModel($model) : Charge un model et fournit une variable portant son nom.
 
 Exemple à l'intérieur du controlleur IndexControlleur :
 ```php
