@@ -20,14 +20,14 @@ class Feed // RSS Reader
         try {
         $content = file_get_contents($this->url);
         $x = new SimpleXmlElement($content);
-
-        echo "<ul>";
+        var_dump($x);
+        /*echo "<ul>";
 
         foreach($x->channel->item as $entry) {
             echo "<li><a href='$entry->link' title='$entry->title'>" . $entry->title . "</a></li>";
         }
         echo "</ul>";
-
+*/
         }
         catch(Exception $e) {
             throw new TraceableException("Le flux '$this->url' n'a pas pu être parsé en tant que flux RSS.");
