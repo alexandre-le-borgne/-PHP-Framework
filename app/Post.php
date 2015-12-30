@@ -64,4 +64,12 @@ class Post
     {
         return $this->text;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
 }
