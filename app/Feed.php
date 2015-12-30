@@ -17,7 +17,7 @@ class Feed // RSS Reader
 
 
     public function getFeed() {
-
+        try {
         $content = file_get_contents($this->url);
         $x = new SimpleXmlElement($content);
 
@@ -27,5 +27,10 @@ class Feed // RSS Reader
             echo "<li><a href='$entry->link' title='$entry->title'>" . $entry->title . "</a></li>";
         }
         echo "</ul>";
+
+        }
+        catch(Exception $e) {
+            throw new TraceableException("Le flux '$this->url' n'a pas pu être parsé en tant que flux RSS.");
+        }
     }
 }
