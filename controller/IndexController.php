@@ -16,7 +16,7 @@ class IndexController extends Controller
 
     public function FeedAction()
     {
-        $feed = new Feed("http://php.net/manual/fr/function.simplexml-load-file.php");
+        $feed = new Feed("http://stackoverflow.com/feeds/question/5310076");
         foreach($feed->getPosts() as $post) {
             echo $post->getSummary();
         }
