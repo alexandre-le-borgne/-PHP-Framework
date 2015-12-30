@@ -29,7 +29,7 @@ $this->loadModel('IndexModel');
 $this->indexmodel->maFonction($params)
 ```
 
-* render($view, $data = array()) : Appele la fonction render() sur la vue passé en paramètre en lui fournissant les variables passer dans $data
+* render($view, $data = array()) : Appele la fonction render() sur la vue passée en paramètre en lui fournissant les variables passées dans $data
 
 Exemple : 
 ```php
@@ -45,14 +45,14 @@ $this->render('persists/home', $data);
 
 Fournit un accès simple à la base de donnée.
 
-* execute($sql, $params = null) : Execute la requete (paramétré si nécéssaire) passé en 1er paramètre avec les paramètres passé en 2nd paramètre.
+* execute($sql, $params = null) : Execute la requête (paramétrée si nécéssaire) passée en 1er paramètre avec les paramètres passés en 2nd paramètre.
 * [private] getBdd() : Fournit un accès la base de données.
 
 #### I.1.c. Kernel
  
-La mission de ce singleton est d'appelé le controleur et l'action correspondant à l'url de la page demandé en la passant au routeur et de fournir un objet Request à l'action si celui ci est présent dans ses paramètres.
+La mission de ce singleton est d'appeler le controleur et l'action correspondant à l'url de la page demandée en la passant au routeur et de fournir un objet Request à l'action si celui ci est présent dans ses paramètres.
 
-* response() : Génère la réponse à renvoyé au navigateur en fonction de l'url demandée.
+* response() : Génère la réponse à renvoyer au navigateur en fonction de l'url demandée.
 
 ```php
     public function response()
@@ -79,12 +79,12 @@ La mission de ce singleton est d'appelé le controleur et l'action correspondant
 
 #### I.1.d. Model
 
-C'est une classe abstraite, mère de tout les models. 
+C'est une classe abstraite, mère de tous les models. 
 
 #### I.1.e. Request
 
 Fournit un moyen unique d'accéder aux variables $_POST, $_GET et à l'objet Session.
-* isAjaxRequest() : Renvoie vraie si la requête HTTP est une requête faite par Ajax.
+* isAjaxRequest() : Renvoie vraie si la requête HTTP est une requête faîte par Ajax.
 * get($name) : Renvoie la variable $_GET[$name] ou null si elle n'est pas définie.
 * post($name) : Renvoie la variable $_POST[$name] ou null si elle n'est pas définie.
 * getSession() : Retourne l'instance unique de l'objet Session.
@@ -100,7 +100,7 @@ Représente une route associant une url à un controlleur et à une action de ce
 
 #### I.1.g. Router
 
-Le routeur construit les différentes routes et fournit y moyen de récupérer la route voulue.
+Le routeur construit les différentes routes et fournit un moyen de récupérer la route voulue.
 
 * getRoute($name) : Renvoie la route de nom $name.
 * getDefaultRoute() : Renvoie la route par défaut.
@@ -152,8 +152,8 @@ public function getData()
 #### I.1.k. View
 
 * __construct($view) : Construit un objet Vue avec $view comme chemin relatif à la vue.
-* [static] getView($view, $data = array()) : Créer un object Vue avec $view comme paramètre et appel la fonction render() sur cet objet.
-* render($data = array()) : Inclue la vue en lui passant les variables contenu dans le tableau $data
+* [static] getView($view, $data = array()) : Créer un object Vue avec $view comme paramètre et appele la fonction render() sur cet objet.
+* render($data = array()) : Inclue la vue en lui passant les variables contenues dans le tableau $data
  
 ```php
 public function render($data = array()) {
@@ -189,4 +189,4 @@ public function render($data = array()) {
 ### I.7 index.php
 
 Tout les accès au nom de domaine http://cuscom.fr/aaron/\* ne contenant pas le caractère '.', signe d'un accès direct à une image ou à un fichier précis, sont redirigés sur le fichier index.php.
-Son rôle est d'inclure les différentes classes du dossier app, les controlleurs et les models puis de demander au Kernel de généré la réponse au navigateur où d'afficher la trace d'une exception si nécéssaire.
+Son rôle est d'inclure les différentes classes du dossier app, les controlleurs et les models puis de demander au Kernel de générer la réponse au navigateur où d'afficher la traçe d'une exception si nécéssaire.
