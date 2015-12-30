@@ -16,7 +16,7 @@ class IndexController extends Controller
 
     public function FeedAction()
     {
-        $feed = new Feed("http://stackoverflow.com/feeds/question/5310076");
+        $feed = new Feed("http://www.journaldunet.com/rss/");
         var_dump($feed->getPosts());
         foreach($feed->getPosts() as $post) {
             echo $post->getSummary();
