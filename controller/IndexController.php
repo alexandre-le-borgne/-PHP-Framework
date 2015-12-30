@@ -14,6 +14,12 @@ class IndexController extends Controller
         $this->render('persists/home');
     }
 
+    public function TestfeedAction()
+    {
+        $feed = new Feed("http://php.net/manual/fr/function.simplexml-load-file.php");
+        echo $feed->getFeed();
+    }
+
     public function PreregisterAction(Request $request)
     {
         $this->loadModel('IndexModel');
@@ -86,8 +92,7 @@ class IndexController extends Controller
 
     }
 
-    public
-    function LoginAction()
+    public function LoginAction()
     {
         $this->render('persists/home');
     }

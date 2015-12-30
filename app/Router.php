@@ -13,6 +13,7 @@ class Router {
         $this->table[] = $this->getDefaultRoute();
         $this->table[] = new Route('preregister', 'index', 'preregister');
         $this->table[] = new Route('register', 'index', 'register');
+        $this->table[] = new Route('testfeed', 'index', 'feed');
     }
 
     public function getRoute($name)
