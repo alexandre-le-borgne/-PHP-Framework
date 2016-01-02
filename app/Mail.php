@@ -42,7 +42,7 @@ class Mail
         mail($email, $subject, $message, $head);
     }
 
-    public static function sendResetMail($email, $user)
+    public static function sendResetMail($email, $user, $key)
     {
         $subject = "Reinitialisation de votre mot de passe Aaron";
         $head = "From : reset@aaron.fr";
@@ -52,7 +52,7 @@ class Mail
 
         Sinon, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
 
-        'cuscom.fr/aaron/reset.php?user=$user';
+        'cuscom.fr/aaron/reset.php?user=$user&key=$key';
 
 
         Ce message est automatique, merci de ne pas y repondre.

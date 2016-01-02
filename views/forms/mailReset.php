@@ -8,12 +8,15 @@
 
 $email = Security::escape($_POST['inputEmail']);
 
-$req = "Select username From User Where email = $email";
+$req = "Select username, userKey From User Where email = $email";
 
 $db = new Database();
 
-$user = $db->execute($req);
+$data = $db->execute($req)->fetch();
 
-Mail::sendResetMail($email, $user);
+$user = $data['username'];
+$key = $data['userKey'];
+
+Mail::sendResetMail($email, $user, $key);
 
 echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
