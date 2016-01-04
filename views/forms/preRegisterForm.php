@@ -17,17 +17,17 @@
         <?php
         if(isset($errors['email'])) { ?>
             <div class="control-group info">
-              <label class="control-label" for="email">Input with info</label>
-              <div class="controls">
-                <input type="text" id="inputInfo">
+                <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
                 <span class="help-inline"><?php $errors['email']?></span>
-              </div>
             </div>
         <?php
         }
         else{
             ?>
-            <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
+            <div class="control-group info">
+                <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
+                <span class="help-inline"><?php $errors['email']?></span>
+            </div>
         <?php
         }
         ?>
