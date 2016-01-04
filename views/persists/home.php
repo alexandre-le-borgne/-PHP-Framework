@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-$errors, $username
+variables disponibles en revenant de UserController.preRegisterFormAction() :  $errors, $username
 -->
 <html>
 <head>

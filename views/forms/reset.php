@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: julien
- * Date: 30/12/2015
- * Time: 13:39
+ * Formulaire de remise a zero du mot de passe
  */
 
 //$user = $_GET['user'];

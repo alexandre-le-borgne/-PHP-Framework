@@ -29,4 +29,10 @@ class UserEntity extends Entity
     {
         return $this->authentification;
     }
+
+    public function getPassword() {
+        $db = new Database();
+        $result = $db->execute("SELECT * FROM passwords WHERE user = ?", $this->id)->fetch();
+        return $result['password'];
+    }
 }

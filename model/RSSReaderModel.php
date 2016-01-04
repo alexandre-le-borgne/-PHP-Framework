@@ -7,7 +7,7 @@
  * Time: 12:29
  */
 
-class FeedRSS // RSS Reader
+class RSSReaderModel extends Model
 {
     private $posts = array();
 

@@ -8,16 +8,18 @@
  */
 class UserModel extends Model
 {
+    const AUTHENTIFICATION_BY_PASSWORD = 0;
+
     public function isConnected(Request $request)
     {
         $id = $request->getSession()->get("id");
         $password = $request->getSession()->get("password");
-        if ($id != null && $password != null)
-        {
+        if ($id != null && $password != null) {
             $user = new UserEntity($id);
             if ($user->getAuthentification() == 0)
                 return Security::equals($user->getPassword(), $password);
         }
+        return false;
     }
 
     public function availableUser($username)
@@ -31,8 +33,7 @@ class UserModel extends Model
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             return false;
-        else
-        {
+        else {
             $db = new Database();
             $sql = "SELECT * FROM accounts WHERE email = ?";
             return ($db->execute($sql, array($email)));
@@ -51,10 +52,11 @@ class UserModel extends Model
         $key = Security::generateKey();
         $password = Security::encode($password);
 
-        $db->execute("INSERT INTO accounts ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES (?, ?, "
+        $db->execute("INSERT INTO `accounts` (username, email, authentification, birthDate, cle) VALUES (?, ?, "
             . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
+
         $id = $this->$db->lastInsertId();
-        $db->execute("INSERT INTO passwords ('user', 'password') VALUES (?, ?)", array($id, $password));
+        $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
 
         Mail::sendVerificationMail($username, $email, $key);
     }
