@@ -80,6 +80,8 @@ class UserController extends Controller
                 return;
             }
 
+            echo "Ceci est un test";
+
             $this->indexmodel->addUser($username, $email, $password, $birthDate);
         }
     }
