@@ -11,7 +11,7 @@
         <?php View::getView("persists/header"); ?>
         <div class="section">
             <?php View::getView("forms/loginForm"); ?>
-            <?php View::getView("forms/preRegisterForm"); ?>
+            <?php View::getView("forms/preRegisterForm", $errors); ?>
         </div>
         <div class="section">
             <h1>HOME</h1>

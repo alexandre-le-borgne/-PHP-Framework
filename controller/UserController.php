@@ -77,7 +77,7 @@ class UserController extends Controller
             if ($isError)
             {
                 $data['errors'] = $errors;
-                $this->render('views/forms/preRegisterForm', $data);
+                $this->render('views/forms/registerForm', $data);
                 return;
             }
 
