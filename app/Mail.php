@@ -52,7 +52,7 @@ class Mail
 
         Sinon, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
 
-        'cuscom.fr/aaron/reset.php?user=$user&key=$key';
+        'cuscom.fr/aaron/resetForm.php?user=$user&key=$key';
 
 
         Ce message est automatique, merci de ne pas y repondre.
