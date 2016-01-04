@@ -46,7 +46,7 @@ class UserController extends Controller
         }
     }
 
-    public function RegisterAction(Request $request)
+    public function RegisterAction()
     {
         //$session = $request->getSession();
         if (isset($_POST['username'], $_POST['birthDate']))

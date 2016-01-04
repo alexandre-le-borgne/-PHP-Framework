@@ -8,6 +8,7 @@ class IndexController extends Controller
 {
     public function IndexAction()
     {
+        phpinfo();
         $this->loadModel('IndexModel');
         $this->render('persists/home');
     }
