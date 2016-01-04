@@ -16,22 +16,27 @@ class UserController extends Controller
         $password = $request->post('password');
         $confirmPwd = $request->post('confirmPwd');
 
-        if ($email && $password && $confirmPwd) {
+        if ($email && $password && $confirmPwd)
+        {
             $isError = false;
             $errors = array();
-            if (!($this->indexmodel->availableEmail($email))) {
-                $errors['email'] = 'Email non valide';
+            if (!($this->indexmodel->availableEmail($email)))
+            {
+                $errors['email'] = 'Email déjà utilisé';
                 $isError = true;
             }
-            if ($password != $confirmPwd) {
+            if ($password != $confirmPwd)
+            {
                 $errors['password'] = 'Mot de passe différent';
                 $isError = true;
             }
-            if (!($this->indexmodel->availablePwd($password))) {
+            if (!($this->indexmodel->availablePwd($password)))
+            {
                 $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
                 $isError = true;
             }
-            if ($isError) {
+            if ($isError)
+            {
                 $data = array('errors' => $errors);
                 $this->render('persists/home', $data);
                 return;
@@ -60,7 +65,7 @@ class UserController extends Controller
             );
 
             if (!($this->indexmodel->availableUser($_POST['username'])))
-                $errors['username'] = 'Pseudonyme déjà utilisé !';
+                $errors['username'] = 'Pseudonyme déjà utilisé';
 
 
             $this->render('forms/registerForm', $data);
