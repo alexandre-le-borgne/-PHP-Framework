@@ -6,6 +6,7 @@
  * Date: 30/12/2015
  * Time: 12:29
  */
+
 class FeedRSS // RSS Reader
 {
     private $posts = array();
