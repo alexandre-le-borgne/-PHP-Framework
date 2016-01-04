@@ -28,7 +28,7 @@
         <!--BIRTH DATE-->
         <div class="input-prepend">
             <span class="add-on">@</span>
-            <input class="span2" id="prependedInput" type="date" placeholder="Date de naissance" required>
+            <input class="span2" id="prependedInput" type="date" name="birthDate" placeholder="Date de naissance" required>
         </div>
 
         <!--SUBMIT ACTION-->
