@@ -14,7 +14,7 @@ $errors, $username
         <?php View::getView("persists/header"); ?>
         <div class="section">
             <?php View::getView("forms/loginForm"); ?>
-            <?php View::getView("forms/preRegisterForm", isset($errors) ? $errors : null); ?><!--pour les warnings-->
+            <?php View::getView("forms/preRegisterForm", isset($errors) ? array('errors' => $errors) : null); ?><!--pour les warnings-->
         </div>
         <div class="section">
             <h1>HOME</h1>
