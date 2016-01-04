@@ -13,6 +13,7 @@
 
     <!--PRE SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="preregister">
+
         <!--EMAIL-->
         <?php
         if(isset($errors['email'])) { ?>
@@ -26,19 +27,50 @@
             ?>
             <div class="control-group info">
                 <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
-                <span class="help-inline">iweubfiuqwefiubqwe</span>
+                <span class="help-inline"><?php $errors['email']?></span>
             </div>
         <?php
         }
         ?>
 
-        <?php ?>
-
         <!--PASSWORD-->
-        <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
+
+        <?php
+        if(isset($errors['password'])) { ?>
+            <div class="control-group error">
+                <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
+                <span class="help-inline"><?php $errors['email']?></span>
+            </div>
+            <?php
+        }
+        else{
+            ?>
+            <div class="control-group error">
+                <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
+                <span class="help-inline"><?php $errors['email']?></span>
+            </div>
+            <?php
+        }
+        ?>
 
         <!--CONFIRM PASSWORD-->
-        <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
+        <?php
+        if(isset($errors['password'])) { ?>
+            <div class="control-group error">
+                <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
+                <span class="help-inline"><?php $errors['email']?></span>
+            </div>
+            <?php
+        }
+        else{
+            ?>
+            <div class="control-group error">
+                <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
+                <span class="help-inline"><?php $errors['email']?></span>
+            </div>
+            <?php
+        }
+        ?>
 
         <!--SUBMIT ACTION-->
         <button type="submit" name="action" value="register" class="btn">S'inscrire sur Aaron</button>
