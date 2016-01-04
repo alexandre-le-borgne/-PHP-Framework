@@ -13,11 +13,12 @@ require_once 'app/Model.php';
 require_once 'app/Route.php';
 require_once 'app/Router.php';
 require_once 'app/Security.php';
-require_once 'app/Post.php';
-require_once 'app/FeedRSS.php';
 
 require_once 'controller/IndexController.php';
+
 require_once 'model/IndexModel.php';
+require_once 'model/PostModel.php';
+require_once 'model/FeedRSSModel.php';
 
 try {
     Kernel::getInstance()->response();
