@@ -2,7 +2,6 @@
 
 class Security
 {
-    /* http://stackoverflow.com/questions/134099/are-pdo-prepared-statements-sufficient-to-prevent-sql-injection*/
     public static function escape($string)
     {
         return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
