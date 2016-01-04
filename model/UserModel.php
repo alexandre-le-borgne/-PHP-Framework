@@ -23,8 +23,8 @@ class UserModel extends Model
     public function availableUser($username)
     {
         $db = new Database();
-        $sql = "SELECT * FROM users WHERE username = '$username'";
-        return $db->execute($sql);
+        $sql = "SELECT * FROM accounts WHERE username = ?";
+        return $db->execute($sql, array($username));
     }
 
     public function availableEmail($email)
@@ -34,8 +34,8 @@ class UserModel extends Model
         else
         {
             $db = new Database();
-            $sql = "SELECT * FROM users WHERE email = '$email'";
-            return ($db->execute($sql));
+            $sql = "SELECT * FROM accounts WHERE email = ?";
+            return ($db->execute($sql, array($email)));
         }
     }
 
@@ -51,9 +51,10 @@ class UserModel extends Model
         $key = Security::generateKey();
         $password = Security::encode($password);
 
-        $db->execute("INSERT INTO users ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES ('$username', '$email', 0, '$birthDate', '$key')");
+        $db->execute("INSERT INTO accounts ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES (?, ?, "
+            . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
         $id = $this->$db->lastInsertId();
-        $db->execute("INSERT INTO passwords ('user', 'password') VALUES ('$id', '$password')");
+        $db->execute("INSERT INTO passwords ('user', 'password') VALUES (?, ?)", array($id, $password));
 
         Mail::sendVerificationMail($username, $email, $key);
     }

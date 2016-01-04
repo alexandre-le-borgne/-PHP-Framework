@@ -57,7 +57,7 @@ class UserController extends Controller
         $email = $request->getSession()->get('email');
         $password = $request->getSession()->get('password');
 
-        if (isset($username, $birthDate))
+        if ($username && $birthDate)
         {
             $this->loadModel('UserModel');
 

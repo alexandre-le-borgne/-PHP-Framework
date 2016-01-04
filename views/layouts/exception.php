@@ -68,7 +68,7 @@
                 margin-top: 30px;
             }
 
-            pre {
+            p {
                 margin-top: 20px;
                 margin-bottom: 20px;
             }
@@ -106,12 +106,12 @@
                 <h3>[<?= $code ?>] <?= $message ?></h3>
                 <h4>In file : <?= $file ?></h4>
                 <h5>Ligne : <?= $line ?></h5>
-                <pre><?php
+                <p><?php
                     //foreach(array_reverse($trace) as $t)
                     for($i = count($trace) - 1; $i >= 0; --$i) {
-                        echo ($i + 1).') '.$trace[$i]."\n";
+                        echo ($i + 1).') '.$trace[$i]."\n<br>";
                     };
-                ?></pre>
+                ?></p>
             </main>
         </div>
     </body>

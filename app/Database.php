@@ -13,16 +13,20 @@ class Database
     // Exécute une requête SQL éventuellement paramétrée
     public function execute($sql, $params = null)
     {
-        if ($params == null)
-        {
-            $resultat = $this->getBdd()->query($sql);    // exécution directe
+        try {
+            if ($params == null)
+            {
+                $resultat = $this->getBdd()->query($sql);    // exécution directe
+            }
+            else
+            {
+                $resultat = $this->getBdd()->prepare($sql);  // requête préparée
+                $resultat->execute($params);
+            }
+            return $resultat;
+        } catch (PDOException $e) {
+           throw new TraceableException($e->getMessage());
         }
-        else
-        {
-            $resultat = $this->getBdd()->prepare($sql);  // requête préparée
-            $resultat->execute($params);
-        }
-        return $resultat;
     }
 
     public function lastInsertId() {
