@@ -19,6 +19,7 @@ class UserModel extends Model
             if ($user->getAuthentification() == 0)
                 return Security::equals($user->getPassword(), $password);
         }
+        return false;
     }
 
     public function availableUser($username)
@@ -53,6 +54,7 @@ class UserModel extends Model
 
         $db->execute("INSERT INTO `accounts` (username, email, authentification, birthDate, cle) VALUES (?, ?, "
             . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
+
         $id = $this->$db->lastInsertId();
         $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
 
