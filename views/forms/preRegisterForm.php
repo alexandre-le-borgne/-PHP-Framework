@@ -25,10 +25,7 @@
         }
         else{
             ?>
-            <div class="control-group info">
-                <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
-                <span class="help-inline"><?php $errors['email']?></span>
-            </div>
+            <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
         <?php
         }
         ?>
@@ -45,10 +42,7 @@
         }
         else{
             ?>
-            <div class="control-group error">
-                <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
-                <span class="help-inline"><?php $errors['email']?></span>
-            </div>
+            <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
             <?php
         }
         ?>
@@ -64,10 +58,7 @@
         }
         else{
             ?>
-            <div class="control-group error">
-                <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
-                <span class="help-inline"><?php $errors['email']?></span>
-            </div>
+            <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
             <?php
         }
         ?>
