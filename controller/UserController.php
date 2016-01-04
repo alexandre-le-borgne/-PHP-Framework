@@ -60,7 +60,6 @@ class UserController extends Controller
         if (isset($username, $birthDate))
         {
             $this->loadModel('UserModel');
-            $username = $_POST['username'];
 
             $errors = array();
             $isError = false;
@@ -69,7 +68,7 @@ class UserController extends Controller
                 'username' => $username,
             );
 
-            if (!($this->usermodel->availableUser($_POST['username'])))
+            if (!($this->usermodel->availableUser($username)))
             {
                 $errors['username'] = 'Pseudonyme déjà utilisé';
                 $isError = true;
@@ -81,7 +80,10 @@ class UserController extends Controller
                 return;
             }
 
+            echo "Ceci est un test";
+
             $this->usermodel->addUser($username, $email, $password, $birthDate);
+            $this->render('views/persists/validationInscription');
         }
     }
 

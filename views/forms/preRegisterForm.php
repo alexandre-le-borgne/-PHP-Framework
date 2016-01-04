@@ -9,6 +9,7 @@
 
 <div class="preRegisterDiv">
 
+
     <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
     <!--PRE SIGN UP FORM-->
@@ -18,14 +19,14 @@
         <?php
         if(isset($errors['email'])) { ?>
             <div class="control-group info">
-                <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
+                <input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-" ><br><br>
                 <span class="help-inline"><?php echo $errors['email']?></span>
             </div>
         <?php
         }
         else{
             ?>
-            <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
+            <input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-"><br><br>
         <?php
         }
         ?>
