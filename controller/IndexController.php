@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 16/12/2015
- * Time: 14:37
+ * Le Controlleur correspondant a l'index
+ *
  */
 
 class IndexController extends Controller

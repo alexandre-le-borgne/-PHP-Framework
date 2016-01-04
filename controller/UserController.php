@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: j14003626
- * Date: 04/01/16
- * Time: 13:56
+ * Le Controlleur correspondant a l'utilisateur
+ * - PreregisterAction est appele a la suite du preregisterForm, lors du submit
+ *   et fais quelques pretraitements
+ * - RegisterAction est appele a la suite du registerForm
  */
 class UserController extends Controller
 {
@@ -44,7 +44,8 @@ class UserController extends Controller
     public function RegisterAction(Request $request)
     {
         //$session = $request->getSession();
-        if (isset($_POST['username'], $_POST['birthDate'])) {
+        if (isset($_POST['username'], $_POST['birthDate']))
+        {
             $this->loadModel('IndexModel');
 
             $username = $_POST['username'];
