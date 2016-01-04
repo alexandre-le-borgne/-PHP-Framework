@@ -11,7 +11,7 @@ class IndexModel extends Model
     public function availableUser($username)
     {
         $db = new Database();
-        $sql = "Select * From User Where username = '$username'";
+        $sql = "Select * From accounts Where username = '$username'";
         return ($db->execute($sql) == NULL);
     }
 
@@ -19,7 +19,7 @@ class IndexModel extends Model
     {
         //verifie l'existence dans la base de donnee de l'email
         $db = new Database();
-        $sql = "Select * From User Where email = '$email'";
+        $sql = "Select * From accounts Where email = '$email'";
         return ($db->execute($sql));
     }
 
@@ -36,7 +36,7 @@ class IndexModel extends Model
         $password = Security::encode($password);
 
 
-        $insert = "Insert Into User ('username', 'email', 'password', 'birthDate', 'cle') Values ('$username', '$email', '$password', '$birthDate', '$key')";
+        $insert = "Insert Into accounts ('username', 'email', 'password', 'birthDate', 'cle') Values ('$username', '$email', '$password', '$birthDate', '$key')";
         $db->execute($insert);
 
         Mail::sendVerificationMail($username, $email, $key);
