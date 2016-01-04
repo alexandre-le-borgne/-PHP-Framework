@@ -14,7 +14,7 @@
     <h2><strong>Finalisez votre inscription !</h2>
 
     <!--SIGN UP FORM-->
-    <form class="form-horizontal" method="post" name="register" action="../../modelsAVirer/Inscription.php">
+    <form class="form-horizontal" method="post" name="register" action="register">
         <!--USERNAME-->
         <div class="control-group">
             <div class="controls">
