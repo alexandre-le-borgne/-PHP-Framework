@@ -85,6 +85,7 @@ class UserController extends Controller
             $this->usermodel->addUser($username, $email, $password, $birthDate);
             $this->render('views/persists/validationInscription');
         }
+        echo "test";
     }
 
     public function LoginAction()

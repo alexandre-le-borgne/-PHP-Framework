@@ -12,19 +12,21 @@ class UserEntity extends Entity
 
     public function __construct($id)
     {
-        if(intval($id)) {
+        if (intval($id))
+        {
             $db = new Database();
             $result = $db->execute("SELECT * FROM users WHERE id = ?", $id)->fetch();
             $this->id = $result['id'];
             $this->email = $result['email'];
             $this->authentification = $result['authentification'];
-        }
-        else {
+        } else
+        {
             throw new TraceableException("L'id d'un utilisateur est attendu !");
         }
     }
 
-    public function getAuthentification() {
+    public function getAuthentification()
+    {
         return $this->authentification;
     }
 }
