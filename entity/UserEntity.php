@@ -15,7 +15,7 @@ class UserEntity extends Entity
         if (intval($id))
         {
             $db = new Database();
-            $result = $db->execute("SELECT * FROM users WHERE id = ?", $id)->fetch();
+            $result = $db->execute("SELECT * FROM accounts WHERE id = ?", $id)->fetch();
             $this->id = $result['id'];
             $this->email = $result['email'];
             $this->authentification = $result['authentification'];

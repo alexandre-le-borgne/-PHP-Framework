@@ -23,7 +23,7 @@ class UserModel extends Model
     public function availableUser($username)
     {
         $db = new Database();
-        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $sql = "SELECT * FROM accounts WHERE username = '$username'";
         return $db->execute($sql);
     }
 
@@ -34,7 +34,7 @@ class UserModel extends Model
         else
         {
             $db = new Database();
-            $sql = "SELECT * FROM users WHERE email = '$email'";
+            $sql = "SELECT * FROM accounts WHERE email = '$email'";
             return ($db->execute($sql));
         }
     }
@@ -51,7 +51,7 @@ class UserModel extends Model
         $key = Security::generateKey();
         $password = Security::encode($password);
 
-        $db->execute("INSERT INTO `users` ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES ('?', '?', 0, '?', '?')", array($username, $email, $birthDate, $key));
+        $db->execute("INSERT INTO accounts ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES ('?', '?', 0, '?', '?')", array($username, $email, $birthDate, $key));
         $id = $this->$db->lastInsertId();
         $db->execute("INSERT INTO passwords ('user', 'password') VALUES ('?', '?')", array($id, $password));
 
