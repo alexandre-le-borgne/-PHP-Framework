@@ -6,7 +6,6 @@
  *   et fais quelques pretraitements
  * - RegisterAction est appele a la suite du registerForm, lors du submit
  */
-
 class UserController extends Controller
 {
     public function PreregisterAction(Request $request)
@@ -43,35 +42,46 @@ class UserController extends Controller
                 return;
             }
 
+            $request->getSession()->set('email', $email);
+            $request->getSession()->set('password', $password);
+
             $this->render('forms/registerForm');
         }
     }
 
     public function RegisterAction(Request $request)
     {
-        //$session = $request->getSession();
-        if (isset($_POST['username'], $_POST['birthDate']))
+        $username = $request->post('username');
+        $birthDate = $request->post('birthDate');
+        //On recupere les champs deja entres
+        $email = $request->getSession()->get('email');
+        $password = $request->getSession()->get('password');
+
+        if (isset($username, $birthDate))
         {
             $this->loadModel('IndexModel');
-
             $username = $_POST['username'];
 
-
             $errors = array();
-
+            $isError = false;
             $data = array
             (
                 'username' => $username,
-                'errors' => $errors
             );
 
             if (!($this->indexmodel->availableUser($_POST['username'])))
+            {
                 $errors['username'] = 'Pseudonyme déjà utilisé';
+                $isError = true;
+            }
+            if ($isError)
+            {
+                $data['errors'] = $errors;
+                $this->render('views/forms/preRegisterForm', $data);
+                return;
+            }
 
-
-            $this->render('forms/registerForm', $data);
-
-            $this->indexmodel->addUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['birthdate']);
+            $this->indexmodel->addUser($username, $email, $password, $birthDate);
         }
     }
 
