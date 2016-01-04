@@ -14,17 +14,23 @@
     <!--PRE SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="preregister">
         <!--EMAIL-->
-
-        <input type="text" id="inputEmail" name="email" placeholder="Email" required><br><br>
-
-        <div class="control-group info">
-          <label class="control-label" for="email">Input with info</label>
-          <div class="controls">
-            <input type="text" id="inputInfo">
-            <span class="help-inline">ikewbdiqwebd</span>
-          </div>
-        </div>
-
+        <?php
+        if(isset($errors['email'])) { ?>
+            <div class="control-group info">
+              <label class="control-label" for="email">Input with info</label>
+              <div class="controls">
+                <input type="text" id="inputInfo">
+                <span class="help-inline"><?php $errors['email']?></span>
+              </div>
+            </div>
+        <?php
+        }
+        else{
+            ?>
+            <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
+        <?php
+        }
+        ?>
 
         <?php ?>
 
