@@ -49,7 +49,7 @@ class UserController extends Controller
         }
     }
 
-    public function RegisterAction()
+    public function RegisterAction(Request $request)
     {
         $username = $request->post('username');
         $birthDate = $request->post('birthDate');
