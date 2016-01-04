@@ -14,8 +14,7 @@ class UserModel extends Model
     {
         $id = $request->getSession()->get("id");
         $password = $request->getSession()->get("password");
-        if ($id != null && $password != null)
-        {
+        if ($id != null && $password != null) {
             $user = new UserEntity($id);
             if ($user->getAuthentification() == 0)
                 return Security::equals($user->getPassword(), $password);
@@ -33,8 +32,7 @@ class UserModel extends Model
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             return false;
-        else
-        {
+        else {
             $db = new Database();
             $sql = "SELECT * FROM accounts WHERE email = ?";
             return ($db->execute($sql, array($email)));
