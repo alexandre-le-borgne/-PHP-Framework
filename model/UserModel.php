@@ -24,7 +24,7 @@ class UserModel extends Model
     {
         $db = new Database();
         $sql = "SELECT * FROM users WHERE username = '$username'";
-        return ($db->execute($sql) == NULL);
+        return ($db->execute($sql));
     }
 
     public function availableEmail($email)
