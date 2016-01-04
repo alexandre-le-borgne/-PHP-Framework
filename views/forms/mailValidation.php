@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: julien
- * Date: 29/12/2015
- * Time: 13:06
+ * Validation du mail (Model ?)
  */
 
 $user = $_GET['user'];
