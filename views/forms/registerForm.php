@@ -5,7 +5,6 @@
  * - d’enregistrer en base de données, obligatoirement, le pseudonyme,
  * - d'enregistrer e-mail et mot de passe (encodé)
  * - d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
- *
  */
 ?>
 

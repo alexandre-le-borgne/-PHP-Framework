@@ -1,9 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: j13000355
- * Date: 04/01/16
- * Time: 15:08
+ * Page de confirmation d'inscription, est affichee une fois que
+ * le compte a ete cree.
  */
 
+
 echo "Test";
+
