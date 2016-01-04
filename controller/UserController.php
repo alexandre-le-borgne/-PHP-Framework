@@ -83,6 +83,7 @@ class UserController extends Controller
             echo "Ceci est un test";
 
             $this->indexmodel->addUser($username, $email, $password, $birthDate);
+            $this->render('views/persists/validationInscription');
         }
     }
 

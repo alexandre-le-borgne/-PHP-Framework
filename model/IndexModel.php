@@ -40,6 +40,5 @@ class IndexModel extends Model
         $db->execute($insert);
 
         Mail::sendVerificationMail($username, $email, $key);
-        $this->render(views/persists/validationInscription);
     }
 }
