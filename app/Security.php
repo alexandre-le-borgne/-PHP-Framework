@@ -9,7 +9,6 @@ class Security
             return intval($string);
         else
         {
-            //$string = mysql_real_escape_string($string);
             $string = addcslashes($string, '%_');
         }
 
