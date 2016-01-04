@@ -18,7 +18,7 @@ class Session
     public function get($name)
     {
         if (isset($_SESSION[$name]))
-            return $_SESSION($name);
+            return $_SESSION[$name];
         return null;
     }
 
