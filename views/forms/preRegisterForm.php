@@ -19,14 +19,14 @@
         <?php
         if(isset($errors['email'])) { ?>
             <div class="control-group info">
-                <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
+                <input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
                 <span class="help-inline"><?php echo $errors['email']?></span>
             </div>
         <?php
         }
         else{
             ?>
-            <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
+            <input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
         <?php
         }
         ?>
