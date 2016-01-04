@@ -31,9 +31,6 @@ class IndexController extends Controller
         $password = $request->post('password');
         $confirmPwd = $request->post('confirmPwd');
 
-
-
-
         if ($email && $password && $confirmPwd)
         {
             $isError = false;

@@ -20,7 +20,7 @@
             <div class="controls">
                 <div class="input-prepend">
                     <span class="add-on">@</span>
-                    <input class="span2" id="prependedInput" type="text" placeholder="Username" value="<?php echo $username; ?>" required>
+                    <input class="span2" id="prependedInput" type="text" name="username" placeholder="Pseudonyme" required>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
         <!--BIRTH DATE-->
         <div class="input-prepend">
             <span class="add-on">@</span>
-            <input class="span2" id="prependedInput" type="date" placeholder="Identifiant" required>
+            <input class="span2" id="prependedInput" type="date" placeholder="Date de naissance" required>
         </div>
 
         <!--SUBMIT ACTION-->
