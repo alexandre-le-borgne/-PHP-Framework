@@ -51,7 +51,7 @@ class UserModel extends Model
         $key = Security::generateKey();
         $password = Security::encode($password);
 
-        $db->execute("INSERT INTO users ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES ('$username', '$email', 0, '$birthDate', '$key')");
+        $db->execute("INSERT INTO users ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES ('?', '?', 0, '?', '?')", array($username, $email, $birthDate, $key));
         $id = $this->$db->lastInsertId();
         $db->execute("INSERT INTO passwords ('user', 'password') VALUES ('$id', '$password')");
 
