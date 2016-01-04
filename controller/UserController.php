@@ -4,8 +4,9 @@
  * Le Controlleur correspondant a l'utilisateur
  * - PreregisterAction est appele a la suite du preregisterForm, lors du submit
  *   et fais quelques pretraitements
- * - RegisterAction est appele a la suite du registerForm
+ * - RegisterAction est appele a la suite du registerForm, lors du submit
  */
+
 class UserController extends Controller
 {
     public function PreregisterAction(Request $request)
