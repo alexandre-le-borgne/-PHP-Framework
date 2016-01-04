@@ -53,7 +53,7 @@ class UserModel extends Model
 
         $db->execute("INSERT INTO users ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES ('?', '?', 0, '?', '?')", array($username, $email, $birthDate, $key));
         $id = $this->$db->lastInsertId();
-        $db->execute("INSERT INTO passwords ('user', 'password') VALUES ('$id', '$password')");
+        $db->execute("INSERT INTO passwords ('user', 'password') VALUES ('?', '?')", array($id, $password));
 
         Mail::sendVerificationMail($username, $email, $key);
     }
