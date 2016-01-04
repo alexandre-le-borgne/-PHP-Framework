@@ -25,6 +25,7 @@ class Database
             }
             return $resultat;
         } catch (PDOException $e) {
+            var_dump($resultat->debugDumpParams());
            throw new TraceableException($e->getMessage());
         }
     }
