@@ -53,10 +53,10 @@ class UserModel extends Model
         $key = Security::generateKey();
         $password = Security::encode($password);
 
-        $db->execute("INSERT INTO `accounts` ('username', 'email', 'authentification', 'birthDate', 'cle') VALUES (?, ?, "
+        $db->execute("INSERT INTO `accounts` (username, email, authentification, birthDate, cle) VALUES (?, ?, "
             . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
         $id = $this->$db->lastInsertId();
-        $db->execute("INSERT INTO passwords ('user', 'password') VALUES (?, ?)", array($id, $password));
+        $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
 
         Mail::sendVerificationMail($username, $email, $key);
     }
