@@ -19,7 +19,7 @@
         if(isset($errors['email'])) { ?>
             <div class="control-group info">
                 <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
-                <span class="help-inline"><?php $errors['email']?></span>
+                <span class="help-inline"><?php echo $errors['email']?></span>
             </div>
         <?php
         }
@@ -36,7 +36,7 @@
         if(isset($errors['password'])) { ?>
             <div class="control-group error">
                 <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
-                <span class="help-inline"><?php $errors['password']?></span>
+                <span class="help-inline"><?php echo $errors['password']?></span>
             </div>
             <?php
         }
@@ -52,7 +52,7 @@
         if(isset($errors['password'])) { ?>
             <div class="control-group error">
                 <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
-                <span class="help-inline"><?php $errors['password']?></span>
+                <span class="help-inline"><?php echo $errors['password']?></span>
             </div>
             <?php
         }
