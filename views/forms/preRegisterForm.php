@@ -10,7 +10,7 @@
 <div class="preRegisterDiv">
 
 
-    <h4>Nouveau sur Aaron ? Inscrivez-vous ! <?php if (isset($errors)) echo "BLBLBLBL"; ?></h4>
+    <h4>Nouveau sur Aaron ? Inscrivez-vous ! <?php if (isset($errors)) echo "BLBLBLBL"; else echo 'noErr'; ?></h4>
 
     <!--PRE SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="preregister">
