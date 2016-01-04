@@ -26,7 +26,7 @@
             ?>
             <div class="control-group info">
                 <input type="text" id="inputEmail inputInfo" name="email" placeholder="Email" required><br><br>
-                <span class="help-inline"><?php $errors['email']?></span>
+                <span class="help-inline">iweubfiuqwefiubqwe</span>
             </div>
         <?php
         }
