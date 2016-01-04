@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function PreregisterAction(Request $request)
     {
-        $this->loadModel('IndexModel');
+        $this->loadModel('UserModel');
 
         $email = $request->post('email');
         $password = $request->post('password');
@@ -20,7 +20,7 @@ class UserController extends Controller
         {
             $isError = false;
             $errors = array();
-            if (!($this->indexmodel->availableEmail($email)))
+            if (!($this->usermodel->availableEmail($email)))
             {
                 $errors['email'] = 'Email déjà utilisé';
                 $isError = true;
@@ -30,7 +30,7 @@ class UserController extends Controller
                 $errors['password'] = 'Mot de passe différent';
                 $isError = true;
             }
-            if (!($this->indexmodel->availablePwd($password)))
+            if (!($this->usermodel->availablePwd($password)))
             {
                 $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
                 $isError = true;
@@ -49,7 +49,7 @@ class UserController extends Controller
         }
     }
 
-    public function RegisterAction()
+    public function RegisterAction(Request $request)
     {
         $username = $request->post('username');
         $birthDate = $request->post('birthDate');
@@ -59,7 +59,7 @@ class UserController extends Controller
 
         if (isset($username, $birthDate))
         {
-            $this->loadModel('IndexModel');
+            $this->loadModel('UserModel');
             $username = $_POST['username'];
 
             $errors = array();
@@ -69,7 +69,7 @@ class UserController extends Controller
                 'username' => $username,
             );
 
-            if (!($this->indexmodel->availableUser($_POST['username'])))
+            if (!($this->usermodel->availableUser($_POST['username'])))
             {
                 $errors['username'] = 'Pseudonyme déjà utilisé';
                 $isError = true;
@@ -81,7 +81,7 @@ class UserController extends Controller
                 return;
             }
 
-            $this->indexmodel->addUser($username, $email, $password, $birthDate);
+            $this->usermodel->addUser($username, $email, $password, $birthDate);
         }
     }
 

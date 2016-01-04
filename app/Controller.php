@@ -38,7 +38,7 @@ abstract class Controller
 
     public function redirectToRoute($route, $data)
     {
-
+        // NOT IMPLEMENTED
     }
 
     public function createNotFoundException($description)

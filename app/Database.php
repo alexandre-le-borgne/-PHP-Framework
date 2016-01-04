@@ -25,11 +25,16 @@ class Database
         return $resultat;
     }
 
+    public function lastInsertId() {
+        return $this->bdd->lastInsertId();
+    }
+
     // Renvoie un objet de connexion à la BD en initialisant la connexion au besoin
     private function getBdd()
     {
         if ($this->bdd == null)
         {
+
             // Création de la connexion
             $this->bdd = new PDO('mysql:host=cuscomfrmkadmin.mysql.db;dbname=cuscomfrmkadmin;charset=utf8',
                 'cuscomfrmkadmin', 'MAXsky1995', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));

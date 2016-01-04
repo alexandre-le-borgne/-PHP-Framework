@@ -5,32 +5,23 @@ class Security
     /* http://stackoverflow.com/questions/134099/are-pdo-prepared-statements-sufficient-to-prevent-sql-injection*/
     public static function escape($string)
     {
-        if (ctype_digit($string))
-            return intval($string);
-        else
-        {
-            //$string = mysql_real_escape_string($string);
-            $string = addcslashes($string, '%_');
-        }
-
-        return $string;
+        return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
 
-
-    public static function display($string)
+    public static function generateKey()
     {
-        return htmlentities($string);
-    }
-
-    public static function getKey($str)
-    {
-        return $key = hash('sha512', $str);
+        return md5(microtime(TRUE)*100000);
     }
 
     public static function encode($str)
     {
-        $key = self::getKey($str);
+        $key = hash('sha512', $str);
         $encoded = crypt($str, '$6$rounds=5000$' . $key . '$');
         return $encoded;
+    }
+
+    public static function equals($hashedPassword, $userPassword)
+    {
+        return hash_equals($hashedPassword, crypt($userPassword, $hashedPassword));
     }
 }
