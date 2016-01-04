@@ -22,6 +22,10 @@ class Database
             $resultat = $this->getBdd()->prepare($sql);  // requête préparée
             $resultat->execute($params);
         }
+        $errorInfo = $this->getBdd()->errorInfo();
+        if($errorInfo[0] != NULL) {
+            throw new TraceableException("$errorInfo[0] | $errorInfo[1] | $errorInfo[2]");
+        }
         return $resultat;
     }
 
