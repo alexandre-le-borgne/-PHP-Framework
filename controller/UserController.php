@@ -76,14 +76,12 @@ class UserController extends Controller
             if ($isError)
             {
                 $data['errors'] = $errors;
-                $this->render('views/forms/registerForm', $data);
+                $this->render('forms/registerForm', $data);
                 return;
             }
 
-            echo "Ceci est un test";
-
             $this->usermodel->addUser($username, $email, $password, $birthDate);
-            $this->render('views/persists/validationInscription');
+            $this->render('persists/validationInscription');
         }
         echo "test";
     }
