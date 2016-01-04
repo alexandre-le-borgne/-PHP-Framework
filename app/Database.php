@@ -23,7 +23,7 @@ class Database
             $resultat->execute($params);
         }
         $errorInfo = $this->getBdd()->errorInfo();
-        if($errorInfo[0] != NULL) {
+        if(!$resultat) {
             throw new TraceableException("$errorInfo[0] | $errorInfo[1] | $errorInfo[2]");
         }
         return $resultat;
