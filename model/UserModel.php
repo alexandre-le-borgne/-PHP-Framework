@@ -23,7 +23,7 @@ class UserModel extends Model
     public function availableUser($username)
     {
         $db = new Database();
-        $sql = "Select * From User Where username = '$username'";
+        $sql = "Select * From users Where username = '$username'";
         return ($db->execute($sql) == NULL);
     }
 
