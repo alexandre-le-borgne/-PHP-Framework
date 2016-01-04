@@ -69,7 +69,7 @@ class UserController extends Controller
                 'username' => $username,
             );
 
-            if (!($this->indexmodel->availableUser($_POST['username'])))
+            if (!($this->indexmodel->availableUser($username)))
             {
                 $errors['username'] = 'Pseudonyme déjà utilisé';
                 $isError = true;
