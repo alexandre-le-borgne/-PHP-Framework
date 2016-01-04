@@ -8,13 +8,15 @@
  */
 class UserModel extends Model
 {
-    public function isConnected(Request $request) {
+    public function isConnected(Request $request)
+    {
         $id = $request->getSession()->get("id");
         $password = $request->getSession()->get("password");
-        if($id != null && $password != null) {
+        if ($id != null && $password != null)
+        {
             $user = new UserEntity($id);
             if ($user->getAuthentification() == 0)
-                return ($user->getPassword() == $password);
+                return Security::equals($user->getPassword(), $password);
         }
     }
 
