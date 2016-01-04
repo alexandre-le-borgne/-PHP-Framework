@@ -31,8 +31,8 @@ class Database
         if ($this->bdd == null)
         {
             // Création de la connexion
-            $this->bdd = new PDO('mysql:host=localhost;dbname=aaron;charset=utf8',
-                'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $this->bdd = new PDO('mysql:host=cuscomfrmkadmin.mysql.db;dbname=cuscomfrmkadmin;charset=utf8',
+                '>cuscomfrmkadmin', 'MAXsky1995', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         return $this->bdd;
     }
