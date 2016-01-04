@@ -6,7 +6,6 @@
  * Date: 16/12/2015
  * Time: 15:08
  */
-
 class IndexModel extends Model
 {
     public function availableUser($username)
@@ -16,14 +15,16 @@ class IndexModel extends Model
         return ($db->execute($sql) == NULL);
     }
 
+    public function valideEmail($email)
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+
     public function availableEmail($email)
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-            return false;
-        else
+        if ($this->valideEmail($email))
         {
             $db = new Database();
-//            $email = Security::escape($email);
             $sql = "Select * From User Where email = '$email'";
             return ($db->execute($sql));
         }
