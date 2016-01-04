@@ -7,7 +7,7 @@
  * Time: 12:29
  */
 
-class RSSReader
+class RSSReaderModel extends Model
 {
     private $posts = array();
 
