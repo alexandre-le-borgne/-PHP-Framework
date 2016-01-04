@@ -15,19 +15,12 @@ class IndexModel extends Model
         return ($db->execute($sql) == NULL);
     }
 
-    public function valideEmail($email)
-    {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
-    }
-
     public function availableEmail($email)
     {
-        if ($this->valideEmail($email))
-        {
-            $db = new Database();
-            $sql = "Select * From User Where email = '$email'";
-            return ($db->execute($sql));
-        }
+        //verifie l'existence dans la base de donnee de l'email
+        $db = new Database();
+        $sql = "Select * From User Where email = '$email'";
+        return ($db->execute($sql));
     }
 
     public function availablePwd($password)
