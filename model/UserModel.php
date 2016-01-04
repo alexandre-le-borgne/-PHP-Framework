@@ -8,6 +8,8 @@
  */
 class UserModel extends Model
 {
+    const AUTHENTIFICATION_BY_PASSWORD = 0;
+
     public function isConnected(Request $request)
     {
         $id = $request->getSession()->get("id");
