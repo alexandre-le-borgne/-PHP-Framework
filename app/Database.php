@@ -32,7 +32,7 @@ class Database
         {
             // Création de la connexion
             $this->bdd = new PDO('mysql:host=cuscomfrmkadmin.mysql.db;dbname=cuscomfrmkadmin;charset=utf8',
-                '>cuscomfrmkadmin', 'MAXsky1995', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+                'cuscomfrmkadmin', 'MAXsky1995', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         return $this->bdd;
     }
