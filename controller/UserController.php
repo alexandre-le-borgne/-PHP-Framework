@@ -60,7 +60,6 @@ class UserController extends Controller
         if (isset($username, $birthDate))
         {
             $this->loadModel('IndexModel');
-            $username = $_POST['username'];
 
             $errors = array();
             $isError = false;
