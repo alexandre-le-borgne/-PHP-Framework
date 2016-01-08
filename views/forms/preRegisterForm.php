@@ -27,7 +27,7 @@
             echo '<input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-"><br><br>';
         ?>
 
-        <?php //Les div de confirmation de password
+        <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
         View::getView("forms/passwordConfirm", (isset($errors) ? $data = array("errors" => $errors) : null));
         ?>
 
