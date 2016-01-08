@@ -29,8 +29,10 @@ class UserModel extends Model
         $db = new Database();
         echo "**" . $nameOrEmail;
         $data = $db->execute("SELECT id FROM accounts WHERE username = ? OR email = ?", array($nameOrEmail, $nameOrEmail));
-        if($data = $data->fetch())
+        if($data = $data->fetch()) {
+            var_dump($data);
             return $data['id'];
+        }
         return "-1";
     }
 
