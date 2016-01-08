@@ -54,9 +54,8 @@ class UserModel extends Model
 
         $db->execute("INSERT INTO accounts (username, email, authentification, birthDate, userKey) VALUES (?, ?, "
             . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
-        var_dump($db->lastInsertId());
-        var_dump($this->$db);
-        $id = $this->$db->lastInsertId();
+
+        $id = $db->lastInsertId();
 
         $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
 
