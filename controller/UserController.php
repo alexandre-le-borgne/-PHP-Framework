@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         $this->loadModel('UserModel');
         echo $request->post('username') . "<br>";
-        $id = $this->usermodel->getIdByNameOrEmail($request->post('username'));
+        $id = $this->usermodel->getIdByNameOrEmail($request->post('login'));
         $password = $request->post('password');
         echo $id . " $$  " .  $password;
         $userEntity = new UserEntity($id);
