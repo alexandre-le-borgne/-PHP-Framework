@@ -81,7 +81,7 @@ class UserController extends Controller
             }
 
             $this->usermodel->addUser($username, $email, $password, $birthDate);
-            $this->render('persists/validationInscription');
+            $this->render('persists/validateInscription');
         }
         echo "test";
     }
