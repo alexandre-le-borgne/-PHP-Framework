@@ -107,9 +107,9 @@ class UserController extends Controller
     public function MailValidationAction($user, $key)
     {
         $db = new Database();
-        $req = "Select email, userKey, active From accounts Where username like :user";
+        $req = "Select email, userKey, active From accounts Where username = '$user'";
 
-        if($db->execute($req, array($user)) && $data = $db->execute($req, array($user))->fetch())
+        if($db->execute($req) && $data = $db->execute($req)->fetch())
         {
             $email = $data['email'];
             $realKey = $data['userKey'];
@@ -123,8 +123,8 @@ class UserController extends Controller
             if($key == $realKey)
             {
                 $this->render("persists/mailValidation", array("message" => "Votre compte a bien été activé"));
-                $req = "Update accounts Set active = 1 Where username like :user";
-                $db->execute($req, array($user));
+                $req = "Update accounts Set active = 1 Where username = $user";
+                $db->execute($req);
                 Mail::sendWelcomingMail($email);
             }
             else
