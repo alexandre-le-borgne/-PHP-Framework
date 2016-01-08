@@ -56,6 +56,8 @@ class UserModel extends Model
             . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
 
         $id = $this->$db->lastInsertId();
+        var_dump($db->lastInsertId());
+        var_dump($this->$db);
         $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
 
         Mail::sendVerificationMail($username, $email, $key);
