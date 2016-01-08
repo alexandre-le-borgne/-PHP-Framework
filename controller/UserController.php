@@ -83,10 +83,9 @@ class UserController extends Controller
     public function LoginAction(Request $request)
     {
         $this->loadModel('UserModel');
-        echo $request->post('username') . "<br>";
         $id = $this->usermodel->getIdByNameOrEmail($request->post('login'));
         $password = $request->post('password');
-        echo $id . " $$  " .  $password;
+        echo "||".$id . " $$  " .  $password;
         $userEntity = new UserEntity($id);
         if ($userEntity->getAuthentification() == 0) {
             $passwordEntity = new PasswordEntity($id);
