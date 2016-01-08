@@ -42,7 +42,6 @@ class UserModel extends Model
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             return $this::BAD_EMAIL_REGEX;
-
         $db = new Database();
         $sql = "SELECT * FROM accounts WHERE email = ?";
         $result = $db->execute($sql, array($email));
