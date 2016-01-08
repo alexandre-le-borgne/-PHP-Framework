@@ -124,7 +124,7 @@ class UserController extends Controller
             {
                 $this->render("persists/mailValidation", array("message" => "Votre compte a bien été activé"));
                 $req = "Update accounts Set active = 1 Where username like :user";
-                $db->execute($req, $user);
+                $db->execute($req, array($user));
                 Mail::sendWelcomingMail($email);
             }
             else
