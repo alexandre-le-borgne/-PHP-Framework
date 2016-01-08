@@ -8,6 +8,12 @@
  */
 class Request
 {
+    private $instance;
+
+    private function __construct()
+    {
+    }
+
     public function isAjaxRequest()
     {
         return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
@@ -21,6 +27,16 @@ class Request
     public function post($name)
     {
         return isset($_POST[$name]) ? $_POST[$name] : null;
+    }
+
+    /**
+     * @return Request
+     */
+    public static function getInstance()
+    {
+        if (!Request::$instance)
+            Request::$instance = new Request();
+        return Request::$instance;
     }
 
     /**

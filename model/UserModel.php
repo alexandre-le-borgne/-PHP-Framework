@@ -13,18 +13,6 @@ class UserModel extends Model
     const BAD_EMAIL_REGEX = 2;
     const CORRECT_EMAIL = 3;
 
-    public function isConnected(Request $request)
-    {
-        $id = $request->getSession()->get("id");
-        $password = $request->getSession()->get("password");
-        if ($id != null && $password != null) {
-            $user = new UserEntity($id);
-            if ($user->getAuthentification() == 0)
-                return $user->getPassword() === $password;
-        }
-        return false;
-    }
-
     public function getIdByNameOrEmail($nameOrEmail) {
         $db = new Database();
         $data = $db->execute("SELECT id FROM accounts WHERE username = ? OR email = ?", array($nameOrEmail, $nameOrEmail));

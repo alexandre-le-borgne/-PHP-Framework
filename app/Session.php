@@ -33,6 +33,18 @@ class Session
         unset($_SESSION);
     }
 
+    public function isConnected()
+    {
+        $id = $this->get("id");
+        $password = $this->get("password");
+        if ($id != null && $password != null) {
+            $user = new UserEntity($id);
+            if ($user->getAuthentification() == 0)
+                return $user->getPassword() === $password;
+        }
+        return false;
+    }
+
     /**
      * @return Session
      */

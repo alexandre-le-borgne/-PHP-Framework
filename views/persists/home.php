@@ -14,7 +14,7 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
         <?php View::getView("persists/header"); ?>
 
         <?php
-        if($this->usermodel->isConnected($request)) {
+        if(Request::getInstance()->getSession()->isConnected()) {
             echo "CONNECTER!";
         }
         else {

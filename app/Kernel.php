@@ -24,7 +24,7 @@ class Kernel
     public function response()
     {
         $router = new Router();
-        $request = new Request();
+        $request = Request::getInstance();
         $params = explode('/', $request->get('url'));
         if (isset($params[0]) && $params[0] != '')
             $route = $router->getRoute($params[0]);
