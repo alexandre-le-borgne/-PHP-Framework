@@ -12,10 +12,20 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
 <body>
     <div id="fullpage">
         <?php View::getView("persists/header"); ?>
-        <div class="section">
-            <?php View::getView("forms/loginForm"); ?>
-            <?php View::getView("forms/preRegisterForm", isset($errors) ? array('errors' => $errors) : null); ?><!--pour les warnings-->
-        </div>
+
+        <?php
+        if($this->usermodel->isConnected($request)) {
+            echo "CONNECTER!";
+        }
+        else {
+            ?>
+            <div class="section">
+                <?php View::getView("forms/loginForm"); ?>
+                <?php View::getView("forms/preRegisterForm", isset($errors) ? array('errors' => $errors) : null); ?><!--pour les warnings-->
+            </div>
+            <?php
+        }
+        ?>
 
         <div class="section section_news">
             <div id="title_section_news">

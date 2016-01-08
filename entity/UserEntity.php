@@ -33,7 +33,7 @@ class UserEntity extends Entity
     }
 
     public function getPassword() {
-        if($this->authentification == 0) {
+        if($this->authentification == UserModel::AUTHENTIFICATION_BY_PASSWORD) {
             $password = new PasswordEntity($this->id);
             return $password->getPassword();
         }

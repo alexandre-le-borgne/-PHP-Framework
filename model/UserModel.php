@@ -27,15 +27,11 @@ class UserModel extends Model
 
     public function getIdByNameOrEmail($nameOrEmail) {
         $db = new Database();
-        echo "**" . $nameOrEmail;
         $data = $db->execute("SELECT id FROM accounts WHERE username = ? OR email = ?", array($nameOrEmail, $nameOrEmail));
         $fetch = $data->fetch();
-        var_dump($fetch);
-        if($fetch) {
-
+        if($fetch)
             return $fetch['id'];
-        }
-        return "-1";
+        return false;
     }
 
     public function availableUser($username)

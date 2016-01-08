@@ -85,7 +85,6 @@ class UserController extends Controller
         $this->loadModel('UserModel');
         $id = $this->usermodel->getIdByNameOrEmail($request->post('login'));
         $password = $request->post('password');
-        echo "||".$id . " $$  " .  $password;
         $userEntity = new UserEntity($id);
         if ($userEntity->getAuthentification() == 0) {
             $passwordEntity = new PasswordEntity($id);
@@ -95,8 +94,6 @@ class UserController extends Controller
                 $request->getSession()->set("password", $passwordEntity->getPassword());
             }
         }
-        if($this->usermodel->isConnected($request))
-            echo "CONNECTER!";
         $this->render('persists/home');
     }
 
