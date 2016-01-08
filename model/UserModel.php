@@ -67,5 +67,17 @@ class UserModel extends Model
         Mail::sendVerificationMail($username, $email, $key);
     }
 
+    public function connectUser($user, $password){
+
+        $db = new Database();
+        $data = $db->execute("SELECT password FROM passwords WHERE user IN (SELECT Id From accounts WHERE username = '$user')")->fetch();
+
+        if($data['password'] == $password)
+            return true;
+        else
+            return false;
+
+    }
+
 
 }
