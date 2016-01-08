@@ -17,7 +17,10 @@ class UserController extends Controller
         $confirmPwd = $request->post('confirmPwd');
 
         if ((!$email && $password && $confirmPwd))
+        {
             $this->render('index');
+            return;
+        }
 
         $errors = array();
         if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL) {
