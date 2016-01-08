@@ -2,4 +2,8 @@
 /**
  * Validation du mail (Model ?)
  */
-echo message;
+
+if (isset($message))
+    echo $message;
+else
+    View::getView('index');
