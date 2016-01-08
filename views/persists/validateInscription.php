@@ -5,5 +5,5 @@
  */
 
 
-echo "Test";
+echo "Un email vous a été envoyé, rendez vous sur votre boite mail pour valider l'inscription";
 
