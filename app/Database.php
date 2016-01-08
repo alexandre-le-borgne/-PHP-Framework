@@ -18,6 +18,7 @@ class Database
             if ($params == null) {
                 $resultat = $this->getBdd()->query($sql);    // exécution directe
             } else {
+                if(!is_array($params)) throw new TraceableException("Paramètres innatendus : " . var_dump($params));
                 $resultat = $this->getBdd()->prepare($sql);  // requête préparée
                 $resultat->execute($params);
             }
