@@ -8,7 +8,7 @@
  */
 class UserController extends Controller
 {
-    public function PreregisterAction(Request $request)
+    public function PreRegisterAction(Request $request)
     {
         $this->loadModel('UserModel');
 
@@ -103,6 +103,11 @@ class UserController extends Controller
         Mail::sendResetMail($email, $user, $key);
 
         echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
+    }
+
+    public function MailValidationAction($user, $key)
+    {
+
     }
 
 }

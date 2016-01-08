@@ -11,9 +11,10 @@ class Router {
         //controller in the system would be instantiated on every request, which obviously isn't good!
         // Route(routename, controllername, actionname);
         $this->table[] = $this->getDefaultRoute();
-        $this->table[] = new Route('preregister', 'user', 'preregister');
+        $this->table[] = new Route('preregister', 'user', 'preRegister');
         $this->table[] = new Route('register', 'user', 'register');
         $this->table[] = new Route('testfeed', 'index', 'feed');
+        $this->table[] = new Route('mailvalidation', 'user', 'mailValidation');
     }
 
     public function getRoute($name)
