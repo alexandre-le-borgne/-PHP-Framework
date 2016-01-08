@@ -17,14 +17,6 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
             <?php View::getView("forms/preRegisterForm", isset($errors) ? array('errors' => $errors) : null); ?><!--pour les warnings-->
         </div>
 
-        <div class="section section_home">
-            <h1>HOME</h1>
-            <div class="slide"> Slide 1 </div>
-            <div class="slide"> Slide 2 </div>
-            <div class="slide"> Slide 3 </div>
-            <div class="slide"> Slide 4 </div>
-        </div>
-
         <div class="section section_news">
             <div id="title_section_news">
                 <h1>Profitez de<br>vos journaux preferés.</h1>
