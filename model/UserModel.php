@@ -39,7 +39,8 @@ class UserModel extends Model
 
         $db = new Database();
         $sql = "SELECT * FROM accounts WHERE email = ?";
-        if (!($db->execute($sql, array($email)))) //Resultat requete vide
+        $result = $db->execute($sql, array($email));
+        if (!($result->fetch())) //Resultat requete vide
             return $this::CORRECT_EMAIL;
         return $this::ALREADY_USED_EMAIL;
     }
