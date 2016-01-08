@@ -14,7 +14,7 @@ class PasswordEntity
     {
         if(intval($user)) {
             $db = new Database();
-            $result = $db->execute("SELECT * FROM passwords WHERE account = ?", $user)->fetch();
+            $result = $db->execute("SELECT * FROM passwords WHERE account = ?", array($user))->fetch();
             $this->id = $result['id'];
             $this->user = $result['user'];
             $this->password = $result['password'];
