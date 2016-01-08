@@ -10,7 +10,7 @@
     <h4>Connectez-vous ?</h4>
 
     <!--SIGN IN FORM-->
-    <form class="form-horizontal" method="post" name="login">
+    <form class="form-horizontal" method="post" action="login">
         <!--USERNAME-->
         <input type="text" name="login" placeholder="Identifiant ou Email"><br><br>
         <!--PASSWORD-->
