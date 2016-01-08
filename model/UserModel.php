@@ -27,7 +27,7 @@ class UserModel extends Model
 
     public function getIdByNameOrEmail($nameOrEmail) {
         $db = new Database();
-        $data = $db->execute("SELECT password FROM passwords WHERE user IN (SELECT id From accounts WHERE username = ? OR email = ?)", array($nameOrEmail, $nameOrEmail))->fetch();
+        $data = $db->execute("SELECT id From accounts WHERE username = ? OR email = ?", array($nameOrEmail, $nameOrEmail))->fetch();
         return $data['id'];
     }
 

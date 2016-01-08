@@ -83,6 +83,7 @@ class UserController extends Controller
     public function LoginAction(Request $request)
     {
         $this->loadModel('UserModel');
+        echo $request->post('username') . "<br>";
         $id = $this->usermodel->getIdByNameOrEmail($request->post('username'));
         $password = $request->post('password');
         echo $id . " $$  " .  $password;
