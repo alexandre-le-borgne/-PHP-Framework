@@ -16,37 +16,34 @@ class UserController extends Controller
         $password = $request->post('password');
         $confirmPwd = $request->post('confirmPwd');
 
-        if ($email && $password && $confirmPwd)
+        $errors = array();
+        if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL)
         {
-            $isError = false;
-            $errors = array();
-            if (!($this->usermodel->availableEmail($email)))
-            {
-                $errors['email'] = 'Email déjà utilisé';
-                $isError = true;
-            }
-            if ($password != $confirmPwd)
-            {
-                $errors['password'] = 'Mot de passe différent';
-                $isError = true;
-            }
-            if (!($this->usermodel->availablePwd($password)))
-            {
-                $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
-                $isError = true;
-            }
-            if ($isError)
-            {
-                $data = array('errors' => $errors);
-                $this->render('persists/home', $data);
-                return;
-            }
-
-            $request->getSession()->set('email', $email);
-            $request->getSession()->set('password', $password);
-
-            $this->render('forms/registerForm');
+            $errors['email'] = 'Email déjà utilisé';
         }
+        if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX)
+        {
+            $errors['email'] = 'Format d\'email incorrect';
+        }
+        if ($password != $confirmPwd)
+        {
+            $errors['password'] = 'Mot de passe différent';
+        }
+        if (!($this->usermodel->correctPwd($password)))
+        {
+            $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
+        }
+        if (!(empty($errors)))
+        {
+            $data = array('errors' => $errors);
+            $this->render('persists/home', $data);
+            return;
+        }
+
+        $request->getSession()->set('email', $email);
+        $request->getSession()->set('password', $password);
+
+        $this->render('forms/registerForm');
     }
 
     public function RegisterAction(Request $request)
