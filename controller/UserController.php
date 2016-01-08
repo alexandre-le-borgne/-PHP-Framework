@@ -109,7 +109,7 @@ class UserController extends Controller
         $db = new Database();
         $req = "Select email, userKey, active From accounts Where username like :user";
 
-        if($db->execute($req, $user) && $data = $db->execute($req, $user)->fetch())
+        if($db->execute($req, array($user)) && $data = $db->execute($req, array($user))->fetch())
         {
             $email = $data['email'];
             $realKey = $data['userKey'];
