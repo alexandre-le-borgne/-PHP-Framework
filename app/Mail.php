@@ -11,13 +11,14 @@ class Mail
     public static function sendVerificationMail($user, $email, $key)
     {
         $subject = "Activation de votre compte Aaron";
-        $head = "From : inscription@aaron.fr";
+        $head = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $head .= "From : inscription@aaron.fr";
 
         $message = "Bienvenue sur Aaron,
 
         Pour activer votre compte, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
 
-        'cuscom.fr/aaron/mailValidation.php?user=$user&key=$key'
+        cuscom.fr/aaron/mailValidation.php?user=$user&key=$key
 
         Ce message est automatique, merci de ne pas y repondre.
 
@@ -45,14 +46,15 @@ class Mail
     public static function sendResetMail($email, $user, $key)
     {
         $subject = "Reinitialisation de votre mot de passe Aaron";
-        $head = "From : reset@aaron.fr";
+        $head = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $head .= "From : reset@aaron.fr";
 
         $message = "Une demande de réinitialisation de mot de passe vient d'être effectuée.
         Supprimez immédiatement de message si vous n'en être pas l'auteur.
 
         Sinon, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
 
-        'cuscom.fr/aaron/resetForm.php?user=$user&key=$key';
+        cuscom.fr/aaron/resetForm.php?user=$user&key=$key
 
 
         Ce message est automatique, merci de ne pas y repondre.

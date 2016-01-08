@@ -61,4 +61,8 @@ class UserModel extends Model
 
         Mail::sendVerificationMail($username, $email, $key);
     }
+
+
+
+
 }
