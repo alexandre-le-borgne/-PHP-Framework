@@ -8,7 +8,7 @@
  */
 class Request
 {
-    private $instance;
+    private static $instance;
 
     private function __construct()
     {
