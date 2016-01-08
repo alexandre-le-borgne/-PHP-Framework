@@ -16,9 +16,11 @@ class UserEntity extends Entity
         {
             $db = new Database();
             $result = $db->execute("SELECT * FROM accounts WHERE id = ?", array($id))->fetch();
-            $this->id = $result['id'];
-            $this->email = $result['email'];
-            $this->authentification = $result['authentification'];
+            if($result) {
+                $this->id = $result['id'];
+                $this->email = $result['email'];
+                $this->authentification = $result['authentification'];
+            }
         } else
         {
             throw new TraceableException("L'id d'un utilisateur est attendu !");
@@ -31,8 +33,10 @@ class UserEntity extends Entity
     }
 
     public function getPassword() {
-        $db = new Database();
-        $result = $db->execute("SELECT * FROM passwords WHERE user = ?", array($this->id))->fetch();
-        return $result['password'];
+        if($this->authentification == 0) {
+            $password = new PasswordEntity($this->id);
+            return $password->getPassword();
+        }
+        return false;
     }
 }
