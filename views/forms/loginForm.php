@@ -4,7 +4,6 @@
  * et avec compte Google, Facebook ou Twitter
  */
 ?>
-
 <div class="loginDiv">
 
     <h4>Connectez-vous ?</h4>
