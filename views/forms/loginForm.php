@@ -10,11 +10,11 @@
     <h4>Connectez-vous ?</h4>
 
     <!--SIGN IN FORM-->
-    <form class="form-horizontal" method="post" name="register">
+    <form class="form-horizontal" method="post" name="login">
         <!--USERNAME-->
-        <input type="text" placeholder="Identifiant"><br><br>
+        <input type="text" name="login" placeholder="Identifiant"><br><br>
         <!--PASSWORD-->
-        <input type="password" id="inputPassword" placeholder="Password"><br><br>
+        <input type="password"  name="password" placeholder="Password"><br><br>
         <!--SUBMIT-->
         <input class="btn" type="submit" value="Submit">
         <!--SUBMIT-->

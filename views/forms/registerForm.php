@@ -34,8 +34,6 @@
         <button type="submit" name="action" value="register" class="btn">S'inscrire</button>
 
         <!--CAPTCHA-->
-
-        <input type="text" name="register">
         <fieldset id="captchafield">
             <div id="captcha"></div>
         </fieldset>

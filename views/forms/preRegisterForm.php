@@ -13,18 +13,18 @@
     <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
     <!--PRE SIGN UP FORM-->
-    <form class="form-horizontal" method="post" name="register" action="preregister">
+    <form class="form-horizontal" method="post" action="preregister">
 
         <!--EMAIL-->
         <?php
         if (isset($errors['email'])) { ?>
             <div class="control-group info">
-                <input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-"><br><br>
+                <input type="email" name="email" placeholder="Email" required pattern="*@-.-"><br><br>
                 <span class="help-inline"><?php echo $errors['email'] ?></span>
             </div>
         <?php
         } else
-            echo '<input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-"><br><br>';
+            echo '<input type="email" name="email" placeholder="Email" required pattern="*@-.-"><br><br>';
         ?>
 
         <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
@@ -32,7 +32,7 @@
         ?>
 
         <!--SUBMIT ACTION-->
-        <button type="submit" name="action" value="register" class="btn">S'inscrire sur Aaron</button>
+        <button type="submit" value="register" class="btn">S'inscrire sur Aaron</button>
 
     </form>
 </div>
