@@ -83,7 +83,6 @@ class UserController extends Controller
             $this->usermodel->addUser($username, $email, $password, $birthDate);
             $this->render('persists/validateInscription');
         }
-        echo "test";
     }
 
     public function LoginAction()
