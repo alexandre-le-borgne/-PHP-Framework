@@ -40,7 +40,7 @@ class UserModel extends Model
         }
     }
 
-    public function availablePwd($password)
+    public function correctPwd($password)
     {
         return (6 <= strlen($password) && strlen($password) <= 20);
     }
