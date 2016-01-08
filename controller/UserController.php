@@ -91,9 +91,9 @@ class UserController extends Controller
         $this->render('persists/home');
     }
 
-    public function MailResetAction(){
+    public function MailResetAction(Request $request){
 
-        $email = Security::escape($_POST['inputEmail']);
+        $email = Security::escape($request->post('email'));
 
         $req = "Select username, userKey From accounts Where email = $email";
 
