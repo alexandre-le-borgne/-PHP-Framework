@@ -2,4 +2,5 @@
 /**
  * Validation du mail (Model ?)
  */
-echo message;
+
+echo $message;
