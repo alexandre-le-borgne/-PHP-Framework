@@ -17,11 +17,11 @@ class Mail
         $message = "
         <html>
             <body>
-                <p>Bienvenue sur Aaron,
+                <p>Bienvenue sur Aaron, <br/>
 
-                Pour activer votre compte, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.</p>
+                Pour activer votre compte, merci de cliquer sur le lien suivant <br/></p>
 
-                <a href='cuscom.fr/aaron/mailValidation.php?user=$user&key=$key'>Inscrivez vous !</a>
+                <a href='http://cuscom.fr/aaron/mailValidation.php?user=$user&key=$key'>Inscrivez vous !</a>
 
                 <p>Ce message est automatique, merci de ne pas y repondre.
 
