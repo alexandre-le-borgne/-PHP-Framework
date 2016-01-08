@@ -82,7 +82,7 @@ class UserController extends Controller
 
     public function LoginAction(Request $request)
     {
-
+        throw new TraceableException("bite");
         $this->loadModel('UserModel');
         $id = $this->usermodel->getIdByNameOrEmail($request->post('username'));
         $password = $request->post('password');
