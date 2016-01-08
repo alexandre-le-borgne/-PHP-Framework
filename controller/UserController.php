@@ -80,8 +80,22 @@ class UserController extends Controller
         }
     }
 
-    public function LoginAction()
+    public function LoginAction(Request $request)
     {
+        $this->loadModel('UserModel');
+        $id = $this->usermodel->getIdByNameOrEmail($request->post('username'));
+        $password = $request->post('password');
+
+        $userEntity = new UserEntity($id);
+        if ($userEntity->getAuthentification() == 0) {
+            $passwordEntity = new PasswordEntity($id);
+
+            if (Security::equals($passwordEntity->getPassword(), $password)) {
+                $request->getSession()->set("id", $id);
+                $request->getSession()->set("password", $passwordEntity->getPassword());
+            }
+        }
+
         $this->render('persists/home');
     }
 

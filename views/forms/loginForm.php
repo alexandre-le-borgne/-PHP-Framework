@@ -12,7 +12,7 @@
     <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" name="login">
         <!--USERNAME-->
-        <input type="text" name="login" placeholder="Identifiant"><br><br>
+        <input type="text" name="login" placeholder="Identifiant ou Email"><br><br>
         <!--PASSWORD-->
         <input type="password"  name="password" placeholder="Password"><br><br>
         <!--SUBMIT-->

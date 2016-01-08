@@ -20,9 +20,15 @@ class UserModel extends Model
         if ($id != null && $password != null) {
             $user = new UserEntity($id);
             if ($user->getAuthentification() == 0)
-                return Security::equals($user->getPassword(), $password);
+                return $user->getPassword() === $password;
         }
         return false;
+    }
+
+    public function getIdByNameOrEmail($nameOrEmail) {
+        $db = new Database();
+        $data = $db->execute("SELECT password FROM passwords WHERE user IN (SELECT id From accounts WHERE username = ? OR email = ?)", array($nameOrEmail, $nameOrEmail))->fetch();
+        return $data['id'];
     }
 
     public function availableUser($username)
@@ -66,18 +72,4 @@ class UserModel extends Model
 
         Mail::sendVerificationMail($username, $email, $key);
     }
-
-    public function connectUser($user, $password){
-
-        $db = new Database();
-        $data = $db->execute("SELECT password FROM passwords WHERE user IN (SELECT Id From accounts WHERE username = '$user')")->fetch();
-
-        if($data['password'] == $password)
-            return true;
-        else
-            return false;
-
-    }
-
-
 }

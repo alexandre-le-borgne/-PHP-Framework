@@ -1,23 +1,15 @@
-<?php
-/**
- * Page que incluse a chaque fois que l'on a besoin d'un mot de passe et de sa confirmation
- * Gere les erreurs,
- * et evite la duplication de code
- */
-?>
-
     <!--PASSWORD-->
 <?php
 if (isset($errors['password']))
 { ?>
     <div class="control-group error">
-        <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
+        <input type="password" name="password" placeholder="Mot de passe" required><br><br>
         <span class="help-inline"><?php echo $errors['password'] ?></span>
     </div>
 <?php
 }
 else
-    echo '<input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>';
+    echo '<input type="password" name="password" placeholder="Mot de passe" required><br><br>';
 ?>
 
     <!--CONFIRM PASSWORD-->
@@ -25,14 +17,13 @@ else
 if (isset($errors['password']))
 { ?>
     <div class="control-group error">
-        <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe"
-               required><br><br>
+        <input type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
         <span class="help-inline"><?php echo $errors['password'] ?></span>
     </div>
 <?php
 }
 else
-    echo '<input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>';
+    echo '<input type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>';
 
 
 
