@@ -33,9 +33,10 @@ body
     color: #f037a5;
 }
 
-.newspapers
+.newspapers table
 {
-
+    float: left;
+    height:100%;
 }
 
 .content
