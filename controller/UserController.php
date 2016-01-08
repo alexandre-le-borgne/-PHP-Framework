@@ -105,11 +105,11 @@ class UserController extends Controller
 
         $email = Security::escape($request->post('email'));
 
-        $req = "Select username, userKey From accounts Where email = $email";
+        $req = "Select username, userKey From accounts Where email = ?";
 
         $db = new Database();
 
-        $data = $db->execute($req)->fetch();
+        $data = $db->execute($req, array($email))->fetch();
         $user = $data['username'];
         $key = $data['userKey'];
 
@@ -121,9 +121,9 @@ class UserController extends Controller
     public function MailValidationAction($user, $key)
     {
         $db = new Database();
-        $req = "Select email, userKey, active From accounts Where username = '$user'";
+        $req = "Select email, userKey, active From accounts Where username = ?";
 
-        if($db->execute($req) && $data = $db->execute($req)->fetch())
+        if($db->execute($req, array($user)) && $data = $db->execute($req, array($user))->fetch())
         {
             $email = $data['email'];
             $realKey = $data['userKey'];
@@ -137,8 +137,8 @@ class UserController extends Controller
             if($key == $realKey)
             {
                 $this->render("persists/mailValidation", array("message" => "Votre compte a bien été activé"));
-                $req = "Update accounts Set active = 1 Where username = '$user'";
-                $db->execute($req);
+                $req = "Update accounts Set active = 1 Where username = ?";
+                $db->execute($req, array($user));
                 Mail::sendWelcomingMail($email);
             }
             else
