@@ -14,15 +14,20 @@ class Mail
         $head = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $head .= "From : inscription@aaron.fr";
 
-        $message = "Bienvenue sur Aaron,
+        $message = "
+        <html>
+            <body>
+                <p>Bienvenue sur Aaron,
 
-        Pour activer votre compte, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
+                Pour activer votre compte, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.</p>
 
-        cuscom.fr/aaron/mailValidation.php?user=$user&key=$key
+                <a>cuscom.fr/aaron/mailValidation.php?user=$user&key=$key</a>
 
-        Ce message est automatique, merci de ne pas y repondre.
+                <p>Ce message est automatique, merci de ne pas y repondre.
 
-        L'equipe AaronProject";
+                L'equipe AaronProject</p>
+            </body>
+        </html>";
 
         mail($email, $subject, $message, $head);
     }
