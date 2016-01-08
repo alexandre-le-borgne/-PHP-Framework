@@ -15,7 +15,7 @@ class UserEntity extends Entity
         if (intval($id))
         {
             $db = new Database();
-            $result = $db->execute("SELECT * FROM accounts WHERE id = ?", $id)->fetch();
+            $result = $db->execute("SELECT * FROM accounts WHERE id = ?", array($id))->fetch();
             $this->id = $result['id'];
             $this->email = $result['email'];
             $this->authentification = $result['authentification'];
@@ -32,7 +32,7 @@ class UserEntity extends Entity
 
     public function getPassword() {
         $db = new Database();
-        $result = $db->execute("SELECT * FROM passwords WHERE user = ?", $this->id)->fetch();
+        $result = $db->execute("SELECT * FROM passwords WHERE user = ?", array($this->id))->fetch();
         return $result['password'];
     }
 }
