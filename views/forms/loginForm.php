@@ -2,7 +2,6 @@
 /**
  * un formulaire d’authentification par pseudonyme et mot de passe
  * et avec compte Google, Facebook ou Twitter
- *
  */
 ?>
 

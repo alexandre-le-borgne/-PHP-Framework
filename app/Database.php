@@ -14,31 +14,28 @@ class Database
     public function execute($sql, $params = null)
     {
         try {
-            if ($params == null)
-            {
+            if ($params == null) {
                 $resultat = $this->getBdd()->query($sql);    // exécution directe
-            }
-            else
-            {
+            } else {
                 $resultat = $this->getBdd()->prepare($sql);  // requête préparée
                 $resultat->execute($params);
             }
             return $resultat;
         } catch (PDOException $e) {
             var_dump($resultat->debugDumpParams());
-           throw new TraceableException($e->getMessage());
+            throw new TraceableException($e->getMessage());
         }
     }
 
-    public function lastInsertId() {
+    public function lastInsertId()
+    {
         return $this->bdd->lastInsertId();
     }
 
     // Renvoie un objet de connexion à la BD en initialisant la connexion au besoin
     private function getBdd()
     {
-        if ($this->bdd == null)
-        {
+        if ($this->bdd == null) {
 
             // Création de la connexion
             $this->bdd = new PDO('mysql:host=cuscomfrmkadmin.mysql.db;dbname=cuscomfrmkadmin;charset=utf8',

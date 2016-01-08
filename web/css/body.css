@@ -14,3 +14,37 @@ body
 {
 
 }
+
+#title_section_news
+{
+    padding: 30px;
+    height: 100%;
+    width: 30%;
+    background-color: black;
+    color: #3d4543;
+}
+
+#title_section_content
+{
+    padding: 30px;
+    height: 100%;
+    width: 30%;
+    background-color: #f8c433;
+    color: #f037a5;
+}
+
+.newspapers table
+{
+    float: left;
+    height:100%;
+}
+
+.newspapers img
+{
+    width: 100px;
+}
+
+.content
+{
+
+}
