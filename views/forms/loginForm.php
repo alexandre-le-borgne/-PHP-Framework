@@ -7,7 +7,6 @@
 <div class="loginDiv">
 
     <h4>Connectez-vous ?</h4>
-
     <!--SIGN IN FORM-->
     <form class="form-horizontal" method="post" action="login">
         <!--USERNAME-->

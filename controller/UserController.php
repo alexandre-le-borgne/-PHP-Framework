@@ -111,7 +111,6 @@ class UserController extends Controller
         $db = new Database();
 
         $data = $db->execute($req)->fetch();
-
         $user = $data['username'];
         $key = $data['userKey'];
 
