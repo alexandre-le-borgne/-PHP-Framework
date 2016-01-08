@@ -16,25 +16,23 @@ class UserController extends Controller
         $password = $request->post('password');
         $confirmPwd = $request->post('confirmPwd');
 
+        if ((!$email && $password && $confirmPwd))
+            $this->render('index');
+
         $errors = array();
-        if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL)
-        {
+        if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL) {
             $errors['email'] = 'Email déjà utilisé';
         }
-        if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX)
-        {
+        if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX) {
             $errors['email'] = 'Format d\'email incorrect';
         }
-        if ($password != $confirmPwd)
-        {
+        if ($password != $confirmPwd) {
             $errors['password'] = 'Mot de passe différent';
         }
-        if (!($this->usermodel->correctPwd($password)))
-        {
+        if (!($this->usermodel->correctPwd($password))) {
             $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
         }
-        if (!(empty($errors)))
-        {
+        if (!(empty($errors))) {
             $data = array('errors' => $errors);
             $this->render('persists/home', $data);
             return;
@@ -54,8 +52,7 @@ class UserController extends Controller
         $email = $request->getSession()->get('email');
         $password = $request->getSession()->get('password');
 
-        if ($username && $birthDate)
-        {
+        if ($username && $birthDate) {
             $this->loadModel('UserModel');
 
             $errors = array();
@@ -65,13 +62,11 @@ class UserController extends Controller
                 'username' => $username,
             );
 
-            if (!($this->usermodel->availableUser($username)))
-            {
+            if (!($this->usermodel->availableUser($username))) {
                 $errors['username'] = 'Pseudonyme déjà utilisé';
                 $isError = true;
             }
-            if ($isError)
-            {
+            if ($isError) {
                 $data['errors'] = $errors;
                 $this->render('forms/registerForm', $data);
                 return;
@@ -87,7 +82,8 @@ class UserController extends Controller
         $this->render('persists/home');
     }
 
-    public function MailResetAction(Request $request){
+    public function MailResetAction(Request $request)
+    {
 
         $email = Security::escape($request->post('email'));
 
