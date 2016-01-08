@@ -34,11 +34,20 @@ class Kernel
         $action = $route->getAction();
         $controller = new $controller();
         $r = new ReflectionMethod($controller, $action);
-        $params = $r->getParameters();
-        foreach ($params as $param) {
-            if($param->getClass()->getName() == 'Request')
-                return $controller->{$action}($request);
+        $paramsOfFunction = $r->getParameters();
+        $paramsToPass = array();
+        $indexParamsUrl = 1;
+        foreach ($paramsOfFunction as $param) {
+            if($param->getClass() != NULL && $param->getClass()->getName() == 'Request')
+                $paramsToPass[] = $request;
+            else
+                if(isset($params[$indexParamsUrl]))
+                    $paramsToPass[] = $params[$indexParamsUrl++];
+                else
+                    $paramsToPass[] = null;
         }
+        if(!empty($paramsToPass))
+            return call_user_func_array(array($controller, $action), $paramsToPass);
         return $controller->{$action}();
     }
 }

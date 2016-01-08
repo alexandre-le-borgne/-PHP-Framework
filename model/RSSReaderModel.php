@@ -19,7 +19,7 @@ class RSSReaderModel extends Model
 
         foreach ($x->channel->item as $item)
         {
-            $this->posts[] = new Post($item->pubDate, strtotime($item->pubDate), $item->link, $item->title,
+            $this->posts[] = new PostModel($item->pubDate, strtotime($item->pubDate), $item->link, $item->title,
                                       $item->description, $this->summarizeText($item->description));
         }
     }

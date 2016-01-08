@@ -12,9 +12,9 @@ class IndexController extends Controller
         $this->render('persists/home');
     }
 
-    public function FeedAction()
+    public function FeedAction($a, $b, $c)
     {
-        $feed = new RSSReader("http://www.journaldunet.com/rss/");
+        $feed = new RSSReaderModel("http://www.journaldunet.com/rss/");
         //var_dump($feed->getPosts());
         foreach($feed->getPosts() as $post) {
             echo $post->getSummary();

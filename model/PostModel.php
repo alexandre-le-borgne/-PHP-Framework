@@ -6,7 +6,7 @@
  * Date: 30/12/2015
  * Time: 13:02
  */
-class Post
+class PostModel
 {
     private $date;
     private $timestamp;
