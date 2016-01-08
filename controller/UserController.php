@@ -123,7 +123,7 @@ class UserController extends Controller
             if($key == $realKey)
             {
                 $this->render("persists/mailValidation", array("message" => "Votre compte a bien été activé"));
-                $req = "Update accounts Set active = 1 Where username = $user";
+                $req = "Update accounts Set active = 1 Where username = '$user'";
                 $db->execute($req);
                 Mail::sendWelcomingMail($email);
             }
