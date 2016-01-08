@@ -9,6 +9,9 @@
 class UserModel extends Model
 {
     const AUTHENTIFICATION_BY_PASSWORD = 0;
+    const ALREADY_USED_EMAIL = 1;
+    const BAD_EMAIL_REGEX = 2;
+    const CORRECT_EMAIL = 3;
 
     public function isConnected(Request $request)
     {
@@ -32,12 +35,13 @@ class UserModel extends Model
     public function availableEmail($email)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-            return false;
-        else {
-            $db = new Database();
-            $sql = "SELECT * FROM accounts WHERE email = ?";
-            return ($db->execute($sql, array($email)));
-        }
+            return $this::BAD_EMAIL_REGEX;
+
+        $db = new Database();
+        $sql = "SELECT * FROM accounts WHERE email = ?";
+        if ($db->execute($sql, array($email)))
+            return $this::CORRECT_EMAIL;
+        return $this::ALREADY_USED_EMAIL;
     }
 
     public function correctPwd($password)
@@ -61,8 +65,6 @@ class UserModel extends Model
 
         Mail::sendVerificationMail($username, $email, $key);
     }
-
-
 
 
 }
