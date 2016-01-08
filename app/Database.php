@@ -6,6 +6,7 @@
  * Date: 16/12/2015
  * Time: 14:36
  */
+
 class Database
 {
     private $bdd;

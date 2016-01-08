@@ -17,51 +17,18 @@
 
         <!--EMAIL-->
         <?php
-        if(isset($errors['email'])) { ?>
+        if (isset($errors['email'])) { ?>
             <div class="control-group info">
-                <input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-" ><br><br>
-                <span class="help-inline"><?php echo $errors['email']?></span>
+                <input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-"><br><br>
+                <span class="help-inline"><?php echo $errors['email'] ?></span>
             </div>
         <?php
-        }
-        else{
-            ?>
-            <input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-"><br><br>
-        <?php
-        }
+        } else
+            echo '<input type="email" id="inputEmail inputInfo" name="email" placeholder="Email" required pattern="*@-.-"><br><br>';
         ?>
 
-        <!--PASSWORD-->
-
-        <?php
-        if(isset($errors['password'])) { ?>
-            <div class="control-group error">
-                <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
-                <span class="help-inline"><?php echo $errors['password']?></span>
-            </div>
-            <?php
-        }
-        else{
-            ?>
-            <input type="password" id="inputPassword" name="password" placeholder="Mot de passe" required><br><br>
-            <?php
-        }
-        ?>
-
-        <!--CONFIRM PASSWORD-->
-        <?php
-        if(isset($errors['password'])) { ?>
-            <div class="control-group error">
-                <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
-                <span class="help-inline"><?php echo $errors['password']?></span>
-            </div>
-            <?php
-        }
-        else{
-            ?>
-            <input type="password" id="inputPassword" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>
-            <?php
-        }
+        <?php //Les div de confirmation de password
+        View::getView("passwordConfirm");
         ?>
 
         <!--SUBMIT ACTION-->
