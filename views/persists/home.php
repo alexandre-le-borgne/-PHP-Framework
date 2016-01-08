@@ -24,12 +24,12 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
                 <div id="button_action">DECOUVREZ AARON</div>
             </div>
             <div class="newspaper">
-                <div id="time_magazine">          <img src="img/newspapers/time.png">         </div>
-                <div id="usatoday_magazine">      <img src="img/newspapers/usatoday.png">     </div>
-                <div id="lemonde_magazine">       <img src="img/newspapers/lemonde.png">      </div>
-                <div id="courrierinter_magazine"> <img src="img/newspapers/courrierinter.png"></div>
-                <div id="liberation_magazine">    <img src="img/newspapers/liberation.png">   </div>
-                <div id="figaro_magazine">        <img src="img/newspapers/figaro.jpg">       </div>
+                <div id="time_magazine">          <img src="web/img/newspapers/time.png">         </div>
+                <div id="usatoday_magazine">      <img src="web/img/newspapers/usatoday.png">     </div>
+                <div id="lemonde_magazine">       <img src="web/img/newspapers/lemonde.png">      </div>
+                <div id="courrierinter_magazine"> <img src="web/img/newspapers/courrierinter.png"></div>
+                <div id="liberation_magazine">    <img src="web/img/newspapers/liberation.png">   </div>
+                <div id="figaro_magazine">        <img src="web/img/newspapers/figaro.jpg">       </div>
             </div>
         </div>
 
