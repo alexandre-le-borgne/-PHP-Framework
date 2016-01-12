@@ -6,12 +6,12 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
 <head>
     <meta charset="utf-8" />
     <title>Mon blog</title>
-    <?php AbstractView::getView("persists/head"); ?>
+    <?php View::getView("persists/head"); ?>
 </head>
 
 <body>
     <div id="fullpage">
-        <?php AbstractView::getView("persists/header"); ?>
+        <?php View::getView("persists/header"); ?>
 
         <?php
         if(Request::getInstance()->getSession()->isConnected()) {
@@ -20,8 +20,8 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
         else {
             ?>
             <div class="section">
-                <?php AbstractView::getView("forms/loginForm"); ?>
-                <?php AbstractView::getView("forms/preRegisterForm", isset($errors) ? array('errors' => $errors) : null); ?><!--pour les warnings-->
+                <?php View::getView("forms/loginForm"); ?>
+                <?php View::getView("forms/preRegisterForm", isset($errors) ? array('errors' => $errors) : null); ?><!--pour les warnings-->
             </div>
             <?php
         }

@@ -55,6 +55,16 @@ class View
         }
     }
 
+    public function isGranted($role) {
+        switch($role) {
+            case Session::USER_IS_CONNECTED:
+                return Request::getInstance()->getSession()->isConnected();
+            case Session::USER_IS_NOT_CONNECTED:
+                return true;
+        }
+        return false;
+    }
+
     public static function getView($view, $data = array()) {
         if (self::$view == null)
             self::$view = new View();

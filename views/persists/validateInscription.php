@@ -4,8 +4,8 @@
  * le compte a ete cree.
  */
 
-AbstractView::getView('persists/head');
+View::getView('persists/head');
 echo "Un email vous a été envoyé, rendez vous sur votre boite mail pour valider l'inscription";
-AbstractView::getView('persists/end');
+View::getView('persists/end');
 
 

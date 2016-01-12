@@ -8,6 +8,9 @@
  */
 class Session
 {
+    const USER_IS_NOT_CONNECTED = 0;
+    const USER_IS_CONNECTED = 1;
+
     private static $instance;
 
     private function __construct()

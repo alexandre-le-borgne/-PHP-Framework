@@ -3,11 +3,11 @@
  * Validation du mail (Model ?)
  */
 
-AbstractView::getView('persists/head');
+View::getView('persists/head');
 
 if (isset($message))
     echo $message;
 else
-    AbstractView::getView('index');
+    View::getView('index');
 
-AbstractView::getView('persists/end');
+View::getView('persists/end');

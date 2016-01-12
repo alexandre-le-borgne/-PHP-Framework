@@ -28,7 +28,7 @@
         ?>
 
         <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
-        AbstractView::getView("forms/passwordConfirm", (isset($errors) ? $data = array("errors" => $errors) : null));
+        View::getView("forms/passwordConfirm", (isset($errors) ? $data = array("errors" => $errors) : null));
         ?>
 
         <!--SUBMIT ACTION-->
