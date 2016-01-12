@@ -31,6 +31,10 @@ abstract class Controller
         $view->render($data);
     }
 
+    public function renderClass($view, $data = array()) {
+        $view->render($data);
+    }
+
     public function redirect($url)
     {
         header('Location: ' . $url);

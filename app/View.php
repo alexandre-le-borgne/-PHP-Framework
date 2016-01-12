@@ -9,7 +9,7 @@
 class View
 {
     private $view;
-    private $layout;
+    protected $layout;
 
     public function __construct($view) {
         $this->view = $view;
@@ -37,5 +37,10 @@ class View
     public static function getView($view, $data = array()) {
         $view = new View($view);
         $view->render($data);
+    }
+
+    ///web/css/bootstrap.css
+    public static function getAsset($asset) {
+        return __DIR__.DIRECTORY_SEPARATOR.'../web/'.$asset;
     }
 }
