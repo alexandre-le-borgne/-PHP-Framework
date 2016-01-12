@@ -37,6 +37,7 @@ abstract class Controller
             $view .= '/'.$view;
         str_replace('/', '\\', $view);
         $view .= 'Views';
+        echo $view;
         call_user_func_array(array($view, 'render'), $data);
     }
 
