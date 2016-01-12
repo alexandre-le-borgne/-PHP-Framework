@@ -10,12 +10,6 @@
 abstract class Controller
 {
     protected $models;
-    private $data = array();
-
-    public function set($data)
-    { // NOT USEFUL, KEEP IT ?
-        $this->data = array_merge($this->data, $data);
-    }
 
     public function loadModel($model)
     {
@@ -27,12 +21,8 @@ abstract class Controller
 
     public function render($view, $data = array())
     {
-        AbstractView::getView($view, $data);
-    }
-
-    public function renderClass($view, $data = array())
-    {
-        AbstractView::getViewClass($view, $data);
+        $view = new View();
+        $view->render($view, $data);
     }
 
     public static function getAsset($asset) {
@@ -49,7 +39,7 @@ abstract class Controller
         $path = "$route";
         foreach($data as $v)
             $path .= "/$v";
-        redirect($path);
+        $this->redirect($path);
     }
 
     public function createNotFoundException($description)

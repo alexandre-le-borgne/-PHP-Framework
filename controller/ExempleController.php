@@ -10,6 +10,6 @@ class ExempleController extends Controller
 {
     public function IndexAction()
     {
-        $this->renderClass('exemple/Home', array("title" => "Mon titre"));
+        $this->renderClass('exemple/Home', array("title" => "Mon titre", "content" => "Mon contenu"));
     }
 }

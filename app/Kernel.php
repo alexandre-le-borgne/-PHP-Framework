@@ -46,9 +46,6 @@ class Kernel
                 else
                     $paramsToPass[] = null;
         }
-        var_dump($controller);
-        var_dump($action);
-        var_dump($paramsToPass);
         if(!empty($paramsToPass))
             return call_user_func_array(array($controller, $action), $paramsToPass);
         return $controller->{$action}();
