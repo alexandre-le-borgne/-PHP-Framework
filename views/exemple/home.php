@@ -8,4 +8,7 @@
  */
 $this->extend("exemple/layout");
 ?>
-HOME <?= $content ?>
+Contenu
+<pre>
+    <?= $content ?>
+</pre>
