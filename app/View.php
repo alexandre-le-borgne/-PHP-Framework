@@ -24,7 +24,6 @@ class View
         $datacopy = $data;
         $data['view'] = $this;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
-        var_dump($view);
         $path = $viewspath.$view.'.php';
         if(file_exists($path)) {
             extract($data);
