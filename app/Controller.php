@@ -37,10 +37,10 @@ abstract class Controller
             $view = '/'.$view;
 
         $view = '/views' . $view;
-
+        $folderpath = substr($view, 0, strrpos($view, '/'));
         $view = ucwords($view, '/');
         $class = substr($view, strrpos($view, '/'));
-        $path = __DIR__.DIRECTORY_SEPARATOR.'..'.substr($view, 0, strrpos($view, '/')).'333'.$class.'.php';
+        $path = __DIR__.DIRECTORY_SEPARATOR.'..'.$folderpath.$class.'.php';
 
         echo $path."***";
 
