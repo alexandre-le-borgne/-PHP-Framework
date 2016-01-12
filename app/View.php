@@ -30,7 +30,7 @@ class View
                 require ($viewspath.$this->layout.'.php');
         }
         else {
-            throw new TraceableException("VIEW NOT FOUND | ".$path." |");
+            throw new NotFoundException("VIEW NOT FOUND | ".$path." |");
         }
     }
 

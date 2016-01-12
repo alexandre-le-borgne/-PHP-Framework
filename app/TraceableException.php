@@ -9,9 +9,16 @@
 
 class TraceableException extends Exception
 {
+    private $exception;
+
+    public function __construct(Exception $exception)
+    {
+        $this->exception = $exception;
+    }
+
     public function generateCallTrace()
     {
-        $trace = explode("\n", $this->getTraceAsString());
+        $trace = explode("\n", $this->exception->getTraceAsString());
         // reverse array to make steps line up chronologically
         $trace = array_reverse($trace);
         array_shift($trace); // remove {main}
@@ -29,12 +36,12 @@ class TraceableException extends Exception
     public function getData()
     {
         return array(
-            'code' => $this->getCode(),
-            'name' => get_class($this),
-            'message' => $this->getMessage(),
-            'file' => $this->getFile(),
-            'line' => $this->getLine(),
-            'trace' => $this->generateCallTrace()
+            'code' => $this->exception->getCode(),
+            'name' => get_class($this->exception),
+            'message' => $this->exception->getMessage(),
+            'file' => $this->exception->getFile(),
+            'line' => $this->exception->getLine(),
+            'trace' => $this->exception->generateCallTrace()
         );
     }
 

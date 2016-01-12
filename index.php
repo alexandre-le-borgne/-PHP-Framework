@@ -28,7 +28,8 @@ try
 {
     Kernel::getInstance()->response();
 }
-catch (TraceableException $e)
+catch (Exception $e)
 {
+    $e = new TraceableException($e);
     echo $e->show();
 }

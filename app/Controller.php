@@ -46,6 +46,6 @@ abstract class Controller
 
     public function createNotFoundException($description)
     {
-        throw new TraceableException($description);
+        throw new NotFoundException($description);
     }
 }
