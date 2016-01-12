@@ -10,6 +10,7 @@ class View
 {
     private static $view;
     private $layout;
+    private $data = array();
 
     private function __construct()
     {
@@ -20,18 +21,18 @@ class View
     }
 
     public function output ($var, $default = '') {
-        if(isset($var))
-            echo $var;
+        if(isset($data[$var]))
+            return $data[$var];
         else
-            echo $default;
+            return $default;
     }
 
     public function escape($string) {
-        echo Security::escape($string);
+        return Security::escape($string);
     }
 
     public function render($view, $data = array()) {
-        $datacopy = $data;
+        $this->data = $data;
         $data['view'] = $this;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
@@ -46,7 +47,7 @@ class View
             else {
                 $layout = $this->layout;
                 $this->layout = null;
-                $this->render($layout, array_merge($datacopy, array("_content" => $content_for_layout)));
+                $this->render($layout, array_merge($this->data, array("_content" => $content_for_layout)));
             }
         }
         else {
