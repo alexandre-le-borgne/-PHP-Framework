@@ -36,9 +36,12 @@ abstract class Controller
         header('Location: ' . $url);
     }
 
-    public function redirectToRoute($route, $data)
+    public function redirectToRoute($route, $data = array())
     {
-        // NOT IMPLEMENTED
+        $path = "$route";
+        foreach($data as $v)
+            $path .= "/$v";
+        redirect($path);
     }
 
     public function createNotFoundException($description)

@@ -22,11 +22,9 @@ if (isset($errors['password']))
     </div>
 <?php
 }
-else
+else {
     echo '<input type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>';
-
-
-
+}
 /*
 
 <!--PASSWORD-->
