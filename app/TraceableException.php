@@ -47,6 +47,6 @@ class TraceableException extends Exception
 
     public function show()
     {
-        AbstractView::getView('layouts/exception', $this->getData());
+        View::getView('layouts/exception', $this->getData());
     }
 }

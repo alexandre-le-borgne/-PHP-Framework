@@ -8,7 +8,12 @@
  */
 class View
 {
+    private static $view;
     private $layout;
+
+    private function __construct()
+    {
+    }
 
     public function extend($layout) {
         $this->layout = $layout;
@@ -38,8 +43,9 @@ class View
     }
 
     public static function getView($view, $data = array()) {
-        $view = new View($view);
-        $view->render($data);
+        if (self::$view == null)
+            self::$view = new View($view);
+        self::$view->render($data);
     }
 
     public static function getAsset($asset) {
