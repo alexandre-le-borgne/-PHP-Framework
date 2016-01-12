@@ -36,6 +36,7 @@ abstract class Controller
             $view = '/'.$view;
         $view = '/views' . $view;
         $view = ucwords($view, '/');
+        echo "##$view$$ <br>";
         str_replace('/', '\\', $view);
         echo "##$view## <br>";
         call_user_func_array(array($view, 'render'), $data);
