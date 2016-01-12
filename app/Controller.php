@@ -32,6 +32,11 @@ abstract class Controller
     }
 
     public function renderClass($view, $data = array()) {
+        ucwords($view, '/');
+        if($view[0] != "/")
+            $view .= '/'.$view;
+        str_replace('/', '\\', $view);
+        $view .= 'Views';
         call_user_func_array($view->render(), $data);
     }
 

@@ -7,7 +7,7 @@
  * Time: 19:10
  */
 
-namespace exemple;
+namespace Views\Exemple;
 
 class Home extends View
 {
