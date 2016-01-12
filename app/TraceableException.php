@@ -41,7 +41,7 @@ class TraceableException extends Exception
             'message' => $this->exception->getMessage(),
             'file' => $this->exception->getFile(),
             'line' => $this->exception->getLine(),
-            'trace' => $this->exception->generateCallTrace()
+            'trace' => $this->generateCallTrace()
         );
     }
 
