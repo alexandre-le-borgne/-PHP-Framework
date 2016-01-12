@@ -6,7 +6,12 @@
  * Date: 12/01/2016
  * Time: 19:10
  */
-$this->extend("exemple/layout");
+
+/*
+ * La fonction 'extend' permet de signaler que cette vue ira remplir un morceau manquant de la template qui lui est
+ * passé en paramètre.
+ */
+$view->extend("exemple/layout");
 ?>
 <h3>Contenu</h3>
 <pre>
