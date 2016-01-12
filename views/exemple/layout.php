@@ -8,7 +8,7 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <?php $view->render('exemple/head', array(($title))); ?>
+    <?php $view->render('exemple/head', array('title' => $title)); ?>
     <body>
         <?= $_content; ?>
     </body>
