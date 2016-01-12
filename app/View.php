@@ -6,7 +6,7 @@
  * Date: 16/12/2015
  * Time: 14:37
  */
-class View
+class View extends AbstractView
 {
     private $view;
     protected $layout;
@@ -32,14 +32,5 @@ class View
         else {
             throw new NotFoundException("VIEW NOT FOUND | ".$path." |");
         }
-    }
-
-    public static function getView($view, $data = array()) {
-        $view = new View($view);
-        $view->render($data);
-    }
-
-    public static function getAsset($asset) {
-        return __DIR__.DIRECTORY_SEPARATOR.'../web/'.$asset;
     }
 }

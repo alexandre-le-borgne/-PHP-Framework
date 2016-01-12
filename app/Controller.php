@@ -27,28 +27,12 @@ abstract class Controller
 
     public function render($view, $data = array())
     {
-        $view = new View($view);
-        $view->render($data);
+        AbstractView::getView($view, $data);
     }
 
-    public function renderClass($view, $data = array()) {
-        $view = strtolower($view);
-        if($view[0] != '/')
-            $view = '/'.$view;
-        $view = '/views' . $view;
-        $folderpath = substr($view, 0, strrpos($view, '/'));
-        $view = ucwords($view, '/');
-        $class = substr($view, strrpos($view, '/'));
-        $path = __DIR__.DIRECTORY_SEPARATOR.'..'.$folderpath.$class.'.php';
-        if(file_exists($path)) {
-            require_once $path;
-            $view = str_replace('/', '\\', $view);
-            $view = new $view;
-            call_user_func_array(array($view, 'render'), $data);
-        }
-        else {
-            throw new NotFoundException("VIEW NOT FOUND | ".$path." |");
-        }
+    public function renderClass($view, $data = array())
+    {
+        AbstractView::getViewClass($view, $data);
     }
 
     public static function getAsset($asset) {

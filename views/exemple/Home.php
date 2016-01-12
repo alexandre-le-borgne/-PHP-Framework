@@ -9,7 +9,7 @@
 
 namespace Views\Exemple;
 
-class Home extends \View
+class Home extends \AbstractView
 {
     public function render($data = array()) {
         var_dump($data);
