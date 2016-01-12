@@ -20,7 +20,6 @@ class View
     }
 
     public function render($view, $data = array()) {
-        echo "t".$view."<br>";
         $datacopy = $data;
         $data['view'] = $this;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';

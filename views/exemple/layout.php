@@ -10,6 +10,7 @@
 <html>
     <?php $view->render('exemple/head', array('title' => $title)); ?>
     <body>
-        <?= $_content; ?>
+        <h1><?= $title ?></h1>
+        <?= $_content ?>
     </body>
 </html>
