@@ -34,7 +34,7 @@ class View
                 echo $content_for_layout;
             }
             else {
-                $this->render($viewspath . $this->layout . '.php', array_merge($datacopy, array("_content" => $content_for_layout)));
+                $this->render($this->layout, array_merge($datacopy, array("_content" => $content_for_layout)));
             }
         }
         else {
