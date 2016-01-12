@@ -6,15 +6,6 @@
  * Date: 12/01/2016
  * Time: 19:10
  */
-
-namespace Views\Exemple;
-
-class Home extends \AbstractView
-{
-    public function render($data = array()) {
-        var_dump($data);
-        ?>
-        Exemple Home
-        <?php
-    }
-}
+$this->extend("exemple/layout");
+?>
+HOME <?= $content ?>
