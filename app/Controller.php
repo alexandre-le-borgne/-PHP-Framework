@@ -39,9 +39,8 @@ abstract class Controller
         $view = '/views' . $view;
 
         $view = ucwords($view, '/');
-echo "ùù".strpos($view, '/')."$$";
-        $class = substr($view, strpos($view, '/'));
-        $path = __DIR__.DIRECTORY_SEPARATOR.'..'.substr($view, 0, strpos($view, '/')).'333'.$class.'.php';
+        $class = substr($view, strrpos($view, '/'));
+        $path = __DIR__.DIRECTORY_SEPARATOR.'..'.substr($view, 0, strrpos($view, '/')).'333'.$class.'.php';
 
         echo $path."***";
 
