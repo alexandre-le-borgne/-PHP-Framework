@@ -10,7 +10,9 @@
 <html>
     <?php $view->render('exemple/head', array('title' => $title)); ?>
     <body>
-        <h1><?= $title ?></h1>
+        <h1><?= $view->output($title, 'Titre par défaut') ?></h1>
+        <h2><?= $view->output($title2, 'Sous-Titre par défaut') ?></h2>
+
         <?= $_content ?>
     </body>
 </html>

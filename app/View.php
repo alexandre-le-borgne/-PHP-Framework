@@ -19,6 +19,17 @@ class View
         $this->layout = $layout;
     }
 
+    public function output ($var, $default = '') {
+        if(isset($var))
+            echo $var;
+        else
+            echo $default;
+    }
+
+    public function escape($string) {
+        echo Security::escape($string);
+    }
+
     public function render($view, $data = array()) {
         $datacopy = $data;
         $data['view'] = $this;
