@@ -21,8 +21,8 @@ abstract class Controller
 
     public function render($view, $data = array())
     {
-        $view = new View();
-        $view->render($view, $data);
+        $viewInstance = new View();
+        $viewInstance->render($view, $data);
     }
 
     public static function getAsset($asset) {
