@@ -18,5 +18,5 @@ $this->extend("exemple/layout");
 </pre>
 <h3>Contenu protégé</h3>
 <pre>
-    <?= $view->escape('content') ?>
+    <?= $view->escape($content) ?>
 </pre>
