@@ -21,10 +21,8 @@ class View
     }
 
     public function output ($var, $default = '') {
-        echo $var."$$";
-        var_dump($this->data);
-        if(isset($data[$var]))
-            return $data[$var];
+        if(isset($this->data[$var]))
+            return $this->data[$var];
         else
             return $default;
     }
@@ -34,7 +32,7 @@ class View
     }
 
     public function render($view, $data = array()) {
-        $this->data = array_merge($data, $this->data);
+        $this->data = $data;
         $data['view'] = $this;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
