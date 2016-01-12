@@ -32,9 +32,9 @@ abstract class Controller
     }
 
     public function renderClass($view, $data = array()) {
-        ucwords($view, '/');
-        if($view[0] != "/")
+        if($view[0] != '/')
             $view .= '/'.$view;
+        $view = ucwords($view, '/');
         str_replace('/', '\\', $view);
         $view .= 'Views';
         echo "##$view## <br>";
