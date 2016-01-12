@@ -37,7 +37,7 @@ abstract class Controller
             $view .= '/'.$view;
         str_replace('/', '\\', $view);
         $view .= 'Views';
-        call_user_func_array($view->render(), $data);
+        call_user_func_array(array($view, 'render'), $data);
     }
 
     public function redirect($url)
