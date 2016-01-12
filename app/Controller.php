@@ -35,19 +35,19 @@ abstract class Controller
         $view = strtolower($view);
         if($view[0] != '/')
             $view = '/'.$view;
-
         $view = '/views' . $view;
         $folderpath = substr($view, 0, strrpos($view, '/'));
         $view = ucwords($view, '/');
         $class = substr($view, strrpos($view, '/'));
         $path = __DIR__.DIRECTORY_SEPARATOR.'..'.$folderpath.$class.'.php';
-
-        echo $path."***";
-
         if(file_exists($path)) {
             require_once $path;
             $view = str_replace('/', '\\', $view);
+            $view = new $view;
             call_user_func_array(array($view, 'render'), $data);
+        }
+        else {
+            throw new NotFoundException("VIEW NOT FOUND | ".$path." |");
         }
     }
 
