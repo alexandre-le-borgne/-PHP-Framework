@@ -32,7 +32,7 @@ abstract class Controller
     }
 
     public function renderClass($view, $data = array()) {
-        $view->render($data);
+        call_user_func_array($view->render(), $data);
     }
 
     public function redirect($url)
