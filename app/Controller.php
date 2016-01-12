@@ -32,14 +32,19 @@ abstract class Controller
     }
 
     public function renderClass($view, $data = array()) {
+        $view = strtolower($view);
         if($view[0] != '/')
             $view = '/'.$view;
-        $folders = substr($view, 0, strpos($view, '/'));
+
         $view = '/views' . $view;
+
         $view = ucwords($view, '/');
+
         $class = substr($view, strpos($view, '/'));
-        $path = __DIR__.DIRECTORY_SEPARATOR.'../views'.$folders."^^".$class.'.php';
+        $path = __DIR__.DIRECTORY_SEPARATOR.'..'.substr($view, 0, strpos($view, '/')).'333'.$class.'.php';
+
         echo $path."***";
+
         if(file_exists($path)) {
             require_once $path;
             $view = str_replace('/', '\\', $view);
