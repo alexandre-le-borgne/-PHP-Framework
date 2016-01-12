@@ -21,6 +21,8 @@ class View
     }
 
     public function output ($var, $default = '') {
+        echo $var."$$";
+        var_dump($this->data);
         if(isset($data[$var]))
             return $data[$var];
         else
