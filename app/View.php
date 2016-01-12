@@ -44,8 +44,8 @@ class View
 
     public static function getView($view, $data = array()) {
         if (self::$view == null)
-            self::$view = new View($view);
-        self::$view->render($data);
+            self::$view = new View();
+        self::$view->render($view, $data);
     }
 
     public static function getAsset($asset) {
