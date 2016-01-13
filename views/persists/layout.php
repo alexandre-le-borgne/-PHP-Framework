@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php $this->insert('persists/head'); ?>
+        <?php $this->render('persists/head'); ?>
     </head>
     <body>
         <?php $_content; ?>

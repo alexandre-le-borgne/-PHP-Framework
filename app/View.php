@@ -31,22 +31,6 @@ class View
         return Security::escape($string);
     }
 
-    public function insert($view, $data = array()) {
-        $data['view'] = $this;
-        $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
-        $path = $viewspath.$view.'.php';
-        if(file_exists($path)) {
-            extract($data);
-            ob_start();
-            require $path;
-            $content_for_layout = ob_get_clean();
-            echo $content_for_layout;
-        }
-        else {
-            throw new NotFoundException("VIEW NOT FOUND | ".$path." |");
-        }
-    }
-
     public function render($view, $data = array()) {
         $this->data = $data;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
