@@ -6,7 +6,6 @@
  * Date: 16/12/2015
  * Time: 14:36
  *
- * https://ssl11.ovh.net/net2ftp/?username=cuscomfrmk-admin
  */
 
 class Database
