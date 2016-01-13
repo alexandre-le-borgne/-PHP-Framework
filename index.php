@@ -9,7 +9,8 @@ spl_autoload_register(function ($class_name)
         'app/',
         'controller/',
         'model/',
-        'entity/'
+        'entity/',
+        'vendor/'
     );
 
     // Looping through each directory to load all the class files. It will only require a file once.
