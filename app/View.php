@@ -72,7 +72,6 @@ class View
     }
 
     public static function getAsset($asset) {
-        echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http')."//" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']."$$$";
-        return __DIR__.DIRECTORY_SEPARATOR.'../web/'.$asset;
+        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http')."//" . $_SERVER['SERVER_NAME'].'/aaron/web/'.$asset;
     }
 }
