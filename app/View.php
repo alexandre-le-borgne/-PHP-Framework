@@ -10,6 +10,7 @@ class View
 {
     private static $view;
     private $layout;
+    private $oldlayout;
     private $data = array();
 
     private function __construct()
@@ -17,7 +18,8 @@ class View
     }
 
     public function extend($layout) {
-        $this->layout[] = $layout;
+        $this->oldlayout[] = $this->layout;
+        $this->layout = $layout;
     }
 
     public function output ($var, $default = '') {
@@ -36,7 +38,8 @@ class View
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
         if(file_exists($path)) {
-            extract($data);
+            if(is_array($data))
+                extract($data);
             ob_start();
             require $path;
             $content_for_layout = ob_get_clean();
