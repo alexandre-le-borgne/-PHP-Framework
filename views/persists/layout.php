@@ -21,7 +21,6 @@
                 });
             };
 
-
             (function(d, s, id){
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {return;}
@@ -36,6 +35,7 @@
                 echo $this->output('_content');
                 ?>
             </div>
+            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="false"></div>
             <div
                 class="fb-like"
                 data-share="true"
