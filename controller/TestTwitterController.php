@@ -13,7 +13,7 @@ class TestTwitterController extends Controller
 {
     function TwitterAction()
     {
-        var_dump(scandir(__DIR__ . '/../vendor'));
+        //Tout cela pour récupérer les tweets d'un compte donné
         //Consumer key,
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
