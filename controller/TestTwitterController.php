@@ -3,13 +3,14 @@
  * Coucou
  */
 
+require '../vendor/autoload.php';
+
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 class TestTwitterController extends Controller
 {
     function TwitterAction()
     {
-        echo "coucou";
         //Consumer key,
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
