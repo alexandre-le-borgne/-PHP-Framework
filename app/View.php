@@ -72,6 +72,7 @@ class View
     }
 
     public static function getAsset($asset) {
+        echo get_include_path()."$".getcwd();
         return __DIR__.DIRECTORY_SEPARATOR.'../web/'.$asset;
     }
 }
