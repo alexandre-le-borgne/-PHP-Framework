@@ -48,8 +48,8 @@ class View
             }
             else {
                 $layout = $this->layout;
+                $this->layout = null;
                 $this->render($layout, array_merge($this->data, array('_content' => $content_for_layout)));
-                $this->layout = array_pop($this->oldlayout);
             }
         }
         else {
