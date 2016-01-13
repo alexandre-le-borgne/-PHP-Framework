@@ -17,6 +17,8 @@ class Router {
         $this->table[] = new Route('testfeed', 'index', 'feed');
         $this->table[] = new Route('mailvalidation', 'user', 'mailValidation');
         $this->table[] = new Route('exemple', 'exemple', 'index');
+        $this->table[] = new Route('twitter', 'testTwitter', 'twitter');
+
     }
 
     public function getRoute($name)
