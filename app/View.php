@@ -49,7 +49,8 @@ class View
             else {
                 $layout = $this->layout;
                 $this->render($layout, array_merge($this->data, array('_content' => $content_for_layout)));
-                $this->layout = array_pop($this->oldlayout);
+                if(is_array($this->oldlayout))
+                    $this->layout = array_pop($this->oldlayout);
             }
         }
         else {
