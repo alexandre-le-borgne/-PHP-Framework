@@ -5,6 +5,8 @@
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
+//require '../vendor/autoload.php';
+
 class TestTwitterController extends Controller
 {
     function TwitterAction()
@@ -19,6 +21,6 @@ class TestTwitterController extends Controller
 }
 
 
-//
+//http://www.grafikart.fr/tutoriels/php/twitter-api-tweets-100
 //"token_type": "bearer",
 //"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
