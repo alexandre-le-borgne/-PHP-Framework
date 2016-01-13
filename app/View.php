@@ -48,11 +48,11 @@ class View
     }
 
     public function render($view, $data = array()) {
-        array_merge($this->data, $data);
+        $this->data = $data;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
         if(file_exists($path)) {
-            extract($this->data);
+            extract($data);
             ob_start();
             require $path;
             $content_for_layout = ob_get_clean();
@@ -63,7 +63,6 @@ class View
                 $layout = $this->layout;
                 $this->layout = null;
                 $this->render($layout, array_merge($this->data, array('_content' => $content_for_layout)));
-                $this->layout = $layout;
             }
         }
         else {
