@@ -23,13 +23,17 @@ class TestTwitterController extends Controller
 
         $tweets = $twitter->get('statuses/user_timeline', [
             'screen_name' => 'Spacesuit2',
-            'exclude_replies' => 'true'
+            'exclude_replies' => 'true',
+            'count' => 50
         ]);
+
+        // (array_slice($tweets, 0, 12) car le count se fait avant d'avoir récupéré les tweets
+        // donc on récupère beaucoup et on gère le count intérieurement
 
         ?>
         <ul class="white_text">
-            <?php foreach ($tweets as $tweet): ?>
-            <li><?= $tweet->text; ?></li>
+            <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
+                <li><?= $tweet->text; ?></li>
             <?php endforeach; ?>
         </ul>
     <?php
