@@ -19,17 +19,6 @@
     $this->render('exemple/head', array('title' => $title));
     ?>
     <body>
-        <h1><?= $this->output('title', 'Titre par défaut') ?></h1>
-        <h2><?= $this->output('title2', 'Sous-Titre par défaut') ?></h2>
-        <?php if($this->isGranted(Session::USER_IS_CONNECTED)): ?>
-            L'utilisateur est connecté !
-        <?php endif; ?>
-        <?= $_content ?>
-        <hr>
-        <?= $this->render('exemple/content'); ?>
-        <hr>
-        <?= $this->render('exemple/content'); ?>
-        <hr>
         <?= $_content ?>
     </body>
 </html>

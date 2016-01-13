@@ -12,7 +12,7 @@
  * passé en paramètre.
  */
 
-$this->extend("exemple/layout");
+$this->extend("exemple/body");
 ?>
 <h3>Contenu</h3>
 <pre>
