@@ -37,7 +37,7 @@
                         fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));
                 </script>
-                <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="false"></div>
+                <div class="fb-login-button" data-max-rows="3" data-size="medium" data-show-faces="true" data-auto-logout-link="false"></div>
                 <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             </div>
 
