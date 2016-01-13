@@ -12,24 +12,34 @@
         <?php $this->render('persists/head'); ?>
     </head>
     <body>
-        <div id="fb-root"></div>
         <script>
-            (function(d, s, id) {
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '1695359537375763',
+                    xfbml      : true,
+                    version    : 'v2.5'
+                });
+            };
+
+            (function(d, s, id){
                 var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
+                if (d.getElementById(id)) {return;}
                 js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=1148334785195709";
+                js.src = "//connect.facebook.net/en_US/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
-
         <div id="fullpage">
-
-            <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
             <div class="section">
                 <?php
                 echo $this->output('_content');
                 ?>
+            </div>
+            <div
+                class="fb-like"
+                data-share="true"
+                data-width="450"
+                data-show-faces="true">
             </div>
             <div class="section section_news">
                 <div id="title_section_news">
