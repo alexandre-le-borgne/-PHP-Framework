@@ -25,8 +25,8 @@
             L'utilisateur est connecté !
         <?php endif; ?>
         <?= $_content ?>
-        <?= $this->render('content'); ?>
+        <?= $this->render('exemple/content'); ?>
         <hr>
-        <?= $this->render('content'); ?>
+        <?= $this->render('exemple/content'); ?>
     </body>
 </html>
