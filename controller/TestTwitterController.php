@@ -5,7 +5,7 @@
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
-class TestTwitter extends Controller
+class TestTwitterController extends Controller
 {
     function TwitterAction()
     {
