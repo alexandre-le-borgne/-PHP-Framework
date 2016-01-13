@@ -17,7 +17,7 @@ $this->extend('persists/layout');
     <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
     <div class="section">
     <?php
-    echo $this->output($_content);
+    echo $this->output('_content');
     ?>
     </div>
     <div class="section section_news">

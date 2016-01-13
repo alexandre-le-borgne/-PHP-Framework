@@ -7,4 +7,4 @@
  */
 $this->extend('persists/body');
 $this->render('forms/loginForm');
-$this->render('forms/preRegisterForm', $this->output($errors));
+$this->render('forms/preRegisterForm', $this->output('errors'));
