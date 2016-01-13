@@ -64,6 +64,7 @@ class View
                 $layout = $this->layout;
                 $this->layout = null;
                 $this->render($layout, array_merge($this->data, array('_content' => $content_for_layout)));
+                $this->layout = $layout;
             }
         }
         else {

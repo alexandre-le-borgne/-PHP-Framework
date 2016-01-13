@@ -7,6 +7,6 @@
  */
 $this->extend('persists/body');
 echo "pd";
-$this->insert('forms/loginForm');
+$this->render('forms/loginForm');
 echo "bite";
-$this->insert('forms/preRegisterForm', $this->output('errors'));
+$this->render('forms/preRegisterForm', $this->output('errors'));
