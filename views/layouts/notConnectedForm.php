@@ -6,7 +6,5 @@
  * Time: 11:44
  */
 $this->extend('persists/body');
-echo "pd";
-$this->render('forms/loginForm');
-echo "bite";
-$this->render('forms/preRegisterForm', $this->output('errors'));
+View::getView('forms/loginForm');
+View::getView('forms/preRegisterForm', $this->output('errors'));
