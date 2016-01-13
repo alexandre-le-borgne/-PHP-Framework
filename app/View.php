@@ -72,8 +72,6 @@ class View
     }
 
     public static function getAsset($asset) {
-        $hostname = getenv('HTTP_HOST');
-        echo $hostname;
         return DIRECTORY_SEPARATOR.__DIR__.DIRECTORY_SEPARATOR.'../web/'.$asset;
     }
 }
