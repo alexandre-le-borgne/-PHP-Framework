@@ -3,7 +3,7 @@
  * Coucou
  */
 
-require '../vendor/autoload.php';
+require 'autoload.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
