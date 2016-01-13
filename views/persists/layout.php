@@ -35,6 +35,7 @@
                 echo $this->output('_content');
                 ?>
             </div>
+            <div id="fb-root"></div>
             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="false"></div>
             <div
                 class="fb-like"
