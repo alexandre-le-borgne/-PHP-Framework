@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <title><?= $title ?></title>
 
-    <link rel="stylesheet" href="<?= View::getAsset('inc/js/fullPage/jquery.fullPage.css') ?>" />
+    <link rel="stylesheet" href="<?= View::getAsset('inc/fullPage/jquery.fullPage.css') ?>" />
     <link rel="stylesheet" href="<?= View::getAsset('css/bootstrap.css') ?>">
     <link rel="stylesheet" href="<?= View::getAsset('css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= View::getAsset('css/bootstrap-responsive.css') ?>">
@@ -25,5 +25,5 @@
     <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/vendors/jquery.slimscroll.min.js') ?>"></script>
     <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/jquery.fullPage.js') ?>"></script>
     <script type="text/javascript" src="<?= View::getAsset('js/slide.js') ?>"></script>
-    <script type="text/javascript" src="web/js/script.js"></script>
+    <script type="text/javascript" src="<?= View::getAsset('js/script.js') ?>"></script>
 </head>
