@@ -18,12 +18,17 @@ class IndexController extends Controller
         }
     }
 
-    public function FeedAction($a, $b, $c)
+    public function FeedAction()
     {
         $feed = new RSSReaderModel("http://www.journaldunet.com/rss/");
         //var_dump($feed->getPosts());
         foreach($feed->getPosts() as $post) {
             echo $post->getSummary();
         }
+    }
+
+    public function EmailAction($id = 0) {
+        $this->loadModel('EmailModel');
+        var_dump($this->emailmodel->get($id));
     }
 }

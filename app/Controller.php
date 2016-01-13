@@ -6,9 +6,7 @@
  * Date: 14/12/15
  * Time: 14:17
  *
- * Server > ftp.cluster011.ovh.net
-Username > cuscomfrmk-admin
-Mdp > MAXsky1995
+ *
  */
 
 abstract class Controller

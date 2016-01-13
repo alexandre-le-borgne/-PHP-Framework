@@ -18,6 +18,7 @@ class Router {
         $this->table[] = new Route('mailvalidation', 'user', 'mailValidation');
         $this->table[] = new Route('exemple', 'exemple', 'index');
         $this->table[] = new Route('twitter', 'testTwitter', 'twitter');
+        $this->table[] = new Route('textemail', 'index', 'email');
         //$this->table[] = new Route('gmail', 'testGmail', 'gmail');
 
     }
