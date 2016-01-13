@@ -6,5 +6,5 @@
  * Time: 11:44
  */
 $this->extend('persists/body');
-$this->render('forms/loginForm');
-$this->render('forms/preRegisterForm', $this->output('errors'));
+$this->insert('forms/loginForm');
+$this->insert('forms/preRegisterForm', $this->output('errors'));

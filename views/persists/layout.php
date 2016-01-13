@@ -7,12 +7,9 @@
  */
 ?>
 <!DOCTYPE html>
-<!--
-variables disponibles en revenant de UserController.preRegisterFormAction() :  $errors, $username
--->
 <html>
     <head>
-        <?php $this->render('persists/head'); ?>
+        <?php $this->insert('persists/head'); ?>
     </head>
     <body>
         <?php $_content; ?>
