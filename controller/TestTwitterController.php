@@ -1,9 +1,6 @@
 <?php
 /**
  * Coucou
- *
- *
- * zdadza
  */
 
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -23,11 +20,15 @@ class TestTwitterController extends Controller
         var_dump($accesstoken);
 
         $twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
-        $twitter->get('statuses/user_timeline', ['screen_name' => 'Spacesuit2', 'exclude_replies' => 'true']);
+
+        $tweets = $twitter->get('statuses/user_timeline', ['screen_name' => 'Spacesuit2', 'exclude_replies' => 'true']);
 
         ?>
         <ul class="white_text">
-
+            <?php foreach ($tweets as $tweet) ?>
+            <li><?php echo $tweet->text; ?></li>
+            <?php
+            endforeach; ?>
         </ul>
     <?php
     }
