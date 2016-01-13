@@ -1,0 +1,24 @@
+<?php
+/**
+ * Coucou
+ */
+
+require "vendor/autoload.php";
+
+use Abraham\TwitterOAuth\TwitterOAuth;
+
+class TestTwitter extends Controller
+{
+    function coucouAction()
+    {
+        //Consumer key,
+        $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
+        $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
+        var_dump($accesstoken);
+    }
+}
+
+
+//
+//"token_type": "bearer",
+//"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
