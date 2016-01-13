@@ -6,10 +6,16 @@
 
 class IndexController extends Controller
 {
-    public function IndexAction()
+    public function IndexAction(Request $request)
     {
         $this->loadModel('IndexModel');
-        $this->render('persists/home');
+        if($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+            echo "CONNECTER!";
+
+        }
+        else {
+            $this->render('layouts/notConnectedForm');
+        }
     }
 
     public function FeedAction($a, $b, $c)
