@@ -33,7 +33,7 @@ class TestTwitterController extends Controller
         ?>
         <ul class="white_text">
             <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
-                <li><?= $tweet->text; ?></li>
+                <li><?php $this->render('layouts/tweetTemplate',$tweet->text); ?></li>
             <?php endforeach; ?>
         </ul>
     <?php

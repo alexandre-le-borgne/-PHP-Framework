@@ -47,7 +47,9 @@ class View
                 echo $content_for_layout;
             }
             else {
-                $this->render($this->layout, array_merge($this->data, array('_content' => $content_for_layout)));
+                $layout = $this->layout;
+                $this->layout = null;
+                $this->render($layout, array_merge($this->data, array('_content' => $content_for_layout)));
             }
         }
         else {
