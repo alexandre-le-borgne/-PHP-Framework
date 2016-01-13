@@ -29,5 +29,7 @@
         <?= $this->render('exemple/content'); ?>
         <hr>
         <?= $this->render('exemple/content'); ?>
+        <hr>
+        <?= $_content ?>
     </body>
 </html>
