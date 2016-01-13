@@ -3,8 +3,6 @@
  * Coucou
  */
 
-require 'autoload.php';
-
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 class TestTwitterController extends Controller
