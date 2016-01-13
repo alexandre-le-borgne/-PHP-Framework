@@ -23,18 +23,15 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
     </script>
 
     <div id="fullpage">
-        <div
-            class="fb-like"
-            data-share="true"
-            data-width="450"
-            data-show-faces="true">
-        </div>
+<!--        <div-->
+<!--            class="fb-like"-->
+<!--            data-share="true"-->
+<!--            data-width="450"-->
+<!--            data-show-faces="true">-->
+<!--        </div>-->
 
-        <login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </login-button>
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
 
-        <div id="status">
-        </div>
 
         <?php View::getView("persists/header"); ?>
 
