@@ -8,10 +8,10 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
     <title>Mon blog</title>
     <?php View::getView("persists/head"); ?>
 </head>
-
 <body>
 <div id="fb-root"></div>
     <script>
+
 
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -23,12 +23,6 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
     </script>
 
     <div id="fullpage">
-<!--        <div-->
-<!--            class="fb-like"-->
-<!--            data-share="true"-->
-<!--            data-width="450"-->
-<!--            data-show-faces="true">-->
-<!--        </div>-->
 
         <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
 
@@ -51,40 +45,90 @@ variables disponibles en revenant de UserController.preRegisterFormAction() :  $
 
         <div class="section section_news">
             <div id="title_section_news">
-                <h1>Profitez de<br>vos journaux preferés.</h1>
-                <h4>Restez toujours informés et<br>profitez de point de vue <br>ifférent.</h4>
-                <div id="button_action">DECOUVREZ AARON</div>
+                    <div id="text_content">
+                        <h1>Profitez de vos journaux preferés.</h1><br>
+                        <h3>Restez toujours informés et profitez de point de vue différent.</h3>
+                        <br><div id="button_action">Découvrez Aaron !</div>
+                    </div>
+                </div>
+
+                <div id="table_section_news">
+                    <table width=345px height=100%>
+                        <tr>
+                            <td align="center" id="time_magazine"><img src="web/img/newspapers/time.png"></td>
+                            <td align="center" id="usatoday_magazine"><img src="web/img/newspapers/usatoday.png"></td>
+                        </tr>
+                        <tr>
+                            <td align="center" id="lemonde_magazine"><img src="web/img/newspapers/lemonde.png"></td>
+                            <td align="center" id="courrierinter_magazine"> <img src="web/img/newspapers/courrierinter.png"></td>
+                        </tr>
+                        <tr>
+                            <td align="center" id="liberation_magazine"><img src="web/img/newspapers/liberation.png"></td>
+                            <td align="center" id="figaro_magazine"><img src="web/img/newspapers/figaro.jpg"></td>
+                        </tr>
+                    </table>
+                </div>
+        </div>
+
+        <div class="section section_content">
+            <div id="title_section_content">
+                <div id="text_content">
+                    <h1>Suivez le contenu que vous aimez.</h1><br>
+                    <h3>Suivez vos artistes, journaux,<br> blogs ou personnalités<br> préférées.</h3>
+                    <br><div id="button_action">Inscrivez-vous !</div>
+                </div>
             </div>
-            <div class="newspaper">
-                <table>
+
+            <div id="table_section_content">
+                <table width=345px height=66%>
                     <tr>
-                        <div id="time_magazine">          <img src="web/img/newspapers/time.png">         </div>
-                        <div id="usatoday_magazine">      <img src="web/img/newspapers/usatoday.png">     </div>
+                        <td width=50% align="center" id="barrack_content"><img src="web/img/content/time.png"></td>
+                        <td width=50% align="center" id="charlie_content"><img src="web/img/content/charlie.png"></td>
                     </tr>
+                </table>
+                <table width=345px height=34% >
                     <tr>
-                        <div id="lemonde_magazine">       <img src="web/img/newspapers/lemonde.png">      </div>
-                        <div id="courrierinter_magazine"> <img src="web/img/newspapers/courrierinter.png"></div>
-                    </tr>
-                    <tr>
-                        <div id="liberation_magazine">    <img src="web/img/newspapers/liberation.png">   </div>
-                        <div id="figaro_magazine">        <img src="web/img/newspapers/figaro.jpg">       </div>
+                        <td width="33%" align="center" id="robin_content"><img src="web/img/content/robin.png"></td>
+                        <td width="33%" align="center" id="gims_content"><img src="web/img/content/acdc.png"></td>
+                        <td width="33%" align="center" id="david_guetta_content"><img src="web/img/content/david.png"></td>
                     </tr>
                 </table>
             </div>
         </div>
 
-        <div class="section section_content">
-            <div id="title_section_content">
-                <h1>Suivez les<br>contenus<br>que vous<br>aimez.</h1>
-                <h4>Suivez vos artistes, journaux,<br> blogs ou personnalités<br> préférées.</h4>
-                <div id="button_action">INSCRIVEZ VOUS !</div>
+        <div class="section section_social">
+            <div id="title_section_social">
+                <div id="text_content">
+                    <h1>Vos réseaux sociaux enfin réunis.</h1><br>
+                    <h3>Retrouvez tout vos réseaux sociaux préférés comme Facebook, Twitter ou Pinterest</h3>
+                </div>
             </div>
-            <div class="content">
-                <div id="barrack_content">          <img src="img/content/barrack.jpg">      </div>
-                <div id="charlie_content">          <img src="img/content/charlie.jpg">      </div>
-                <div id="robin_content">            <img src="img/content/robin.jpg">        </div>
-                <div id="gims_content">             <img src="img/content/gims.png">         </div>
-                <div id="david_guetta_content">     <img src="img/content/david.png">        </div>
+
+            <div id="table_section_news">
+                <table width=345px height=100%>
+                    <tr>
+                        <td align="center" id="time_magazine"><img src="web/img/newspapers/time.png"></td>
+                        <td align="center" id="usatoday_magazine"><img src="web/img/newspapers/usatoday.png"></td>
+                    </tr>
+                    <tr>
+                        <td align="center" id="lemonde_magazine"><img src="web/img/newspapers/lemonde.png"></td>
+                        <td align="center" id="courrierinter_magazine"> <img src="web/img/newspapers/courrierinter.png"></td>
+                    </tr>
+                    <tr>
+                        <td align="center" id="liberation_magazine"><img src="web/img/newspapers/liberation.png"></td>
+                        <td align="center" id="figaro_magazine"><img src="web/img/newspapers/figaro.jpg"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="section contact">
+            <div id="contact">
+
+            </div>
+
+            <div id="footer">
+
             </div>
         </div>
     </div>
