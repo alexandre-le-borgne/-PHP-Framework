@@ -29,7 +29,15 @@ class IndexController extends Controller
 
     public function EmailAction($id = 0) {
         $this->loadModel('EmailModel');
-
-        var_dump($this->emailmodel->get($id));
+        foreach($this->emailmodel->get($id) as $email) {
+            ?>
+            <div style="margin: 10px; border: 1px solid grey;">
+                <h2><?= $email['header']['subject'] ?></h2>
+                <p>
+                    <?= quoted_printable_decode($email['body']) ?>
+                </p>
+            </div>
+            <?php
+        }
     }
 }
