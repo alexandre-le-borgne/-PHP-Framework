@@ -8,7 +8,7 @@
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/abraham/twitteroauth/autoload.php';
 
 //require '/../vendor/abraham/twitteroauth/autoload.php';
 
