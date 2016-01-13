@@ -17,7 +17,7 @@ class View
     }
 
     public function extend($layout) {
-        $this->layout = $layout;
+        $this->layout[] = $layout;
     }
 
     public function output ($var, $default = '') {
@@ -40,12 +40,11 @@ class View
             ob_start();
             require $path;
             $content_for_layout = ob_get_clean();
-            if(!$this->layout) {
+            if(empty($this->layout)) {
                 echo $content_for_layout;
             }
             else {
-                $layout = $this->layout;
-                $this->layout = null;
+                $layout = array_pop($this->layout);
                 $this->render($layout, array_merge($this->data, array('_content' => $content_for_layout)));
             }
         }
