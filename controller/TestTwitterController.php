@@ -13,7 +13,7 @@ class TestTwitterController extends Controller
 {
     function TwitterAction()
     {
-        var_dump(scandir(__DIR__ . '/../vendor'));
+        //Tout cela pour récupérer les tweets d'un compte donné
         //Consumer key,
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
@@ -23,13 +23,17 @@ class TestTwitterController extends Controller
 
         $tweets = $twitter->get('statuses/user_timeline', [
             'screen_name' => 'Spacesuit2',
-            'exclude_replies' => 'true'
+            'exclude_replies' => 'true',
+            'count' => 50
         ]);
+
+        // (array_slice($tweets, 0, 12) car le count se fait avant d'avoir récupéré les tweets
+        // donc on récupère beaucoup et on gère le count intérieurement
 
         ?>
         <ul class="white_text">
-            <?php foreach ($tweets as $tweet): ?>
-            <li><?= $tweet->text; ?></li>
+            <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
+                <li><?= $tweet->text; ?></li>
             <?php endforeach; ?>
         </ul>
     <?php
