@@ -21,9 +21,9 @@
     <link rel="stylesheet" href="<?= View::getAsset('css/nav.css') ?>">
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="<?= View::getAsset('inc/js/fullPage/vendors/jquery.easings.min.js') ?>"></script>
-    <script type="text/javascript" src="<?= View::getAsset('inc/js/fullPage/vendors/jquery.slimscroll.min.js') ?>"></script>
-    <script type="text/javascript" src="<?= View::getAsset('inc/js/fullPage/jquery.fullPage.js') ?>"></script>
+    <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/vendors/jquery.easings.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/vendors/jquery.slimscroll.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/jquery.fullPage.js') ?>"></script>
     <script type="text/javascript" src="<?= View::getAsset('js/slide.js') ?>"></script>
     <script type="text/javascript" src="web/js/script.js"></script>
 </head>
