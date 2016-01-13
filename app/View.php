@@ -72,6 +72,6 @@ class View
     }
 
     public static function getAsset($asset) {
-        return __DIR__.DIRECTORY_SEPARATOR.'../web/'.$asset;
+        return DIRECTORY_SEPARATOR.'../web/'.$asset;
     }
 }
