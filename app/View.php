@@ -72,6 +72,6 @@ class View
     }
 
     public static function getAsset($asset) {
-        return '/web/'.$asset;
+        return '../web/'.$asset;
     }
 }
