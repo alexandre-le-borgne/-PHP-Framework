@@ -32,7 +32,6 @@ class View
     }
 
     public function insert($view, $data = array()) {
-        $this->data = $data;
         $data['view'] = $this;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
