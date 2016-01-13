@@ -72,7 +72,7 @@ class View
     }
 
     public static function getAsset($asset) {
-        echo get_include_path()."$".getcwd();
+        echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http')."//" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']."$$$";
         return __DIR__.DIRECTORY_SEPARATOR.'../web/'.$asset;
     }
 }
