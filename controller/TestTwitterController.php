@@ -1,9 +1,6 @@
 <?php
 /**
  * Coucou
- *
- *
- * zdadza
  */
 
 use Abraham\TwitterOAuth\TwitterOAuth;
