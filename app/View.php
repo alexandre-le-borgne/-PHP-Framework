@@ -34,25 +34,7 @@ class View
     }
 
     public function render($view, $data = array()) {
-        $this->data = $data;
-        $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
-        $path = $viewspath.$view.'.php';
-        if(file_exists($path)) {
-            if(is_array($data))
-                extract($data);
-            ob_start();
-            require $path;
-            $content_for_layout = ob_get_clean();
-            if(empty($this->layout)) {
-                echo $content_for_layout;
-            }
-            else {
-                $this->render($this->layout, array_merge($this->data, array('_content' => $content_for_layout)));
-            }
-        }
-        else {
-            throw new NotFoundException("VIEW NOT FOUND | ".$path." |");
-        }
+
     }
 
     public function isGranted($role) {
