@@ -36,8 +36,6 @@ class View
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
         if(file_exists($path)) {
-            echo "Affichage : ".$view.":".end($this->layout)."<br>";
-            var_dump($data);
             extract($data);
             ob_start();
             require $path;
