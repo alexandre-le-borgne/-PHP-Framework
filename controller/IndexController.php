@@ -28,7 +28,6 @@ class IndexController extends Controller
     }
 
     public function EmailAction($id = 0) {
-        phpinfo();
         $this->loadModel('EmailModel');
 
         var_dump($this->emailmodel->get($id));

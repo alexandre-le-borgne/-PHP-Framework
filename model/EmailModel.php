@@ -38,7 +38,7 @@ class EmailModel
     // the imap_open function parameters will need to be changed for the particular server
     // these are laid out to connect to a Dreamhost IMAP server
     function connect() {
-        $this->conn = imap_open('{'.$this->server.'/notls}', $this->user, $this->pass);
+        $this->conn = imap_open('{'.$this->server.':'.$this->port.'/ssl}INBOX', $this->user, $this->pass);
     }
 
     // move the message to a new folder
