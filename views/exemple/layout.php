@@ -26,5 +26,7 @@
         <?php endif; ?>
         <?= $_content ?>
         <?= $this->render('content'); ?>
+        <hr>
+        <?= $this->render('content'); ?>
     </body>
 </html>
