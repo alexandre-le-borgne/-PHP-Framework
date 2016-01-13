@@ -16,14 +16,9 @@
      * On peut vérifier si l'utilisateur à un certain rang avec la fonction 'isGranted' et avec les constantes de Session.
      * La variable '$_content' contient le code html de la vue remplissant cette template.
      */
-    $view->render('exemple/head', array('title' => $title));
+    $this->render('exemple/head', array('title' => $title));
     ?>
     <body>
-        <h1><?= $view->output('title', 'Titre par défaut') ?></h1>
-        <h2><?= $view->output('title2', 'Sous-Titre par défaut') ?></h2>
-        <?php if($view->isGranted(Session::USER_IS_CONNECTED)): ?>
-            L'utilisateur est connecté !
-        <?php endif; ?>
         <?= $_content ?>
     </body>
 </html>

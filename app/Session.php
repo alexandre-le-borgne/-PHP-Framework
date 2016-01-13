@@ -48,6 +48,16 @@ class Session
         return false;
     }
 
+    public function isGranted($role) {
+        switch($role) {
+            case Session::USER_IS_CONNECTED:
+                return Request::getInstance()->getSession()->isConnected();
+            case Session::USER_IS_NOT_CONNECTED:
+                return true;
+        }
+        return false;
+    }
+
     /**
      * @return Session
      */

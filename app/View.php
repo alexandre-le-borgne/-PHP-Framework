@@ -17,7 +17,7 @@ class View
     }
 
     public function extend($layout) {
-        $this->layout = $layout;
+        $this->layout[] = $layout;
     }
 
     public function output ($var, $default = '') {
@@ -33,7 +33,6 @@ class View
 
     public function render($view, $data = array()) {
         $this->data = $data;
-        $data['view'] = $this;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
         if(file_exists($path)) {
@@ -41,13 +40,12 @@ class View
             ob_start();
             require $path;
             $content_for_layout = ob_get_clean();
-            if(!$this->layout) {
+            if(empty($this->layout)) {
                 echo $content_for_layout;
             }
             else {
-                $layout = $this->layout;
-                $this->layout = null;
-                $this->render($layout, array_merge($this->data, array("_content" => $content_for_layout)));
+                $layout = array_pop($this->layout);
+                $this->render($layout, array_merge($this->data, array('_content' => $content_for_layout)));
             }
         }
         else {
@@ -56,13 +54,7 @@ class View
     }
 
     public function isGranted($role) {
-        switch($role) {
-            case Session::USER_IS_CONNECTED:
-                return Request::getInstance()->getSession()->isConnected();
-            case Session::USER_IS_NOT_CONNECTED:
-                return true;
-        }
-        return false;
+        return Session::getInstance()->isGranted($role);
     }
 
     public static function getView($view, $data = array()) {
