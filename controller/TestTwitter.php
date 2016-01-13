@@ -9,7 +9,7 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 
 class TestTwitter extends Controller
 {
-    function coucouAction()
+    function TwitterAction()
     {
         //Consumer key,
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
