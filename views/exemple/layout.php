@@ -25,5 +25,6 @@
             L'utilisateur est connecté !
         <?php endif; ?>
         <?= $_content ?>
+        <?= $this->render('content'); ?>
     </body>
 </html>
