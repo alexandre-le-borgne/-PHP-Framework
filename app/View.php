@@ -72,6 +72,8 @@ class View
     }
 
     public static function getAsset($asset) {
-        return '/../web/'.$asset;
+        $hostname = getenv('HTTP_HOST');
+        echo $hostname;
+        return $hostname.'/web/'.$asset;
     }
 }
