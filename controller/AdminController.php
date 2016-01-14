@@ -11,7 +11,8 @@ class AdminController
 {
     function AdminAction(Request $request)
     {
-        echo "coucou";
+        if ($request->getSession()->isGranted(Session::USER_IS_ADMIN))
+        var_dump($request);
     }
 
 }

@@ -10,6 +10,7 @@ class Session
 {
     const USER_IS_NOT_CONNECTED = 0;
     const USER_IS_CONNECTED = 1;
+    const USER_IS_ADMIN = 2;
 
     private static $instance;
 
@@ -40,7 +41,8 @@ class Session
     {
         $id = $this->get("id");
         $password = $this->get("password");
-        if ($id != null && $password != null) {
+        if ($id != null && $password != null)
+        {
             $user = new UserEntity($id);
             if ($user->getAuthentification() == 0)
                 return $user->getPassword() === $password;
@@ -48,12 +50,24 @@ class Session
         return false;
     }
 
-    public function isGranted($role) {
-        switch($role) {
+    public function isGranted($role)
+    {
+        $session = Request::getInstance()->getSession();
+        switch ($role)
+        {
+            case Session::USER_IS_ADMIN:
+                if ($session->isConnected())
+                {
+                    $model = new UserModel();
+                        $user = $model->getById($session->get('id'));
+                    return $user->getAccountLevel() == UserModel::ACCOUNT_LEVEL_ADMIN;
+                }
+                break;
             case Session::USER_IS_CONNECTED:
-                return Request::getInstance()->getSession()->isConnected();
+                return $session->isConnected();
             case Session::USER_IS_NOT_CONNECTED:
                 return true;
+
         }
         return false;
     }

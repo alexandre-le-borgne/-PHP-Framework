@@ -26,6 +26,11 @@ class UserModel extends Model
         return false;
     }
 
+    public function getById($id)
+    {
+
+    }
+
     public function availableUser($username)
     {
         $db = new Database();
