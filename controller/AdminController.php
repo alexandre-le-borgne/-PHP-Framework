@@ -14,7 +14,7 @@ class AdminController extends Controller
         $userEntity = $this->usermodel->getById($request->getSession()->get('id'));
 
         //On reverifie que l'utilisateur est admin
-        if ($userEntity->setAccountLevel() == UserModel::ACCOUNT_LEVEL_ADMIN)
+        if ($userEntity->getAccountLevel() == UserModel::ACCOUNT_LEVEL_ADMIN)
         {
             echo "c bon t admin mon pote\n\rVoila ton entité associée : \n\r";
             var_dump($userEntity);
