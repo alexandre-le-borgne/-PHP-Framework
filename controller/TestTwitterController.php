@@ -4,7 +4,7 @@
  */
 
 
-var_dump(scandir('./vendor/abraham/twitteroauth/src'));
+//var_dump(scandir('./vendor/abraham/twitteroauth/src'));
 
 require './vendor/autoload.php';
 require './vendor/abraham/twitteroauth/autoload.php';
