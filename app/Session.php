@@ -50,6 +50,8 @@ class Session
                 $passwordModel = new PasswordModel();
                 $password = $passwordModel->getByUser($user);
                 print_r($password);
+                if($password->getPassword() === $password)
+                    echo "CONNECTER !!!";
                 return $password->getPassword() === $password;
             }
         }
