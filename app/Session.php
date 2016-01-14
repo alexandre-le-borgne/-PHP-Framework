@@ -59,7 +59,7 @@ class Session
                 if ($session->isConnected())
                 {
                     $model = new UserModel();
-                        $user = $model->getById($session->get('id'));
+                    $user = $model->getById($session->get('id'));
                     return $user->getAccountLevel() == UserModel::ACCOUNT_LEVEL_ADMIN;
                 }
                 break;
