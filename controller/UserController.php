@@ -89,7 +89,7 @@ class UserController extends Controller
         $id = $this->usermodel->getIdByNameOrEmail($request->post('login'));
         $password = $request->post('password');
         $user = $this->usermodel->getById($id);
-        if ($user->getAuthentification() == 0) {
+        if ($user && $user->getAuthentification() == 0) {
             $passwordEntity = $this->passwordmodel->getByUser($user);
 
             if (Security::equals($passwordEntity->getPassword(), $password)) {
