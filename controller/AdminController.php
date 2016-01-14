@@ -13,6 +13,8 @@ class AdminController extends Controller
         $this->loadModel('UserModel');
         $userEntity = $this->usermodel->getById($request->getSession()->get('id'));
 
+        if ($userEntity == null)
+            throw new Exception('T une merde, ton compte est pas enregistre. pd <3 ! ');
         //On reverifie que l'utilisateur est admin
         if ($userEntity->getAccountLevel() == UserModel::ACCOUNT_LEVEL_ADMIN)
         {
