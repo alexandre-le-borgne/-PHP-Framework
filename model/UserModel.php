@@ -34,13 +34,27 @@ class UserModel extends Model
             if($result) {
                 $user = new UserEntity();
                 $user->setId($result['id']);
-                $user->setEmail($result['id']);
-                $user->setId($result['id']);
-                $this->email = $result['email'];
-                $this->authentification = $result['authentification'];
+                $user->setAccountLevel($result['accountLevel']);
+                $user->setActive($result['active']);
+                $user->setBirthDate($result['birthDate']);
+                $user->setEmail($result['email']);
+                $user->setUserKey($result['userKey']);
+                $user->setUsername($result['username']);
+                $user->setAuthentification($result['authentification']);
+                return $user;
             }
         }
         return null;
+    }
+
+    public function getPassword(UserEntity $user)
+    {
+        if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD)
+        {
+            $password = new PasswordEntity($user);
+            return $password->getPassword();
+        }
+        return false;
     }
 
     public function availableUser($username)

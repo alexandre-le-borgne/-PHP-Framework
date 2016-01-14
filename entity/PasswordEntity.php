@@ -10,21 +10,56 @@ class PasswordEntity
 {
     private $id, $user, $password;
 
-    public function __construct($user)
+    public function __construct()
     {
-        if(intval($user)) {
-            $db = new Database();
-            $result = $db->execute("SELECT * FROM passwords WHERE user = ?", array($user))->fetch();
-            $this->id = $result['id'];
-            $this->user = $result['user'];
-            $this->password = $result['password'];
-        }
-        else {
-            throw new TraceableException("L'id d'un utilisateur utilisant un mot de passe est attendu !");
-        }
+
     }
 
-    public function getPassword() {
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
         return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 }

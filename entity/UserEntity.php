@@ -21,16 +21,6 @@ class UserEntity extends Entity
 
     // GETTERS
 
-    public function getPassword()
-    {
-        if ($this->authentification == UserModel::AUTHENTIFICATION_BY_PASSWORD)
-        {
-            $password = new PasswordEntity($this->id);
-            return $password->getPassword();
-        }
-        return false;
-    }
-
     public function getAuthentification()
     {
         return $this->authentification;
