@@ -6,6 +6,7 @@
  *   et fais quelques pretraitements
  * - RegisterAction est appele a la suite du registerForm, lors du submit
  */
+
 class UserController extends Controller
 {
     public function PreRegisterAction(Request $request)
