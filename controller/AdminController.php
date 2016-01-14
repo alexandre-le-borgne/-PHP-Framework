@@ -8,14 +8,17 @@
  */
 class AdminController extends Controller
 {
-    function AdminAction(Request $request)
+    function IndexAction(Request $request)
     {
         if ($request->getSession()->isGranted(Session::USER_IS_ADMIN))
         {
-            echo "c bon t admin mon pote ! Voila ton entitée associée : ";
+            //
+
+
+            $this->render('adm')
         } else
         {
-            echo "degage de la t pas admin pd";
+            throw new Exception('Utilisateur non admin');
         }
     }
 
