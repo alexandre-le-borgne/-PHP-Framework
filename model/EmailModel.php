@@ -83,7 +83,7 @@ class EmailModel
         if (isset($p->parameters) && is_array($p->parameters) && $p->parameters)
             foreach ($p->parameters as $x)
                 $params[strtolower($x->attribute)] = $x->value;
-        if (isset($p->parameters) && is_array($p->parameters) && $p->dparameters)
+        if (isset($p->dparameters) && is_array($p->dparameters) && $p->dparameters)
             foreach ($p->dparameters as $x)
                 $params[strtolower($x->attribute)] = $x->value;
 
