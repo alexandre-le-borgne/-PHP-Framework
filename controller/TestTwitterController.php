@@ -4,12 +4,13 @@
  */
 
 
-var_dump(scandir('./vendor'));
+var_dump(scandir('./vendor/abraham/twitteroauth'));
 
 require './vendor/autoload.php';
 require './vendor/abraham/twitteroauth/autoload.php';
 
 use Abraham\TwitterOAuth;
+//use Abraham\TwitterOAuth\TwitterOAuth;
 
 //require '/../vendor/abraham/twitteroauth/autoload.php';
 
