@@ -7,6 +7,7 @@
 var_dump(scandir('./vendor'));
 
 require './vendor/autoload.php';
+require './vendor/abraham/twitteroauth/autoload.php';
 
 use Abraham\TwitterOAuth;
 
