@@ -16,7 +16,11 @@
         <div id="fullpage">
             <div class="section">
                 <?php
-                echo $this->output('_content');
+
+                View::getView('forms/loginForm');
+                View::getView('forms/preRegisterForm', $this->output('errors'));
+
+                //                echo $this->output('_content');
                 ?>
                 <div id="fb-root"></div>
                 <script>
