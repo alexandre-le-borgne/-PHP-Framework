@@ -16,6 +16,7 @@ class UserModel extends Model
     const ALREADY_USED_EMAIL = 1;
     const BAD_EMAIL_REGEX = 2;
     const CORRECT_EMAIL = 3;
+
     const AUTHENTIFICATION_BY_FACEBOOK = 4;
 
     public function getIdByNameOrEmail($nameOrEmail) {
