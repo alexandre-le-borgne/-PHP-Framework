@@ -4,7 +4,7 @@
  */
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-var_dump(scandir('./vendor'));
+var_dump(scandir('.'));
 
 
 require_once './vendor/autoload.php';
