@@ -10,18 +10,14 @@ class AdminController extends Controller
 {
     function AdminAction(Request $request)
     {
-        $this->loadModel('UserModel');
-        $userEntity = $this->usermodel->getById($request->getSession()->get('id'));
-
-        if ($userEntity == null)
-            throw new Exception('T une merde, ton compte est pas enregistre. pd <3 ! ');
-        //On reverifie que l'utilisateur est admin
-        if ($userEntity->getAccountLevel() == UserModel::ACCOUNT_LEVEL_ADMIN)
+        if ($request->getSession()->isGranted(Session::USER_IS_ADMIN))
         {
-            echo "c bon t admin mon pote\n\rVoila ton entité associée : \n\r";
-            var_dump($userEntity);
+            echo "c bon t admin mon pote ! Voila ton entitée associée : ";
         }
-
+        else
+        {
+            echo "degage de la t pas admin pd";
+        }
     }
 
 }
