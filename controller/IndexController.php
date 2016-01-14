@@ -29,11 +29,12 @@ class IndexController extends Controller
 
     public function EmailAction($id = 0) {
         $this->loadModel('EmailModel');
-        $email = json_decode($this->emailmodel->get($id), true);
+        $email = $this->emailmodel->get($id);
+        $header = json_decode($email['header'], true);
         print_r($email);
         ?>
         <div style="margin: 10px; border: 1px solid grey;">
-            <h2><?= $email['header']['subject'] ?></h2>
+            <h2><?= $header['subject'] ?></h2>
             <p>
                 <?= quoted_printable_decode($email['body']) ?>
             </p>
