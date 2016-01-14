@@ -16,6 +16,7 @@ class UserModel extends Model
     const ALREADY_USED_EMAIL = 1;
     const BAD_EMAIL_REGEX = 2;
     const CORRECT_EMAIL = 3;
+    const AUTHENTIFICATION_BY_FACEBOOK = 4;
 
     public function getIdByNameOrEmail($nameOrEmail) {
         $db = new Database();
@@ -90,6 +91,22 @@ class UserModel extends Model
 
         $db->execute("INSERT INTO accounts (username, email, authentification, birthDate, userKey) VALUES (?, ?, "
             . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
+
+        $id = $db->lastInsertId();
+
+        $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
+
+        Mail::sendVerificationMail($username, $email, $key);
+    }
+
+    public function addFacebookUser($username, $email, $password, $birthDate)
+    {
+        $db = new Database();
+        $key = Security::generateKey();
+        $password = Security::encode($password);
+
+        $db->execute("INSERT INTO accounts (username, email, authentification, birthDate) VALUES (?, ?, "
+            . UserModel::AUTHENTIFICATION_BY_FACEBOOK . ", ?, ?)", array($username, $email, $birthDate));
 
         $id = $db->lastInsertId();
 

@@ -7,12 +7,15 @@
  * Time: 10:45
  */
 
-class AdminController
+class AdminController extends Controller
 {
     function AdminAction(Request $request)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_ADMIN))
-        var_dump($request);
+        $this->loadModel('UserModel');
+        $userEntity = $this->usermodel->getById($request->getSession()->get('id'));
+
+
+        var_dump($userEntity);
 
 
     }
