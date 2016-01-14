@@ -5,14 +5,14 @@
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+//require_once __DIR__ . '/../vendor/autoload.php';
 
 //require '/../vendor/abraham/twitteroauth/autoload.php';
 
 class TestTwitterController extends Controller
 {
     function TwitterAction()
-    {
+    {var_dump(scandir('.'));
         //Tout cela pour récupérer les tweets d'un compte donné
         //Consumer key,
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
