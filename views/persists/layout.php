@@ -23,49 +23,26 @@
                 /** Fin */
                 //                echo $this->output('_content');
                 ?>
-                <script type="text/javascript">
-                    function fblogout() {
-                        FB.logout(function () {
-                            window.location.reload(); });
-                    }
+                <div id="fb-root"></div>
+                <script>
                     window.fbAsyncInit = function() {
                         FB.init({
-                            appId   : '<?php echo $facebook->getAppId(); ?>',
-                            session : <?php echo json_encode($session); ?>,
-                            status  : true,
-                            cookie  : true,
-                            xfbml   : true
-                        });
-
-                        FB.Event.subscribe('auth.login', function() {
-                            window.location.reload();
+                            appId      : '1695359537375763',
+                            xfbml      : true,
+                            version    : 'v2.5'
                         });
                     };
 
-                    (function() {
-                        var e = document.createElement('script');
-                        e.src = document.location.protocol + '//connect.facebook.net/fr_FR/all.js';
-                        e.async = true;
-                        document.getElementById('fb-root').appendChild(e);
-                    }());
-                    //your fb login function
-                    function fblogin() {
-                        FB.login(function(response) {
-                            //...
-                        }, {perms:'read_stream,publish_stream,offline_access'});
-                        redir();
-                    }
+                    (function(d, s, id){
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) {return;}
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/fr_FR/sdk.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
                 </script>
-
-                <!--
-                  Below we include the Login Button social plugin. This button uses
-                  the JavaScript SDK to present a graphical Login button that triggers
-                  the FB.login() function when clicked.
-                -->
-
-                <vendor/facebook:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                </vendor/facebook:login-button>
-
+                <div class="fb-login-button" data-max-rows="3" data-size="medium" data-show-faces="true" data-auto-logout-link="false"></div>
+                <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             </div>
 
             <div class="section section_news">
