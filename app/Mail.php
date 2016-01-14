@@ -35,7 +35,8 @@ class Mail
     public static function sendWelcomingMail($email)
     {
         $subject = "Activation de votre compte Aaron";
-        $head = "From : welcome@aaron.fr";
+        $head = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $head .= "From : welcome@aaron.fr";
 
         $message = "Merci d'avoir validé votre inscription !
 
