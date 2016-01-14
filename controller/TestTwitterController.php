@@ -3,12 +3,12 @@
  * Coucou
  */
 
-use Abraham\TwitterOAuth\TwitterOAuth;
 
 var_dump(scandir('./vendor'));
 
+require './vendor/autoload.php';
 
-require_once './vendor/autoload.php';
+use Abraham\TwitterOAuth;
 
 //require '/../vendor/abraham/twitteroauth/autoload.php';
 
