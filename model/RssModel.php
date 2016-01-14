@@ -10,6 +10,7 @@
 class RssModel extends Model
 {
     private $posts = array();
+    private $url;
 
     public function __construct($url)
     {
@@ -51,4 +52,13 @@ class RssModel extends Model
     {
         return $this->posts;
     }
+
+    public function getById($id){
+        return new RssEntity($id);
+    }
+
+    public function addRss(){
+        $db = new Database();
+    }
+
 }

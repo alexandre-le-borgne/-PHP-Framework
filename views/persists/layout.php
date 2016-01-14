@@ -14,7 +14,6 @@
     <body>
 
         <div id="fullpage">
-
             <div class="section">
                 <?php
                 echo $this->output('_content');
