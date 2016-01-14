@@ -89,12 +89,9 @@ class UserController extends Controller
         $id = $this->usermodel->getIdByNameOrEmail($request->post('login'));
         $password = $request->post('password');
         $userEntity = $this->usermodel->getById($id);
-        var_dump($userEntity);
         if ($userEntity && $userEntity->getAuthentification() == 0) {
             $passwordEntity = $this->passwordmodel->getByUser($userEntity);
-            var_dump($passwordEntity);
             if (Security::equals($passwordEntity->getPassword(), $password)) {
-                echo "LA CONNECTION MARCHE, YOLO";
                 $request->getSession()->set("id", $id);
                 $request->getSession()->set("password", $passwordEntity->getPassword());
             }
