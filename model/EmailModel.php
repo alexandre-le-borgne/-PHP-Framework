@@ -80,19 +80,19 @@ class EmailModel
         // PARAMETERS
         // get all parameters, like charset, filenames of attachments, etc.
         $params = array();
-        if ($p->parameters)
+        if (isset($p->parameters) && is_array($p->parameters) && $p->parameters)
             foreach ($p->parameters as $x)
                 $params[strtolower($x->attribute)] = $x->value;
-        if ($p->dparameters)
+        if (isset($p->parameters) && is_array($p->parameters) && $p->dparameters)
             foreach ($p->dparameters as $x)
                 $params[strtolower($x->attribute)] = $x->value;
 
         // ATTACHMENT
         // Any part with a filename is an attachment,
         // so an attached text file (type 0) is not mistaken as the message.
-        if ($params['filename'] || $params['name']) {
+        if ((isset($params['filename']) && $params['filename']) || (isset($params['name']) && $params['name'])) {
             // filename may be given as 'Filename' or 'Name' or both
-            $filename = ($params['filename'])? $params['filename'] : $params['name'];
+            $filename = (isset($params['filename']) && $params['filename']) ? $params['filename'] : $params['name'];
             // filename may be encoded, so see imap_mime_header_decode()
             $attachments[$filename] = $data;  // this is a problem if two files have same name
         }
@@ -118,7 +118,7 @@ class EmailModel
         }
 
         // SUBPART RECURSION
-        if ($p->parts) {
+        if (isset($p->parts) && $p->parts) {
             foreach ($p->parts as $partno0=>$p2)
                 $this->getpart($mbox,$mid,$p2,$partno.'.'.($partno0+1));  // 1.2, 1.2.1, etc.
         }
@@ -132,7 +132,7 @@ class EmailModel
         $in = array();
         for($i = 1; $i <= $this->msg_cnt; $i++) {
             $s = imap_fetchstructure($this->conn, $i);
-            if (!$s->parts)  // simple
+            if (!isset($s->parts) || !$s->parts)  // simple
                 $this->getpart($this->conn, $i, $s,0);  // pass 0 as part-number
             else {  // multipart: cycle through each part
                 foreach ($s->parts as $partno0=>$p)
