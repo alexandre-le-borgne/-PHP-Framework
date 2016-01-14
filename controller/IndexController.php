@@ -30,6 +30,7 @@ class IndexController extends Controller
     public function EmailAction($id = 0) {
         $this->loadModel('EmailModel');
         $email = $this->emailmodel->get($id);
+        print_r($email);
         ?>
         <div style="margin: 10px; border: 1px solid grey;">
             <h2><?= $email['header']['subject'] ?></h2>
