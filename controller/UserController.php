@@ -92,7 +92,7 @@ class UserController extends Controller
         var_dump($userEntity);
         if ($userEntity && $userEntity->getAuthentification() == 0) {
             $passwordEntity = $this->passwordmodel->getByUser($userEntity);
-
+            var_dump($passwordEntity);
             if (Security::equals($passwordEntity->getPassword(), $password)) {
                 $request->getSession()->set("id", $id);
                 $request->getSession()->set("password", $passwordEntity->getPassword());
