@@ -29,7 +29,7 @@ class IndexController extends Controller
 
     public function EmailAction($id = 0) {
         $this->loadModel('EmailModel');
-        $email = $this->emailmodel->get($id);
+        $email = json_decode($this->emailmodel->get($id), true);
         print_r($email);
         ?>
         <div style="margin: 10px; border: 1px solid grey;">
