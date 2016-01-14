@@ -15,7 +15,7 @@ class AdminController extends Controller
             //
 
 
-            $this->render('adm')
+//            $this->render('adm')
         } else
         {
             throw new Exception('Utilisateur non admin');

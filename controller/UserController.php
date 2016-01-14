@@ -96,7 +96,7 @@ class UserController extends Controller
                 $request->getSession()->set("password", $passwordEntity->getPassword());
             }
         }
-        $this->render('persists/layout');
+        $this->render('layouts/layout');
     }
 
     public function MailResetAction(Request $request)
