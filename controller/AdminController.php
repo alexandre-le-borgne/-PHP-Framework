@@ -1,10 +1,7 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: j14003626
- * Date: 14/01/16
- * Time: 10:45
+ *
  */
 class AdminController extends Controller
 {
@@ -12,10 +9,11 @@ class AdminController extends Controller
     {
         if ($request->getSession()->isGranted(Session::USER_IS_ADMIN))
         {
-            //
+            $data = array
+            ();
 
 
-//            $this->render('adm')
+            $this->render('layouts/adminDashboard', $data);
         } else
         {
             throw new Exception('Utilisateur non admin');
