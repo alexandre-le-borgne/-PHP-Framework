@@ -43,9 +43,13 @@ class Session
         $password = $this->get("password");
         if ($id != null && $password != null)
         {
-            $user = new UserEntity($id);
-            if ($user->getAuthentification() == 0)
-                return $user->getPassword() === $password;
+            $userModel = new UserModel();
+            $user = $userModel->getById($id);
+            if ($user->getAuthentification() == 0) {
+                $passwordModel = new PasswordModel();
+                $password = $passwordModel->getByUser($user);
+                return $password->getPassword() === $password;
+            }
         }
         return false;
     }
