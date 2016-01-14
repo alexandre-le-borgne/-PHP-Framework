@@ -18,7 +18,7 @@ class IndexController extends Controller
         }
     }
 
-    public function FeedAction()
+    public function RssAction()
     {
         $feed = new RSSReaderModel("http://www.journaldunet.com/rss/");
         //var_dump($feed->getPosts());
