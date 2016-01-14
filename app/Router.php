@@ -14,11 +14,12 @@ class Router {
         $this->table[] = new Route('login', 'user', 'login');
         $this->table[] = new Route('preregister', 'user', 'preRegister');
         $this->table[] = new Route('register', 'user', 'register');
-        $this->table[] = new Route('rss', 'index', 'rss');
         $this->table[] = new Route('mailvalidation', 'user', 'mailValidation');
         $this->table[] = new Route('exemple', 'exemple', 'index');
         $this->table[] = new Route('twitter', 'testTwitter', 'twitter');
         $this->table[] = new Route('email', 'index', 'email');
+        $this->table[] = new Route('rss', 'index', 'rss');
+
         //$this->table[] = new Route('gmail', 'testGmail', 'gmail');
 
     }
