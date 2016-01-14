@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: j14003626
@@ -6,6 +7,11 @@
  * Time: 10:45
  */
 
-class AdminController {
+class AdminController
+{
+    function AdminAction(Request $request)
+    {
+        echo "coucou";
+    }
 
 }

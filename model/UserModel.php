@@ -8,6 +8,10 @@
  */
 class UserModel extends Model
 {
+    const ACCOUNT_LEVEL_USER = 0;
+    const ACCOUNT_LEVEL_MODERATOR = 1;
+    const ACCOUNT_LEVEL_ADMIN = 2;
+
     const AUTHENTIFICATION_BY_PASSWORD = 0;
     const ALREADY_USED_EMAIL = 1;
     const BAD_EMAIL_REGEX = 2;
