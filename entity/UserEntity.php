@@ -39,6 +39,18 @@ class UserEntity extends Entity
     {
         return $this->id;
     }
+    public function getUsername()
+    {
+        return $this->username;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
     public function getUserKey()
     {
         return $this->userKey;
@@ -47,39 +59,33 @@ class UserEntity extends Entity
     {
         return $this->active;
     }
-    public function getUsername()
-    {
-        return $this->username;
-    }
-    public function getBirthDate()
-    {
-        return $this->birthDate;
-    }
     public function getAccountLevel()
     {
         return $this->accountLevel;
     }
-    public function getEmail()
-    {
-        return $this->email;
-    }
+
 
     // SETTERS
-    public function setEmail($email)
+
+    public function setAuthentification($authentification)
     {
-        $this->email = $email;
+        $this->authentification = $authentification;
     }
     public function setId($id)
     {
         $this->id = $id;
     }
-    public function setBirthDate($birthDate)
-    {
-        $this->birthDate = $birthDate;
-    }
     public function setUsername($username)
     {
         $this->username = $username;
+    }
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+    public function setBirthDate($birthDate)
+    {
+        $this->birthDate = $birthDate;
     }
     public function setUserKey($userKey)
     {
@@ -93,6 +99,4 @@ class UserEntity extends Entity
     {
         $this->accountLevel = $accountLevel;
     }
-
-
 }
