@@ -45,14 +45,10 @@ class Session
         {
             $userModel = new UserModel();
             $user = $userModel->getById($id);
-            var_dump($user);
             if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD) {
                 $passwordModel = new PasswordModel();
-                $password = $passwordModel->getByUser($user);
-                print_r($password);
-                if($password->getPassword() === $password)
-                    echo "CONNECTER !!!";
-                return $password->getPassword() === $password;
+                $passwordEntity = $passwordModel->getByUser($user);
+                return $passwordEntity->getPassword() === $password;
             }
         }
         return false;
