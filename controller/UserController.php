@@ -38,7 +38,7 @@ class UserController extends Controller
         }
         if (!(empty($errors))) {
             $data = array('errors' => $errors);
-            $this->render('persists/home', $data);
+            $this->render('persists/layout', $data);
             return;
         }
 
@@ -95,7 +95,7 @@ class UserController extends Controller
                 $request->getSession()->set("password", $passwordEntity->getPassword());
             }
         }
-        $this->render('persists/home');
+        $this->render('persists/layout');
     }
 
     public function MailResetAction(Request $request)
