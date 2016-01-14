@@ -24,7 +24,16 @@
                 //                echo $this->output('_content');
                 ?>
                 <div id="fb-root"></div>
-                <script>(function(d, s, id) {
+                <script>
+                    window.fbAsyncInit = function() {
+                        FB.init({
+                            appId      : '1695359537375763',
+                            xfbml      : true,
+                            version    : 'v2.5'
+                        });
+                    };
+
+                    (function(d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id)) return;
                         js = d.createElement(s); js.id = id;
