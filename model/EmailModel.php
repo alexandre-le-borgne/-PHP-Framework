@@ -120,7 +120,7 @@ class EmailModel
         // SUBPART RECURSION
         if ($p->parts) {
             foreach ($p->parts as $partno0=>$p2)
-                getpart($mbox,$mid,$p2,$partno.'.'.($partno0+1));  // 1.2, 1.2.1, etc.
+                $this->getpart($mbox,$mid,$p2,$partno.'.'.($partno0+1));  // 1.2, 1.2.1, etc.
         }
     }
 
@@ -133,10 +133,10 @@ class EmailModel
         for($i = 1; $i <= $this->msg_cnt; $i++) {
             $s = imap_fetchstructure($this->conn, $i);
             if (!$s->parts)  // simple
-                getpart($this->conn, $i, $s,0);  // pass 0 as part-number
+                $this->getpart($this->conn, $i, $s,0);  // pass 0 as part-number
             else {  // multipart: cycle through each part
                 foreach ($s->parts as $partno0=>$p)
-                    getpart($this->conn, $i, $p, $partno0+1);
+                    $this->getpart($this->conn, $i, $p, $partno0+1);
             }
             $in[] = array(
                 'index'     => $i,
