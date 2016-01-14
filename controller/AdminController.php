@@ -10,8 +10,6 @@ class AdminController extends Controller
 {
     function AdminAction(Request $request)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
-            echo "bitasse rose";
         if ($request->getSession()->isGranted(Session::USER_IS_ADMIN))
         {
             echo "c bon t admin mon pote ! Voila ton entitée associée : ";
