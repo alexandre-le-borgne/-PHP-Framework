@@ -36,7 +36,7 @@ class IndexController extends Controller
         <div style="margin: 10px; border: 1px solid grey;">
             <h2><?= $header['subject'] ?></h2>
             <p>
-                <?= quoted_printable_decode($email['body']) ?>
+                <?= $email['body'] ?>
             </p>
         </div>
         <?php
