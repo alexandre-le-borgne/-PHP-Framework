@@ -24,24 +24,14 @@
                 //                echo $this->output('_content');
                 ?>
                 <div id="fb-root"></div>
-                <script>
-                    window.fbAsyncInit = function() {
-                        FB.init({
-                            appId      : '1695359537375763',
-                            xfbml      : true,
-                            version    : 'v2.5'
-                        });
-                    };
-
-                    (function(d, s, id){
+                <script>(function(d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) {return;}
+                        if (d.getElementById(id)) return;
                         js = d.createElement(s); js.id = id;
-                        js.src = "//connect.facebook.net/fr_FR/sdk.js";
+                        js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
                         fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
-                </script>
-                <div class="fb-login-button" data-max-rows="3" data-size="medium" data-show-faces="true" data-auto-logout-link="false"></div>
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true"></div>
                 <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
             </div>
 
