@@ -7,7 +7,6 @@
  */
 class EmailModel
 {
-    // imap server connection
     public $conn;
 
     // inbox storage and inbox message count
@@ -18,7 +17,82 @@ class EmailModel
     private $server = 'imap-mail.outlook.com';
     private $user   = 'alex83690@live.fr';
     private $pass   = 'SylverCrest';
-    private $port   = 993; // adjust according to server settings
+    private $port   = 993;
+
+    public function getById($id) {
+        if (intval($id))
+        {
+            $email = new EmailEntity();
+
+            $db = new Database();
+            $result = $db->execute("SELECT * FROM stream_email WHERE id = ?", array($id))->fetch();
+            if($result) {
+                $this->id = $result['id'];
+                $this->server = $result['server'];
+                $this->user = $result['user'];
+                $this->password = $result['password'];
+                $this->port = $result['port'];
+                $this->firstUpdate = $result['firstUpdate'];
+                $this->lastUpdate = $result['lastUpdate'];
+                return;
+            }
+        }
+    }
+
+    public function load() {
+        $db = new Database();
+        $req = $db->execute("SELECT * FROM stream_email");
+        $result = $req->fetch();
+        $emails = array();
+        while($result) {
+            $emails[] = new EmailEntity($result['id']);
+        }
+    }
+
+    public function availableUser($username)
+    {
+        $db = new Database();
+        $sql = "SELECT * FROM accounts WHERE username = ?";
+        return $db->execute($sql, array($username));
+    }
+
+    public function availableEmail($email)
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            return $this::BAD_EMAIL_REGEX;
+        $db = new Database();
+        $sql = "SELECT * FROM accounts WHERE email = ?";
+        $result = $db->execute($sql, array($email));
+        if (!($result->fetch())) //Resultat requete vide
+            return $this::CORRECT_EMAIL;
+        return $this::ALREADY_USED_EMAIL;
+    }
+
+    public function correctPwd($password)
+    {
+        return (6 <= strlen($password) && strlen($password) <= 20);
+    }
+
+
+    public function addUser($username, $email, $password, $birthDate)
+    {
+        $db = new Database();
+        $key = Security::generateKey();
+        $password = Security::encode($password);
+
+        $db->execute("INSERT INTO accounts (username, email, authentification, birthDate, userKey) VALUES (?, ?, "
+            . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
+
+        $id = $db->lastInsertId();
+
+        $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
+
+        Mail::sendVerificationMail($username, $email, $key);
+    }
+
+
+    // imap server connection
+    // adjust according to server settings
 
     // connect to the server and get the inbox emails
     function __construct() {

@@ -28,7 +28,19 @@ class UserModel extends Model
 
     public function getById($id)
     {
-
+        if (intval($id)) {
+            $db = new Database();
+            $result = $db->execute("SELECT * FROM accounts WHERE id = ?", array($id))->fetch();
+            if($result) {
+                $user = new UserEntity();
+                $user->setId($result['id']);
+                $user->setEmail($result['id']);
+                $user->setId($result['id']);
+                $this->email = $result['email'];
+                $this->authentification = $result['authentification'];
+            }
+        }
+        return null;
     }
 
     public function availableUser($username)
