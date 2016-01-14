@@ -5,7 +5,12 @@
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
-require './vendor/abraham/twitteroauth/autoload.php';
+var_dump(scandir('./vendor'));
+
+
+require_once './vendor/autoload.php';
+
+//require '/../vendor/abraham/twitteroauth/autoload.php';
 
 class TestTwitterController extends Controller
 {
