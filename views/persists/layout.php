@@ -17,9 +17,10 @@
             <div class="section">
                 <?php
 
+                /** En attendant que ça remarche*/
                 View::getView('forms/loginForm');
                 View::getView('forms/preRegisterForm', $this->output('errors'));
-
+                /** Fin */
                 //                echo $this->output('_content');
                 ?>
                 <div id="fb-root"></div>
