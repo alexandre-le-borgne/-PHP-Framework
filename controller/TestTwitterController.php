@@ -4,6 +4,8 @@
  */
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+var_dump(scandir('./vendor'));
+
 
 require_once './vendor/autoload.php';
 
@@ -13,7 +15,6 @@ class TestTwitterController extends Controller
 {
     function TwitterAction()
     {
-        var_dump(scandir('./vendor'));
         //Tout cela pour récupérer les tweets d'un compte donné
         //Consumer key,
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
