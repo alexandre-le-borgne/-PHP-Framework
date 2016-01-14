@@ -105,7 +105,7 @@ class EmailModel
                     $plainmsg .= trim($data) ."\n\n";
             else
                 $htmlmsg .= $data ."<br><br>";
-            $charset = $params['charset'];  // assume all parts are same charset
+            $charset = (isset($params['charset']) ? $params['charset'] : '');  // assume all parts are same charset
         }
 
         // EMBEDDED MESSAGE
