@@ -3,8 +3,9 @@
  * Coucou
  */
 
-require './vendor/twitteroauth/autoload.php';
-require './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
+require_once './vendor/twitteroauth/autoload.php';
+require_once './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
+require_once './app/util/time_to_.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
@@ -35,7 +36,7 @@ class TestTwitterController extends Controller
 
         echo "<br/><br/>";
         foreach (array_slice($tweets, 0, 12) as $tweet):
-            echo "tweet : " . $autolink->autoLink($tweet->text) . "<br/>" . strtotime($tweet->created_at) . "<br/>";
+            echo "tweet : " . $autolink->autoLink($tweet->text) . "<br/>" . time_to_delay($tweet->created_at, true, "Posté il y a ") . "<br/>";
         endforeach;
 
 
