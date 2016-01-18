@@ -8,8 +8,6 @@
 
 class ViewPart {
     private $extend = null;
-    public function __construct() {
-    }
     public function extend($extend) {
         $this->extend = $extend;
     }

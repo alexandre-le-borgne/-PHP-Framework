@@ -37,7 +37,9 @@ class View
             ob_start();
 
             require $path;
+
             $content_for_layout = ob_get_clean();
+
             if($viewPart->super()) {
                 $this->render($viewPart->super(), array_merge($data, array('_content' => $content_for_layout)));
             }
