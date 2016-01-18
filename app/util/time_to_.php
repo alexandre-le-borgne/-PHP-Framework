@@ -6,11 +6,8 @@ function time_to_date($time, $debut = "", $fin = "", $format = "Y-n-j | G:i:s") 
     return $debut.date($format, $time).$fin;
 }
 
-function time_to_delay($time, $verbose = true, $debut = "", $fin = "", $base = null) {
-    if(!$time)
-        return;
-    if($base == null)
-        $base = time();
+function time_to_delay($time) {
+    $base = time();
 	$time = $base - $time;
     $years=intval($time / (3600 * 24 * 30 * 12));
     $time -= $years * 3600 * 24 * 30 * 12;
