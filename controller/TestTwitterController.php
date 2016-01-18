@@ -32,6 +32,10 @@ class TestTwitterController extends Controller
         foreach (array_slice($tweets, 0, 12) as $tweet):
             echo "tweet : $tweet->text<br/>";
         endforeach;
+
+
+
+        
     }
 }
 
