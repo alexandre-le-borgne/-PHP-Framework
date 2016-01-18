@@ -27,8 +27,7 @@ class View
     }
 
     public function render($view, $data = array()) {
-        if(!empty($data))
-            $this->data = $data;
+        $this->data = $data;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
 
