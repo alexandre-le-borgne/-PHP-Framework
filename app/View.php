@@ -28,11 +28,12 @@ class View
 
     public function render($view, $data = array()) {
         if(!empty($data))
-            $this->data = $data;
+            $this->data = array_merge($this->data, $data);
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
 
         if(file_exists($path)) {
+            $data = $this->data;
             $data['view'] = new ViewPart();
 
             extract($data);
@@ -43,8 +44,7 @@ class View
             $content_for_layout = ob_get_clean();
 
             if($data['view']->super()) {
-                $this->data['_content'] = $content_for_layout;
-                $this->render($data['view']->super(), $this->data);
+                $this->render($data['view']->super(), array('_content', $content_for_layout));
             }
             else {
                 echo $content_for_layout;
