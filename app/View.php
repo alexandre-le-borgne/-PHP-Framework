@@ -44,7 +44,7 @@ class View
             $content_for_layout = ob_get_clean();
 
             if($data['view']->super()) {
-                $this->render($data['view']->super(), array('_content', $content_for_layout));
+                $this->render($data['view']->super(), array('_content' => $content_for_layout));
             }
             else {
                 echo $content_for_layout;
