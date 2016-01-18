@@ -33,7 +33,7 @@ class View
             $viewPart = new ViewPart();
             $dataView['view'] = $viewPart;
 
-            extract($data);
+            extract($dataView);
             ob_start();
 
             require $path;
