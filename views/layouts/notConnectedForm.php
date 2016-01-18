@@ -5,7 +5,7 @@
  * Date: 13/01/2016
  * Time: 11:44
  */
-$view->extend('layouts/fullpage');
+//$view->extend('layouts/fullpage');
 echo "bite";
 $this->render('forms/loginForm');
 $this->render('forms/preRegisterForm', $this->output('errors'));
