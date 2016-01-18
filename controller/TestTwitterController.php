@@ -54,7 +54,7 @@ class TestTwitterController extends Controller
 
 
 //http://www.grafikart.fr/tutoriels/php/twitter-api-tweets-100
-//"token_type": "bearer",
+//"token_type": "bearer",s
 //"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
 /**
  *
