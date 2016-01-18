@@ -1,6 +1,5 @@
 <?php
 $view->extend('layouts/layout');
-var_dump($_content);
 ?>
 <div id="fullpage">
     <div class="section">

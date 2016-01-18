@@ -5,8 +5,6 @@
  * Date: 13/01/2016
  * Time: 11:29
  */
-var_dump($_content);
-
 ?>
 <!DOCTYPE html>
 <html>
