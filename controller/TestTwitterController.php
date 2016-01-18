@@ -5,7 +5,7 @@
 
 require './vendor/twitteroauth/autoload.php';
 
-use Abraham\TwitterOAuth;
+use Abraham\TwitterOAuth\TwitterOAuth;
 //use Abraham\TwitterOAuth\TwitterOAuth;
 
 //require '/../vendor/abraham/twitteroauth/autoload.php';
