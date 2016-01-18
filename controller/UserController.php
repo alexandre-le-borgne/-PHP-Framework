@@ -146,7 +146,7 @@ class UserController extends Controller
     }
 
     public function FacebookAction(){
-        $this->render("layouts/facebook.php");
+        $this->render("layouts/facebook");
     }
 
 }
