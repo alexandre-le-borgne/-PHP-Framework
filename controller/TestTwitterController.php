@@ -25,6 +25,7 @@ class TestTwitterController extends Controller
             'count' => 50
         ]);
 
+        $autolink = Twitter_Autolink::create();
 
 
         // (array_slice($tweets, 0, 12) car le count se fait avant d'avoir récupéré les tweets
@@ -32,12 +33,10 @@ class TestTwitterController extends Controller
 
         echo "<br/><br/>";
         foreach (array_slice($tweets, 0, 12) as $tweet):
-            echo "tweet : $tweet->text<br/>";
+            echo "tweet : " . $autolink->autoLink($tweet->text) . "<br/>";
         endforeach;
 
 
-
-        
     }
     /**
      * @param mixed $models
@@ -56,13 +55,12 @@ class TestTwitterController extends Controller
 //"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
 /**
  *
-
-    <ul class="white_text">
-    <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
-    <li><?php $this->render('layouts/tweetTemplate', $tweet->text); ?></li>
-    <?php endforeach; ?>
-    </ul>
-
+ *
+ * <ul class="white_text">
+ * <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
+ * <li><?php $this->render('layouts/tweetTemplate', $tweet->text); ?></li>
+ * <?php endforeach; ?>
+ * </ul>
  *
  *
  *
