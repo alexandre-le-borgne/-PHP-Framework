@@ -8,12 +8,15 @@
  */
 class EmailController extends Controller
 {
-    public function IndexAction($id = 0)
+    public function IndexAction($id = null)
     {
-        $this->loadModel('EmailModel');
-        $email = $this->emailmodel->get($id);
-        $header = (array) $email['header'];
-        $data = array('title' => $header['subject'], 'content' => $email['body']);
-        $this->render('layouts/email', $data);
+        if (intval($id)) {
+
+        } else {
+            $this->loadModel('EmailModel');
+            $emails = $this->emailmodel->getList();
+            $data = array('title' => 'Liste des emails', 'emails' => $emails);
+            $this->render('layouts/email', $data);
+        }
     }
 }

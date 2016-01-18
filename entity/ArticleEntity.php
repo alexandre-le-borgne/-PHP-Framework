@@ -7,24 +7,70 @@
  */
 
 class ArticleEntity {
+
     private $id, $title, $content, $date;
 
-    public function __construct($id) {
-        if (intval($id))
-        {
-            $db = new Database();
-            $result = $db->execute("SELECT * FROM article WHERE id = ?", array($id))->fetch();
-            if($result) {
-                $this->id = $result['id'];
-                $this->server = $result['server'];
-                $this->user = $result['user'];
-                $this->password = $result['password'];
-                $this->port = $result['port'];
-                $this->firstUpdate = $result['firstUpdate'];
-                $this->lastUpdate = $result['lastUpdate'];
-                return;
-            }
-        }
-        throw new TraceableException("Article non crée !");
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param mixed $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
     }
 }
