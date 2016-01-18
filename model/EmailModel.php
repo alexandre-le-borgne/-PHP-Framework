@@ -42,62 +42,44 @@ class EmailModel
         return trim( utf8_encode( quoted_printable_decode( $str)));
     }
 
-    function flattenParts($messageParts, $flattenedParts = array(), $prefix = '', $index = 1, $fullPrefix = true) {
 
-        foreach($messageParts as $part) {
-            $flattenedParts[$prefix.$index] = $part;
-            if(isset($part->parts)) {
-                if($part->type == 2) {
-                    $flattenedParts = flattenParts($part->parts, $flattenedParts, $prefix.$index.'.', 0, false);
-                }
-                elseif($fullPrefix) {
-                    $flattenedParts = flattenParts($part->parts, $flattenedParts, $prefix.$index.'.');
-                }
-                else {
-                    $flattenedParts = flattenParts($part->parts, $flattenedParts, $prefix);
-                }
-                unset($flattenedParts[$prefix.$index]->parts);
-            }
-            $index++;
+    function retrieve_message($mbox, $messageid)
+    {
+        $message = array();
+
+        $header = imap_header($mbox, $messageid);
+        $structure = imap_fetchstructure($mbox, $messageid, FT_UID);
+
+        $message['subject'] = $header->subject;
+        $message['fromaddress'] =   $header->fromaddress;
+        $message['toaddress'] =   $header->toaddress;
+        $message['ccaddress'] =   $header->ccaddress;
+        $message['date'] =   $header->date;
+
+        if (check_type($structure))
+        {
+            $message['body'] = imap_fetchbody($mbox,$messageid,"1"); ## GET THE BODY OF MULTI-PART MESSAGE
+            if(!$message['body']) {$message['body'] = '[NO TEXT ENTERED INTO THE MESSAGE]\n\n';}
+        }
+        else
+        {
+            $message['body'] = imap_body($mbox, $messageid);
+            if(!$message['body']) {$message['body'] = '[NO TEXT ENTERED INTO THE MESSAGE]\n\n';}
         }
 
-        return $flattenedParts;
-
+        return $message;
     }
 
-    function getPart($body, $encoding) {
-        switch($encoding) {
-            case 0: return $body; // 7BIT
-            case 1: return $body; // 8BIT
-            case 2: return $body; // BINARY
-            case 3: return base64_decode($body); // BASE64
-            case 4: return quoted_printable_decode($body); // QUOTED_PRINTABLE
-            case 5: return $body; // OTHER
+    function check_type($structure) ## CHECK THE TYPE
+    {
+        if($structure->type == 1)
+        {
+            return(true); ## YES THIS IS A MULTI-PART MESSAGE
         }
-    }
-
-    function getFilenameFromPart($part) {
-
-        $filename = '';
-
-        if($part->ifdparameters) {
-            foreach($part->dparameters as $object) {
-                if(strtolower($object->attribute) == 'filename') {
-                    $filename = $object->value;
-                }
-            }
+        else
+        {
+            return(false); ## NO THIS IS NOT A MULTI-PART MESSAGE
         }
-
-        if(!$filename && $part->ifparameters) {
-            foreach($part->parameters as $object) {
-                if(strtolower($object->attribute) == 'name') {
-                    $filename = $object->value;
-                }
-            }
-        }
-
-        return $filename;
-
     }
 
     public function getList()
@@ -112,10 +94,11 @@ class EmailModel
             $headerText = imap_fetchHeader($this->conn, $mail->uid, FT_UID & FT_PEEK);
             $header = imap_rfc822_parse_headers($headerText);
             $corps = imap_fetchbody($this->conn, $mail->uid, 1, FT_UID & FT_PEEK);
+            $message = $this->retrieve_message($this->conn, $mail->uid);
             $article = new ArticleEntity();
-            $article->setTitle($this->decode_body($mail->subject) . ' - ' . imap_utf8($header->from[0]->personal . ' [' . $header->from[0]->mailbox . '@' . $header->from[0]->host . ']'));
-            $article->setContent($this->decode_body($corps));
-            $article->setDate(imap_utf8($mail->date));
+            $article->setTitle($message['subject'] . ' - [' . $message['fromaddress'] . ']');
+            $article->setContent($message['body']);
+            $article->setDate($message['date']);
             $articles[] = $article;
         }
         return $articles;
