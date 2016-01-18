@@ -9,13 +9,10 @@ class AdminController extends Controller
     {
         if ($request->getSession()->isGranted(Session::USER_IS_ADMIN))
         {
-            $data = array
-            ();
-
-
-
+            $data = array();
             $this->render('layouts/adminDashboard', $data);
-        } else
+        }
+        else
         {
             throw new Exception('Utilisateur non admin');
         }
