@@ -50,8 +50,8 @@ class EmailModel
             $header = imap_rfc822_parse_headers($headerText);
             $corps = imap_fetchbody($this->conn, $mail->uid, 1, FT_UID);
             $article = new ArticleEntity();
-            $article->setTitle(imap_utf8($mail->subject).' - '.imap_utf8($header->from[0]->personal.' ['.$header->from[0]->mailbox.'@'.$header->from[0]->host.']'));
-            $article->setContent(imap_utf8($corps));
+            $article->setTitle(quoted_printable_decode ($mail->subject).' - '.imap_utf8($header->from[0]->personal.' ['.$header->from[0]->mailbox.'@'.$header->from[0]->host.']'));
+            $article->setContent(quoted_printable_decode ($corps));
             $article->setDate(imap_utf8($mail->date));
             $articles[] = $article;
         }
