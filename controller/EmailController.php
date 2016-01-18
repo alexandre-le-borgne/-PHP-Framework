@@ -6,7 +6,7 @@
  * Date: 18/01/2016
  * Time: 22:37
  */
-class EmailController
+class EmailController extends Controller
 {
     public function IndexAction($id = 0)
     {
