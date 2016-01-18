@@ -29,7 +29,7 @@ class TestTwitterController extends Controller
         // donc on récupère beaucoup et on gère le count intérieurement
 
         foreach (array_slice($tweets, 0, 12) as $tweet):
-            echo "tweet : $tweet </b>";
+            echo "tweet : $tweet->text</b>";
         endforeach;
     }
 }
