@@ -18,6 +18,8 @@ class View
     public function output ($var, $default = '') {
         if(isset($this->data[$var]))
             return $this->data[$var];
+        elseif(isset($var))
+            return $var;
         else
             return $default;
     }

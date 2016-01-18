@@ -12,6 +12,6 @@
         <?php $this->render('persists/head'); ?>
     </head>
     <body>
-        <?= $_content; ?>
+        <?= $this->output($_content) ?>
     </body>
 </html>
