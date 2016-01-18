@@ -3,8 +3,9 @@
  * Coucou
  */
 
-require './vendor/twitteroauth/autoload.php';
-require './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
+require_once './vendor/twitteroauth/autoload.php';
+require_once './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
+require_once './app/util/time_to_.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
@@ -35,7 +36,7 @@ class TestTwitterController extends Controller
 
         echo "<br/><br/>";
         foreach (array_slice($tweets, 0, 12) as $tweet):
-            echo "tweet : " . $autolink->autoLink($tweet->text) . "<br/>" . strtotime($tweet->created_at) . "<br/>";
+            echo 'tweet : ' . $autolink->autoLink($tweet->text) . '<br/>' . time_to_delay(time() - $tweet->created_at, true, 'Posté il y a ', '.', $tweet->created_at) . '<br/>';
         endforeach;
 
 
@@ -53,7 +54,7 @@ class TestTwitterController extends Controller
 
 
 //http://www.grafikart.fr/tutoriels/php/twitter-api-tweets-100
-//"token_type": "bearer",
+//"token_type": "bearer",s
 //"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
 /**
  *
