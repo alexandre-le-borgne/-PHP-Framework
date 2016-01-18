@@ -8,8 +8,8 @@
  */
 ?>
 <?php foreach ($articles as $article) : ?>
-    <h4><?= $article->getTitle() ?></h4>
-    <h5><?= $article->getDate() ?></h5>
+    <b><?= $article->getTitle() ?></b><br>
+    <i><?= $article->getDate() ?></i><br>
     <p><?= $article->getContent() ?></p>
     <br><br><hr><br><br>
 <?php endforeach; ?>
