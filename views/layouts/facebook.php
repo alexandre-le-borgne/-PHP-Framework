@@ -17,7 +17,7 @@ $appSecret = '038f3ed86d0e2e74ab627786aea08c25';
 $fb = new Facebook([
     'app_id' => $appId,
     'app_secret' => $appSecret,
-    'default_graph_version' => 'v2.2',
+    'default_graph_version' => 'v2.5',
 ]);
 
 $helper = $fb->getRedirectLoginHelper();
