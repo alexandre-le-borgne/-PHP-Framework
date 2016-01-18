@@ -7,8 +7,7 @@
  */
 namespace Facebook;
 
-require 'vendor/facebook/php-sdk-v4/src/autoload.php';
-use Facebook;
+require 'vendor/facebook/php-sdk-v4/src/Facebook/autoload.php';
 
 session_start();
 
