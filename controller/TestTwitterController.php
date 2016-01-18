@@ -28,13 +28,9 @@ class TestTwitterController extends Controller
         // (array_slice($tweets, 0, 12) car le count se fait avant d'avoir récupéré les tweets
         // donc on récupère beaucoup et on gère le count intérieurement
 
-        ?>
-        <ul class="white_text">
-            <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
-                <li><?php $this->render('layouts/tweetTemplate', $tweet->text); ?></li>
-            <?php endforeach; ?>
-        </ul>
-        <?php
+        foreach (array_slice($tweets, 0, 12) as $tweet):
+            echo "tweet : $tweet </b>";
+        endforeach;
     }
 }
 
@@ -42,3 +38,19 @@ class TestTwitterController extends Controller
 //http://www.grafikart.fr/tutoriels/php/twitter-api-tweets-100
 //"token_type": "bearer",
 //"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
+/**
+ *
+
+    <ul class="white_text">
+    <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
+    <li><?php $this->render('layouts/tweetTemplate', $tweet->text); ?></li>
+    <?php endforeach; ?>
+    </ul>
+
+ *
+ *
+ *
+ *
+ *
+ *
+ */
