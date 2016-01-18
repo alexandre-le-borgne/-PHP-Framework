@@ -3,10 +3,6 @@
  * Coucou
  */
 
-
-//var_dump(scandir('./vendor/abraham/twitteroauth/src'));
-
-require './vendor/autoload.php';
 require './vendor/abraham/twitteroauth/autoload.php';
 
 use Abraham\TwitterOAuth;
