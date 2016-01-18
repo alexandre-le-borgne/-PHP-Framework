@@ -5,6 +5,8 @@
  * Date: 18/01/2016
  * Time: 21:54
  */
+namespace Facebook;
+use Facebook\Facebook;
 
 session_start();
 
