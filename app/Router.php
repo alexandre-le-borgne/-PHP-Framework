@@ -20,7 +20,7 @@ class Router {
         $this->table[] = new Route('email', 'email', 'index');
         $this->table[] = new Route('rss', 'index', 'rss');
         $this->table[] = new Route('admin', 'admin', 'index');
-        $this->table[] = new Route('facebook', 'index', 'facebook');
+        $this->table[] = new Route('facebook', 'user', 'facebook');
 
         //$this->table[] = new Route('gmail', 'testGmail', 'gmail');
 
