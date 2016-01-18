@@ -20,9 +20,9 @@ $view->extend("exemple/body");
 </pre>
 <h3>Contenu pouvant ne pas avoir été précisé avec une valeur par défaut</h3>
 <pre>
-    <?= output('content', 'Mon contenu par défaut') ?>
+    <?= $this->output('content', 'Mon contenu par défaut') ?>
 </pre>
 <h3>Contenu protégé</h3>
 <pre>
-    <?= escape($content) ?>
+    <?= $this->escape($content) ?>
 </pre>
