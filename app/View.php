@@ -29,6 +29,9 @@ class View
     public function render($view, $data = array()) {
         if(!empty($data))
             $this->data = $data;
+        print_r($view);
+        print_r($this->data);
+        echo '<hr><br><br>';
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
 
