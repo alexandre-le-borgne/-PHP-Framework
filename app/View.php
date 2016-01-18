@@ -16,8 +16,6 @@ class View
     }
 
     public function output ($var, $default = '') {
-        echo $var." ::";
-        var_dump($this->data);
         if(isset($this->data[$var]))
             return $this->data[$var];
         else
@@ -32,7 +30,7 @@ class View
         $this->data = $data;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
-
+        
         if(file_exists($path)) {
             $data['view'] = new ViewPart();
 

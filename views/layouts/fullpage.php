@@ -4,7 +4,7 @@ $view->extend('layouts/layout');
 <div id="fullpage">
     <div class="section">
 
-        <?= $this->output('_content'); ?>
+        <?= $_content ?>
 
         <div id="fb-root"></div>
         <script>
