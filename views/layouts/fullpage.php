@@ -1,5 +1,5 @@
 <?php
-$view->extend('layouts/layout.php');
+$view->extend('layouts/layout');
 ?>
 <div id="fullpage">
     <div class="section">
