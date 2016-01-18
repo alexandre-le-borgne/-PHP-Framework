@@ -9,5 +9,3 @@ else
     gmail_summary_page($user, $password);
 
 ?>
-
-<h1><strong>BOUFFE MES COUILLES</strong></h1>

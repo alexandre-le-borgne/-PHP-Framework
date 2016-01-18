@@ -9,7 +9,6 @@
 
 <div class="preRegisterDiv">
 
-
     <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
     <!--PRE SIGN UP FORM-->

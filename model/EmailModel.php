@@ -49,48 +49,6 @@ class EmailModel
         }
     }
 
-    public function availableUser($username)
-    {
-        $db = new Database();
-        $sql = "SELECT * FROM accounts WHERE username = ?";
-        return $db->execute($sql, array($username));
-    }
-
-    public function availableEmail($email)
-    {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-            return $this::BAD_EMAIL_REGEX;
-        $db = new Database();
-        $sql = "SELECT * FROM accounts WHERE email = ?";
-        $result = $db->execute($sql, array($email));
-        if (!($result->fetch())) //Resultat requete vide
-            return $this::CORRECT_EMAIL;
-        return $this::ALREADY_USED_EMAIL;
-    }
-
-    public function correctPwd($password)
-    {
-        return (6 <= strlen($password) && strlen($password) <= 20);
-    }
-
-
-    public function addUser($username, $email, $password, $birthDate)
-    {
-        $db = new Database();
-        $key = Security::generateKey();
-        $password = Security::encode($password);
-
-        $db->execute("INSERT INTO accounts (username, email, authentification, birthDate, userKey) VALUES (?, ?, "
-            . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
-
-        $id = $db->lastInsertId();
-
-        $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
-
-        Mail::sendVerificationMail($username, $email, $key);
-    }
-
-
     // imap server connection
     // adjust according to server settings
 
