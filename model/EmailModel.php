@@ -25,13 +25,13 @@ class EmailModel
             $db = new Database();
             $result = $db->execute("SELECT * FROM stream_email WHERE id = ?", array($id))->fetch();
             if ($result) {
-                $this->id = $result['id'];
-                $this->server = $result['server'];
-                $this->user = $result['user'];
-                $this->password = $result['password'];
-                $this->port = $result['port'];
-                $this->firstUpdate = $result['firstUpdate'];
-                $this->lastUpdate = $result['lastUpdate'];
+                $email->setId($result['id']);
+                $email->setServer($result['server']);
+                $email->setUser($result['user']);
+                $email->setPassword($result['password']);
+                $email->setPort($result['port']);
+                $email->setFirstUpdate($result['firstUpdate']);
+                $email->setLastUpdate($result['lastUpdate']);
                 return;
             }
         }
@@ -47,9 +47,9 @@ class EmailModel
                 "<br />\n";
         foreach ($mails as $mail) {
             $article = new ArticleEntity();
-            $article->setTitle($mail->subject.' - '.$mail->from);
+            $article->setTitle(imap_utf8($mail->subject).' - '.imap_utf8($mail->from));
             //$article->setContent('');
-            $article->setDate($mail->date);
+            $article->setDate(imap_utf8($mail->date));
             $articles[] = $article;
         }
         return $articles;
