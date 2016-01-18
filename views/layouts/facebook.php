@@ -6,8 +6,6 @@
  * Time: 21:54
  */
 
-namespace Facebook;
-
 session_start();
 
 $appId = '1695359537375763';
