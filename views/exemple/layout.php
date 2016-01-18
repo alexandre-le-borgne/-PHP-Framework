@@ -19,6 +19,6 @@
     $this->render('exemple/head', array('title' => $title));
     ?>
     <body>
-        <?= $_content ?>
+        <?= $this->output('_content'); ?>
     </body>
 </html>

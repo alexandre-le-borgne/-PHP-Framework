@@ -6,5 +6,6 @@
  * Time: 11:44
  */
 $view->extend('layouts/fullpage');
+
 $this->render('forms/loginForm');
 $this->render('forms/preRegisterForm', $this->output('errors'));
