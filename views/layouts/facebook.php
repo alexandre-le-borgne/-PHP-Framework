@@ -6,7 +6,7 @@
  * Time: 21:54
  */
 namespace Facebook;
-use Facebook\Facebook;
+use Facebook;
 
 session_start();
 
