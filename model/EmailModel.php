@@ -48,7 +48,7 @@ class EmailModel
         $message = array();
 
         $header = imap_header($mbox, $messageid);
-        $structure = imap_fetchstructure($mbox, $messageid, FT_UID);
+        $structure = imap_fetchstructure($mbox, $messageid);
 
         $message['subject'] = $header->subject;
         $message['fromaddress'] =   $header->fromaddress;
