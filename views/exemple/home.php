@@ -12,7 +12,7 @@
  * passé en paramètre.
  */
 
-$this->extend("exemple/body");
+$view->extend("exemple/body");
 ?>
 <h3>Contenu</h3>
 <pre>
@@ -20,9 +20,9 @@ $this->extend("exemple/body");
 </pre>
 <h3>Contenu pouvant ne pas avoir été précisé avec une valeur par défaut</h3>
 <pre>
-    <?= $this->output('content', 'Mon contenu par défaut') ?>
+    <?= output('content', 'Mon contenu par défaut') ?>
 </pre>
 <h3>Contenu protégé</h3>
 <pre>
-    <?= $this->escape($content) ?>
+    <?= escape($content) ?>
 </pre>

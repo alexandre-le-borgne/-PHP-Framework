@@ -8,18 +8,10 @@
  */
 class View
 {
-    private static $view;
-    private $layout;
-    private $oldlayout;
-    private $data = array();
+    private static $instance;
 
     private function __construct()
     {
-    }
-
-    public function extend($layout) {
-        $this->oldlayout[] = $this->layout;
-        $this->layout = $layout;
     }
 
     public function output ($var, $default = '') {
@@ -34,22 +26,23 @@ class View
     }
 
     public function render($view, $data = array()) {
-        $this->data = $data;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
         if(file_exists($path)) {
-            if(is_array($data))
-                extract($data);
+            $dataView = $data;
+            $viewPart = new ViewPart();
+            $dataView['view'] = $viewPart;
+
+            extract($data);
             ob_start();
+
             require $path;
             $content_for_layout = ob_get_clean();
-            if(empty($this->layout)) {
-                echo $content_for_layout;
+            if($viewPart->super()) {
+                $this->render($viewPart->super(), array_merge($data, array('_content' => $content_for_layout)));
             }
             else {
-                $layout = $this->layout;
-                $this->layout = null;
-                $this->render($layout, array_merge($this->data, array('_content' => $content_for_layout)));
+                echo $content_for_layout;
             }
         }
         else {
@@ -62,9 +55,9 @@ class View
     }
 
     public static function getView($view, $data = array()) {
-        if (self::$view == null)
-            self::$view = new View();
-        self::$view->render($view, $data);
+        if (self::$instance == null)
+            self::$instance = new View();
+        self::$instance->render($view, $data);
     }
 
     public static function getAsset($asset) {
