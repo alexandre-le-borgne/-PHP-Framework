@@ -6,6 +6,8 @@
  * Time: 21:54
  */
 namespace Facebook;
+
+require 'vendor/facebook/php-sdk-v4/src/autoload.php';
 use Facebook;
 
 session_start();
