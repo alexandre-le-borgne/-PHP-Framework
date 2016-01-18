@@ -9,6 +9,7 @@
 class View
 {
     private static $instance;
+    private $data = array();
 
     private function __construct()
     {
@@ -26,22 +27,21 @@ class View
     }
 
     public function render($view, $data = array()) {
+        $this->data = $data;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
         if(file_exists($path)) {
-            $dataView = $data;
-            $viewPart = new ViewPart();
-            $dataView['view'] = $viewPart;
+            $data['view'] = new ViewPart();
 
-            extract($dataView);
+            extract($data);
             ob_start();
 
             require $path;
 
             $content_for_layout = ob_get_clean();
 
-            if($viewPart->super()) {
-                $this->render($viewPart->super(), array_merge($data, array('_content' => $content_for_layout)));
+            if($data['view']->super()) {
+                $this->render($data['view']->super(), array_merge($this->data, array('_content' => $content_for_layout)));
             }
             else {
                 echo $content_for_layout;
