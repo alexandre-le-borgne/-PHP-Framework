@@ -27,7 +27,6 @@ class View
     }
 
     public function render($view, $data = array()) {
-        unset($this->data['_content']);
         $this->data = array_merge($this->data, $data);
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
