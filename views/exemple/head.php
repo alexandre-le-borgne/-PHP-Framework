@@ -27,5 +27,3 @@
     <script type="text/javascript" src="<?= View::getAsset('js/slide.js') ?>"></script>
     <script type="text/javascript" src="<?= View::getAsset('js/script.js') ?>"></script>
 </head>
-<?php
-print_r(get_defined_vars());
