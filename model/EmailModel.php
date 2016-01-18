@@ -113,7 +113,7 @@ class EmailModel
             $header = imap_rfc822_parse_headers($headerText);
             $corps = imap_fetchbody($this->conn, $mail->uid, 1, FT_UID & FT_PEEK);
             $article = new ArticleEntity();
-            $article->setTitle($this->decode_qprint($mail->subject) . ' - ' . imap_utf8($header->from[0]->personal . ' [' . $header->from[0]->mailbox . '@' . $header->from[0]->host . ']'));
+            $article->setTitle($this->decode_body($mail->subject) . ' - ' . imap_utf8($header->from[0]->personal . ' [' . $header->from[0]->mailbox . '@' . $header->from[0]->host . ']'));
             $article->setContent($this->decode_body($corps));
             $article->setDate(imap_utf8($mail->date));
             $articles[] = $article;
