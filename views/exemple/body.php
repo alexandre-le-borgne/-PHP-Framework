@@ -5,7 +5,7 @@
  * Date: 13/01/2016
  * Time: 14:47
  */
-$view->extend('exemple/layout');
+$view->extend('exemple/layout', $title);
 ?>
 <body>
     <h1><?= $this->output('title', 'Titre par défaut') ?></h1>
