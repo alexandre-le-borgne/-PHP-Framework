@@ -27,7 +27,13 @@ class View
     }
 
     public function render($view, $data = array()) {
-        $this->data = array_merge($data, $this->data);
+        if(!empty($data)) {
+            if (!empty($this->data)) {
+                $this->data = array_merge($data, $this->data);
+            } else {
+                $this->data = $data;
+            }
+        }
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
 
