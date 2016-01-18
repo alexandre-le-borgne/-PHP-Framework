@@ -25,6 +25,8 @@ class TestTwitterController extends Controller
             'count' => 50
         ]);
 
+
+
         // (array_slice($tweets, 0, 12) car le count se fait avant d'avoir récupéré les tweets
         // donc on récupère beaucoup et on gère le count intérieurement
 
@@ -36,6 +38,15 @@ class TestTwitterController extends Controller
 
 
         
+    }
+    /**
+     * @param mixed $models
+     * @return Controller
+     */
+    public function setModels($models)
+    {
+        $this->models = $models;
+        return $this;
     }
 }
 
