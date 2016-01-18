@@ -6,19 +6,16 @@
 require './vendor/twitteroauth/autoload.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-//use Abraham\TwitterOAuth\TwitterOAuth;
-
-//require '/../vendor/abraham/twitteroauth/autoload.php';
 
 class TestTwitterController extends Controller
 {
     function TwitterAction()
     {
         //Tout cela pour récupérer les tweets d'un compte donné
-        //Consumer key,
+        //Consumer key, consumerSecret, oauthToken, oauthTokenSecret
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
-//        var_dump($accesstoken);
+        var_dump($accesstoken);
 
         $twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
 
@@ -31,17 +28,30 @@ class TestTwitterController extends Controller
         // (array_slice($tweets, 0, 12) car le count se fait avant d'avoir récupéré les tweets
         // donc on récupère beaucoup et on gère le count intérieurement
 
-        ?>
-        <ul class="white_text">
-            <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
-                <li><?php $this->render('layouts/tweetTemplate',$tweet->text); ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php
+        echo "<br/><br/>";
+        foreach (array_slice($tweets, 0, 12) as $tweet):
+            echo "tweet : $tweet->text<br/>";
+        endforeach;
     }
 }
 
-//s
+
 //http://www.grafikart.fr/tutoriels/php/twitter-api-tweets-100
 //"token_type": "bearer",
 //"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
+/**
+ *
+
+    <ul class="white_text">
+    <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
+    <li><?php $this->render('layouts/tweetTemplate', $tweet->text); ?></li>
+    <?php endforeach; ?>
+    </ul>
+
+ *
+ *
+ *
+ *
+ *
+ *
+ */
