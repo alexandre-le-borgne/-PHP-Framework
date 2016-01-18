@@ -4,7 +4,7 @@
  */
 
 require './vendor/twitteroauth/autoload.php';
-require './vendor/nojimage/twitter-text-php/lib/Twitter';
+require './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
