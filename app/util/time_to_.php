@@ -9,6 +9,7 @@ function time_to_date($time, $debut = "", $fin = "", $format = "Y-n-j | G:i:s") 
 function time_to_delay($time, $verbose = true) {
     $base = time();
 	$time = $base - $time;
+    print_r("diff" . $time);
     $years=intval($time / (3600 * 24 * 30 * 12));
     $time -= $years * 3600 * 24 * 30 * 12;
     $months=intval($time / (3600 * 24 * 30));
