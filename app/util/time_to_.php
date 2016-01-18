@@ -6,7 +6,7 @@ function time_to_date($time, $debut = "", $fin = "", $format = "Y-n-j | G:i:s") 
     return $debut.date($format, $time).$fin;
 }
 
-function time_to_delay($time) {
+function time_to_delay($time, $verbose = true) {
     $base = time();
 	$time = $base - $time;
     $years=intval($time / (3600 * 24 * 30 * 12));
@@ -20,7 +20,7 @@ function time_to_delay($time) {
     $minutes=intval($time / 60);
     $time -= $minutes * 60;
     $secondes=$time;
-	$return = $debut;
+	$return = '';
     if($years > 0) {
         $return .= $years;
         if($verbose) {
@@ -83,5 +83,5 @@ function time_to_delay($time) {
             $return .= "sec";
         }
 	}
-	return $return.$fin;
+	return $return;
 }
