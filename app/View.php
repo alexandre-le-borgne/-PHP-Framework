@@ -28,9 +28,10 @@ class View
 
     public function render($view, $data = array()) {
         $this->data = $data;
+        var_dump($this->data);
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
-        
+
         if(file_exists($path)) {
             $data['view'] = new ViewPart();
 
