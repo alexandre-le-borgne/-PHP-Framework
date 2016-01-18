@@ -36,7 +36,7 @@ class TestTwitterController extends Controller
 
         echo "<br/><br/>";
         foreach (array_slice($tweets, 0, 12) as $tweet):
-            echo 'tweet : ' . $autolink->autoLink($tweet->text) . '<br/>' . time_to_delay(time() - $tweet->created_at) . '<br/>' . $tweet->created_at;
+            echo 'tweet : ' . $autolink->autoLink($tweet->text) . '<br/>' . time_to_delay(strtotime($tweet->created_at)) . '<br/>' . $tweet->created_at;
         endforeach;
 
 
