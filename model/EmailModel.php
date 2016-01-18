@@ -56,7 +56,7 @@ class EmailModel
         $message['ccaddress'] =   $header->ccaddress;
         $message['date'] =   $header->date;
 
-        if (check_type($structure))
+        if ($this->check_type($structure))
         {
             $message['body'] = imap_fetchbody($mbox,$messageid,"1"); ## GET THE BODY OF MULTI-PART MESSAGE
             if(!$message['body']) {$message['body'] = '[NO TEXT ENTERED INTO THE MESSAGE]\n\n';}
