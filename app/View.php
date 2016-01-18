@@ -30,6 +30,7 @@ class View
         $this->data = $data;
         $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
         $path = $viewspath.$view.'.php';
+
         if(file_exists($path)) {
             $data['view'] = new ViewPart();
 
@@ -41,7 +42,8 @@ class View
             $content_for_layout = ob_get_clean();
 
             if($data['view']->super()) {
-                $this->render($data['view']->super(), array_merge($this->data, array('_content' => $content_for_layout)));
+                $this->data['_content'] = $content_for_layout;
+                $this->render($data['view']->super(), $this->data);
             }
             else {
                 echo $content_for_layout;
