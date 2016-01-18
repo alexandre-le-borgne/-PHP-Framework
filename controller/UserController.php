@@ -149,4 +149,8 @@ class UserController extends Controller
         $this->render("layouts/facebook");
     }
 
+    public function FbcallbackAction(){
+        $this->render("layouts/fbcallback");
+    }
+
 }

@@ -4,6 +4,7 @@
  */
 
 require './vendor/twitteroauth/autoload.php';
+require './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
@@ -25,6 +26,7 @@ class TestTwitterController extends Controller
             'count' => 50
         ]);
 
+        //Pour afficher avec les liens : + $autolink-autolink($tweet-text)
         $autolink = Twitter_Autolink::create();
 
 
