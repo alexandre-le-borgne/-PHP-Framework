@@ -15,7 +15,6 @@ class EmailController extends Controller
         } else {
             $this->loadModel('EmailModel');
             $emails = $this->emailmodel->getList();
-            print_r($emails);
             $data = array('title' => 'Liste des emails', 'articles' => $emails);
             $this->render('layouts/articles', $data);
         }

@@ -50,6 +50,7 @@ class EmailModel
             $article->setTitle($mail->subject.' - '.$mail->from);
             //$article->setContent('');
             $article->setDate($mail->date);
+            $articles[] = $article;
         }
         return $articles;
     }
