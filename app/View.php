@@ -16,6 +16,7 @@ class View
     }
 
     public function output ($var, $default = '') {
+        print_r($this->data);
         if(isset($this->data[$var]))
             return $this->data[$var];
         else
