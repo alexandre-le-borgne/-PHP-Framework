@@ -19,13 +19,13 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'Google/Auth/AssertionCredentials.php';
-require_once 'Google/Auth/Exception.php';
-require_once 'Google/Auth/Simple.php';
-require_once "Google/Http/Request.php";
-require_once 'Google/Signer/P12.php';
-require_once 'Google/Utils.php';
-require_once 'Google/Verifier/Pem.php';
+require_once 'google/Auth/AssertionCredentials.php';
+require_once 'google/Auth/Exception.php';
+require_once 'google/Auth/Simple.php';
+require_once "google/Http/Request.php";
+require_once 'google/Signer/P12.php';
+require_once 'google/Utils.php';
+require_once 'google/Verifier/Pem.php';
 
 class AuthTest extends BaseTest {
   const PRIVATE_KEY_FILE = "testdata/cert.p12";

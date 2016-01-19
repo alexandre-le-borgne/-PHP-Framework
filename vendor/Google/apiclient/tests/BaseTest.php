@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once 'Google/Client.php';
+require_once 'google/Client.php';
 
 class BaseTest extends PHPUnit_Framework_TestCase {
   const KEY = "<YOUR_API_KEY>";

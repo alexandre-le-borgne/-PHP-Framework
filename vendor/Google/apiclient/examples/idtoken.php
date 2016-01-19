@@ -18,7 +18,7 @@ include_once "templates/base.php";
 session_start();
 
 set_include_path("../src/" . PATH_SEPARATOR . get_include_path());
-require_once 'Google/Client.php';
+require_once 'google/Client.php';
 
 /************************************************
   ATTENTION: Fill in these values! Make sure

@@ -26,8 +26,8 @@ echo pageHeader("Simple API Access");
   anonymous quota (which is limited per IP).
  ************************************************/
 set_include_path("../src/" . PATH_SEPARATOR . get_include_path());
-require_once 'Google/Client.php';
-require_once 'Google/Service/Books.php';
+require_once 'google/Client.php';
+require_once 'google/Service/Books.php';
 
 /************************************************
   We create the client and set the simple API

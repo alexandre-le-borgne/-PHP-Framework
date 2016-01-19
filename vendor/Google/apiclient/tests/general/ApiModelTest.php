@@ -19,8 +19,8 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'Google/Service/AdExchangeBuyer.php';
-require_once 'Google/Service/Calendar.php';
+require_once 'google/Service/AdExchangeBuyer.php';
+require_once 'google/Service/Calendar.php';
 
 class ApiModelTest extends BaseTest
 {

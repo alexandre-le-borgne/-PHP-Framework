@@ -19,10 +19,10 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'Google/Auth/Exception.php';
-require_once 'Google/Auth/Simple.php';
-require_once 'Google/Client.php';
-require_once 'Google/Service/Drive.php';
+require_once 'google/Auth/Exception.php';
+require_once 'google/Auth/Simple.php';
+require_once 'google/Client.php';
+require_once 'google/Service/Drive.php';
 
 class ApiClientTest extends BaseTest {
   public function testClient() {

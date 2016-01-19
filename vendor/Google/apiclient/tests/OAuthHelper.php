@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 include_once 'bootstrap.php';
-require_once 'Google/Client.php';
+require_once 'google/Client.php';
 
 $client = new Google_Client();
 $client->setScopes(array(

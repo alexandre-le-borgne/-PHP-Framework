@@ -19,8 +19,8 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'Google/Service/Plus.php';
-require_once 'Google/Http/Batch.php';
+require_once 'google/Service/Plus.php';
+require_once 'google/Http/Batch.php';
 
 class ApiBatchRequestTest extends BaseTest {
   public $plus;

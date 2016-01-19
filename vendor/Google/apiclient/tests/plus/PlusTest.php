@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once 'Google/Service/Plus.php';
+require_once 'google/Service/Plus.php';
 
 class AllPlusTests extends PHPUnit_Framework_TestSuite {
   public static function suite() {

@@ -19,10 +19,10 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'Google/Cache/File.php';
-require_once 'Google/Cache/Memcache.php';
-require_once 'Google/Cache/Apc.php';
-require_once 'Google/Cache/Null.php';
+require_once 'google/Cache/File.php';
+require_once 'google/Cache/Memcache.php';
+require_once 'google/Cache/Apc.php';
+require_once 'google/Cache/Null.php';
 
 class CacheTest extends BaseTest {
 

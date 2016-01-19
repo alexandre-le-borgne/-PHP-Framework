@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once 'Google/Service/AdSense.php';
+require_once 'google/Service/AdSense.php';
 
 class AdsenseTests extends PHPUnit_Framework_TestSuite {
   public static function suite() {

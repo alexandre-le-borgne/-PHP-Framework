@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once 'Google/Service/Pagespeedonline.php';
+require_once 'google/Service/Pagespeedonline.php';
 
 class PageSpeedTest extends BaseTest {
   public $service;
