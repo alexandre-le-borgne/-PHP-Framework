@@ -20,7 +20,7 @@ class View
         var_dump($this->data);
         echo 'Verif' . $var;
         if (isset($this->data[$var])) {
-            echo ' OK';
+            echo ' OK : '.$this->data[$var];
             return $this->data[$var];
         } else
             return $default;
