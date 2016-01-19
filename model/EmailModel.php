@@ -102,7 +102,7 @@ class EmailModel
 
     public function getList()
     {
-        echo "1";
+        echo "2";
         $mails = imap_fetch_overview($this->conn, '1:' . $this->info->Nmsgs, 0);
         $articles = array();
         echo 'La boite aux lettres contient ' . $this->info->Nmsgs . ' message(s) dont ' .
@@ -119,7 +119,7 @@ class EmailModel
             }
             $article = new ArticleEntity();
             $article->setTitle($this->decode_body($mail->subject) . ' - ' . imap_utf8($header->from[0]->personal . ' [' . $header->from[0]->mailbox . '@' . $header->from[0]->host . ']'));
-            $article->setContent($this->decode_body($corps));
+            $article->setContent($corps);
             $article->setDate(imap_utf8($mail->date));
             $articles[] = $article;
         }
