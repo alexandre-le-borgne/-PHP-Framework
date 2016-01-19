@@ -22,6 +22,10 @@ class UserController extends Controller
         $gClient->setClientId($clientId);
         $gClient->setClientSecret($clientSecret);
         $gClient->setRedirectUri($redirectUrl);
+        $gClient->setScopes(array(
+            'https://www.googleapis.com/auth/userinfo.email',
+            'https://www.googleapis.com/auth/userinfo.profile'
+        ));
 
         $google_oauthV2 = new Google_Auth_OAuth2($gClient);
 
