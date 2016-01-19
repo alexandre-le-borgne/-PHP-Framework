@@ -132,6 +132,7 @@ class EmailModel
                 }else{
                     $body = imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1);
                 }
+                echo "$$$$".$structure->encoding . "$$$";
                 $article = new ArticleEntity();
                 $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
                 $article->setContent($body);
