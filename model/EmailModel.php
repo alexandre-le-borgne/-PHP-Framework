@@ -100,9 +100,37 @@ class EmailModel
 
     }
 
+    private function decode_imap_text($str){
+        $result = '';
+        $decode_header = imap_mime_header_decode($str);
+        foreach ($decode_header AS $obj) {
+            $result .= htmlspecialchars(rtrim($obj->text, "\t"));
+        }
+        return $result;
+    }
+
     public function getList()
     {
-        echo "4";
+        echo "5";
+        //$emails = imap_search($stream, 'SINCE '. date('d-M-Y',strtotime("-1 week")));
+        $emails = imap_search($this->conn, 'ALL');
+        $articles = array();
+        if (count($emails)){
+            // If we've got some email IDs, sort them from new to old and show them
+            rsort($emails);
+            foreach($emails as $email) {
+
+                // Fetch the email's overview and show subject, from and date.
+                $overview = imap_fetch_overview($this->conn,$email,0);
+                $article = new ArticleEntity();
+                $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
+                $article->setContent("Content");
+                $article->setDate($overview[0]->date);
+                $articles[] = $article;
+            }
+        }
+
+        /*
         $mails = imap_fetch_overview($this->conn, '1:' . $this->info->Nmsgs, 0);
         $articles = array();
         echo 'La boite aux lettres contient ' . $this->info->Nmsgs . ' message(s) dont ' .
@@ -116,7 +144,7 @@ class EmailModel
             /*$corps = imap_fetchbody($this->conn, $mail->uid,1.2);
             if(!strlen($corps)>0){
                 $corps = imap_fetchbody($this->conn, $mail->uid,1);
-            }*/
+            }* /
             $corps = imap_qprint(imap_fetchbody($this->conn, $mail->uid, 1.2));
             $article = new ArticleEntity();
             $article->setTitle($this->decode_body($mail->subject) . ' - ' . imap_utf8($header->from[0]->personal . ' [' . $header->from[0]->mailbox . '@' . $header->from[0]->host . ']'));
@@ -124,6 +152,7 @@ class EmailModel
             $article->setDate(imap_utf8($mail->date));
             $articles[] = $article;
         }
+        */
         return $articles;
     }
 
@@ -132,7 +161,7 @@ class EmailModel
         $this->connect();
     }
 
-    function close()
+    function __destruct()
     {
         imap_close($this->conn);
     }
