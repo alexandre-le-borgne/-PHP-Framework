@@ -119,6 +119,35 @@ class EmailModel
         return $body;
     }
 
+    public function decode7Bit($text) {
+        // If there are no spaces on the first line, assume that the body is
+        // actually base64-encoded, and decode it.
+        $lines = explode("\r\n", $text);
+        $first_line_words = explode(' ', $lines[0]);
+        if ($first_line_words[0] == $lines[0]) {
+            $text = base64_decode($text);
+        }
+
+        // Manually convert common encoded characters into their UTF-8 equivalents.
+        $characters = array(
+            '=20' => ' ', // space.
+            '=E2=80=99' => "'", // single quote.
+            '=0A' => "\r\n", // line break.
+            '=A0' => ' ', // non-breaking space.
+            '=C2=A0' => ' ', // non-breaking space.
+            "=\r\n" => '', // joined line.
+            '=E2=80=A6' => '…', // ellipsis.
+            '=E2=80=A2' => '•', // bullet.
+        );
+
+        // Loop through the encoded characters and replace any that are found.
+        foreach ($characters as $key => $value) {
+            $text = str_replace($key, $value, $text);
+        }
+
+        return $text;
+    }
+
     function get_part($imap, $uid, $mimetype, $structure = false, $partNumber = false)
     {
         if (!$structure) {
@@ -136,7 +165,7 @@ class EmailModel
                     case 4:
                         return imap_qprint($text);
                     case 0:
-                        return utf8_encode($text);
+                        return decode7Bit($text);
                     case 1:
                         return utf8_encode($text);
                     default:
@@ -173,7 +202,7 @@ class EmailModel
 
     public function getList()
     {
-        echo 'V12';
+        echo 'V14';
         //$emails = imap_search($stream, 'SINCE '. date('d-M-Y',strtotime("-1 week")));
         $emails = imap_search($this->conn, 'ALL');
         $articles = array();
