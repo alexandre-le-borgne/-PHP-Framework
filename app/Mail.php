@@ -21,7 +21,7 @@ class Mail
 
                 Pour activer votre compte, merci de cliquer sur le lien suivant <br/></p>
 
-                <a href='http://cuscom.fr/aaron/mailvalidation/$user/$key'>Inscrivez vous !</a>
+                <a href='http://alex83690.alwaysdata.net/aaron/mailvalidation/$user/$key'>Inscrivez vous !</a>
 
                 <p>Ce message est automatique, merci de ne pas y repondre.
 
