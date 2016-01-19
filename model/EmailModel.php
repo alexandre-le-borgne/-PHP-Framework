@@ -122,6 +122,7 @@ class EmailModel
 
                 // Fetch the email's overview and show subject, from and date.
                 $overview = imap_fetch_overview($this->conn,$email,0);
+                print_r($overview[0]);
                 $article = new ArticleEntity();
                 $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
                 $article->setContent("Content");
