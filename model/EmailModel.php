@@ -131,7 +131,7 @@ class EmailModel
                     $body = quoted_printable_decode(imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1));
                 }
                 elseif($structure->encoding == "1") {
-                    $body = imap_utf8(imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1));
+                    $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1));
                 }
                 elseif($structure->encoding == "4"){
                     $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1));
