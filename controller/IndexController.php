@@ -4,9 +4,8 @@
  * Le Controlleur correspondant a l'index
  *
  */
-require("vendor/google/apiclient/src/Google/Client.php");
-require("vendor/google/apiclient/src/Google/Auth/OAuth2.php");
-var_dump(scandir('vendor/'));
+require_once('./vendor/composer/autoload_real.php');
+
 class IndexController extends Controller
 {
     public function IndexAction(Request $request)
