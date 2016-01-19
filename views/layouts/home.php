@@ -7,5 +7,4 @@
  */
 $view->extend('layouts/layoutConnected');
 echo $this->output('home');
-
 ?>

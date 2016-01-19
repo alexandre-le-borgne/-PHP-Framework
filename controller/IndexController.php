@@ -4,6 +4,9 @@
  * Le Controlleur correspondant a l'index
  *
  */
+require("../vendor/Google/apiclient/src/Google/Client.php");
+require("../vendor/Google/apiclient/src/Google/Auth/OAuth2.php");
+
 class IndexController extends Controller
 {
     public function IndexAction(Request $request)
@@ -12,9 +15,26 @@ class IndexController extends Controller
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
         {
             $this->render('layouts/home', array('home' => 'Connecté'));
-        } else
+        }
+        else
         {
-            $this->render('layouts/notConnectedForm');
+            ######### edit details ##########
+            $clientId = '150676207911-artsrukbljruts6t2t0675q8c1l4o8av.apps.googleusercontent.com'; //Google CLIENT ID
+            $clientSecret = '6SllD3XReMzfXKdZl1M9A2lm'; //Google CLIENT SECRET
+            $redirectUrl = 'http://alex83690.alwaysdata.net/aaron/facebook';  //return url (url to script)
+            $homeUrl = 'http://alex83690.alwaysdata.net/aaron';  //return to home
+
+            $gClient = new Google_Client();
+            $gClient->setApplicationName('Se connecter à Aaron');
+            $gClient->setClientId($clientId);
+            $gClient->setClientSecret($clientSecret);
+            $gClient->setRedirectUri($redirectUrl);
+
+            $google_oauthV2 = new Google_Oauth2Service($gClient);
+
+            $authUrl = $gClient->createAuthUrl();
+
+            $this->render('layouts/notConnectedForm', array('authUrl' => $authUrl));
         }
     }
 

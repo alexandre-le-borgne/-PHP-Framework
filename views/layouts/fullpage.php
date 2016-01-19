@@ -20,7 +20,6 @@ $view->extend('layouts/layout');
                 console.log("ID Token: " + id_token);
             };
         </script>
-
         <script>
             function onSuccess(googleUser) {
                 console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
