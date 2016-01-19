@@ -102,7 +102,7 @@ class EmailModel
 
     public function getList()
     {
-        echo "2";
+        echo "3";
         $mails = imap_fetch_overview($this->conn, '1:' . $this->info->Nmsgs, 0);
         $articles = array();
         echo 'La boite aux lettres contient ' . $this->info->Nmsgs . ' message(s) dont ' .
@@ -113,10 +113,11 @@ class EmailModel
             $headerText = imap_fetchHeader($this->conn, $mail->uid, FT_UID & FT_PEEK);
             $header = imap_rfc822_parse_headers($headerText);
             //$corps = imap_fetchbody($this->conn, $mail->uid, 1, FT_UID & FT_PEEK);
-            $corps = imap_fetchbody($this->conn, $mail->uid,1.2);
+            /*$corps = imap_fetchbody($this->conn, $mail->uid,1.2);
             if(!strlen($corps)>0){
                 $corps = imap_fetchbody($this->conn, $mail->uid,1);
-            }
+            }*/
+            $corps = imap_qprint(imap_body($this->conn, $mail->uid));
             $article = new ArticleEntity();
             $article->setTitle($this->decode_body($mail->subject) . ' - ' . imap_utf8($header->from[0]->personal . ' [' . $header->from[0]->mailbox . '@' . $header->from[0]->host . ']'));
             $article->setContent($corps);
