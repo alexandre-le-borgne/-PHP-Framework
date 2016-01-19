@@ -136,9 +136,9 @@ class EmailModel
                     case 4:
                         return imap_qprint($text);
                     case 0:
-                        return imap_utf8($text);
+                        return utf8_encode(imap_utf8($text));
                     case 1:
-                        return utf8_encode($text);
+                        return quoted_printable_decode(imap_8bit ($text));
                     default:
                         return $text;
                 }
@@ -173,7 +173,7 @@ class EmailModel
 
     public function getList()
     {
-        echo 'V10';
+        echo 'V11';
         //$emails = imap_search($stream, 'SINCE '. date('d-M-Y',strtotime("-1 week")));
         $emails = imap_search($this->conn, 'ALL');
         $articles = array();
