@@ -9,6 +9,23 @@
 
 class UserController extends Controller
 {
+    public function GoogleAction(Request $request)
+    {
+        $this->loadModel('UserModel');
+
+        $id = $this->usermodel->getIdByNameOrEmail($request->post('login'));
+        $password = $request->post('password');
+        $userEntity = $this->usermodel->getById($id);
+        if ($userEntity && $userEntity->getAuthentification() == 0) {
+            $passwordEntity = $this->passwordmodel->getByUser($userEntity);
+            if (Security::equals($passwordEntity->getPassword(), $password)) {
+                $request->getSession()->set("id", $id);
+                $request->getSession()->set("password", $passwordEntity->getPassword());
+            }
+        }
+        $this->redirectToRoute('index');
+    }
+
     public function PreRegisterAction(Request $request)
     {
         $this->loadModel('UserModel');
