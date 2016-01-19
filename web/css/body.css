@@ -20,6 +20,11 @@ body
 
 }
 
+#section_home
+{
+    background-color: #56bc8a;
+}
+
 #title_section_news
 {
     float: left;

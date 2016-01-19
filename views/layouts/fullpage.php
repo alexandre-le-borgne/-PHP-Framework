@@ -2,7 +2,7 @@
 $view->extend('layouts/layout');
 ?>
 <div id="fullpage">
-    <div class="section">
+    <div class="section section_home">
 
         <?= $_content ?>
 
