@@ -198,7 +198,7 @@ class EmailModel
                 }
                 $article = new ArticleEntity();
                 $article->setTitle("$$$$".$structure->encoding . "$$$" .$this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
-                $article->setContent(getBody($overview[0]->uid, $this->conn));
+                $article->setContent($this->getBody($overview[0]->uid, $this->conn));
                 $article->setDate($overview[0]->date);
                 $articles[] = $article;
             }
