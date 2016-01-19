@@ -165,7 +165,7 @@ class EmailModel
                     case 4:
                         return imap_qprint($text);
                     case 0:
-                        return decode7Bit($text);
+                        return $this->decode7Bit($text);
                     case 1:
                         return utf8_encode($text);
                     default:
