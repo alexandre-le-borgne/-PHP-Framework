@@ -6,7 +6,7 @@
  * Date: 18/01/2016
  * Time: 23:38
  */
-$view->extend('layouts/layout');
+$view->extend('layouts/section_home');
 foreach ($articles as $article) : ?>
     <b><?= $article->getTitle() ?></b><br>
     <i><?= $article->getDate() ?></i><br>

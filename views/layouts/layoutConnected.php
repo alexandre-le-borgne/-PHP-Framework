@@ -6,7 +6,7 @@
  * Time: 17:05
  */
 
-$view->extend('layouts/layout');
+$view->extend('layouts/fullpage');
 $this->render('persists/header');
 echo "Couilles  gg!!!";
 
