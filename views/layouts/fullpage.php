@@ -6,7 +6,6 @@ $view->extend('layouts/layout');
 
         <?= $_content ?>
 
-        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
         <script>
             function onSignIn(googleUser) {
                 // Useful data for your client-side scripts:
@@ -22,7 +21,6 @@ $view->extend('layouts/layout');
             };
         </script>
 
-        <div id="my-signin2"></div>
         <script>
             function onSuccess(googleUser) {
                 console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
