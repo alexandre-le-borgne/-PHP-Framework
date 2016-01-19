@@ -202,7 +202,7 @@ class EmailModel
 
     public function getList()
     {
-        echo 'V14';
+        echo 'V15';
         //$emails = imap_search($stream, 'SINCE '. date('d-M-Y',strtotime("-1 week")));
         $emails = imap_search($this->conn, 'ALL');
         $articles = array();
