@@ -19,6 +19,7 @@ class IndexController extends Controller
         }
         else
         {
+            var_dump($_REQUEST);
             $this->render('layouts/notConnectedForm');
         }
     }
