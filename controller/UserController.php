@@ -11,10 +11,10 @@ class UserController extends Controller
 {
     public function GoogleAction(Request $request)
     {
-        /*######### edit details ##########
+        ######### edit details ##########
         $clientId = '150676207911-artsrukbljruts6t2t0675q8c1l4o8av.apps.googleusercontent.com'; //Google CLIENT ID
         $clientSecret = '6SllD3XReMzfXKdZl1M9A2lm'; //Google CLIENT SECRET
-        $redirectUrl = 'http://alex83690.alwaysdata.net/aaron/facebook';  //return url (url to script)
+        $redirectUrl = 'http://alex83690.alwaysdata.net/aaron/';  //return url (url to script)
         $homeUrl = 'http://alex83690.alwaysdata.net/aaron';  //return to home
 
         $gClient = new Google_Client();
@@ -23,40 +23,19 @@ class UserController extends Controller
         $gClient->setClientSecret($clientSecret);
         $gClient->setRedirectUri($redirectUrl);
 
-        $google_oauthV2 = new Google_Oauth2Service($gClient);
-        $gClient->authenticate();
-        if($request->getSession()->get('token')) {
-            $gClient->setAccessToken($request->getSession()->get('token'));
-        }
-        else {
-            $request->getSession()->set('token', $gClient->getAccessToken());
-        }
+        $google_oauthV2 = new Google_Auth_OAuth2($gClient);
 
         if ($gClient->getAccessToken()) {
-            $userProfile = $google_oauthV2->userinfo->get();
-            //DB Insert
-            $gUser = new Users();
-            $gUser->checkUser('google',$userProfile['id'],$userProfile['given_name'],$userProfile['family_name'],$userProfile['email'],$userProfile['gender'],$userProfile['locale'],$userProfile['link'],$userProfile['picture']);
-            $_SESSION['google_data'] = $userProfile; // Storing Google User Data in Session
-            header("location: account.php");
-            $_SESSION['token'] = $gClient->getAccessToken();
+            $userData = $google_oauthV2->userinfo->get();
+            $data['userData'] = $userData;
+            $_SESSION['access_token'] = $gClient->getAccessToken();
+        } else {
+            $authUrl = $gClient->createAuthUrl();
+            $data['authUrl'] = $authUrl;
         }
-
-
-        $this->loadModel('UserModel');
-
-        $id = $this->usermodel->getIdByNameOrEmail($request->post('login'));
-        $password = $request->post('password');
-        $userEntity = $this->usermodel->getById($id);
-        if ($userEntity && $userEntity->getAuthentification() == 0) {
-            $passwordEntity = $this->passwordmodel->getByUser($userEntity);
-            if (Security::equals($passwordEntity->getPassword(), $password)) {
-                $request->getSession()->set("id", $id);
-                $request->getSession()->set("password", $passwordEntity->getPassword());
-            }
-        }*/
         var_dump($_POST);
-        $this->render('forms/googleForm');
+        var_dump($data);
+        $this->render('forms/googleForm', $data);
         //$this->redirectToRoute('index');
     }
 
