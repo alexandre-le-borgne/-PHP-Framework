@@ -127,14 +127,19 @@ class EmailModel
                 if($structure->encoding == "3"){
                     $body = base64_decode(imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1));
                 }
+                elseif($structure->encoding == "0") {
+                    $body = quoted_printable_decode(imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1));
+                }
+                elseif($structure->encoding == "1") {
+                    $body = imap_utf8(imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1));
+                }
                 elseif($structure->encoding == "4"){
                     $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1));
                 }else{
                     $body = imap_fetchbody($this->conn, imap_msgno($this->conn,$overview[0]->uid), 1);
                 }
-                echo "$$$$".$structure->encoding . "$$$";
                 $article = new ArticleEntity();
-                $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
+                $article->setTitle("$$$$".$structure->encoding . "$$$" .$this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
                 $article->setContent($body);
                 $article->setDate($overview[0]->date);
                 $articles[] = $article;
