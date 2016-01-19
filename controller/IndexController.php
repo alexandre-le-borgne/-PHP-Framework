@@ -4,10 +4,9 @@
  * Le Controlleur correspondant a l'index
  *
  */
-var_dump(scandir('./vendor/google/apiclient/src/'));
-
-require_once('./vendor/google/apiclient/src/Google/Client.php');
-require_once('./vendor/google/apiclient/src/Google/Auth/OAuth2.php');
+set_include_path( get_include_path() . PATH_SEPARATOR . 'vendor/google/apiclient/src' );
+require_once('Google/Client.php');
+require_once('Google/Auth/OAuth2.php');
 
 class IndexController extends Controller
 {
