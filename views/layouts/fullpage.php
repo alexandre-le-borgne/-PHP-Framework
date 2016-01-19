@@ -23,25 +23,25 @@ $view->extend('layouts/layout');
         </script>
 
         <div id="my-signin2"></div>
-        <script>
-            function onSuccess(googleUser) {
-                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-            }
-            function onFailure(error) {
-                console.log(error);
-            }
-            function renderButton() {
-                gapi.signin2.render('my-signin2', {
-                    'scope': 'https://www.googleapis.com/auth/plus.login',
-                    'width': 200,
-                    'height': 50,
-                    'longtitle': true,
-                    'theme': 'dark',
-                    'onsuccess': onSuccess,
-                    'onfailure': onFailure
-                });
-            }
-        </script>
+<!--        <script>-->
+<!--            function onSuccess(googleUser) {-->
+<!--                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());-->
+<!--            }-->
+<!--            function onFailure(error) {-->
+<!--                console.log(error);-->
+<!--            }-->
+<!--            function renderButton() {-->
+<!--                gapi.signin2.render('my-signin2', {-->
+<!--                    'scope': 'https://www.googleapis.com/auth/plus.login',-->
+<!--                    'width': 200,-->
+<!--                    'height': 50,-->
+<!--                    'longtitle': true,-->
+<!--                    'theme': 'dark',-->
+<!--                    'onsuccess': onSuccess,-->
+<!--                    'onfailure': onFailure-->
+<!--                });-->
+<!--            }-->
+<!--        </script>-->
 
         <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
@@ -63,8 +63,6 @@ $view->extend('layouts/layout');
                 js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
-        <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true"></div>
-        <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
     </div>
 
     <div class="section section_news">

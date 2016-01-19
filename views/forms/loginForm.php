@@ -26,7 +26,7 @@
         <div class="socialConnect">
 <!--            <button type="submit"><img src="web/img/fb_icon_325x325.png" class="img-rounded"></button>-->
 <!--            <button type="submit"><img src="web/img/share-googleplus.png" class="img-rounded"></button>-->
-            <button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
+            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true"></div>
             <button class="btn btn-large btn-block" type="button">Block level button</button>
         </div>
     </form>
