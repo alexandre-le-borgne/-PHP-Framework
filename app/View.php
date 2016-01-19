@@ -60,6 +60,10 @@ class View
         }
     }
 
+    public function renderControllerAction($route, $data = array()) {
+        Kernel::getInstance()->generateResponse($route, $data);
+    }
+
     public function isGranted($role)
     {
         return Session::getInstance()->isGranted($role);

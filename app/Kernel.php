@@ -23,11 +23,17 @@ class Kernel
 
     public function response()
     {
-        $router = new Router();
         $request = Request::getInstance();
         $params = explode('/', $request->get('url'));
-        if (isset($params[0]) && $params[0] != '')
-            $route = $router->getRoute($params[0]);
+        $route = array_shift($params);
+        return $this->generateResponse($route, $params);
+    }
+
+    public function generateResponse($route = null, $params = array()) {
+        $router = new Router();
+        $request = Request::getInstance();
+        if($route)
+            $route = $router->getRoute($route);
         else
             $route = $router->getDefaultRoute();
         $controller = $route->getController();
@@ -36,13 +42,13 @@ class Kernel
         $r = new ReflectionMethod($controller, $action);
         $paramsOfFunction = $r->getParameters();
         $paramsToPass = array();
-        $indexParamsUrl = 1;
+        $indexParams = 0;
         foreach ($paramsOfFunction as $param) {
             if($param->getClass() != NULL && $param->getClass()->getName() == 'Request')
                 $paramsToPass[] = $request;
             else
-                if(isset($params[$indexParamsUrl]))
-                    $paramsToPass[] = $params[$indexParamsUrl++];
+                if(isset($params[$indexParams]))
+                    $paramsToPass[] = $params[$indexParams++];
                 else
                     $paramsToPass[] = null;
         }
