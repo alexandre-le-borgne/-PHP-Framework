@@ -55,6 +55,7 @@ class UserController extends Controller
                 $request->getSession()->set("password", $passwordEntity->getPassword());
             }
         }*/
+        var_dump($_POST);
         $this->render('forms/googleForm');
         //$this->redirectToRoute('index');
     }
