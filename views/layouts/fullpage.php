@@ -6,6 +6,46 @@ $view->extend('layouts/layout');
 
         <?= $_content ?>
 
+        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <script>
+            function onSignIn(googleUser) {
+                // Useful data for your client-side scripts:
+                var profile = googleUser.getBasicProfile();
+                console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                console.log("Name: " + profile.getName());
+                console.log("Image URL: " + profile.getImageUrl());
+                console.log("Email: " + profile.getEmail());
+
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+            };
+        </script>
+
+        <div id="my-signin2"></div>
+        <script>
+            function onSuccess(googleUser) {
+                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+            }
+            function onFailure(error) {
+                console.log(error);
+            }
+            function renderButton() {
+                gapi.signin2.render('my-signin2', {
+                    'scope': 'https://www.googleapis.com/auth/plus.login',
+                    'width': 200,
+                    'height': 50,
+                    'longtitle': true,
+                    'theme': 'dark',
+                    'onsuccess': onSuccess,
+                    'onfailure': onFailure
+                });
+            }
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+
         <div id="fb-root"></div>
         <script>
             window.fbAsyncInit = function() {
