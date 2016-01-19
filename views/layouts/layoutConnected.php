@@ -8,7 +8,7 @@
 
 $view->extend('layouts/layout');
 $this->render('persists/header');
-echo "Couilles !!!";
+echo "Couilles  gg!!!";
 
 echo $this->output('_content');
 
