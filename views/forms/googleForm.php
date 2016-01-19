@@ -9,7 +9,7 @@ if(isset($authUrl)) {
     ?>
     <a href="<?php echo $authUrl; ?>">
         <img id="google_signin" src="http://ucollect.biz/wp-content/uploads/2015/03/Red-signin_Long_base_44dp.png"
-             style="width: 100px;">
+             style="width: 200px;">
     </a>
     <?php
 }
