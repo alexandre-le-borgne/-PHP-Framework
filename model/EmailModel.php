@@ -111,7 +111,7 @@ class EmailModel
 
     public function getList()
     {
-        echo "5";
+        echo "6";
         //$emails = imap_search($stream, 'SINCE '. date('d-M-Y',strtotime("-1 week")));
         $emails = imap_search($this->conn, 'ALL');
         $articles = array();
@@ -123,9 +123,10 @@ class EmailModel
                 // Fetch the email's overview and show subject, from and date.
                 $overview = imap_fetch_overview($this->conn,$email,0);
                 echo $overview[0]->uid. ' : ';
+                $message = imap_fetchbody($this->conn,$email, 2);
                 $article = new ArticleEntity();
                 $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
-                $article->setContent("Content");
+                $article->setContent($message);
                 $article->setDate($overview[0]->date);
                 $articles[] = $article;
             }
