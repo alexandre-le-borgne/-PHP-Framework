@@ -4,8 +4,9 @@
  * Le Controlleur correspondant a l'index
  *
  */
-require_once('../vendor/google/src/Google/autoload.php');
+var_dump(scandir('..'));
 
+require_once('../vendor/google/src/Google/autoload.php');
 class IndexController extends Controller
 {
     public function IndexAction(Request $request)
