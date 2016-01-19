@@ -17,13 +17,9 @@ class View
 
     public function output($var, $default = '')
     {
-        var_dump($this->data);
-        echo 'Verif' . $var;
-        if (isset($this->data[$var])) {
-            echo ' OK : '.$this->data[$var];
+        if (isset($this->data[$var]))
             return $this->data[$var];
-        } else
-            return $default;
+        return $default;
     }
 
     public function escape($string)
