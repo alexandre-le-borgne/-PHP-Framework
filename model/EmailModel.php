@@ -102,6 +102,7 @@ class EmailModel
 
     public function getList()
     {
+        echo "1";
         $mails = imap_fetch_overview($this->conn, '1:' . $this->info->Nmsgs, 0);
         $articles = array();
         echo 'La boite aux lettres contient ' . $this->info->Nmsgs . ' message(s) dont ' .
