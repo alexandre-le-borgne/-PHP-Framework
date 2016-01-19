@@ -3,6 +3,6 @@
  * Validation du mail (Model ?)
  */
 
-$view->extend('layouts/layout.php');
+$view->extend('layouts/layout');
 
 $this->output('message');
