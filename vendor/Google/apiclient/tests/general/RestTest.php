@@ -16,8 +16,8 @@
  */
 
 require_once 'BaseTest.php';
-require_once "google/Http/Request.php";
-require_once "google/Http/REST.php";
+require_once "Google/Http/Request.php";
+require_once "Google/Http/REST.php";
 
 class RestTest extends BaseTest
 {

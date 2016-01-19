@@ -4,8 +4,8 @@
  * Le Controlleur correspondant a l'index
  *
  */
-require("../vendor/Google/apiclient/src/google/Client.php");
-require("../vendor/Google/apiclient/src/google/Auth/OAuth2.php");
+require("../vendor/google/apiclient/src/Google/Client.php");
+require("../vendor/google/apiclient/src/Google/Auth/OAuth2.php");
 
 class IndexController extends Controller
 {

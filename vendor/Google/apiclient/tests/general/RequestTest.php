@@ -19,8 +19,8 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'google/Service/Plus.php';
-require_once 'google/Http/Request.php';
+require_once 'Google/Service/Plus.php';
+require_once 'Google/Http/Request.php';
 
 class RequestTest extends BaseTest {
   public function testRequestParameters() 

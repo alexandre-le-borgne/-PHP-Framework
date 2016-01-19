@@ -19,9 +19,9 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'google/Http/Request.php';
-require_once 'google/IO/Curl.php';
-require_once 'google/IO/Stream.php';
+require_once 'Google/Http/Request.php';
+require_once 'Google/IO/Curl.php';
+require_once 'Google/IO/Stream.php';
 
 class IoTest extends BaseTest
 {

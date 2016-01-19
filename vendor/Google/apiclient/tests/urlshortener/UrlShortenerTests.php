@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-require_once 'google/Client.php';
-require_once 'google/Service/Urlshortener.php';
+require_once 'Google/Client.php';
+require_once 'Google/Service/Urlshortener.php';
 
 class UrlShortenerTests extends BaseTest {
   /** @var Google_UrlshortenerService */

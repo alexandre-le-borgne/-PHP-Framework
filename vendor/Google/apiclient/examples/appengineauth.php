@@ -22,9 +22,9 @@ include_once "templates/base.php";
   AppIdentity service on AppEngine.
  ************************************************/
 set_include_path("../src/" . PATH_SEPARATOR . get_include_path());
-require_once 'google/Client.php';
-require_once 'google/Auth/AppIdentity.php';
-require_once 'google/Service/Storage.php';
+require_once 'Google/Client.php';
+require_once 'Google/Auth/AppIdentity.php';
+require_once 'Google/Service/Storage.php';
 
 echo pageHeader("AppIdentity Account Access");
 

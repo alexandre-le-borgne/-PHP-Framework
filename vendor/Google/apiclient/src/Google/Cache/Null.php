@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-require_once "google/Cache/Abstract.php";
-require_once "google/Cache/Exception.php";
+require_once "Google/Cache/Abstract.php";
+require_once "Google/Cache/Exception.php";
 
 /**
  * A blank storage class, for cases where caching is not

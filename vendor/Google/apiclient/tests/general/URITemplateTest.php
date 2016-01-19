@@ -19,7 +19,7 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'google/Utils/URITemplate.php';
+require_once 'Google/Utils/URITemplate.php';
 
 class URITemplateTest extends BaseTest {
   public function testLevelOne() {

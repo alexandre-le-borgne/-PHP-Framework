@@ -23,9 +23,9 @@ echo pageHeader("Batching Queries");
   will batch up two queries into a single call.
  ************************************************/
 set_include_path("../src/" . PATH_SEPARATOR . get_include_path());
-require_once 'google/Client.php';
-require_once 'google/Service/Books.php';
-require_once 'google/Http/Batch.php';
+require_once 'Google/Client.php';
+require_once 'Google/Service/Books.php';
+require_once 'Google/Http/Batch.php';
 
 /************************************************
   We create the client and set the simple API

@@ -19,8 +19,8 @@
  */
 
 require_once "BaseTest.php";
-require_once "google/Auth/OAuth2.php";
-require_once "google/Http/Request.php";
+require_once "Google/Auth/OAuth2.php";
+require_once "Google/Http/Request.php";
 
 class ApiOAuth2Test extends BaseTest {
 

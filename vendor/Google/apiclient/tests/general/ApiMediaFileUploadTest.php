@@ -19,7 +19,7 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'google/Http/MediaFileUpload.php';
+require_once 'Google/Http/MediaFileUpload.php';
 
 class ApiMediaFileUploadTest extends BaseTest
 {

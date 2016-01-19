@@ -19,8 +19,8 @@
  */
 
 require_once 'BaseTest.php';
-require_once 'google/Http/CacheParser.php';
-require_once 'google/Http/Request.php';
+require_once 'Google/Http/CacheParser.php';
+require_once 'Google/Http/Request.php';
 
 class ApiCacheParserTest extends BaseTest {
   public function testIsResponseCacheable() {

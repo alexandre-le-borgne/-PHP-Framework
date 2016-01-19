@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once 'google/Service/YouTube.php';
+require_once 'Google/Service/YouTube.php';
 
 class YouTubeTests extends PHPUnit_Framework_TestSuite
 {

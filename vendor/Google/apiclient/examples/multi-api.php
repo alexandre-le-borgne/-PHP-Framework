@@ -18,9 +18,9 @@ include_once "templates/base.php";
 session_start();
 
 set_include_path("../src/" . PATH_SEPARATOR . get_include_path());
-require_once 'google/Client.php';
-require_once 'google/Service/YouTube.php';
-require_once 'google/Service/Drive.php';
+require_once 'Google/Client.php';
+require_once 'Google/Service/YouTube.php';
+require_once 'Google/Service/Drive.php';
 
 /************************************************
   ATTENTION: Fill in these values! Make sure
