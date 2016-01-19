@@ -11,8 +11,7 @@ class IndexController extends Controller
         $this->loadModel('IndexModel');
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
         {
-            echo "CONNECTE !";
-//            $this->render('layouts/lenomdenotreespaceconnecte');
+            $this->render('layouts/home', array('home' => 'Connecté'));
         } else
         {
             $this->render('layouts/notConnectedForm');

@@ -77,7 +77,7 @@ class UserController extends Controller
             }
 
             $this->usermodel->addUser($username, $email, $password, $birthDate);
-            $this->render('persists/validateInscription');
+            $this->render('layouts/validateInscription');
         }
     }
 
@@ -96,7 +96,7 @@ class UserController extends Controller
                 $request->getSession()->set("password", $passwordEntity->getPassword());
             }
         }
-        $this->render('layouts/layout');
+        $this->redirectToRoute('index');
     }
 
     public function MailResetAction(Request $request)
@@ -130,18 +130,18 @@ class UserController extends Controller
         }
 
         if($active == 1)
-            $this->render("persists/mailValidation", array("message" => "Votre compte est déjà actif"));
+            $this->render("layouts/mailValidation", array("message" => "Votre compte est déjà actif"));
         else
         {
             if($key == $realKey)
             {
-                $this->render("persists/mailValidation", array("message" => "Votre compte a bien été activé"));
+                $this->render("layouts/mailValidation", array("message" => "Votre compte a bien été activé"));
                 $req = "Update accounts Set active = 1 Where username = ?";
                 $db->execute($req, array($user));
                 Mail::sendWelcomingMail($email);
             }
             else
-                $this->render("persists/mailValidation", array("message" => "Erreur : aucun compte n'est associé à cette adresse"));
+                $this->render("layouts/mailValidation", array("message" => "Erreur : aucun compte n'est associé à cette adresse"));
         }
     }
 
