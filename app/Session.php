@@ -45,7 +45,7 @@ class Session
         {
             $userModel = new UserModel();
             $user = $userModel->getById($id);
-            if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD) {
+            if ($user && $user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD) {
                 $passwordModel = new PasswordModel();
                 $passwordEntity = $passwordModel->getByUser($user);
                 return $passwordEntity->getPassword() === $password;
