@@ -7,3 +7,7 @@
  */
 
 echo "Couilles !!!";
+$view->extend('layouts/layout');
+$this->render('persist/header');
+echo $this->output('_content');
+
