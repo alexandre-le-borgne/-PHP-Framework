@@ -4,7 +4,7 @@
  * Le Controlleur correspondant a l'index
  *
  */
-require_once('./vendor/composer/autoload_real.php');
+require_once('./vendor/google/src/Google/autoload.php');
 
 class IndexController extends Controller
 {
