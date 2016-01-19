@@ -6,7 +6,8 @@
  */
 var_dump(scandir('./vendor/google/apiclient/src/'));
 
-require_once('./vendor/google/apiclient/src/Google/autoload.php');
+require_once('./vendor/google/apiclient/src/Google/Client.php');
+require_once('./vendor/google/apiclient/src/Google/Auth/OAuth2.php');
 
 class IndexController extends Controller
 {
