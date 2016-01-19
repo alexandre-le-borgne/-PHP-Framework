@@ -15,30 +15,35 @@ class View
     {
     }
 
-    public function output ($var, $default = '') {
-        print_r($this->data);
-        if(isset($this->data[$var]))
+    public function output($var, $default = '')
+    {
+        var_dump($this->data);
+        echo 'Verif' . $var;
+        if (isset($this->data[$var])) {
+            echo ' OK';
             return $this->data[$var];
-        else
+        } else
             return $default;
     }
 
-    public function escape($string) {
+    public function escape($string)
+    {
         return Security::escape($string);
     }
 
-    public function render($view, $data = array()) {
-        if(!empty($data)) {
+    public function render($view, $data = array())
+    {
+        if (!empty($data)) {
             if (!empty($this->data)) {
                 $this->data = array_merge($data, $this->data);
             } else {
                 $this->data = $data;
             }
         }
-        $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
-        $path = $viewspath.$view.'.php';
+        $viewspath = __DIR__ . DIRECTORY_SEPARATOR . '../views/';
+        $path = $viewspath . $view . '.php';
 
-        if(file_exists($path)) {
+        if (file_exists($path)) {
             $data['view'] = new ViewPart();
 
             extract($data);
@@ -48,30 +53,31 @@ class View
 
             $content_for_layout = ob_get_clean();
 
-            if($data['view']->super()) {
+            if ($data['view']->super()) {
                 $this->data['_content'] = $content_for_layout;
                 $this->render($data['view']->super(), $this->data);
-            }
-            else {
+            } else {
                 echo $content_for_layout;
             }
-        }
-        else {
-            throw new NotFoundException("VIEW NOT FOUND | ".$path." |");
+        } else {
+            throw new NotFoundException("VIEW NOT FOUND | " . $path . " |");
         }
     }
 
-    public function isGranted($role) {
+    public function isGranted($role)
+    {
         return Session::getInstance()->isGranted($role);
     }
 
-    public static function getView($view, $data = array()) {
+    public static function getView($view, $data = array())
+    {
         if (self::$instance == null)
             self::$instance = new View();
         self::$instance->render($view, $data);
     }
 
-    public static function getAsset($asset) {
-        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http')."://" . $_SERVER['SERVER_NAME'].'/aaron/web/'.$asset;
+    public static function getAsset($asset)
+    {
+        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . "://" . $_SERVER['SERVER_NAME'] . '/aaron/web/' . $asset;
     }
 }
