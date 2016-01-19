@@ -7,5 +7,5 @@
  */
 var_dump($this->data);
 $view->extend('layouts/layout');
-$this->output('home');
+echo $this->output('home');
 ?>
