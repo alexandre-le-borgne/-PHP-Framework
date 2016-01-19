@@ -6,8 +6,9 @@
  * Time: 17:04
  */
 
-echo "Couilles !!!";
 $view->extend('layouts/layout');
-$this->render('persist/header');
+$this->render('persists/header');
+echo "Couilles !!!";
+
 echo $this->output('_content');
 
