@@ -6,14 +6,15 @@
  *   et fais quelques pretraitements
  * - RegisterAction est appele a la suite du registerForm, lors du submit
  */
-
-set_include_path( get_include_path() . PATH_SEPARATOR . 'vendor/google/apiclient/src' );
+$path = get_include_path();
+set_include_path( $path . PATH_SEPARATOR . 'vendor/google/apiclient/src' );
 require_once('Google/Client.php');
 require_once('Google/Auth/OAuth2.php');
-set_include_path( get_include_path() . PATH_SEPARATOR . 'vendor/facebook/php-sdk-v4/src' );
+set_include_path( $path . PATH_SEPARATOR . 'vendor/facebook/php-sdk-v4/src' );
 var_dump(scandir('.'));
 
 require_once('Facebook/autoload.php');
+set_include_path($path);
 
 use Facebook;
 
