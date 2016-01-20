@@ -66,14 +66,16 @@ class RssModel extends Model
         $result = $db->execute($req);
 
         if($result){
-            exit;
+
         }
-        $firstUpdate = $post->getDate() - $post->getTimestamp();
+        else {
+            $firstUpdate = $post->getDate() - $post->getTimestamp();
 
-        $lastUpdate = $post->getDate();
+            $lastUpdate = $post->getDate();
 
-        $req = "INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES ('$url', '$firstUpdate', '$lastUpdate')";
-        $db->execute($req);
+            $req = "INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES ('$url', '$firstUpdate', '$lastUpdate')";
+            $db->execute($req);
+        }
 
     }
 
