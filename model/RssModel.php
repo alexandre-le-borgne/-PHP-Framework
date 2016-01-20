@@ -62,8 +62,14 @@ class RssModel extends Model
 
         $url = $post->getLink();
 
-        $firstUpdate = age(strtotime($post->getDate()), $post->getTimestamp());
-        $lastUpdate = $post->getDate();
+        $date = new DateTime();
+        $date->add(DateInterval::createFromDateString('yesterday'));
+        $firstUpdate = $date->format('Y-m-d H:i:s');
+
+
+        $date = new DateTime();
+        $date->add(DateInterval::createFromDateString('today'));
+        $lastUpdate = $date->format('Y-m-d H:i:s');
 
         var_dump($url);
         var_dump($firstUpdate);
