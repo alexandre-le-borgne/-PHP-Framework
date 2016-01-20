@@ -29,17 +29,21 @@ class View
 
     public function render($view, $data = array())
     {
-        if (!empty($data)) {
-            if (!empty($this->data)) {
+        if (!empty($data))
+        {
+            if (!empty($this->data))
+            {
                 $this->data = array_merge($data, $this->data);
-            } else {
+            } else
+            {
                 $this->data = $data;
             }
         }
         $viewspath = __DIR__ . DIRECTORY_SEPARATOR . '../views/';
         $path = $viewspath . $view . '.php';
 
-        if (file_exists($path)) {
+        if (file_exists($path))
+        {
             $data['view'] = new ViewPart();
 
             extract($data);
@@ -49,18 +53,22 @@ class View
 
             $content_for_layout = ob_get_clean();
 
-            if ($data['view']->super()) {
+            if ($data['view']->super())
+            {
                 $this->data['_content'] = $content_for_layout;
                 $this->render($data['view']->super(), $this->data);
-            } else {
+            } else
+            {
                 echo $content_for_layout;
             }
-        } else {
+        } else
+        {
             throw new NotFoundException("VIEW NOT FOUND | " . $path . " |");
         }
     }
 
-    public function renderControllerAction($route, $data = array()) {
+    public function renderControllerAction($route, $data = array())
+    {
         Kernel::getInstance()->generateResponse($route, $data);
     }
 
@@ -79,5 +87,10 @@ class View
     public static function getAsset($asset)
     {
         return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . "://" . $_SERVER['SERVER_NAME'] . '/aaron/web/' . $asset;
+    }
+
+    public static function getUrlFromRoute($route)
+    {
+        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . "://" . $_SERVER['SERVER_NAME'] . '/aaron/' . $route;
     }
 }
