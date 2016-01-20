@@ -6,17 +6,6 @@
  *   et fais quelques pretraitements
  * - RegisterAction est appele a la suite du registerForm, lors du submit
  */
-/*
-$path = get_include_path();
-set_include_path( $path . PATH_SEPARATOR . 'vendor/google/apiclient/src' );
-require_once('Google/Client.php');
-require_once('Google/Auth/OAuth2.php');
-/*set_include_path( $path . '/vendor/facebook/php-sdk-v4/src' );
-var_dump(scandir($path .  '/vendor/facebook/php-sdk-v4/src'));
-
-require_once('Facebook/Facebook.php');
-set_include_path($path);
-*/
 
 class UserController extends Controller
 {
@@ -26,7 +15,6 @@ class UserController extends Controller
         $clientId = '150676207911-artsrukbljruts6t2t0675q8c1l4o8av.apps.googleusercontent.com'; //Google CLIENT ID
         $clientSecret = '6SllD3XReMzfXKdZl1M9A2lm'; //Google CLIENT SECRET
         $redirectUrl = 'http://alex83690.alwaysdata.net/aaron/';  //return url (url to script)
-        $homeUrl = 'http://alex83690.alwaysdata.net/aaron';  //return to home
 
         $gClient = new Google_Client();
         $gClient->setApplicationName('Se connecter à Aaron');
@@ -45,15 +33,17 @@ class UserController extends Controller
             $userData = $google_oauthV2->userinfo->get();
             $data['userData'] = $userData;
             $_SESSION['access_token'] = $gClient->getAccessToken();
+
         } else
         {
             $authUrl = $gClient->createAuthUrl();
             $data['authUrl'] = $authUrl;
         }
-        //var_dump($_POST);
-        //var_dump($data);
-        $this->render('forms/googleForm', $data);
-        //$this->redirectToRoute('index');
+        var_dump($gClient);
+        if($request->isInternal())
+            $this->render('forms/googleForm', $data);
+        else
+            $this->redirectToRoute('index');
     }
 
     public function PreRegisterAction(Request $request)

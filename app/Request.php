@@ -9,14 +9,24 @@
 class Request
 {
     private static $instance;
+    private $internal;
 
     private function __construct()
     {
+        $this->internal;
     }
 
     public function isAjaxRequest()
     {
         return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+    }
+
+    public function isInternal() {
+        return $this->internal;
+    }
+
+    public function setInternal($internal) {
+        $this->internal = $internal;
     }
 
     public function get($name)

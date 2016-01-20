@@ -69,7 +69,7 @@ class View
 
     public function renderControllerAction($route, $data = array())
     {
-        Kernel::getInstance()->generateResponse($route, $data);
+        Kernel::getInstance()->generateResponse($route, $data, true);
     }
 
     public function isGranted($role)

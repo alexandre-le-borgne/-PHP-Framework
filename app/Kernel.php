@@ -29,9 +29,10 @@ class Kernel
         return $this->generateResponse($route, $params);
     }
 
-    public function generateResponse($route = null, $params = array()) {
+    public function generateResponse($route = null, $params = array(), $internal = false) {
         $router = new Router();
         $request = Request::getInstance();
+        $request->setInternal($internal);
         if($route)
             $route = $router->getRoute($route);
         else
