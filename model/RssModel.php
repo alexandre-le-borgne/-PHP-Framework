@@ -62,6 +62,12 @@ class RssModel extends Model
 
         $url = $post->getLink();
 
+        $req = "SELECT * FROM stream_rss WHERE url = '$url'";
+        $result = $db->execute($req);
+
+        if($result){
+            exit;
+        }
         $firstUpdate = $post->getDate() - $post->getTimestamp();
 
         $lastUpdate = $post->getDate();
