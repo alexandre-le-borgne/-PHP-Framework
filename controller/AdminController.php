@@ -35,6 +35,6 @@ class AdminController extends Controller
             echo 'olol jte supprim';
         }
         else
-            $this->redirectToRoute('adminusers');
+            $this->redirectToRoute('adminusers');//Probleme
     }
 }
