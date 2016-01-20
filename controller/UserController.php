@@ -223,7 +223,7 @@ class UserController extends Controller
                 echo "Error Reason: " . $helper->getErrorReason() . "\n";
                 echo "Error Description: " . $helper->getErrorDescription() . "\n";
             } else {
-                $this->redirect('HTTP/1.0 400 Bad Request');
+                header('HTTP/1.0 400 Bad Request');
                 echo 'Bad request';
             }
             exit;
