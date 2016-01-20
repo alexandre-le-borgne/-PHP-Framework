@@ -7,13 +7,32 @@ class TestTwitterController extends Controller
 {
     function TwitterAction()
     {
+        $i = 1;
+        $channel = 'Chouxfleur42';
         $twitterModel = new TwitterModel();
-        $tweets = $twitterModel->getTweets('Chouxfleur42', true, 12);
+        $tweets = $twitterModel->getTweets($channel, true, 12);
 
         $autolink = Twitter_Autolink::create();
-        echo "<br/><br/>";
+
+        $articles = array();
+
         foreach ($tweets as $tweet):
-            echo 'tweet : ' . $autolink->autoLink($tweet->text) . '<br/>Il y a ' . time_to_delay(strtotime($tweet->created_at)) . '.<br/>';
+        {
+            $article = new ArticleEntity();
+            $article->setTitle($channel);
+            $article->setContent($tweet->text);
+            $article->setDate($tweet->created_at);
+            $article->setId($i++);
+            array_push($articles, $article);
+        }
+        endforeach;
+
+        echo "<br/><br/>";
+        foreach ($articles as $article):
+            if ($article instanceof ArticleEntity)
+                echo 'Titre : ' . $autolink->autoLink('@' . $article->getTitle()) . '<br/>' .
+                    $autolink->autoLink($article->getContent()) .
+                    '<br/>Il y a ' . time_to_delay(strtotime($article->getDate())) . '.<br/>';
         endforeach;
     }
 }

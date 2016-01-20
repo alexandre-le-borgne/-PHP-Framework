@@ -75,7 +75,7 @@ class RssModel extends Model
         var_dump($firstUpdate);
         var_dump($last);
 
-        $req = "INSERT INTO stream_rss ('url', 'firstUpdate', 'lastUpdate') VALUES ($url, $firstUpdate, $last))";
+        $req = "INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES ('$url', '$firstUpdate', '$last')";
         $db->execute($req);
 
     }
