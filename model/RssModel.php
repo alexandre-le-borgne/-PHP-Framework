@@ -61,10 +61,10 @@ class RssModel extends Model
 
         $req = "SELECT * FROM stream_rss";
         $result = $db->execute($req);
-        var_dump($result);
+
 $i = 0;
         while(($fetch = $result->fetch()) && $i < 20) {
-            var_dump($fetch);
+
             $url = $this->resolveFile($fetch['url']);
             if ($x = simplexml_load_file($url)) {
                 foreach ($x->channel->item as $item) {
