@@ -201,7 +201,7 @@ class UserController extends Controller
             'default_graph_version' => 'v2.5',
         ]);
         $helper = $fb->getRedirectLoginHelper();
-        $loginUrl = $helper->getLoginUrl('http://http://alex83690.alwaysdata.net/aaron//facebook');
+        $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook');
 
         $helper = $fb->getRedirectLoginHelper();
         try {
