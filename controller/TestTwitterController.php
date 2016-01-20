@@ -10,7 +10,7 @@ class TestTwitterController extends Controller
         $i = 1;
         $channel = 'Chouxfleur42';
         $twitterModel = new TwitterModel();
-        $tweets = $twitterModel->getTweet($channel, true, 12);
+        $tweets = $twitterModel->getTweets($channel, true, 12);
 
         $autolink = Twitter_Autolink::create();
 
