@@ -14,15 +14,7 @@ class RssModel extends Model
 
     public function __construct($url)
     {
-        $url = $this->resolveFile($url);
-        if (!($x = simplexml_load_file($url)))
-            throw new TraceableException("Le flux '$url' n'a pas pu être parsé en tant que flux RSS.");
 
-        foreach ($x->channel->item as $item)
-        {
-            $this->posts[] = new PostModel($item->pubDate, strtotime($item->pubDate), $item->link, $item->title,
-                                      $item->description, $this->summarizeText($item->description));
-        }
     }
 
     private function resolveFile($url) {
@@ -57,27 +49,37 @@ class RssModel extends Model
         return new RssEntity($id);
     }
 
-    public function addRss($post){
+    public function createStream($url, $firstUpdate){
         $db = new Database();
-
-        $url = $post->getLink();
-
         $req = "SELECT * FROM stream_rss WHERE url = ?";
         $result = $db->execute($req, array($url));
 
-        if($result->fetch()){
-
+        if(!$result->fetch()){
+            $req = "INSERT INTO stream_rss (url, firstUpadte, lastUpdate) VALUES (? , ?, ?)";
+            $db->execute($req, array($url, $firstUpdate, today()));
         }
-        else {
-            $title = $post->getTitle();
-            $content = $post->getText();
+    }
 
-            $date = $post->getDate();
+    public function cron(){
+        $db = new Database();
 
-            $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, ". ArticleModel::RSS  .", ?, ?)";
-            $db->execute($req, array($title, $content, $date, $url));
+        $req = "SELECT * FROM stream_rss";
+        $result = $db->execute($req);
+$i = 0;
+        while($fetch = $result->fetch() && $i < 20) {
+            $url = $this->resolveFile($fetch->url);
+            if ($x = simplexml_load_file($url)) {
+                foreach ($x->channel->item as $item) {
+                    $req = "SELECT * FROM article WHERE url = ?";
+                    $result = $db->execute($req, array($item->link));
+                    if(!$result->fetch()) {
+                        $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, " . ArticleModel::RSS . ", ?, ?)";
+                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link));
+                    }
+                }
+            }
+        ++$i;
         }
-
     }
 
 }

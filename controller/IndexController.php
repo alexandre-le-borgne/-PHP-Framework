@@ -25,13 +25,10 @@ class IndexController extends Controller
 
     public function RssAction()
     {
-        $feed = new RssModel("http://www.journaldunet.com/rss/");
         //var_dump($feed->getPosts());
-        foreach ($feed->getPosts() as $post)
-        {
-            echo $post->getSummary() . "<br/>";
-            $feed->addRss($post);
-        }
+        $this->loadModel('RssModel');
+        $this->rssmodel->createStream("http://www.journaldunet.com/rss/", time() - 608400);
+        $this->rssmodel->cron();
 
     }
 }

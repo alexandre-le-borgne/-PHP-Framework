@@ -30,4 +30,27 @@ class ArticleModel extends Model
         }
         return null;
     }
+
+    /*public function addArticle($title, $content, $date, $type, $url){
+        $db = new Database();
+
+        $url = $post->getLink();
+
+        $req = "SELECT * FROM stream_rss WHERE url = ?";
+        $result = $db->execute($req, array($url));
+
+        if($result->fetch()){
+
+        }
+        else {
+            $title = $post->getTitle();
+            $content = $post->getText();
+
+            $date = $post->getDate();
+
+            $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, ". ArticleModel::RSS  .", ?, ?)";
+            $db->execute($req, array($title, $content, $date, $url));
+        }
+
+    }*/
 }
