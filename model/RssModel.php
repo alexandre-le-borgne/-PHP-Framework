@@ -74,8 +74,8 @@ class RssModel extends Model
 
             $date = $post->getDate();
 
-            $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES ('$title', '$content', ".ArticleModel::RSS  .", '$date', '$url')";
-            $db->execute($req);
+            $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, ". ArticleModel::RSS  .", ?, ?)";
+            $db->execute($req, array($title, $content, $date, $url));
         }
 
     }
