@@ -32,8 +32,8 @@ class UserController extends Controller
             $gClient->authenticate($_GET['code']);
             $_SESSION['token'] = $gClient->getAccessToken();
 
-            $url = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='.$gClient->getAccessToken();
-            $response_contacts  =  curl_get_responce_contents($url);
+            /*$url = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='.$gClient->getAccessToken();
+            $response_contacts  =  curl_get_response_contents($url);
             $response   =   (json_decode($response_contacts));
 
             if(isset($response->issued_to))
@@ -43,7 +43,7 @@ class UserController extends Controller
             else if(isset($response->error))
             {
                 echo "Ma bite !";
-            }
+            }*/
         }
 
         if ($gClient->getAccessToken())
