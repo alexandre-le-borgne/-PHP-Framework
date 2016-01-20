@@ -31,11 +31,18 @@ class UserController extends Controller
         if (isset($_GET['code'])) {
             $gClient->authenticate($_GET['code']);
             $_SESSION['token'] = $gClient->getAccessToken();
+            if($gClient->verifyIdToken($_SESSION['token'])) {
+                echo "GG ma couille<hr>";
+            }
+            else {
+                $gClient->verifyIdToken($_SESSION['token']);
+            }
         }
 
-        var_dump($gClient->getAccessToken());
         if ($gClient->getAccessToken())
         {
+            var_dump($google_oauthV2);
+
             $userData = $google_oauthV2->userInfo->get();
             $data['userData'] = $userData;
             $_SESSION['access_token'] = $gClient->getAccessToken();
