@@ -22,8 +22,8 @@ class AdminController extends Controller
     function UsersAction(Request $request)
     {
         $this->isAdmin($request);
-        $adminModel = $this->loadModel('AdminModel');
-        $data = $adminModel->getAllUsers();
+        $this->loadModel('AdminModel');
+        $data = $this->adminModel->getAllUsers();
         throw new TraceableException('coucou');
         $this->render('layouts/manageUsers', array('users' => $data));
     }
