@@ -8,7 +8,8 @@ class AdminController extends Controller
     private function isAdmin($request)
     {
         if (!($request->getSession()->isGranted(Session::USER_IS_ADMIN)))
-            $this->redirectToRoute('index');
+            throw new Exception('utilisateur non admin');
+        //$this->redirectToRoute('index');
     }
 
     function IndexAction(Request $request)
