@@ -24,7 +24,6 @@ class UserModel extends Model
         $data = $db->execute("SELECT * FROM accounts WHERE username = ? OR email = ?", array($nameOrEmail, $nameOrEmail));
         $data->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'UserEntity');
         $data = $data->fetch();
-        var_dump($data);
         return $data;
     }
 

@@ -45,13 +45,11 @@ class UserController extends Controller
                 /** @var UserEntity $userEntity */
                 $userEntity = $this->usermodel->getByNameOrEmail($userData->getEmail());
                 if ($userEntity) {
-                    echo "Auth : ".$userEntity->getAuthentification();
                     if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
                         $request->getSession()->set('id', $userEntity->getId());
                     } // sinon c'est un compte du site, donc pas connectable avec google/facebook
                 }
                 else {
-                    var_dump($userEntity);
                     $id = $this->usermodel->addExternalUser($userData->getName(), $userData->getEmail());
                     $request->getSession()->set('id', $id);
                 }
@@ -63,8 +61,8 @@ class UserController extends Controller
 
         if ($request->isInternal())
             $this->render('forms/googleForm', $data);
-        //else
-            //$this->redirectToRoute('index');
+        else
+            $this->redirectToRoute('index');
     }
 
     public
