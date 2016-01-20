@@ -29,7 +29,7 @@ class IndexController extends Controller
         //var_dump($feed->getPosts());
         foreach ($feed->getPosts() as $post)
         {
-            echo $post->getSummary();
+            echo $post->getSummary() . "<br/>";
             $feed->addRss($post);
         }
 
