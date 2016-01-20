@@ -192,8 +192,8 @@ class UserController extends Controller
 
     public function FacebookAction(){
 
-        $appId = '1695359537375763';
-        $appSecret = '038f3ed86d0e2e74ab627786aea08c25';
+        $appId = '1563533667270416';
+        $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
 
         $fb = new Facebook\Facebook([
             'app_id' => $appId,
