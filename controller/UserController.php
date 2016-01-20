@@ -13,6 +13,7 @@ require_once('Google/Auth/OAuth2.php');
 set_include_path( get_include_path() . PATH_SEPARATOR . 'vendor/facebook/php-sdk-v4/src' );
 require_once('Facebook/autoload.php');
 
+use Facebook;
 
 class UserController extends Controller
 {
