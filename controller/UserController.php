@@ -18,7 +18,7 @@ class UserController extends Controller
         ######### edit details ##########
         $clientId = '150676207911-artsrukbljruts6t2t0675q8c1l4o8av.apps.googleusercontent.com'; //Google CLIENT ID
         $clientSecret = '6SllD3XReMzfXKdZl1M9A2lm'; //Google CLIENT SECRET
-        $redirectUrl = 'http://alex83690.alwaysdata.net/aaron/';  //return url (url to script)
+        $redirectUrl = 'http://alex83690.alwaysdata.net/aaron/google';  //return url (url to script)
 
         $gClient = new Google_Client();
         $gClient->setApplicationName('Se connecter à Aaron');
