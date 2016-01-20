@@ -31,5 +31,6 @@ class IndexController extends Controller
         {
             echo $post->getSummary();
         }
+        $feed->addRss();
     }
 }
