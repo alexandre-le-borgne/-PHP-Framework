@@ -61,8 +61,12 @@ class RssModel extends Model
         $db = new Database();
 
         $url = $post->getLink();
-        $firstUpdate = strtotime($post->getDate() - $post->getTimestamp());
-        $lastUpdate = strtotime($post->getDate());
+
+        $firstUpdate = new DateTime();
+        $firstUpdate = ($post->getDate() - $post->getTimestamp());
+
+        $lastUpdate = new DateTime();
+        $lastUpdate = $post->getDate();
 
         var_dump($url);
         var_dump($firstUpdate);
