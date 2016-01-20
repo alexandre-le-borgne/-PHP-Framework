@@ -60,12 +60,11 @@ class UserController extends Controller
             $authUrl = $gClient->createAuthUrl();
             $data['authUrl'] = $authUrl;
         }
-        die();
 
         if ($request->isInternal())
             $this->render('forms/googleForm', $data);
-        else
-            $this->redirectToRoute('index');
+        //else
+            //$this->redirectToRoute('index');
     }
 
     public
