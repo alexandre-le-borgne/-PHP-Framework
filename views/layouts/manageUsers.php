@@ -19,13 +19,13 @@ if (!isset($users))
 <?php
 
 
-echo "<table border = 1> <tr bgcolor = #118218>";
+echo "<table border = 1> <tr bgcolor = #DDD>";
 echo "<td>id</td><td>Pseudonyme</td><td>Action</td></tr>";
 
 foreach ($users as $user):
 {
     if (!($user instanceof UserEntity)) continue;
-    echo '<tr bgcolor=' . use_color() . '>';
+    echo '<tr bgcolor=' . '#EEE' . '>';
     echo "<td>" . $user->getId() . "</td>";
     echo "<td>" . $user->getUsername() . "</td>";
     ?>
