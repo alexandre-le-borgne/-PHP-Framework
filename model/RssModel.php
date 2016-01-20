@@ -56,7 +56,7 @@ class RssModel extends Model
 
         if(!$result->fetch()){
             $req = "INSERT INTO stream_rss (url, firstUpadte, lastUpdate) VALUES (? , ?, ?)";
-            $db->execute($req, array($url, $firstUpdate, today()));
+            $db->execute($req, array($url, $firstUpdate, date("F j, Y, g:i a")));
         }
     }
 
