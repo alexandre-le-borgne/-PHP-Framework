@@ -33,7 +33,6 @@ class UserController extends Controller
         $google_oauthV2 = new Google_Service_Oauth2($gClient);
 
         if (isset($_GET['code'])) {
-            die('t');
             $gClient->authenticate($_GET['code']);
             $_SESSION['token'] = $gClient->getAccessToken();
             var_dump($_SESSION);
