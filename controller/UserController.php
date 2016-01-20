@@ -28,18 +28,16 @@ class UserController extends Controller
 
         $google_oauthV2 = new Google_Auth_OAuth2($gClient);
 
-        if($request->get('code')) {
-            $google_oauthV2->authenticate($request->get('code'));
-            $_SESSION['access_token'] = $google_oauthV2->getAccessToken();
-            header('Location: ' . filter_var($redirectUrl, FILTER_SANITIZE_URL));
-        }
-
-        if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-            $google_oauthV2->setAccessToken($_SESSION['access_token']);
-            $userData = $gClient->userinfo->get();
+        if ($gClient->getAccessToken())
+        {
+            $userData = $google_oauthV2->userInfo->get();
+            $data['userData'] = $userData;
+            $_SESSION['access_token'] = $gClient->getAccessToken();
             var_dump($userData);
-        } else {
-            $data['authUrl'] = $gClient->createAuthUrl();
+        } else
+        {
+            $authUrl = $gClient->createAuthUrl();
+            $data['authUrl'] = $authUrl;
         }
 
         if($request->isInternal())
