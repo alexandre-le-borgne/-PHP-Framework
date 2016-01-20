@@ -1,5 +1,6 @@
 <?php
 
-abstract class Model {
+abstract class Model
+{
 
 }

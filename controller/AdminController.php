@@ -5,17 +5,25 @@
  */
 class AdminController extends Controller
 {
+    private function isAdmin($request)
+    {
+        if (!($request->getSession()->isGranted(Session::USER_IS_ADMIN)))
+            $this->redirectToRoute('index');
+    }
+
     function IndexAction(Request $request)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_ADMIN))
-        {
-            $data = array();
-            $this->render('layouts/adminDashboard', $data);
-        }
-        else
-        {
-            throw new Exception('Utilisateur non admin');
-        }
+        $this->isAdmin($request);
+        $data = array();
+        $this->render('layouts/adminDashboard', $data);
+    }
+
+    function UsersAction(Request $request)
+    {
+        $this->isAdmin($request);
+        $adminModel = $this->loadModel('admin');
+        $data = $adminModel->getAllUsers();
+        $this->redirectToRoute('layouts/manageUsers');
     }
 
 }

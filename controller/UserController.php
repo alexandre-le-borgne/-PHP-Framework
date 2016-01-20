@@ -40,11 +40,13 @@ class UserController extends Controller
 
         $google_oauthV2 = new Google_Auth_OAuth2($gClient);
 
-        if ($gClient->getAccessToken()) {
+        if ($gClient->getAccessToken())
+        {
             $userData = $google_oauthV2->userinfo->get();
             $data['userData'] = $userData;
             $_SESSION['access_token'] = $gClient->getAccessToken();
-        } else {
+        } else
+        {
             $authUrl = $gClient->createAuthUrl();
             $data['authUrl'] = $authUrl;
         }
@@ -69,19 +71,24 @@ class UserController extends Controller
         }
 
         $errors = array();
-        if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL) {
+        if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL)
+        {
             $errors['email'] = 'Email déjà utilisé';
         }
-        if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX) {
+        if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX)
+        {
             $errors['email'] = 'Format d\'email incorrect';
         }
-        if ($password != $confirmPwd) {
+        if ($password != $confirmPwd)
+        {
             $errors['password'] = 'Mot de passe différent';
         }
-        if (!($this->usermodel->correctPwd($password))) {
+        if (!($this->usermodel->correctPwd($password)))
+        {
             $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
         }
-        if (!(empty($errors))) {
+        if (!(empty($errors)))
+        {
             $data = array('errors' => $errors);
             $this->render('persists/home', $data);
             return;
@@ -101,7 +108,8 @@ class UserController extends Controller
         $email = $request->getSession()->get('email');
         $password = $request->getSession()->get('password');
 
-        if ($username && $birthDate) {
+        if ($username && $birthDate)
+        {
             $this->loadModel('UserModel');
 
             $errors = array();
@@ -111,11 +119,13 @@ class UserController extends Controller
                 'username' => $username,
             );
 
-            if (!($this->usermodel->availableUser($username))) {
+            if (!($this->usermodel->availableUser($username)))
+            {
                 $errors['username'] = 'Pseudonyme déjà utilisé';
                 $isError = true;
             }
-            if ($isError) {
+            if ($isError)
+            {
                 $data['errors'] = $errors;
                 $this->render('forms/registerForm', $data);
                 return;
@@ -134,9 +144,11 @@ class UserController extends Controller
         $id = $this->usermodel->getIdByNameOrEmail($request->post('login'));
         $password = $request->post('password');
         $userEntity = $this->usermodel->getById($id);
-        if ($userEntity && $userEntity->getAuthentification() == 0) {
+        if ($userEntity && $userEntity->getAuthentification() == 0)
+        {
             $passwordEntity = $this->passwordmodel->getByUser($userEntity);
-            if (Security::equals($passwordEntity->getPassword(), $password)) {
+            if (Security::equals($passwordEntity->getPassword(), $password))
+            {
                 $request->getSession()->set("id", $id);
                 $request->getSession()->set("password", $passwordEntity->getPassword());
             }
@@ -167,30 +179,30 @@ class UserController extends Controller
         $db = new Database();
         $req = "Select email, userKey, active From accounts Where username = ?";
 
-        if($db->execute($req, array($user)) && $data = $db->execute($req, array($user))->fetch())
+        if ($db->execute($req, array($user)) && $data = $db->execute($req, array($user))->fetch())
         {
             $email = $data['email'];
             $realKey = $data['userKey'];
             $active = $data['active'];
         }
 
-        if($active == 1)
+        if ($active == 1)
             $this->render("layouts/mailValidation", array("message" => "Votre compte est déjà actif"));
         else
         {
-            if($key == $realKey)
+            if ($key == $realKey)
             {
                 $this->render("layouts/mailValidation", array("message" => "Votre compte a bien été activé"));
                 $req = "Update accounts Set active = 1 Where username = ?";
                 $db->execute($req, array($user));
                 Mail::sendWelcomingMail($email);
-            }
-            else
+            } else
                 $this->render("layouts/mailValidation", array("message" => "Erreur : aucun compte n'est associé à cette adresse"));
         }
     }
 
-    public function FacebookAction(){
+    public function FacebookAction()
+    {
 
         $appId = '1563533667270416';
         $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
@@ -204,25 +216,30 @@ class UserController extends Controller
         $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook');
 
         $helper = $fb->getRedirectLoginHelper();
-        try {
+        try
+        {
             $accessToken = $helper->getAccessToken();
-        } catch(Facebook\Exceptions\FacebookResponseException $e) {
+        } catch (Facebook\Exceptions\FacebookResponseException $e)
+        {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
             exit;
-        } catch(Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (Facebook\Exceptions\FacebookSDKException $e)
+        {
             // When validation fails or other local issues
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
         }
 
-        if (isset($accessToken)) {
+        if (isset($accessToken))
+        {
             // Logged in!
-            $_SESSION['facebook_access_token'] = (string) $accessToken;
+            $_SESSION['facebook_access_token'] = (string)$accessToken;
 
             // Now you can redirect to another page and use the
             // access token from $_SESSION['facebook_access_token']
-        } elseif ($helper->getError()) {
+        } elseif ($helper->getError())
+        {
             // The user denied the request
             exit;
         }
