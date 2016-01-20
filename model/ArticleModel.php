@@ -8,6 +8,12 @@
  */
 class ArticleModel extends Model
 {
+
+    const EMAIL = 0;
+    const TWITTER = 1;
+    const RSS = 2;
+
+
     public function getById($id)
     {
         if (intval($id)) {
