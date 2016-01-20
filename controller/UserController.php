@@ -36,7 +36,7 @@ class UserController extends Controller
 
         if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             $google_oauthV2->setAccessToken($_SESSION['access_token']);
-            $userData = $google_oauthV2->userinfo->get();
+            $userData = $gClient->userinfo->get();
             var_dump($userData);
         } else {
             $data['authUrl'] = $gClient->createAuthUrl();
