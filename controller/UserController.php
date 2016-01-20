@@ -227,7 +227,7 @@ class UserController extends Controller
             exit;
         }
 
-        $this->render("forms/facebookFrom", array('loginUrl' => $loginUrl));
+        $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
     }
 
 }
