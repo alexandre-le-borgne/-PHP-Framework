@@ -26,7 +26,7 @@ class UserController extends Controller
             'https://www.googleapis.com/auth/userinfo.profile'
         ));
 
-        $google_oauthV2 = new Google_Auth_OAuth2($gClient);
+        $google_oauthV2 = new Google_Service_Oauth2($gClient);
 
         if (isset($_GET['code'])) {
             $gClient->authenticate($_GET['code']);
@@ -48,8 +48,6 @@ class UserController extends Controller
 
         if ($gClient->getAccessToken())
         {
-            var_dump($google_oauthV2->getClient());
-
             $userData = $google_oauthV2->userInfo->get();
             $data['userData'] = $userData;
             $_SESSION['access_token'] = $gClient->getAccessToken();
