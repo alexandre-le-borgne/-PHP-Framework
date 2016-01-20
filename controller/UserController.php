@@ -36,6 +36,7 @@ class UserController extends Controller
             die('t');
             $gClient->authenticate($_GET['code']);
             $_SESSION['token'] = $gClient->getAccessToken();
+            var_dump($_SESSION);
         }
 
         if ($gClient->getAccessToken()) {
