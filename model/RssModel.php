@@ -61,12 +61,21 @@ class RssModel extends Model
         $db = new Database();
 
         $url = $post->getLink();
-        $firstUpdate = ($post->getDate()) - ($post->getTimestamp());
-        $lastUpdate = $post->getDate();
 
-        echo $url;
+        $date = new DateTime();
+        $date->add(DateInterval::createFromDateString('yesterday'));
+        $firstUpdate = $date->format('Y-m-d H:i:s');
 
-        $req = "INSERT INTO stream_rss ('url', 'firstUpdate', 'lastUpdate') VALUES ($url,$firstUpdate,$lastUpdate)";
+
+        $date = new DateTime();
+        $date->add(DateInterval::createFromDateString('today'));
+        $last = $date->format('Y-m-d H:i:s');
+
+        var_dump($url);
+        var_dump($firstUpdate);
+        var_dump($last);
+
+        $req = "INSERT INTO stream_rss ('url', 'firstUpdate', 'lastUpdate') VALUES ($url,$firstUpdate,$last)";
         $db->execute($req);
 
     }
