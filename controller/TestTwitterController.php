@@ -30,7 +30,7 @@ class TestTwitterController extends Controller
         echo "<br/><br/>";
         foreach ($articles as $article):
             if ($article instanceof ArticleEntity)
-                echo 'Titre : ' . $autolink->autoLink($article->getTitle()) . '<br/>' .
+                echo 'Titre : ' . $autolink->autoLink('@' . $article->getTitle()) . '<br/>' .
                     $autolink->autoLink($article->getContent()) .
                     '<br/>Il y a ' . time_to_delay(strtotime($article->getDate())) . '.<br/>';
         endforeach;
