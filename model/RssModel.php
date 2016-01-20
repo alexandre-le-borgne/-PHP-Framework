@@ -60,8 +60,6 @@ class RssModel extends Model
     public function addRss($post){
         $db = new Database();
 
-
-
         $url = $post->getLink();
         $firstUpdate = ($post->getDate()) - ($post->getTimestamp());
         $lastUpdate = $post->getDate();
