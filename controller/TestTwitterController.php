@@ -8,7 +8,7 @@ class TestTwitterController extends Controller
     function TwitterAction()
     {
         $twitterModel = new TwitterModel();
-        $tweets = $twitterModel->getTweets('Spacesuit2', true, 12);
+        $tweets = $twitterModel->getTweets('Chouxfleur42', true, 12);
 
         $autolink = Twitter_Autolink::create();
         echo "<br/><br/>";
