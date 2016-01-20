@@ -24,6 +24,7 @@ class AdminController extends Controller
         $this->isAdmin($request);
         $adminModel = $this->loadModel('admin');
         $data = $adminModel->getAllUsers();
+        throw new TraceableException('coucou');
         $this->render('layouts/manageUsers', array('users' => $data));
     }
 }
