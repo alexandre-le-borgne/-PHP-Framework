@@ -33,6 +33,7 @@
 
         <?php
         $this->renderControllerAction('google');
+        $this->renderControllerAction('facebook');
         ?>
     </div>
 </div>
