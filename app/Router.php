@@ -23,8 +23,11 @@ class Router {
         $this->table[] = new Route('facebook', 'user', 'facebook');
         $this->table[] = new Route('google', 'user', 'google');
         $this->table[] = new Route('fbcallback', 'user', 'fbcallback');
+
+        //Partie Admin
         $this->table[] = new Route('admin','admin','index');
         $this->table[] = new Route('adminusers','admin','users');
+        $this->table[] = new Route('deleteuser','admin','deleteUser');
 
 
         //$this->table[] = new Route('gmail', 'testGmail', 'gmail');

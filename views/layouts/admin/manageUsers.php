@@ -7,7 +7,7 @@
  */
 
 if (!isset($users))
-    throw new Exception('Erreur manageUsers.php : $users n\'estpas set');
+    throw new Exception('Erreur manageUsers.php : $users n\'est pas set');
 
 ?>
 
@@ -30,7 +30,7 @@ foreach ($users as $user):
     echo "<td>" . $user->getUsername() . "</td>";
     ?>
     <td>
-        <form action="yapadactiontrololol" method="post">
+        <form action="deleteuser" method="post">
             <input type="hidden" name="id" value="<?php echo $user->getId(); ?>">
             <input type="submit" value="Supprimer" name="delUser">
             <input type="submit" value="faire autre chose" name="other">
