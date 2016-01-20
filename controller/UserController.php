@@ -35,8 +35,6 @@ class UserController extends Controller
         if (isset($_GET['code'])) {
             $gClient->authenticate($_GET['code']);
             $_SESSION['token'] = $gClient->getAccessToken();
-            var_dump($_SESSION);
-            die();
         }
 
         if ($gClient->getAccessToken()) {
@@ -62,6 +60,7 @@ class UserController extends Controller
             $authUrl = $gClient->createAuthUrl();
             $data['authUrl'] = $authUrl;
         }
+        die();
 
         if ($request->isInternal())
             $this->render('forms/googleForm', $data);
