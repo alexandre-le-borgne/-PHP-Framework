@@ -12,10 +12,6 @@ class RssModel extends Model
     private $posts = array();
     private $url;
 
-    public function __construct($url)
-    {
-
-    }
 
     private function resolveFile($url) {
         if (!preg_match('|^https?:|', $url))
