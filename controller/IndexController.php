@@ -8,6 +8,8 @@ class IndexController extends Controller
 {
     public function IndexAction(Request $request)
     {
+        var_dump($_POST);
+        var_dump($_GET);
         $this->loadModel('IndexModel');
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
         {
