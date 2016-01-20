@@ -48,7 +48,7 @@ class UserController extends Controller
 
         if ($gClient->getAccessToken())
         {
-            var_dump($google_oauthV2);
+            var_dump($google_oauthV2->getClient());
 
             $userData = $google_oauthV2->userInfo->get();
             $data['userData'] = $userData;
