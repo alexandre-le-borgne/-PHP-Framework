@@ -4,7 +4,7 @@
  */
 ?>
 
-<a class="manageUsers" href="<?php View::getUrlFromRoute('adminUsers')?>">Gérer les utilisateurs</a>
+<a class="manageUsers" href="<?= View::getUrlFromRoute('adminUsers') ?>">Gérer les utilisateurs</a>
 
 
 
