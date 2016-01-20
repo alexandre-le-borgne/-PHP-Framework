@@ -13,38 +13,26 @@ class UserModel extends Model
     const ACCOUNT_LEVEL_ADMIN = 2;
 
     const AUTHENTIFICATION_BY_PASSWORD = 0;
+    const AUTHENTIFICATION_BY_EXTERNAL = 1;
+
     const ALREADY_USED_EMAIL = 1;
     const BAD_EMAIL_REGEX = 2;
     const CORRECT_EMAIL = 3;
 
-    const AUTHENTIFICATION_BY_FACEBOOK = 4;
-
-    public function getIdByNameOrEmail($nameOrEmail) {
+    public function getByNameOrEmail($nameOrEmail) {
         $db = new Database();
         $data = $db->execute("SELECT id FROM accounts WHERE username = ? OR email = ?", array($nameOrEmail, $nameOrEmail));
-        $fetch = $data->fetch();
-        if($fetch)
-            return $fetch['id'];
-        return false;
+        $data->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'UserEntity');
+        return $data->fetch();
     }
 
     public function getById($id)
     {
         if (intval($id)) {
             $db = new Database();
-            $result = $db->execute("SELECT * FROM accounts WHERE id = ?", array($id))->fetch();
-            if($result) {
-                $user = new UserEntity();
-                $user->setId($result['id']);
-                $user->setAccountLevel($result['accountLevel']);
-                $user->setActive($result['active']);
-                $user->setBirthDate($result['birthDate']);
-                $user->setEmail($result['email']);
-                $user->setUserKey($result['userKey']);
-                $user->setUsername($result['username']);
-                $user->setAuthentification($result['authentification']);
-                return $user;
-            }
+            $result = $db->execute("SELECT * FROM accounts WHERE id = ?", array($id));
+            $result->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'UserEntity');
+            return $result->fetch();
         }
         return null;
     }
@@ -83,15 +71,21 @@ class UserModel extends Model
         return (6 <= strlen($password) && strlen($password) <= 20);
     }
 
+    public function addExternalUser($username, $email) {
+        $db = new Database();
+        $db->execute("INSERT INTO accounts (username, email, authentification) VALUES (?, ?, "
+            . UserModel::AUTHENTIFICATION_BY_EXTERNAL . ", ?, ?)", array($username, $email));
+        return $db->lastInsertId();
+    }
 
-    public function addUser($username, $email, $password, $birthDate)
+    public function addUser($username, $email, $password)
     {
         $db = new Database();
         $key = Security::generateKey();
         $password = Security::encode($password);
 
-        $db->execute("INSERT INTO accounts (username, email, authentification, birthDate, userKey) VALUES (?, ?, "
-            . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $birthDate, $key));
+        $db->execute("INSERT INTO accounts (username, email, authentification, userKey) VALUES (?, ?, "
+            . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $key));
 
         $id = $db->lastInsertId();
 

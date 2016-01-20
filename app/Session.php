@@ -40,15 +40,22 @@ class Session
     public function isConnected()
     {
         $id = $this->get("id");
-        $password = $this->get("password");
-        if ($id != null && $password != null)
+        if ($id != null)
         {
             $userModel = new UserModel();
             $user = $userModel->getById($id);
-            if ($user && $user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD) {
-                $passwordModel = new PasswordModel();
-                $passwordEntity = $passwordModel->getByUser($user);
-                return $passwordEntity->getPassword() === $password;
+            if ($user) {
+                if($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD) {
+                    $password = $this->get("password");
+                    if($password != null) {
+                        $passwordModel = new PasswordModel();
+                        $passwordEntity = $passwordModel->getByUser($user);
+                        return $passwordEntity->getPassword() === $password;
+                    }
+                }
+                else if($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                    return true;
+                }
             }
         }
         return false;

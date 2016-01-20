@@ -24,11 +24,11 @@
             </div>
         </div>
 
-        <!--BIRTH DATE-->
+        <!--BIRTH DATE
         <div class="input-prepend">
             <span class="add-on">@</span>
             <input class="span2" id="prependedInput" type="date" name="birthDate" placeholder="Date de naissance" required>
-        </div>
+        </div>-->
 
         <!--SUBMIT ACTION-->
         <button type="submit" name="action" value="register" class="btn">S'inscrire</button>
