@@ -6,6 +6,7 @@
  * Date: 18/01/2016
  * Time: 23:38
  */
+
 $view->extend('layouts/layoutConnected');
 foreach ($articles as $article) : ?>
     <b><?= $article->getTitle() ?></b><br>
