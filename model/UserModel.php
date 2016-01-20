@@ -74,7 +74,7 @@ class UserModel extends Model
     public function addExternalUser($username, $email) {
         $db = new Database();
         $db->execute("INSERT INTO accounts (username, email, authentification) VALUES (?, ?, "
-            . UserModel::AUTHENTIFICATION_BY_EXTERNAL . ", ?, ?)", array($username, $email));
+            . UserModel::AUTHENTIFICATION_BY_EXTERNAL . ")", array($username, $email));
         return $db->lastInsertId();
     }
 
