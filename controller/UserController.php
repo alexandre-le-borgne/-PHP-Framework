@@ -187,10 +187,6 @@ class UserController extends Controller
     }
 
     public function FacebookAction(){
-        $this->render("layouts/facebook");
-    }
-
-    public function FbcallbackAction(){
 
         $appId = '1695359537375763';
         $appSecret = '038f3ed86d0e2e74ab627786aea08c25';
