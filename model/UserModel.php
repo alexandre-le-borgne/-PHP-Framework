@@ -23,7 +23,9 @@ class UserModel extends Model
         $db = new Database();
         $data = $db->execute("SELECT id FROM accounts WHERE username = ? OR email = ?", array($nameOrEmail, $nameOrEmail));
         $data->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'UserEntity');
-        return $data->fetch();
+        $data = $data->fetch();
+        var_dump($data);
+        return $data;
     }
 
     public function getById($id)
