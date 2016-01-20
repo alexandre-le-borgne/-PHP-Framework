@@ -20,7 +20,7 @@ class AdminModel extends Model
             array_push($allUsers, $userModel->getById($id));
         endforeach;
 
-        return ['users' => $allUsers];
+        return $allUsers;
     }
 
     private function getAllId(Database $database)

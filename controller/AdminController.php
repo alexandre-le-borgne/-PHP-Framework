@@ -24,7 +24,6 @@ class AdminController extends Controller
         $this->isAdmin($request);
         $adminModel = $this->loadModel('admin');
         $data = $adminModel->getAllUsers();
-        $this->render('layouts/manageUsers', ['users' => $data]);
+        $this->render('layouts/manageUsers', array('users' => $data));
     }
-
 }
