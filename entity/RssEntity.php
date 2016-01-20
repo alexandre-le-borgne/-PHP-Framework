@@ -32,4 +32,40 @@ class RssEntity extends Entity{
         }
         throw new TraceableException("Flux rss manquant");
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstUpdate()
+    {
+        return $this->firstUpdate;
+    }
+
+
+
+
 }
