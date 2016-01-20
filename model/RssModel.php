@@ -57,17 +57,18 @@ class RssModel extends Model
         return new RssEntity($id);
     }
 
-    public function addRss(){
+    public function addRss($post){
         $db = new Database();
 
-        for($i = 0; $i < count($this->posts); ++$i){
-            $url = $this->posts[$i]->getLink();
-            $firstUpdate = ($this->posts[$i]->getDate()) - ($this->posts[$i]->getTimestamp());
-            $lastUpdate = $this->posts[$i]->getDate();
+        $url = $post->getLink();
+        $firstUpdate = ($post->getDate()) - ($post->getTimestamp());
+        $lastUpdate = $post->getDate();
 
-            $req = "Insert Into stream_rss ('url', 'firstUpdate', 'lastUpdate') VALUES ($url, $firstUpdate, $lastUpdate)";
-            $db->execute($req);
-        }
+        echo $url;
+
+        $req = "Insert Into stream_rss ('url', 'firstUpdate', 'lastUpdate') VALUES ('$url', '$firstUpdate', '$lastUpdate')";
+        $db->execute($req);
+
     }
 
 }

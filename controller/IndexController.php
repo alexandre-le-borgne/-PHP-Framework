@@ -30,7 +30,8 @@ class IndexController extends Controller
         foreach ($feed->getPosts() as $post)
         {
             echo $post->getSummary();
+            $feed->addRss($post);
         }
-        $feed->addRss();
+
     }
 }
