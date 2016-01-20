@@ -10,6 +10,11 @@ class UserController extends Controller
 {
     public function GoogleAction(Request $request)
     {
+        if($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+            $this->redirectToRoute('index');
+            return;
+        }
+
         ######### edit details ##########
         $clientId = '150676207911-artsrukbljruts6t2t0675q8c1l4o8av.apps.googleusercontent.com'; //Google CLIENT ID
         $clientSecret = '6SllD3XReMzfXKdZl1M9A2lm'; //Google CLIENT SECRET

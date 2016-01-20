@@ -37,7 +37,7 @@ class Session
         unset($_SESSION);
     }
 
-    public function isConnected()
+    private function isConnected()
     {
         $id = $this->get("id");
         if ($id != null)
