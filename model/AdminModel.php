@@ -8,7 +8,7 @@
  */
 class AdminModel extends Model
 {
-    function getAllUsers()
+    public function getAllUsers()
     {
         $userModel = new UserModel();
         $database = new Database();
