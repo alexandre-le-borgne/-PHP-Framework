@@ -24,7 +24,7 @@ class AdminController extends Controller
         $this->isAdmin($request);
         $adminModel = $this->loadModel('admin');
         $data = $adminModel->getAllUsers();
-        $this->redirectToRoute('layouts/manageUsers');
+        $this->render('layouts/manageUsers', ['users' => $data]);
     }
 
 }
