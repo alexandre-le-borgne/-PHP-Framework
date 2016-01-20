@@ -6,6 +6,7 @@
  *   et fais quelques pretraitements
  * - RegisterAction est appele a la suite du registerForm, lors du submit
  */
+/*
 $path = get_include_path();
 set_include_path( $path . PATH_SEPARATOR . 'vendor/google/apiclient/src' );
 require_once('Google/Client.php');
@@ -16,7 +17,6 @@ var_dump(scandir($path .  '/vendor/facebook/php-sdk-v4/src'));
 require_once('Facebook/Facebook.php');
 set_include_path($path);
 */
-use Facebook;
 
 class UserController extends Controller
 {
@@ -195,7 +195,7 @@ class UserController extends Controller
         $appId = '1695359537375763';
         $appSecret = '038f3ed86d0e2e74ab627786aea08c25';
 
-        $fb = new Facebook([
+        $fb = new Facebook\Facebook([
             'app_id' => $appId,
             'app_secret' => $appSecret,
             'default_graph_version' => 'v2.5',

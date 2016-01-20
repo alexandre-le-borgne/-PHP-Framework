@@ -22,7 +22,6 @@
  *
  */
 namespace Facebook;
-
 use Facebook\Authentication\AccessToken;
 
 class FacebookApp implements \Serializable

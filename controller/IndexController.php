@@ -2,8 +2,11 @@
 
 /**
  * Le Controlleur correspondant a l'index
- *
  */
+/*
+set_include_path( get_include_path() . PATH_SEPARATOR . 'vendor/google/apiclient/src' );
+require_once('Google/Client.php');
+require_once('Google/Auth/OAuth2.php');*/
 
 class IndexController extends Controller
 {
