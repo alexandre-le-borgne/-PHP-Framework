@@ -31,11 +31,18 @@ class UserController extends Controller
         if (isset($_GET['code'])) {
             $gClient->authenticate($_GET['code']);
             $_SESSION['token'] = $gClient->getAccessToken();
-            if($gClient->verifyIdToken($_SESSION['token'])) {
-                echo "GG ma couille<hr>";
+
+            $url = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='.$gClient->getAccessToken();
+            $response_contacts  =  curl_get_responce_contents($url);
+            $response   =   (json_decode($response_contacts));
+
+            if(isset($response->issued_to))
+            {
+                echo "GG";
             }
-            else {
-                $gClient->verifyIdToken($_SESSION['token']);
+            else if(isset($response->error))
+            {
+                echo "Ma bite !";
             }
         }
 
