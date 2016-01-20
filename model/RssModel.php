@@ -71,13 +71,11 @@ class RssModel extends Model
         $date->add(DateInterval::createFromDateString('today'));
         $last = $date->format('Y-m-d H:i:s');
 
-        $date = date('Y-m-d H:i:s');
-
         var_dump($url);
         var_dump($firstUpdate);
         var_dump($last);
 
-        $req = "INSERT INTO stream_rss ('url', 'firstUpdate', 'lastUpdate') VALUES ($url, $date, $date)";
+        $req = "INSERT INTO stream_rss ('url', 'firstUpdate', 'lastUpdate') VALUES ($url, $firstUpdate, $last))";
         $db->execute($req);
 
     }
