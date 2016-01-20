@@ -13,7 +13,7 @@ require_once('Google/Auth/OAuth2.php');
 set_include_path( $path . '/vendor/facebook/php-sdk-v4/src' );
 var_dump(scandir($path .  '/vendor/facebook/php-sdk-v4/src'));
 
-require_once('Facebook/autoload.php');
+require_once('Facebook/Facebook.php');
 set_include_path($path);
 
 use Facebook;
