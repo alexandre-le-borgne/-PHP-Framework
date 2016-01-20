@@ -15,7 +15,7 @@ class RssModel extends Model
 
     private function resolveFile($url) {
         if (!preg_match('|^https?:|', $url))
-            $feed_uri = $_SERVER['DOCUMENT_ROOT'] .'/shared/xml/'. $url;
+            $feed_uri = $_SERVER['DOCUMENT_ROOT'] .'shared/xml/'. $url;
         else
             $feed_uri = $url;
 
