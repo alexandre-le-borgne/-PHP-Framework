@@ -27,12 +27,13 @@ class UserController extends Controller
         ));
 
         $google_oauthV2 = new Google_Auth_OAuth2($gClient);
-
+        var_dump($gClient->getAccessToken());
         if ($gClient->getAccessToken())
         {
             $userData = $google_oauthV2->userInfo->get();
             $data['userData'] = $userData;
             $_SESSION['access_token'] = $gClient->getAccessToken();
+            var_dump($_SESSION);
             var_dump($userData);
         } else
         {
