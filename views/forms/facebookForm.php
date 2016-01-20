@@ -1,4 +1,4 @@
 <?php
 if(isset($loginUrl)) {
-    echo '<a href="' . $this->escape($loginUrl) . '">Log in with Facebook!</a>';
+    echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 }
