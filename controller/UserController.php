@@ -39,7 +39,7 @@ class UserController extends Controller
             $userData = $google_oauthV2->userinfo->get();
             var_dump($userData);
         } else {
-            $data['authUrl'] = $google_oauthV2->createAuthUrl();
+            $data['authUrl'] = $gClient->createAuthUrl();
         }
 
         if($request->isInternal())
