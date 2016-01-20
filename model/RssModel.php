@@ -65,7 +65,7 @@ class RssModel extends Model
         $req = "SELECT * FROM stream_rss WHERE url = '$url'";
         $result = $db->execute($req);
 
-        if(!$result->fetch()){
+        if($result->fetch()){
 
         }
         else {
