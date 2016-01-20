@@ -5,7 +5,6 @@
 
 require_once './vendor/twitteroauth/autoload.php';
 require_once './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
-require_once './app/util/time_to_.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
