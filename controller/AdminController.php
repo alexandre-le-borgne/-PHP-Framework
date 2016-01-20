@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         $this->isAdmin($request);
         $data = array();
-        $this->render('layouts/adminDashboard', $data);
+        $this->render('layouts/admin/adminDashboard', $data);
     }
 
     function UsersAction(Request $request)
@@ -24,6 +24,6 @@ class AdminController extends Controller
         $this->isAdmin($request);
         $this->loadModel('AdminModel');
         $data = $this->adminmodel->getAllUsers();
-        $this->render('layouts/manageUsers', array('users' => $data));
+        $this->render('layouts/admin/manageUsers', array('users' => $data));
     }
 }
