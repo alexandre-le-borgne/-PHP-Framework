@@ -8,7 +8,6 @@ class IndexController extends Controller
 {
     public function IndexAction(Request $request)
     {
-        $this->loadModel('IndexModel');
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
         {
             $this->render('layouts/home', array('home' => 'Connecté'));
@@ -17,6 +16,15 @@ class IndexController extends Controller
         {
             $this->render('layouts/layoutNotConnected');
         }
+    }
+
+    public function CronAction() {
+        $this->loadModel('EmailModel');
+        $this->loadModel('RssModel');
+        $this->loadModel('TwitterModel');
+        $this->emailmodel->cron();
+        $this->rssmodel->cron();
+        $this->twittermodel->cron();
     }
 
     public function RssAction()

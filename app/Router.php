@@ -25,6 +25,7 @@ class Router {
         $this->table[] = new Route('google', 'user', 'google');
         $this->table[] = new Route('fbcallback', 'user', 'fbcallback');
         $this->table[] = new Route('forgotform', 'user', 'forgotform');
+        $this->table[] = new Route('cron', 'index', 'cron');
 
         //Partie Admin
         $this->table[] = new Route('admin','admin','index');
