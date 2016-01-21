@@ -7,10 +7,9 @@
  * Time: 12:29
  */
 
-class RssModel extends Model
+class RssModel extends Model implements StreamModel
 {
     private $posts = array();
-    private $url;
 
 
     private function resolveFile($url) {
@@ -41,11 +40,11 @@ class RssModel extends Model
         return $this->posts;
     }
 
-    public function getById($id){
+    public function getStreamById($id){
         return new RssEntity($id);
     }
 
-    public function createStream($url, $firstUpdate){
+    public function createStream($url,$firstUpdate){
         $db = new Database();
         $req = "SELECT * FROM stream_rss WHERE url = ?";
         $result = $db->execute($req, array($url));
@@ -54,9 +53,13 @@ class RssModel extends Model
             $req = "INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES (? , ?, ?)";
             $db->execute($req, array($url, $firstUpdate, date("F j, Y, g:i a")));
         }
+        if($result['firstUpdate'] < $firstUpdate){
+            $req = "UPDATE stream_rss SET firstUpdate = ? WHERE url = $url";
+            $db->execute($req, array($firstUpdate));
+        }
     }
 
-    public function cron(){
+    public function cron(DateTime $firstUpdate, DateTime $lastUpdate){
         $db = new Database();
 
         $req = "SELECT * FROM stream_rss";
@@ -70,7 +73,7 @@ class RssModel extends Model
                 foreach ($x->channel->item as $item) {
                     $req = "SELECT * FROM article WHERE url = ?";
                     $result = $db->execute($req, array($item->link));
-                    if(!$result->fetch()) {
+                    if(!$result->fetch() && strtotime($item->pubDate) < $lastUpdate && strtotime($item->pubDate) > $firstUpdate) {
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, ?,". ArticleModel::RSS .",  ?)";
                         $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link));
                     }
