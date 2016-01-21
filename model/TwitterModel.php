@@ -22,8 +22,20 @@ class TwitterModel extends Model implements StreamModel
 
     private $twitter;
 
-    public function cron(DateTime $firstUpdate, DateTime $lastUpdate)
+    public function cron()
     {
+        //Premierement, on charge tous les streams. On recupere leur date firstUpdate, et lastUpdate.
+        //Pour chaque stream:
+        //{
+        //    on recupere le 1er et le dernier article
+        //    on recharge tous les articles en BD entre le firstUpdate et 1erArticle.date
+        //    on recharge tous les articles en BD entre now et le dernierArticle.date
+        //    on modifie en BD le lastUpdate a now();
+        //}
+        //
+        //
+
+
         //todo finir pour le cron
         //Je recupere d'abord le token, afin de pouvoir demander les tweets
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
@@ -47,15 +59,17 @@ class TwitterModel extends Model implements StreamModel
 
     public function createStream($channel, DateTime $firstUpdate)
     {
-
-        $channel = isset($data['channel']);
         $db = new Database();
-        $req = "SELECT * FROM stream_twitter WHERE url = ?";
-        $result = $db->execute($req, array($url));
-
-        if (!$result->fetch()) {
-            $req = "INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES (? , ?, ?)";
-            $db->execute($req, array($url, $firstUpdate, date("F j, Y, g:i a")));
+        $req = 'SELECT * FROM stream_twitter WHERE channel = ?';
+        $result = $db->execute($req, array($channel));
+        $fetch = $result->fetch();
+        if (!($fetch)) {
+            $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
+            $db->execute($req, array($channel, $firstUpdate));
+        } else if ($firstUpdate->getTimestamp() < strtotime($fetch['firstUpdate'])) {
+            //On modifie le stream pour qu'il prenne en compte le debut plus tot
+            $req = "UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?";
+            $db->execute($req, array($firstUpdate, $channel));
         }
     }
 
