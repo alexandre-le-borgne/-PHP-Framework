@@ -82,9 +82,17 @@ class UserController extends Controller
             'default_graph_version' => 'v2.5',
         ]);
 
+        foreach ($_COOKIE as $k=>$v) {
+            if(strpos($k, "FBRLH_")!==FALSE) {
+                $_SESSION[$k]=$v;
+            }
+        }
+
+        $helper = $fb->getRedirectLoginHelper();
+
         if (isset($_SESSION['facebook_access_token'] )) {
             $accessToken = $_SESSION['facebook_access_token'];
-            $fb->setAccessToken($accessToken);
+            $helper->setAccessToken($accessToken);
             $userData = $fb->api('/me');
             $this->loadModel('UserModel');
             /** @var UserEntity $userEntity */
@@ -103,12 +111,6 @@ class UserController extends Controller
             // We don't have the accessToken
             // But are we in the process of getting it ?
             if (isset($_REQUEST['code'])) {
-                foreach ($_COOKIE as $k=>$v) {
-                    if(strpos($k, "FBRLH_")!==FALSE) {
-                        $_SESSION[$k]=$v;
-                    }
-                }
-                $helper = $fb->getRedirectLoginHelper();
                 try {
                     $accessToken = $helper->getAccessToken();
                 } catch(Facebook\Exceptions\FacebookResponseException $e) {
