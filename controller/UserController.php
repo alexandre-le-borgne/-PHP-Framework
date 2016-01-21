@@ -14,7 +14,6 @@ class UserController extends Controller
             return;
         }
 
-        ######### edit details ##########
         $clientId = '907331911654-dt5ibmao956tro1kh6ll0ggm21tqi122.apps.googleusercontent.com'; //Google CLIENT ID
         $clientSecret = 'AGC5BntkfKlqkNsKH-eEYTXK'; //Google CLIENT SECRET
         $redirectUrl = 'http://alex83690.alwaysdata.net/aaron/google';  //return url (url to script)
