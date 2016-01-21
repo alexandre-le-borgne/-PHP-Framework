@@ -124,7 +124,6 @@ class UserController extends Controller
                 if (isset($accessToken)) {
                     $_SESSION['facebook_access_token'] = (string) $accessToken;
                     $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
-                    var_dump($userData);
                     $this->loadModel('UserModel');
                     /** @var UserEntity $userEntity */
                     if(isset($userData['email'])) {
