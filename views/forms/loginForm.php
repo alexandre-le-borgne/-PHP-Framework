@@ -12,9 +12,9 @@
 
     <br><br><form class="form-horizontal" method="post" action="login">
         <!--USERNAME-->
-        <input class="first" type="text" name="login" placeholder="Identifiant ou Email">
+        <input class="first" type="text" name="login" placeholder="Identifiant ou Email" required>
         <!--PASSWORD-->
-        <input class="last" type="password" name="password" placeholder="Password">
+        <input class="last" type="password" name="password" placeholder="Password" required>
         <!--SUBMIT-->
         <input class="btn" type="submit" value="Connectez-vous !">
         <!--SUBMIT-->
