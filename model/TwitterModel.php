@@ -14,7 +14,7 @@ require_once './app/util/time_to_.php';
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 
-class TwitterModel extends Model
+class TwitterModel extends Model implements StreamModel
 {
     const MAX_MULTIPLICATOR = 16;
     const CONSUMER_KEY = "rC3gP2pji5zoKoGf4FlUYdvaa";
@@ -22,8 +22,9 @@ class TwitterModel extends Model
 
     private $twitter;
 
-    function __construct()
+                public function cron($firstUpdate, $lastUpdate)
     {
+        //todo finir pour le cron
         //Je recupere d'abord le token, afin de pouvoir demander les tweets
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
@@ -31,6 +32,29 @@ class TwitterModel extends Model
         //Je cree l'instance de TwitterOAuth, avec le token genere precedemment qui me permettra de recuperer les tweets
         $this->twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa",
             "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
+    }
+
+    public function getStreamById($id)
+    {
+        if (intval($id))
+        {
+            $db = new Database();
+            $result = $db->execute("SELECT * FROM stream_twitter WHERE id = ?", array($id));
+            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
+            return $result->fetch();
+        }
+        return null;
+    }
+
+    public function createStream($url, $firstUpdate){
+        $db = new Database();
+        $req = "SELECT * FROM stream_rss WHERE url = ?";
+        $result = $db->execute($req, array($url));
+
+        if(!$result->fetch()){
+            $req = "INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES (? , ?, ?)";
+            $db->execute($req, array($url, $firstUpdate, date("F j, Y, g:i a")));
+        }
     }
 
     public function getTweets($channel, $excludeReplies, $count)
