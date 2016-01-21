@@ -11,7 +11,5 @@ interface StreamModel
 {
     function cron(DateTime $firstUpdate, DateTime $lastUpdate);
 
-    function createStream($data = array(), DateTime $firstUpdate);
-
     function getStreamById($id);
 }

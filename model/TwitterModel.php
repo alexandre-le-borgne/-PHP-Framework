@@ -22,7 +22,7 @@ class TwitterModel extends Model implements StreamModel
 
     private $twitter;
 
-                public function cron($firstUpdate, $lastUpdate)
+    public function cron(DateTime $firstUpdate, DateTime $lastUpdate)
     {
         //todo finir pour le cron
         //Je recupere d'abord le token, afin de pouvoir demander les tweets
@@ -36,8 +36,7 @@ class TwitterModel extends Model implements StreamModel
 
     public function getStreamById($id)
     {
-        if (intval($id))
-        {
+        if (intval($id)) {
             $db = new Database();
             $result = $db->execute("SELECT * FROM stream_twitter WHERE id = ?", array($id));
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
@@ -46,12 +45,15 @@ class TwitterModel extends Model implements StreamModel
         return null;
     }
 
-    public function createStream($url, $firstUpdate){
+    public function createStream($channel, DateTime $firstUpdate)
+    {
+
+        $channel = isset($data['channel']);
         $db = new Database();
-        $req = "SELECT * FROM stream_rss WHERE url = ?";
+        $req = "SELECT * FROM stream_twitter WHERE url = ?";
         $result = $db->execute($req, array($url));
 
-        if(!$result->fetch()){
+        if (!$result->fetch()) {
             $req = "INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES (? , ?, ?)";
             $db->execute($req, array($url, $firstUpdate, date("F j, Y, g:i a")));
         }
@@ -67,8 +69,7 @@ class TwitterModel extends Model implements StreamModel
         $tweets = array();
         $multiplicator = 2;
 
-        while (count($tweets) != $count)
-        {
+        while (count($tweets) != $count) {
             $tooMuchTweets = $this->twitter->get('statuses/user_timeline', [
                 'screen_name' => $channel,
                 'exclude_replies' => ($excludeReplies ? true : false),
