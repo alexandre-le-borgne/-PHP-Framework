@@ -8,7 +8,7 @@ class TestTwitterController extends Controller
     function TwitterAction()
     {
         $i = 1;
-        $channel = 'Chouxfleur42';
+        $channel = 'JikarPonyland';
         $twitterModel = new TwitterModel();
         $tweets = $twitterModel->getTweets($channel, true, 12);
 
