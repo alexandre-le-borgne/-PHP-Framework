@@ -22,7 +22,7 @@
     <label class="checkbox">
         <input type="checkbox"> Remember me
     </label>
-    <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
+    <a class="forgot" href="forgotForm">Mot de passe oublié ?</a>
     <hr>
     <!--SOCIAL CONNECT-->
     <div class="socialConnect">
