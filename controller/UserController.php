@@ -82,10 +82,23 @@ class UserController extends Controller
             'default_graph_version' => 'v2.5',
         ]);
 
-        // Check to see if we already have an accessToken ?
         if (isset($_SESSION['facebook_access_token'] )) {
             $accessToken = $_SESSION['facebook_access_token'];
-            // Connecté
+            $fb->setAccessToken($accessToken);
+            $userData = $fb->api('/me');
+            $this->loadModel('UserModel');
+            /** @var UserEntity $userEntity */
+            $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
+            if ($userEntity) {
+                if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                    $request->getSession()->set('id', $userEntity->getId());
+                } // sinon c'est un compte du site, donc pas connectable avec google/facebook
+            } else {
+                $id = $this->usermodel->addExternalUser($userData->getName(), $userData->getEmail());
+                $request->getSession()->set('id', $id);
+            }
+            if (!$request->isInternal())
+                $this->redirectToRoute('index');
         } else {
             // We don't have the accessToken
             // But are we in the process of getting it ?
@@ -110,9 +123,19 @@ class UserController extends Controller
 
                 if (isset($accessToken)) {
                     $_SESSION['facebook_access_token'] = (string) $accessToken;
-
-                    // Connecté
-
+                    $fb->setAccessToken($accessToken);
+                    $userData = $fb->api('/me');
+                    $this->loadModel('UserModel');
+                    /** @var UserEntity $userEntity */
+                    $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
+                    if ($userEntity) {
+                        if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                            $request->getSession()->set('id', $userEntity->getId());
+                        } // sinon c'est un compte du site, donc pas connectable avec google/facebook
+                    } else {
+                        $id = $this->usermodel->addExternalUser($userData->getName(), $userData->getEmail());
+                        $request->getSession()->set('id', $id);
+                    }
                     if (!$request->isInternal())
                         $this->redirectToRoute('index');
                 }
