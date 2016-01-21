@@ -5,7 +5,6 @@ $view->extend('layouts/layout');
 
     <?php
     echo $_content;
-
     $this->render('layouts/section_news');
     $this->render('layouts/section_content');
     $this->render('layouts/section_social');

@@ -6,24 +6,25 @@
 ?>
 <div class="loginDiv">
 
-    <h4>Connectez-vous ?</h4>
+    <img id="logo" src="web/img/aaron_text_logo.png">
+
     <!--SIGN IN FORM-->
 
-    <form class="form-horizontal" method="post" action="login">
+    <br><br><form class="form-horizontal" method="post" action="login">
         <!--USERNAME-->
-        <input type="text" name="login" placeholder="Identifiant ou Email"><br><br>
+        <input class="first" type="text" name="login" placeholder="Identifiant ou Email">
         <!--PASSWORD-->
-        <input type="password" name="password" placeholder="Password"><br><br>
+        <input class="last" type="password" name="password" placeholder="Password">
         <!--SUBMIT-->
-        <input class="btn" type="submit" value="Submit">
+        <input class="btn" type="submit" value="Connectez-vous !">
         <!--SUBMIT-->
     </form>
 
-    <label class="checkbox">
-        <input type="checkbox"> Remember me
-    </label>
-    <a class="forgot" href="forgotForm">Mot de passe oublié ?</a>
-    <hr>
+    <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
+
+    <br>
+    <h4><img id="logo_explorer" src="web/img/logo_explorer.png"></h4>
+    <br>
     <!--SOCIAL CONNECT-->
     <div class="socialConnect">
         <!--            <button type="submit"><img src="web/img/fb_icon_325x325.png" class="img-rounded"></button>-->

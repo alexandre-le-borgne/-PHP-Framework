@@ -12,6 +12,8 @@
 
     <h2><strong>Finalisez votre inscription !</h2>
 
+    <?php $this->render('forms/preRegisterForm', $this->output('errors')); ?>
+    
     <!--SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="register">
         <!--USERNAME-->

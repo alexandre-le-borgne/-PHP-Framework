@@ -7,4 +7,3 @@
  */
 $view->extend('layouts/section_home');
 $this->render('forms/loginForm');
-$this->render('forms/preRegisterForm', $this->output('errors'));

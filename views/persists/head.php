@@ -4,9 +4,8 @@
 
 
 <title>ProjetPHP - Aaron</title>
-<link rel="stylesheet" href="<?= View::getAsset('css/bootstrap.css') ?>">
-<link rel="stylesheet" href="<?= View::getAsset('css/bootstrap-responsive.css') ?>">
-<link rel="stylesheet" href="<?= View::getAsset('css/bootstrap-responsive.min.css') ?>">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500italic,500,700,700italic,900,900italic,300italic,300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,100italic,100' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?= View::getAsset('inc/fullPage/jquery.fullPage.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('css/body.css') ?>">
 <link rel="stylesheet" href="<?= View::getAsset('css/footer.css') ?>">

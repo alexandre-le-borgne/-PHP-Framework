@@ -1,14 +1,234 @@
 .loginDiv, .preRegisterDiv
 {
-    border: 1px solid #e1e8ed;
-    border-radius: 4px;
-    margin: 15px;
-    background: white;
-    box-shadow: none;
-    float: right;
-    width: 219px;
-    padding: 15px;
+    width: 300px;
+    margin: auto !important;
 }
+
+h1, h2, h3, h4, h5, h6
+{
+    text-align: center;
+    width: 300px;
+    color: #ffffff;
+    font-family: 'Roboto', thin100;
+}
+
+#logo
+{
+    width: 300px;
+}
+
+#logo_explorer
+{
+    width: 23px;
+}
+
+.first
+{
+    border-radius: 2px 2px 0px 0px;
+}
+
+hr
+{
+
+}
+
+.line
+{
+    background : transparent;
+    border-color : #ffffff;
+    border-width : 0 0 1px;
+    border-style : solid;
+    margin: auto;
+    text-align: center;
+    width: 298px;
+}
+
+
+.last
+{
+    border-radius: 0px 0px 2px 2px;
+    border: none !important;
+}
+
+.socialConnect
+{
+
+}
+
+
+
+input
+{
+    background: white;
+    width: 100%;
+    height: 45px;
+    padding: 11px 10px 11px 13px;
+    display: block;
+    margin: 0px !important;
+    border: 0px;
+    border-bottom: solid 1px #d8d8d8;
+    font: 16px/1.4 "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+input[type="submit"]
+{
+    margin-top: 10px !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: none !important;
+    background: #559fca;
+    transition: background-color 1s;
+    color: #ffffff;
+}
+
+input[type="submit"]:hover
+{
+    background-color: rgba(85, 159, 202, 0.9);
+    transition: background-color 1s;
+    cursor: pointer;
+}
+
+.fblogin img
+{
+    height: 45px;
+    width: 45px;
+}
+
+.gologin img
+{
+    height: 45px;
+    width: 60px;
+}
+
+
+.fblogin a
+{
+    color: -webkit-link;
+    text-decoration: none;
+    cursor: auto;
+    height: 45px;
+    width: 100%;
+}
+
+.fblogin p, .gologin p
+{
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    top: -18px;
+    margin-left: 8%;
+    font-size: 10pt;
+}
+
+.gologin p
+{
+    top: -18px;
+    margin-left: 4%;
+}
+
+.fblogin
+{
+    margin-top: 10px !important;
+    width: 100% !important;
+    background-color: #3b55a0 !important;
+    height: 45px !important;
+    line-height: 45px;
+    vertical-align: middle;
+    background: #4c69ba;
+    background: -webkit-linear-gradient(#4c69ba, #3b55a0);
+    background: linear-gradient(#4c69ba, #3b55a0);
+    border-color: #4c69ba;
+    border-radius: 2px;
+    color: #fff;
+    font-family: "Helvetica neue";
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 -1px 0 #354c8c;
+}
+
+.fblogin:hover
+{
+    background: -webkit-linear-gradient(#5b7bd5, #4864b1);
+    background: linear-gradient(#5b7bd5, #4864b1);
+    border-bottom-color: #3b5998;
+    border-left-color: #4961a8;
+    border-right-color: #4961a8;
+    border-top-color: #5874c3;
+    box-shadow: inset 0 1px 0 #607fd6;
+    cursor: pointer;
+}
+
+.gologin
+{
+    width: 100% !important;
+    background-color: #de4b3a !important;
+    height: 45px !important;
+    line-height: 45px;
+    vertical-align: middle;
+    background: #de4b3a;
+    background: -webkit-linear-gradient(#e25646, #de4b3a);
+    background: linear-gradient(#e25646, #de4b3a);
+    border-color: #de4b3a;
+    border-radius: 2px;
+    color: #fff;
+    font-family: "Helvetica neue";
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 -1px 0 #cc4c3e;
+}
+
+.gologin:hover
+{
+    background: -webkit-linear-gradient(#e25646, #de4b3a);
+    background: linear-gradient(#e25646, #de4b3a);
+    border-bottom-color: #cc4c3e;
+    border-left-color: #de4b3a;
+    border-right-color: #e25646;
+    border-top-color: #e75747;
+    box-shadow: inset 0 1px 0 #e75747;
+    cursor: pointer;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus{
+    outline: none;
+}
+
+.forgot
+{
+    position: relative;
+    top: 2px;
+    font-size: 8pt;
+    font-weight: normal;
+    color: #ffffff;
+}
+
+#register_button
+{
+    background-color: rgba(255, 255, 255, .3);
+    border: none !important;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 10pt;
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 2px;
+    float: right;
+    position: relative;
+    top: 60px;
+    right: 15px;
+    vertical-align: top !important;
+    z-index: 1;
+}
+
+#login_button
+{
+
+}
+
+
 
 
 

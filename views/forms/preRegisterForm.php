@@ -18,12 +18,12 @@
         <?php
         if (isset($errors['email'])) { ?>
             <div class="control-group info">
-                <input type="email" name="email" placeholder="Email" required pattern="*@-.-"><br><br>
+                <input type="email" name="email" placeholder="Email" required pattern="*@-.-">
                 <span class="help-inline"><?php echo $errors['email'] ?></span>
             </div>
         <?php
         } else
-            echo '<input type="email" name="email" placeholder="Email" required pattern="*@-.-"><br><br>';
+            echo '<input type="email" name="email" placeholder="Email" required pattern="*@-.-"';
         ?>
 
         <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
