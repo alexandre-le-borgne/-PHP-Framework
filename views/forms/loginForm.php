@@ -11,10 +11,15 @@
     <!--SIGN IN FORM-->
 
     <br><br><form class="form-horizontal" method="post" action="login">
-        <!--USERNAME-->
-        <input class="first" type="text" name="login" placeholder="Identifiant ou Email" required>
-        <!--PASSWORD-->
-        <input class="last" type="password" name="password" placeholder="Password" required>
+        <div id="fields_errors">
+            <!--USERNAME-->
+            <input class="first" type="text" name="login" placeholder="Identifiant ou Email" required>
+            <!--PASSWORD-->
+            <input class="last" type="password" name="password" placeholder="Password" required>
+            <input id="errors_fields_mail" type="submit" value="N'oubliez pas votre e-mail !">
+            <input id="errors_fields_pwd" type="submit" value="N'oubliez pas votre mot de passe !">
+            <!--<input id="register_button" type="submit" value="Oups ! Votre compte est inexistant !">-->
+        </div>
         <!--SUBMIT-->
         <input class="btn" type="submit" value="Connectez-vous !">
         <!--SUBMIT-->
@@ -35,3 +40,21 @@
         ?>
     </div>
 </div>
+
+<script>
+    $(function() {
+        function show_errors(errors)
+        {
+            if(errors == true)
+            {
+                $('#fields_errors').css('max-height', 'none').css('transition', 'max-height 5s');
+                $('#errors_fields_pwd').css('display', 'block');
+                $('#errors_fields_mail').css('display', 'block');
+            }
+        }
+
+        show_errors(false);
+    });
+
+
+</script>
