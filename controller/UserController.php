@@ -243,9 +243,8 @@ class UserController extends Controller
     }
 
     public
-    function ForgotformAction(){
+    function ForgotFormAction(){
         $this->render("forms/forgotForm");
-
     }
 
 }
