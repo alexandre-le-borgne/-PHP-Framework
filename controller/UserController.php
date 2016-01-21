@@ -62,6 +62,10 @@ class UserController extends Controller
 
     public function FacebookAction(Request $request)
     {
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+            $this->redirectToRoute('index');
+            return;
+        }
 
         $appId = '1563533667270416';
         $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
@@ -71,34 +75,46 @@ class UserController extends Controller
             'app_secret' => $appSecret,
             'default_graph_version' => 'v2.5',
         ]);
-        $helper = $fb->getRedirectLoginHelper();
-        try {
-            $accessToken = $helper->getAccessToken();
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
-        }
-        $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook');
-        if (isset($accessToken)) {
-            // Logged in!
-            $_SESSION['facebook_access_token'] = (string)$accessToken;
 
-            // Now you can redirect to another page and use the
-            // access token from $_SESSION['facebook_access_token']
-        } elseif ($helper->getError()) {
-            // The user denied the request
-            exit;
-        }
+        // Check to see if we already have an accessToken ?
+        if (isset($_SESSION['facebook_access_token'] )) {
+            $accessToken = $_SESSION['facebook_access_token'];
+            // Connecté
+        } else {
+            // We don't have the accessToken
+            // But are we in the process of getting it ?
+            if (isset($_REQUEST['code'])) {
+                $helper = $fb->getRedirectLoginHelper();
+                try {
+                    $accessToken = $helper->getAccessToken();
+                } catch(Facebook\Exceptions\FacebookResponseException $e) {
+                    // When Graph returns an error
+                    echo 'Graph returned an error: ' . $e->getMessage();
+                    exit;
+                } catch(Facebook\Exceptions\FacebookSDKException $e) {
+                    // When validation fails or other local issues
+                    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                    exit;
+                }
 
-        if ($request->isInternal())
-             $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
-        else
-            $this->redirectToRoute('index');
+                if (isset($accessToken)) {
+                    $_SESSION['facebook_access_token'] = (string) $accessToken;
+
+                    // Connecté
+
+                    if (!$request->isInternal())
+                        $this->redirectToRoute('index');
+                }
+            } else {
+                // Well looks like we are a fresh dude, login to Facebook!
+                $helper = $fb->getRedirectLoginHelper();
+                $permissions = ['email', 'user_likes']; // optional
+                $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
+                if ($request->isInternal())
+                    $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
+            }
+
+        }
     }
 
     public function PreRegisterAction(Request $request)
