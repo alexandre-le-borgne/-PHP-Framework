@@ -86,7 +86,7 @@ class UserModel extends Model
         $password = Security::encode($password);
 
         $db->execute("INSERT INTO accounts (username, email, authentification, userKey) VALUES (?, ?, "
-            . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?, ?)", array($username, $email, $key));
+            . UserModel::AUTHENTIFICATION_BY_PASSWORD . ", ?)", array($username, $email, $key));
 
         $id = $db->lastInsertId();
 
