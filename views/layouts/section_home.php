@@ -9,7 +9,7 @@
 $view->extend('layouts/fullpage');
 ?>
 
-<a id="register_button" href="fullpage.php">Inscrivez-vous !</a>
+<a id="register_button" href="registe">Inscrivez-vous !</a>
 
 
 <div class="section section_home">
