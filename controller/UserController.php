@@ -121,7 +121,6 @@ class UserController extends Controller
                     echo 'Facebook SDK returned an error: ' . $e->getMessage();
                     exit;
                 }
-
                 if (isset($accessToken)) {
                     $_SESSION['facebook_access_token'] = (string) $accessToken;
                     $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
