@@ -7,7 +7,7 @@
  * - d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
  */
 
-$view->extend('layouts/fullpage');
+$view->extend('layouts/section_home');
 ?>
 
 <div class="registerDiv">
