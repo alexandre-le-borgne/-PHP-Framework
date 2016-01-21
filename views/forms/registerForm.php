@@ -6,6 +6,8 @@
  * - d'enregistrer e-mail et mot de passe (encodé)
  * - d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
  */
+
+$view->extend('layouts/fullpage');
 ?>
 
 <div class="registerDiv">
@@ -47,10 +49,7 @@
         ?>
 
         <!--SUBMIT ACTION-->
-        <button type="submit" value="register" class="btn">S'inscrire sur Aaron</button>
-
-        <!--SUBMIT ACTION-->
-        <button type="submit" name="action" value="register" class="btn">S'inscrire</button>
+        <input type="submit" value="S'inscrire sur Aaron" class="btn">
 
         <!--CAPTCHA-->
         <fieldset id="captchafield">
