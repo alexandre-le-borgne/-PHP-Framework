@@ -15,16 +15,8 @@ $view->extend('layouts/section_home');
     <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
     <!--SIGN UP FORM-->
-    <form class="form-horizontal" method="post" name="register" action="register">
-        <!--USERNAME-->
-        <div class="control-group">
-            <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on">@</span>
-                    <input class="span2" id="prependedInput" type="text" name="username" placeholder="Pseudonyme" required>
-                </div>
-            </div>
-        </div>
+    <form method="post" action="register">
+        <input type="text" name="username" placeholder="Pseudonyme" required>
 
         <!--BIRTH DATE
         <div class="input-prepend">
@@ -51,10 +43,10 @@ $view->extend('layouts/section_home');
         <!--SUBMIT ACTION-->
         <input type="submit" value="S'inscrire sur Aaron" class="btn">
 
-        <!--CAPTCHA-->
+        <!--CAPTCHA
         <fieldset id="captchafield">
             <div id="captcha"></div>
-        </fieldset>
+        </fieldset>-->
 
     </form>
 </div>
