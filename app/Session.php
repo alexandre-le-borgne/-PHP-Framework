@@ -45,7 +45,6 @@ class Session
             $userModel = new UserModel();
             $user = $userModel->getById($id);
             if ($user) {
-                var_dump($user);
                 if($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD) {
                     $password = $this->get("password");
                     if($password != null) {
