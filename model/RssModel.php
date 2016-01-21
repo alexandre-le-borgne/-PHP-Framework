@@ -61,7 +61,11 @@ class RssModel extends Model implements StreamModel
         }
     }
 
-    public function cron(DateTime $firstUpdate, DateTime $lastUpdate){
+    public function cron(){
+        /*
+         * DateTime $firstUpdate
+         * DateTime $lastUpdate
+         */
         $db = new Database();
 
         $req = "SELECT * FROM stream_rss";

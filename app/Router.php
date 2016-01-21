@@ -11,30 +11,28 @@ class Router {
         //controller in the system would be instantiated on every request, which obviously isn't good!
         // Route(routename, controllername, actionname);
         $this->table[] = $this->getDefaultRoute();
-        $this->table[] = new Route('login', 'user', 'login');
-        $this->table[] = new Route('logout', 'user', 'logout');
-        $this->table[] = new Route('preregister', 'user', 'preRegister');
-        $this->table[] = new Route('register', 'user', 'register');
-        $this->table[] = new Route('mailvalidation', 'user', 'mailValidation');
-        $this->table[] = new Route('exemple', 'exemple', 'index');
-        $this->table[] = new Route('twitter', 'testTwitter', 'twitter');
-        $this->table[] = new Route('email', 'email', 'index');
-        $this->table[] = new Route('rss', 'index', 'rss');
-        $this->table[] = new Route('admin', 'admin', 'index');
-        $this->table[] = new Route('facebook', 'user', 'facebook');
-        $this->table[] = new Route('google', 'user', 'google');
-        $this->table[] = new Route('fbcallback', 'user', 'fbcallback');
-        $this->table[] = new Route('forgotform', 'user', 'forgotform');
-        $this->table[] = new Route('cron', 'index', 'cron');
 
-        //Partie Admin
-        $this->table[] = new Route('admin','admin','index');
-        $this->table[] = new Route('adminusers','admin','users');
-        $this->table[] = new Route('deleteuser','admin','deleteUser');
+        $this->table[] = new Route('cron',              'index',        'cron');
+        $this->table[] = new Route('rss',               'index',        'rss');
 
+        $this->table[] = new Route('login',             'user',         'login');
+        $this->table[] = new Route('logout',            'user',         'logout');
+        $this->table[] = new Route('preregister',       'user',         'preRegister');
+        $this->table[] = new Route('register',          'user',         'register');
+        $this->table[] = new Route('mailvalidation',    'user',         'mailValidation');
+        $this->table[] = new Route('facebook',          'user',         'facebook');
+        $this->table[] = new Route('google',            'user',         'google');
+        $this->table[] = new Route('forgotform',        'user',         'forgotform');
 
-        //$this->table[] = new Route('gmail', 'testGmail', 'gmail');
+        $this->table[] = new Route('exemple',           'exemple',      'index');
 
+        $this->table[] = new Route('twitter',           'testTwitter',  'twitter');
+
+        $this->table[] = new Route('email',             'email',        'index');
+
+        $this->table[] = new Route('admin',             'admin',        'index');
+        $this->table[] = new Route('adminusers',        'admin',        'users');
+        $this->table[] = new Route('deleteuser',        'admin',        'deleteUser');
     }
 
     public function getRoute($name)
