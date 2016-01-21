@@ -33,12 +33,12 @@ $this->indexmodel->maFonction($params)
 
 Exemple : 
 ```php
-$data = array('errors' => $errors);
-$this->render('persists/home', $data);
+$data = array('dataUne' => $dataUne);
+$this->render('dossier/fichier', $data);
 ```
 
-* redirect($url) : Redirige simplement à l'url passé en paramètre
-* redirectToRoute($route, $data) : NOT IMPLEMENTED
+* redirect($url) : Redirige à l'url passé en paramètre.
+* redirectToRoute($route, $data) : Redirige à la route passé en paramètre suivit des différentes data fournies.
 * createNotFoundException($description) : Lève une exception traçable.
 
 #### I.1.b. Database
@@ -46,48 +46,73 @@ $this->render('persists/home', $data);
 Fournit un accès simple à la base de donnée.
 
 * execute($sql, $params = null) : Execute la requête (paramétrée si nécéssaire) passée en 1er paramètre avec les paramètres passés en 2nd paramètre.
+* lastInsertId() : Rebvoie l'id généré par la dernière requête exécuté.
 * [private] getBdd() : Fournit un accès la base de données.
 
-#### I.1.c. Kernel
+#### I.1.c. Entity
+
+C'est une classe abstraite, mère de toutes les entities. 
+
+#### I.1.d. Kernel
  
 La mission de ce singleton est d'appeler le controleur et l'action correspondant à l'url de la page demandée en la passant au routeur et de fournir un objet Request à l'action si celui ci est présent dans ses paramètres.
 
 * response() : Génère la réponse à renvoyer au navigateur en fonction de l'url demandée.
+* generateResponse($route = null, $params = array(), $internal = false) : Génère la réponse à renvoyer au navigateur en fonction de la route et des données passées en paramètre.Internal vaut true si la réponse est demandée par une vue (voir plus bas).
 
 ```php
-    public function response()
-    {
+    public function generateResponse($route = null, $params = array(), $internal = false) {
         $router = new Router();
-        $request = new Request();
-        $params = explode('/', $request->get('url'));
-        if (isset($params[0]) && $params[0] != '')
-            $route = $router->getRoute($params[0]);
+        $request = Request::getInstance();
+        $request->setInternal($internal);
+        if($route)
+            $route = $router->getRoute($route);
         else
             $route = $router->getDefaultRoute();
         $controller = $route->getController();
         $action = $route->getAction();
         $controller = new $controller();
         $r = new ReflectionMethod($controller, $action);
-        $params = $r->getParameters();
-        foreach ($params as $param) {
-            if($param->getClass()->getName() == 'Request')
-                return $controller->{$action}($request);
+        $paramsOfFunction = $r->getParameters();
+        $paramsToPass = array();
+        $indexParams = 0;
+        foreach ($paramsOfFunction as $param) {
+            if($param->getClass() != NULL && $param->getClass()->getName() == 'Request')
+                $paramsToPass[] = $request;
+            else
+                if(isset($params[$indexParams]))
+                    $paramsToPass[] = $params[$indexParams++];
+                else
+                    $paramsToPass[] = null;
         }
+        if(!empty($paramsToPass))
+            return call_user_func_array(array($controller, $action), $paramsToPass);
         return $controller->{$action}();
     }
 ```
 
-#### I.1.d. Model
+#### I.1.e. Mail
+
+Cette classe contient les fonctions d'envoie de mail.
+
+#### I.1.f. Model
 
 C'est une classe abstraite, mère de tous les models. 
+
+#### I.1.g. NotFoundException
+
+C'est une exception lévé lorsqu'un élément recherché n'a pas été trouvé (une vue par exemple).
 
 #### I.1.e. Request
 
 Fournit un moyen unique d'accéder aux variables $_POST, $_GET et à l'objet Session.
 * isAjaxRequest() : Renvoie vraie si la requête HTTP est une requête faîte par Ajax.
+* isInternal() : Renvoie vraie si la requête est interne, c'est à dire demandée par une vue.
+* setInternal($internal) : Modifie la donnée membre privée $this->internal.
 * get($name) : Renvoie la variable $_GET[$name] ou null si elle n'est pas définie.
 * post($name) : Renvoie la variable $_POST[$name] ou null si elle n'est pas définie.
 * getSession() : Retourne l'instance unique de l'objet Session.
+* [static] getInstance() : Retourne l'instance unique de l'objet Request.
 
 #### I.1.f. Route
  
@@ -104,7 +129,12 @@ Le routeur construit les différentes routes et fournit un moyen de récupérer 
 
 * getRoute($name) : Renvoie la route de nom $name.
 * getDefaultRoute() : Renvoie la route par défaut.
+
 ```php
+public function getDefaultRoute() {
+    return new Route('index', 'index', 'index');
+}
+    
 public function __construct() {
     // Route(routename, controllername, actionname);
     $this->table[] = $this->getDefaultRoute();
@@ -116,16 +146,27 @@ public function __construct() {
 
 Fournit des fonctions concernant la protection globale du site. 
 
-* display($string) : Echape la chaîne de caractères $string.
-* encode($str) : Crypte la chaîne $str.
+* [static] escape($string) : Echape la chaîne de caractères $string.
+* [static generateKey() : Renvoie une chaine de caractère utilisable comme token ou clé.
+* [static] encode($str) : Crypte la chaîne $str.
+* [static] equals($hashedPassword, $userPassword) : Retourne vraie si un mot de passe utilisateur correspond à un mot de passe hashé.
 
 #### I.1.i. Session
 
 Commence une session et fournit un moyen unique d'y accéder.
 
+```php
+    const USER_IS_NOT_CONNECTED = 0;
+    const USER_IS_CONNECTED = 1;
+    const USER_IS_ADMIN = 2;
+```
+    
 * get($name) : Renvoie la variable $_SESSION[$name] ou null si elle n’est pas définie.
 * set($name, $value) : $_SESSION[$name] = $value.
 * clear() : Réinitialise et détruit la session.
+* isConnected() : Renvoie vraie si l'utilisateur courant est connecté.
+* isGranted($role) : Renvoie vraie si l'utilisateur courant à un rôle supérieur ou égale à celui passé en paramètre.
+* [static] getInstance() : Rneovie l'instance unique de l'objet Session.
 
 #### I.1.j. TraceableException
 
