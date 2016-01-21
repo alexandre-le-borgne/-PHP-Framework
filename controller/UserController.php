@@ -62,43 +62,102 @@ class UserController extends Controller
 
     public function FacebookAction(Request $request)
     {
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+            $this->redirectToRoute('index');
+            return;
+        }
 
         $appId = '1563533667270416';
         $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
+
+        foreach ($_COOKIE as $k=>$v) {
+            if(strpos($k, "FBRLH_")!==FALSE) {
+                $_SESSION[$k]=$v;
+            }
+        }
 
         $fb = new Facebook\Facebook([
             'app_id' => $appId,
             'app_secret' => $appSecret,
             'default_graph_version' => 'v2.5',
         ]);
+
+        foreach ($_COOKIE as $k=>$v) {
+            if(strpos($k, "FBRLH_")!==FALSE) {
+                $_SESSION[$k]=$v;
+            }
+        }
+
         $helper = $fb->getRedirectLoginHelper();
-        try {
-            $accessToken = $helper->getAccessToken();
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
-        }
-        $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook');
-        if (isset($accessToken)) {
-            // Logged in!
-            $_SESSION['facebook_access_token'] = (string)$accessToken;
 
-            // Now you can redirect to another page and use the
-            // access token from $_SESSION['facebook_access_token']
-        } elseif ($helper->getError()) {
-            // The user denied the request
-            exit;
-        }
+        if (isset($_SESSION['facebook_access_token'] )) {
+            $accessToken = $_SESSION['facebook_access_token'];
+            $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
+            $this->loadModel('UserModel');
+            /** @var UserEntity $userEntity */
+            $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
+            if ($userEntity) {
+                if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                    $request->getSession()->set('id', $userEntity->getId());
+                } // sinon c'est un compte du site, donc pas connectable avec google/facebook
+            } else {
+                $id = $this->usermodel->addExternalUser($userData['name'], $userData['email']);
+                $request->getSession()->set('id', $id);
+            }
+            if (!$request->isInternal())
+                $this->redirectToRoute('index');
+        } else {
+            // We don't have the accessToken
+            // But are we in the process of getting it ?
+            if (isset($_REQUEST['code'])) {
+                try {
+                    $accessToken = $helper->getAccessToken();
+                } catch(Facebook\Exceptions\FacebookResponseException $e) {
+                    // When Graph returns an error
+                    echo 'Graph returned an error: ' . $e->getMessage();
+                    exit;
+                } catch(Facebook\Exceptions\FacebookSDKException $e) {
+                    // When validation fails or other local issues
+                    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                    exit;
+                }
 
-        if ($request->isInternal())
-             $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
-        else
-            $this->redirectToRoute('index');
+                if (isset($accessToken)) {
+                    $_SESSION['facebook_access_token'] = (string) $accessToken;
+                    $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
+                    $this->loadModel('UserModel');
+                    /** @var UserEntity $userEntity */
+                    $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
+                    if ($userEntity) {
+                        if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                            $request->getSession()->set('id', $userEntity->getId());
+                        } // sinon c'est un compte du site, donc pas connectable avec google/facebook
+                    } else {
+                        $id = $this->usermodel->addExternalUser($userData['name'], $userData['email']);
+                        $request->getSession()->set('id', $id);
+                    }
+                    if (!$request->isInternal())
+                        $this->redirectToRoute('index');
+                }
+            } else {
+                // Well looks like we are a fresh dude, login to Facebook!
+                $helper = $fb->getRedirectLoginHelper();
+                $permissions = ['public_profile', 'email', 'user_likes']; // optional
+                $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
+                foreach ($_SESSION as $k=>$v) {
+                    if(strpos($k, "FBRLH_")!==FALSE) {
+                        if(!setcookie($k, $v)) {
+                            //what??
+                        } else {
+                            $_COOKIE[$k]=$v;
+                        }
+                    }
+                }
+                if ($request->isInternal())
+                    $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
+            }
+
+        }
     }
 
     public function PreRegisterAction(Request $request)

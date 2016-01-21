@@ -9,7 +9,7 @@
 
 interface StreamModel
 {
-    function cron(DateTime $firstUpdate, DateTime $lastUpdate);
+    function cron();
 
     function getStreamById($id);
 }
