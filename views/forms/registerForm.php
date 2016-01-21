@@ -62,6 +62,7 @@ $view->extend('layouts/section_home');
 
 
 <script type="text/javascript">
+    /*
 $(function() {
     var s = new Slider("captchafield",{
         message: "Glissez pour créer le compte",
@@ -72,4 +73,5 @@ $(function() {
     });
     s.init();
 });
+*/
 </script>
