@@ -19,23 +19,11 @@ class EmailModel
 
     public function getStreamById($id)
     {
-        if (intval($id))
-        {
-            $email = new EmailEntity();
-
+        if (intval($id)) {
             $db = new Database();
-            $result = $db->execute("SELECT * FROM stream_email WHERE id = ?", array($id))->fetch();
-            if ($result)
-            {
-                $email->setId($result['id']);
-                $email->setServer($result['server']);
-                $email->setUser($result['user']);
-                $email->setPassword($result['password']);
-                $email->setPort($result['port']);
-                $email->setFirstUpdate($result['firstUpdate']);
-                $email->setLastUpdate($result['lastUpdate']);
-                return;
-            }
+            $data = $db->execute("SELECT * FROM stream_email WHERE id = ?", array($id));
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
+            return $data->fetch();
         }
     }
 
@@ -47,19 +35,14 @@ class EmailModel
     function flattenParts($messageParts, $flattenedParts = array(), $prefix = '', $index = 1, $fullPrefix = true)
     {
 
-        foreach ($messageParts as $part)
-        {
+        foreach ($messageParts as $part) {
             $flattenedParts[$prefix . $index] = $part;
-            if (isset($part->parts))
-            {
-                if ($part->type == 2)
-                {
+            if (isset($part->parts)) {
+                if ($part->type == 2) {
                     $flattenedParts = flattenParts($part->parts, $flattenedParts, $prefix . $index . '.', 0, false);
-                } elseif ($fullPrefix)
-                {
+                } elseif ($fullPrefix) {
                     $flattenedParts = flattenParts($part->parts, $flattenedParts, $prefix . $index . '.');
-                } else
-                {
+                } else {
                     $flattenedParts = flattenParts($part->parts, $flattenedParts, $prefix);
                 }
                 unset($flattenedParts[$prefix . $index]->parts);
@@ -73,8 +56,7 @@ class EmailModel
 
     function getPart($body, $encoding)
     {
-        switch ($encoding)
-        {
+        switch ($encoding) {
             case 0:
                 return $body; // 7BIT
             case 1:
@@ -95,23 +77,17 @@ class EmailModel
 
         $filename = '';
 
-        if ($part->ifdparameters)
-        {
-            foreach ($part->dparameters as $object)
-            {
-                if (strtolower($object->attribute) == 'filename')
-                {
+        if ($part->ifdparameters) {
+            foreach ($part->dparameters as $object) {
+                if (strtolower($object->attribute) == 'filename') {
                     $filename = $object->value;
                 }
             }
         }
 
-        if (!$filename && $part->ifparameters)
-        {
-            foreach ($part->parameters as $object)
-            {
-                if (strtolower($object->attribute) == 'name')
-                {
+        if (!$filename && $part->ifparameters) {
+            foreach ($part->parameters as $object) {
+                if (strtolower($object->attribute) == 'name') {
                     $filename = $object->value;
                 }
             }
@@ -125,8 +101,7 @@ class EmailModel
     {
         $result = '';
         $decode_header = imap_mime_header_decode($str);
-        foreach ($decode_header AS $obj)
-        {
+        foreach ($decode_header AS $obj) {
             $result .= htmlspecialchars(rtrim($obj->text, "\t"));
         }
         return $result;
@@ -136,8 +111,7 @@ class EmailModel
     {
         $body = $this->get_part($imap, $uid, "TEXT/HTML");
         // if HTML body is empty, try getting text body
-        if ($body == "")
-        {
+        if ($body == "") {
             $body = $this->get_part($imap, $uid, "TEXT/PLAIN");
         }
         return $body;
@@ -149,8 +123,7 @@ class EmailModel
         // actually base64-encoded, and decode it.
         $lines = explode("\r\n", $text);
         $first_line_words = explode(' ', $lines[0]);
-        if ($first_line_words[0] == $lines[0])
-        {
+        if ($first_line_words[0] == $lines[0]) {
             $text = base64_decode($text);
         }
 
@@ -167,8 +140,7 @@ class EmailModel
         );
 
         // Loop through the encoded characters and replace any that are found.
-        foreach ($characters as $key => $value)
-        {
+        foreach ($characters as $key => $value) {
             $text = str_replace($key, $value, $text);
         }
 
@@ -177,21 +149,16 @@ class EmailModel
 
     function get_part($imap, $uid, $mimetype, $structure = false, $partNumber = false)
     {
-        if (!$structure)
-        {
+        if (!$structure) {
             $structure = imap_fetchstructure($imap, $uid, FT_UID);
         }
-        if ($structure)
-        {
-            if ($mimetype == $this->get_mime_type($structure))
-            {
-                if (!$partNumber)
-                {
+        if ($structure) {
+            if ($mimetype == $this->get_mime_type($structure)) {
+                if (!$partNumber) {
                     $partNumber = 1;
                 }
                 $text = imap_fetchbody($imap, $uid, $partNumber, FT_UID);
-                switch ($structure->encoding)
-                {
+                switch ($structure->encoding) {
                     case 3:
                         return imap_base64($text);
                     case 4:
@@ -206,18 +173,14 @@ class EmailModel
             }
 
             // multipart
-            if ($structure->type == 1)
-            {
-                foreach ($structure->parts as $index => $subStruct)
-                {
+            if ($structure->type == 1) {
+                foreach ($structure->parts as $index => $subStruct) {
                     $prefix = "";
-                    if ($partNumber)
-                    {
+                    if ($partNumber) {
                         $prefix = $partNumber . ".";
                     }
                     $data = $this->get_part($imap, $uid, $mimetype, $subStruct, $prefix . ($index + 1));
-                    if ($data)
-                    {
+                    if ($data) {
                         return $data;
                     }
                 }
@@ -230,8 +193,7 @@ class EmailModel
     {
         $primaryMimetype = ["TEXT", "MULTIPART", "MESSAGE", "APPLICATION", "AUDIO", "IMAGE", "VIDEO", "OTHER"];
 
-        if ($structure->subtype)
-        {
+        if ($structure->subtype) {
             return $primaryMimetype[(int)$structure->type] . "/" . $structure->subtype;
         }
         return "TEXT/PLAIN";
@@ -239,40 +201,33 @@ class EmailModel
 
     public function getList()
     {
-        echo 'V15';
+        echo 'V15<br>';
         //$emails = imap_search($stream, 'SINCE '. date('d-M-Y',strtotime("-1 week")));
         $emails = imap_search($this->conn, 'ALL');
         $articles = array();
-        if (count($emails))
-        {
+        if (count($emails)) {
             // If we've got some email IDs, sort them from new to old and show them
             rsort($emails);
-            foreach ($emails as $email)
-            {
+            foreach ($emails as $email) {
 
                 // Fetch the email's overview and show subject, from and date.
                 $overview = imap_fetch_overview($this->conn, $email, 0);
                 echo $overview[0]->uid . ' : ';
                 $structure = imap_fetchstructure($this->conn, $overview[0]->uid, FT_UID);
-                if ($structure->encoding == "3")
-                {
+                if ($structure->encoding == "3") {
                     $body = base64_decode(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                } elseif ($structure->encoding == "0")
-                {
+                } elseif ($structure->encoding == "0") {
                     $body = quoted_printable_decode(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                } elseif ($structure->encoding == "1")
-                {
+                } elseif ($structure->encoding == "1") {
                     $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                } elseif ($structure->encoding == "4")
-                {
+                } elseif ($structure->encoding == "4") {
                     $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                } else
-                {
+                } else {
                     $body = imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1);
                 }
                 $article = new ArticleEntity();
                 $article->setTitle("$$$$" . $structure->encoding . "$$$" . $this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
-                $article->setContent($this->getBody($overview[0]->uid, $this->conn));
+                $article->setContent($body);
                 $article->setDate($overview[0]->date);
                 $articles[] = $article;
             }
@@ -317,11 +272,9 @@ class EmailModel
     function connect()
     {
         $conn = imap_open('{' . $this->server . ':' . $this->port . '/ssl}INBOX', $this->user, $this->pass);
-        if (FALSE !== $conn)
-        {
+        if (FALSE !== $conn) {
             $info = imap_check($conn);
-            if (FALSE !== $info)
-            {
+            if (FALSE !== $info) {
                 $this->conn = $conn;
                 $this->info = $info;
             }

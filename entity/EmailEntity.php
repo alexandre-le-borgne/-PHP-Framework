@@ -8,8 +8,7 @@
  */
 class EmailEntity extends Entity
 {
-    private $id, $server, $user, $password, $port, $firstUpdate, $lastUpdate;
-
+    private $id, $server, $user, $password, $port, $firstUpdate;
 
     //Getters
     public function getId()
@@ -42,11 +41,6 @@ class EmailEntity extends Entity
         return $this->firstUpdate;
     }
 
-    public function getLastUpdate()
-    {
-        return $this->lastUpdate;
-    }
-
     //Setters
     public function setId($id)
     {
@@ -76,10 +70,5 @@ class EmailEntity extends Entity
     public function setFirstUpdate($firstUpdate)
     {
         $this->firstUpdate = $firstUpdate;
-    }
-
-    public function setLastUpdate($lastUpdate)
-    {
-        $this->lastUpdate = $lastUpdate;
     }
 }
