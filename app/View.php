@@ -41,14 +41,12 @@ class View
 
         if (file_exists($path)) {
             $data['view'] = new ViewPart();
-            var_dump($data);
             extract($data);
             ob_start();
 
             require $path;
 
             $content_for_layout = ob_get_clean();
-            var_dump($data);
             if ($data['view']->super()) {
                 $this->data['_content'] = $content_for_layout;
                 $this->render($data['view']->super(), $this->data);
