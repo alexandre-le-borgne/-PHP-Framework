@@ -5,7 +5,6 @@
  * Date: 21/01/16
  * Time: 16:49
  */
-
 interface StreamModel {
     function cron($firstUpate, $lastUpdate);
     function createStream();

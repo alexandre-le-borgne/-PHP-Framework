@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Le Controlleur correspondant a l'utilisateur
  * - PreregisterAction est appele a la suite du preregisterForm, lors du submit
