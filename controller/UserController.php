@@ -7,6 +7,11 @@
  */
 class UserController extends Controller
 {
+    public function LogoutAction(Request $request) {
+        $request->getSession()->clear();
+        $this->redirectToRoute('index');
+    }
+
     public function GoogleAction(Request $request)
     {
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {

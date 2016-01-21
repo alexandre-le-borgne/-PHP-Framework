@@ -7,4 +7,4 @@
  */
 $view->extend('layouts/layoutConnected');
 echo $this->output('home');
-?>
+$this->render('forms/logoutForm');

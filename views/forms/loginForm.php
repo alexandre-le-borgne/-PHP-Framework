@@ -10,7 +10,8 @@
 
     <!--SIGN IN FORM-->
 
-    <br><br><form class="form-horizontal" method="post" action="login">
+    <br><br>
+    <form class="form-horizontal" method="post" action="login">
         <div id="fields_errors">
             <!--USERNAME-->
             <input class="first" type="text" name="login" placeholder="Identifiant ou Email" required>
@@ -42,11 +43,9 @@
 </div>
 
 <script>
-    $(function() {
-        function show_errors(errors)
-        {
-            if(errors == true)
-            {
+    $(function () {
+        function show_errors(errors) {
+            if (errors == true) {
                 $('#fields_errors').css('max-height', 'none').css('transition', 'max-height 5s');
                 $('#errors_fields_pwd').css('display', 'block');
                 $('#errors_fields_mail').css('display', 'block');
