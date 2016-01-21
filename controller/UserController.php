@@ -92,7 +92,7 @@ class UserController extends Controller
 
         if (isset($_SESSION['facebook_access_token'] )) {
             $accessToken = $_SESSION['facebook_access_token'];
-            $helper->setAccessToken($accessToken);
+            $fb->setAccessToken($accessToken);
             $userData = $fb->api('/me');
             $this->loadModel('UserModel');
             /** @var UserEntity $userEntity */
