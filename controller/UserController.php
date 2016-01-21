@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function GoogleAction(Request $request)
     {
-        if($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
             $this->redirectToRoute('index');
             return;
         }
@@ -34,13 +34,11 @@ class UserController extends Controller
 
         if (isset($_GET['code'])) {
             $gClient->authenticate($_GET['code']);
-            $_SESSION['token'] = $gClient->getAccessToken();
         }
 
         if ($gClient->getAccessToken()) {
             $userData = $google_oauthV2->userinfo->get();
             if ($userData->getVerifiedEmail()) {
-                $_SESSION['access_token'] = $gClient->getAccessToken();
                 $this->loadModel('UserModel');
                 /** @var UserEntity $userEntity */
                 $userEntity = $this->usermodel->getByNameOrEmail($userData->getEmail());
@@ -48,8 +46,7 @@ class UserController extends Controller
                     if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
                         $request->getSession()->set('id', $userEntity->getId());
                     } // sinon c'est un compte du site, donc pas connectable avec google/facebook
-                }
-                else {
+                } else {
                     $id = $this->usermodel->addExternalUser($userData->getName(), $userData->getEmail());
                     $request->getSession()->set('id', $id);
                 }
@@ -65,8 +62,48 @@ class UserController extends Controller
             $this->redirectToRoute('index');
     }
 
-    public
-    function PreRegisterAction(Request $request)
+    public function FacebookAction(Request $request)
+    {
+
+        $appId = '1563533667270416';
+        $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
+
+        $fb = new Facebook\Facebook([
+            'app_id' => $appId,
+            'app_secret' => $appSecret,
+            'default_graph_version' => 'v2.5',
+        ]);
+        $helper = $fb->getRedirectLoginHelper();
+        try {
+            $accessToken = $helper->getAccessToken();
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            // When Graph returns an error
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+        } catch (Facebook\Exceptions\FacebookSDKException $e) {
+            // When validation fails or other local issues
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+        $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook');
+        if (isset($accessToken)) {
+            // Logged in!
+            $_SESSION['facebook_access_token'] = (string)$accessToken;
+
+            // Now you can redirect to another page and use the
+            // access token from $_SESSION['facebook_access_token']
+        } elseif ($helper->getError()) {
+            // The user denied the request
+            exit;
+        }
+
+        if ($request->isInternal())
+             $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
+        else
+            $this->redirectToRoute('index');
+    }
+
+    public function PreRegisterAction(Request $request)
     {
         $this->loadModel('UserModel');
 
@@ -104,8 +141,7 @@ class UserController extends Controller
         $this->render('forms/registerForm');
     }
 
-    public
-    function RegisterAction(Request $request)
+    public function RegisterAction(Request $request)
     {
         $username = $request->post('username');
         //On recupere les champs deja entres
@@ -137,8 +173,7 @@ class UserController extends Controller
         }
     }
 
-    public
-    function LoginAction(Request $request)
+    public function LoginAction(Request $request)
     {
         $this->loadModel('UserModel');
         $this->loadModel('PasswordModel');
@@ -156,8 +191,7 @@ class UserController extends Controller
         $this->redirectToRoute('index');
     }
 
-    public
-    function MailResetAction(Request $request)
+    public function MailResetAction(Request $request)
     {
 
         $email = Security::escape($request->post('email'));
@@ -175,8 +209,7 @@ class UserController extends Controller
         echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
     }
 
-    public
-    function MailValidationAction($user, $key)
+    public function MailValidationAction($user, $key)
     {
         $db = new Database();
         $req = "Select email, userKey, active From accounts Where username = ?";
@@ -199,52 +232,4 @@ class UserController extends Controller
                 $this->render("layouts/mailValidation", array("message" => "Erreur : aucun compte n'est associé à cette adresse"));
         }
     }
-
-    public
-    function FacebookAction()
-    {
-
-        $appId = '1563533667270416';
-        $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
-
-        $fb = new Facebook\Facebook([
-            'app_id' => $appId,
-            'app_secret' => $appSecret,
-            'default_graph_version' => 'v2.5',
-        ]);
-        $helper = $fb->getRedirectLoginHelper();
-        $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook');
-
-        $helper = $fb->getRedirectLoginHelper();
-        try {
-            $accessToken = $helper->getAccessToken();
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
-        }
-
-        if (isset($accessToken)) {
-            // Logged in!
-            $_SESSION['facebook_access_token'] = (string)$accessToken;
-
-            // Now you can redirect to another page and use the
-            // access token from $_SESSION['facebook_access_token']
-        } elseif ($helper->getError()) {
-            // The user denied the request
-            exit;
-        }
-
-        $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
-    }
-
-    public
-    function ForgotFormAction(){
-        $this->render("forms/forgotForm");
-    }
-
 }
