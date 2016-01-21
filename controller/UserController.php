@@ -70,6 +70,12 @@ class UserController extends Controller
         $appId = '1563533667270416';
         $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
 
+        foreach ($_COOKIE as $k=>$v) {
+            if(strpos($k, "FBRLH_")!==FALSE) {
+                $_SESSION[$k]=$v;
+            }
+        }
+
         $fb = new Facebook\Facebook([
             'app_id' => $appId,
             'app_secret' => $appSecret,
@@ -84,6 +90,11 @@ class UserController extends Controller
             // We don't have the accessToken
             // But are we in the process of getting it ?
             if (isset($_REQUEST['code'])) {
+                foreach ($_COOKIE as $k=>$v) {
+                    if(strpos($k, "FBRLH_")!==FALSE) {
+                        $_SESSION[$k]=$v;
+                    }
+                }
                 $helper = $fb->getRedirectLoginHelper();
                 try {
                     $accessToken = $helper->getAccessToken();
@@ -108,8 +119,17 @@ class UserController extends Controller
             } else {
                 // Well looks like we are a fresh dude, login to Facebook!
                 $helper = $fb->getRedirectLoginHelper();
-                $permissions = ['email', 'user_likes']; // optional
+                $permissions = ['public_profile', 'email', 'user_likes']; // optional
                 $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
+                foreach ($_SESSION as $k=>$v) {
+                    if(strpos($k, "FBRLH_")!==FALSE) {
+                        if(!setcookie($k, $v)) {
+                            //what??
+                        } else {
+                            $_COOKIE[$k]=$v;
+                        }
+                    }
+                }
                 if ($request->isInternal())
                     $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
             }
