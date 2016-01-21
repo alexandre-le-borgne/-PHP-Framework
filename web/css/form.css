@@ -224,6 +224,26 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus{
     z-index: 1;
 }
 
+#fields_errors
+{
+    max-height: 90px;
+    transition: height 5s;
+}
+
+#errors_fields_mail, #errors_fields_pwd
+{
+    display: none;
+    background-color: rgba(255, 255, 255, .3);
+    border: none !important;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 10pt;
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
 #login_button
 {
 
