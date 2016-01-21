@@ -10,10 +10,8 @@
 
 <div class="registerDiv">
 
-    <h2><strong>Finalisez votre inscription !</h2>
+    <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
-    <?php $this->render('forms/preRegisterForm', $this->output('errors')); ?>
-    
     <!--SIGN UP FORM-->
     <form class="form-horizontal" method="post" name="register" action="register">
         <!--USERNAME-->
@@ -31,6 +29,25 @@
             <span class="add-on">@</span>
             <input class="span2" id="prependedInput" type="date" name="birthDate" placeholder="Date de naissance" required>
         </div>-->
+
+        <!--EMAIL-->
+        <?php
+        if (isset($errors['email'])) { ?>
+            <div class="control-group info">
+                <input type="email" name="email" placeholder="Email" required pattern="*@-.-">
+                <span class="help-inline"><?php echo $errors['email'] ?></span>
+            </div>
+            <?php
+        } else
+            echo '<input type="email" name="email" placeholder="Email" required pattern="*@-.-"';
+        ?>
+
+        <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
+        $this->render('forms/passwordConfirmForm', (isset($errors) ? $data = array("errors" => $errors) : null))
+        ?>
+
+        <!--SUBMIT ACTION-->
+        <button type="submit" value="register" class="btn">S'inscrire sur Aaron</button>
 
         <!--SUBMIT ACTION-->
         <button type="submit" name="action" value="register" class="btn">S'inscrire</button>

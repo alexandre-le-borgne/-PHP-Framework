@@ -14,8 +14,6 @@ $view->extend('layouts/fullpage');
 
 <div class="section section_home">
 
-
-
     <?= $_content ?>
 
     <script>
