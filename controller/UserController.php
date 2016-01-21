@@ -242,4 +242,9 @@ class UserController extends Controller
         $this->render("forms/facebookForm", array('loginUrl' => $loginUrl));
     }
 
+    public
+    function ForgotformAction(){
+        $this->render("forms/forgotForm");
+    }
+
 }
