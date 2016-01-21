@@ -124,16 +124,19 @@ class UserController extends Controller
                 if (isset($accessToken)) {
                     $_SESSION['facebook_access_token'] = (string) $accessToken;
                     $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
+                    var_dump($userData);
                     $this->loadModel('UserModel');
                     /** @var UserEntity $userEntity */
-                    $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
-                    if ($userEntity) {
-                        if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
-                            $request->getSession()->set('id', $userEntity->getId());
-                        } // sinon c'est un compte du site, donc pas connectable avec google/facebook
-                    } else {
-                        $id = $this->usermodel->addExternalUser($userData['name'], $userData['email']);
-                        $request->getSession()->set('id', $id);
+                    if(isset($userData['email'])) {
+                        $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
+                        if ($userEntity) {
+                            if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                                $request->getSession()->set('id', $userEntity->getId());
+                            } // sinon c'est un compte du site, donc pas connectable avec google/facebook
+                        } else {
+                            $id = $this->usermodel->addExternalUser($userData['name'], $userData['email']);
+                            $request->getSession()->set('id', $id);
+                        }
                     }
                     if (!$request->isInternal())
                         $this->redirectToRoute('index');
