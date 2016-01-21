@@ -30,11 +30,8 @@ class TwitterModel extends Model implements StreamModel
         //    on recupere le 1er et le dernier article
         //    on recharge tous les articles en BD entre le firstUpdate et 1erArticle.date
         //    on recharge tous les articles en BD entre now et le dernierArticle.date
-        //    on modifie en BD le lastUpdate a now();
+        //    on modifie en BD le lastUpdate du stream qu'on traite a now();
         //}
-        //
-        //
-
 
         //todo finir pour le cron
         //Je recupere d'abord le token, afin de pouvoir demander les tweets
