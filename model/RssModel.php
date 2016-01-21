@@ -71,7 +71,7 @@ class RssModel extends Model
                     $req = "SELECT * FROM article WHERE url = ?";
                     $result = $db->execute($req, array($item->link));
                     if(!$result->fetch()) {
-                        $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, " . ArticleModel::RSS . ", ?, ?)";
+                        $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, ?,". ArticleModel::RSS .",  ?)";
                         $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link));
                     }
                 }
