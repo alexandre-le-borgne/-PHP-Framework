@@ -191,8 +191,6 @@ class UserController extends Controller
             if (!($this->usermodel->availableUser($username))) {
                 $errors['username'] = 'Pseudonyme déjà utilisé';
             }
-            var_dump($errors);
-            die();
             if (!(empty($errors))) {
                 $data = array('errors' => $errors);
                 $this->render('forms/registerForm', $data);
