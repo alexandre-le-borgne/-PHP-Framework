@@ -6,5 +6,5 @@
  * Time: 14:07
  */
 $view->extend('layouts/layoutConnected');
-echo $this->output('home');
 $this->render('forms/logoutForm');
+echo $this->output('home');
