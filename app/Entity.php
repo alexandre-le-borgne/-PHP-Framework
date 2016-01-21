@@ -6,7 +6,7 @@
  * Date: 04/01/2016
  * Time: 15:28
  */
-class Entity
+abstract class Entity
 {
 
 }
