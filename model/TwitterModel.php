@@ -51,16 +51,16 @@ class TwitterModel extends Model implements StreamModel
             /** On recupere le premier et le dernier tweet en BD de ce flux */
             $firstArticle = $this->getFirstArticle($db, $twitterEntity);
             $lastArticle = $this->getLastArticle($db, $twitterEntity);
-            $dateFirstArticle = new DateTime();
-            $dateFirstArticle->setTimestamp(strtotime($firstArticle->getArticleDate()));
-            $dateLastArticle = new DateTime();
-            $dateLastArticle->setTimestamp(strtotime($lastArticle->getArticleDate()));
-            $dateFirstUpdate = new DateTime();
-            $dateFirstUpdate->setTimestamp(strtotime($twitterEntity->getFirstUpdate()));
+//            $dateFirstArticle = new DateTime();
+//            $dateFirstArticle->setTimestamp(strtotime($firstArticle->getArticleDate()));
+//            $dateLastArticle = new DateTime();
+//            $dateLastArticle->setTimestamp(strtotime($lastArticle->getArticleDate()));
+//            $dateFirstUpdate = new DateTime();
+//            $dateFirstUpdate->setTimestamp(strtotime($twitterEntity->getFirstUpdate()));
 
             /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
-            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $dateFirstUpdate,
-                $dateFirstArticle, $dateLastArticle);
+            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
+                $firstArticle->getArticleDate(), $lastArticle->getArticleDate());
 
             /** On ajoute en BD les articles a inserer */
             /** de plus, on les parse pour que les liens s'affichent */
@@ -69,15 +69,16 @@ class TwitterModel extends Model implements StreamModel
             $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
             foreach ($tweetsToInsert as $tweet)
             {
-                $dateInsert = new DateTime();
-                $dateInsert->setTimestamp(strtotime($tweet->created_at));
+//                $dateInsert = new DateTime();
+//                $dateInsert->setTimestamp(strtotime($tweet->created_at));
 
                 $db->execute($req, array(
                     $autolink->autoLink('@' . $twitterEntity->getChannel()),
                     $autolink->autoLink($tweet->text),
-                    $dateInsert->format(Database::DATE_FORMAT),
+                    date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
+//                    $dateInsert->format(Database::DATE_FORMAT),
                     ArticleModel::TWITTER,
-                    $tweet->url,
+                    'YaPaDurlGroPD',
                     $twitterEntity->getId()));
             }
 
@@ -89,12 +90,12 @@ class TwitterModel extends Model implements StreamModel
     /**
      * Va charger tous les tweets jusqu'a firstUpdate en excluant ceux dans l'intervalle [firstDate, lastDate]
      * @param $channel la chaine correspondante
-     * @param DateTime $firstUpdate la date depuis laquelle on veut les tweets
-     * @param DateTime $firstDate la date de debut des tweets deja presents
-     * @param DateTime $lastDate la date de fin des tweets deja presents
+     * @param $firstUpdate la date depuis laquelle on veut les tweets
+     * @param $firstDate la date de debut des tweets deja presents
+     * @param $lastDate la date de fin des tweets deja presents
      * @return les tweets a inserer
      */
-    private function loadTweets($channel, DateTime $firstUpdate, DateTime $firstDate, DateTime $lastDate)
+    private function loadTweets($channel, $firstUpdate, $firstDate, $lastDate)
     {
         /**
          * Comme indique dans l'api Twitter, quand on exclut les reponses, il faut en recuperer plus que prevu, car
@@ -197,7 +198,7 @@ class TwitterModel extends Model implements StreamModel
     }
 
     public
-    function createStream($channel, DateTime $firstUpdate)
+    function createStream($channel, $firstUpdate)
     {
         $db = new Database();
         $req = 'SELECT * FROM stream_twitter WHERE channel = ?';
@@ -206,13 +207,13 @@ class TwitterModel extends Model implements StreamModel
         if (!($fetch))
         {
             $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($channel, $firstUpdate->format(Database::DATE_FORMAT)));
+            $db->execute($req, array($channel, $firstUpdate));
         }
         else if ($firstUpdate->getTimestamp() < strtotime($fetch['firstUpdate']))
         {
             //On modifie le stream pour qu'il prenne en compte le debut plus tot
             $req = "UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?";
-            $db->execute($req, array($firstUpdate->format(Database::DATE_FORMAT), $channel));
+            $db->execute($req, array($firstUpdate, $channel));
         }
     }
 }

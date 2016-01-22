@@ -238,14 +238,15 @@ body
 #feed
 {
     border: solid 1px blue;
-    float: left;
+    float: right;
     width: 600px;
 }
 
 #categories
 {
     border: solid 1px blue;
-    width: 300px;
+    width: 251px;
+    margin-right: 32px;
     height: 520px;
     float: left;
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
@@ -271,7 +272,7 @@ body
     color: white;
     font-size: 10pt;
     border-radius: 2px;
-    height: 120px;
+    height: 500px;
     padding: 11px 10px 11px 13px;
     display: block;
     margin-top: 10px;
