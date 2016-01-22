@@ -323,6 +323,7 @@ class EmailModel
                     $article->setArticleDate($overview[0]->date);
                     $article->setArticleType(ArticleModel::EMAIL);
                     $article->setStreamId($emailEntity->getId());
+                    $article->setUrl('');
                     $articles[] = $article;
                 }
             }
