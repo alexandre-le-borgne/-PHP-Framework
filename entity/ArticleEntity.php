@@ -47,7 +47,7 @@ class ArticleEntity
 
     public function getDate()
     {
-        return $this->date;
+        return $this->articleDate;
     }
 
     public function getArticleDate()
