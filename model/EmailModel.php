@@ -281,32 +281,45 @@ class EmailModel
         $emailStreams = $result->fetchAll();
 
         /** @var EmailEntity $emailEntity */
-        foreach ($emailStreams as $emailEntity) {
+        foreach ($emailStreams as $emailEntity)
+        {
             $firstEmail = getFirstArticle($emailEntity);
             $lastEmail = getFirstArticle($emailEntity);
             $stream = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
-            $emails = imap_search($stream, 'SINCE '. $emailEntity->getFirstUpdate());
+            $emails = imap_search($stream, 'SINCE ' . $emailEntity->getFirstUpdate());
 
             //$emails = imap_search($this->conn, 'ALL');
 
             $articles = array();
-            if (count($emails)) {
-                foreach ($emails as $email) {
+            if (count($emails))
+            {
+                foreach ($emails as $email)
+                {
                     // Fetch the email's overview and show subject, from and date.
                     $overview = imap_fetch_overview($this->conn, $email, 0);
                     echo $overview[0]->uid . ' : ';
                     $structure = imap_fetchstructure($this->conn, $overview[0]->uid, FT_UID);
-                    if ($structure->encoding == "3") {
+                    if ($structure->encoding == "3")
+                    {
                         $body = base64_decode(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                    } elseif ($structure->encoding == "0") {
+                    }
+                    elseif ($structure->encoding == "0")
+                    {
                         $body = quoted_printable_decode(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                    } elseif ($structure->encoding == "1") {
+                    }
+                    elseif ($structure->encoding == "1")
+                    {
                         $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                    } elseif ($structure->encoding == "4") {
+                    }
+                    elseif ($structure->encoding == "4")
+                    {
                         $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                    } else {
+                    }
+                    else
+                    {
                         $body = imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1);
                     }
+                    var_dump($overview[0]->date);
                     $article = new ArticleEntity();
                     $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
                     $article->setContent($this->getBody($overview[0]->uid, $this->conn));
@@ -314,10 +327,22 @@ class EmailModel
                     $articles[] = $article;
                 }
             }
+            /*
+            $articlesARecuperer = array();
+            /** @var ArticleEntity $article * /
+            if ($firstEmail && $lastEmail)
+            {
+                foreach ($articles as $article)
+                {
+                    if ($article->getArticleDate() <= $firstEmail->getArticleDate)
+                    {
 
-            foreach($articles as $article) {
-
+                    }
+                }
             }
+            else {
+                $articlesARecuperer = $articles;
+            }*/
         }
         return $articles;
     }
