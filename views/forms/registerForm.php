@@ -13,7 +13,7 @@ $view->extend('layouts/section_home');
 <div class="registerDiv">
 
     <a href="index"><img id="logo" src="web/img/aaron_text_logo.png"></a>
-<br><br>
+    <br><br>
     <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
     <!--SIGN UP FORM-->
@@ -54,18 +54,17 @@ $view->extend('layouts/section_home');
 </div>
 
 
-
 <script type="text/javascript">
     /*
-$(function() {
-    var s = new Slider("captchafield",{
-        message: "Glissez pour créer le compte",
-        handler: function(){
-            $("#captchafield").hide("slow");
-            document.register.submit();
-        }
-    });
-    s.init();
-});
-*/
+     $(function() {
+     var s = new Slider("captchafield",{
+     message: "Glissez pour créer le compte",
+     handler: function(){
+     $("#captchafield").hide("slow");
+     document.register.submit();
+     }
+     });
+     s.init();
+     });
+     */
 </script>
