@@ -31,9 +31,25 @@ header .search_bar
     height: 42px;
     padding: 11px 10px 11px 13px;
     display: block;
+    margin-top: 9px !important;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+#profile
+{
+    background: #2f3d51 !important;
+    width: 200px;
+    color: white;
+    font-size: 10pt;
+    border-radius: 2px;
+    height: 42px;
+    padding: 11px 10px 11px 13px;
+    display: block;
     margin-top: 7px !important;
     border: 0px;
     box-sizing: border-box;
+    float: right;
 }
 
 header #logo_txt
@@ -59,7 +75,9 @@ header .logout_button
 
 #logo_aaron_home
 {
-    width: 46px;
+    width: 42px;
+    margin-bottom: 6px;
+    margin-right: 10px;
     vertical-align: middle;
 }
 

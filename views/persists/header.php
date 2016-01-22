@@ -25,10 +25,7 @@
                 <input class="search_bar" type="textarea" name="search" placeholder="Votre recherche...">
                 <input type="submit" style="display: none">
             </form>
-
-            <div id="profile">
-                <a href="<? View::getUrlFromRoute('profil')?>">Profil</a>
-            </div>
+            <a id="profile" href="<? View::getUrlFromRoute('profil')?>">Profil</a>
             <?php
             $this->render('forms/logoutForm');
         } else {
