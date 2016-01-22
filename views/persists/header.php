@@ -9,19 +9,34 @@
 
 
 <header>
-    <div id="profile">
 
-    </div>
     <?php
     if ($this->isGranted(Session::USER_IS_CONNECTED)) {
+        ?>
+        <div id="profile">
+            <a href="<? View::getUrlFromRoute('profil')?>">Profil</a>
+        </div>
+        <?php
         if ($this->isGranted(Session::USER_IS_ADMIN)) {
             ?>
             <a href="<?= View::getUrlFromRoute('admin') ?>">Panel administrateur</a>
             <?php
         }
+        ?>
+        <a href="<? View::getUrlFromRoute('index') ?>">Accueil</a>
+        <form method="post" action="search">
+            <input type="textarea" name="search" placeholder="Votre recherche...">
+            <input type="submit" style="display: none">
+        </form>
+        <a href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
+        <?php
         $this->render('forms/logoutForm');
     } else {
         ?>
+        <form method="post" action="search">
+            <input type="textarea" name="search" placeholder="Votre recherche...">
+            <input type="submit" style="display: none">
+        </form>
         <a href="login">Se connecter</a>
         <br>
         <a href="register">S'enregistrer</a>
