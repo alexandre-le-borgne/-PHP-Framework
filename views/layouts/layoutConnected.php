@@ -8,6 +8,10 @@
 
 $view->extend('layouts/layout');
 $this->render('persists/header');
+?>
 
+<a href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
+
+<?php
 echo $this->output('_content');
 

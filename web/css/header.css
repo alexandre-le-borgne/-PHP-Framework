@@ -39,7 +39,21 @@ header #logo_txt
 header .logout_button
 {
     vertical-align: middle;
+    position: relative;
+    top: -3px;
+}
 
+#home_logo
+{
+    border-radius: 3px 0px 0px 3px;
+    background: #000000;
+    padding: 13px 13px 14px 10px;
+}
+
+#logo_aaron_home
+{
+    width: 46px;
+    vertical-align: middle;
 }
 
 .logout
