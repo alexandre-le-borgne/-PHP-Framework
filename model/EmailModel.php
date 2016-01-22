@@ -274,7 +274,7 @@ class EmailModel
     public function cron()
     {
         $db = new Database();
-        $result = $db->execute('SELECT * FROM stream_twitter');
+        $result = $db->execute('SELECT * FROM stream_email');
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
         $emailStreams = $result->fetchAll();
 
