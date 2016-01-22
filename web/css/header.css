@@ -37,6 +37,7 @@ header .search_bar
 
 #profile
 {
+    margin-right: 1%;
     background: #2f3d51 !important;
     width: 200px;
     color: white;
