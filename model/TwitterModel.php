@@ -154,6 +154,7 @@ class TwitterModel extends Model implements StreamModel
     {
         return null;
     }
+
     /** Fin du tout ca pour le cron */
 
 
@@ -178,13 +179,13 @@ class TwitterModel extends Model implements StreamModel
         if (!($fetch))
         {
             $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($channel, $firstUpdate));
+            $db->execute($req, array($channel, $firstUpdate->format(Database::DATE_FORMAT)));
         }
         else if ($firstUpdate->getTimestamp() < strtotime($fetch['firstUpdate']))
         {
             //On modifie le stream pour qu'il prenne en compte le debut plus tot
             $req = "UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?";
-            $db->execute($req, array($firstUpdate, $channel));
+            $db->execute($req, array($firstUpdate->format(Database::DATE_FORMAT), $channel));
         }
     }
 }
