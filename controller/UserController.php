@@ -21,14 +21,19 @@ class UserController extends Controller
             $password = $request->post('password');
             if ($login && $password) {
                 $userEntity = $this->usermodel->getByNameOrEmail($login);
-                if ($userEntity->getAuthentification() == 0) {
-                    $passwordEntity = $this->passwordmodel->getByUser($userEntity);
-                    if (Security::equals($passwordEntity->getPassword(), $password)) {
-                        $request->getSession()->set("id", $userEntity->getId());
-                        $request->getSession()->set("password", $passwordEntity->getPassword());
-                        $this->redirectToRoute('index');
-                        return;
+                if($userEntity) {
+                    if ($userEntity->getAuthentification() == 0) {
+                        $passwordEntity = $this->passwordmodel->getByUser($userEntity);
+                        if (Security::equals($passwordEntity->getPassword(), $password)) {
+                            $request->getSession()->set("id", $userEntity->getId());
+                            $request->getSession()->set("password", $passwordEntity->getPassword());
+                            $this->redirectToRoute('index');
+                            return;
+                        }
                     }
+                }
+                else {
+
                 }
             }
             $this->render('layouts/layoutNotConnected');

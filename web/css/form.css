@@ -230,7 +230,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus{
     transition: height 5s;
 }
 
-#errors_fields_mail, #errors_fields_pwd
+.errors_fields
 {
     display: none;
     background-color: rgba(255, 255, 255, .3);
