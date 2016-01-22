@@ -41,7 +41,7 @@ class RssModel extends Model implements StreamModel
     }
 
 
-    public function createStream($url,$firstUpdate){
+    public function createStream($url,DateTime $firstUpdate){
         $db = new Database();
         $req = "SELECT * FROM stream_rss WHERE url = ?";
         $result = $db->execute($req, array($url));
@@ -110,8 +110,9 @@ class RssModel extends Model implements StreamModel
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
+
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, $item->pubDate, $item->link, $stream_id));
+                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
                     }
                 }
             }//while
