@@ -84,7 +84,7 @@ class RssModel extends Model implements StreamModel
 
 
             if($verif = $result->fetch()) {
-                echo "t'es pd?";
+                echo "t'es pd lol?";
                 $cont = $verif['title'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 var_dump($cont);
