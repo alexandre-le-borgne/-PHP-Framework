@@ -319,7 +319,7 @@ class EmailModel
                     var_dump($overview[0]->date);
                     $article = new ArticleEntity();
                     $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
-                    $article->setContent($this->getBody($overview[0]->uid, $this->conn));
+                    $article->setContent($this->getBody($overview[0]->uid, $stream));
                     $article->setDate($overview[0]->date);
                     $articles[] = $article;
                 }
