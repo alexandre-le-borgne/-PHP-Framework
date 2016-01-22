@@ -39,7 +39,8 @@ header #logo_txt
 header .logout_button
 {
     vertical-align: middle;
-
+    position: relative;
+    top: -3px;
 }
 
 #home_logo

@@ -22,7 +22,7 @@
             <?php
         }
         ?>
-        <a id="logo_home" href="<? View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="web/img/logo_aaron.png"></a>
+        <a id="logo_home" href="<? View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="web/img/logo-aaron.png"></a>
         <form method="post" action="search">
             <input class="search_bar" type="textarea" name="search" placeholder="Votre recherche...">
             <input type="submit" style="display: none">
