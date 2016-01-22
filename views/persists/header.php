@@ -27,7 +27,7 @@
             <input class="search_bar" type="textarea" name="search" placeholder="Votre recherche...">
             <input type="submit" style="display: none">
         </form>
-        <a href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
+
         <?php
         $this->render('forms/logoutForm');
     } else {
