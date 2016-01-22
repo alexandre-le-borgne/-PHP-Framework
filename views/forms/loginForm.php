@@ -19,7 +19,7 @@
             <input class="last" type="password" name="password" placeholder="Password" required>
             <?php
             if(isset($errors) && $errors != '') {
-                echo '<div class="errors_fields">'.$errors.'</div>';
+                echo '<br><div class="errors_fields">'.$errors.'</div>';
             }
             ?>
         </div>
