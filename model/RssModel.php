@@ -76,9 +76,10 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
             if(!$verif = $result->fetch()) {
                 echo "t'es pd lol?";
-                $cont = $verif['title'];
+
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
+                    $cont = $verif['title'];
                     if ($item->title != $cont) {
                         $base = $item->pubDate;
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
@@ -94,9 +95,9 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
             if(!$verif = $result->fetch()) {
                 echo "gros pd lel";
-                $cont = $verif['title'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
+                    $cont = $verif['title'];
                     if ($item->title != $cont) {
                         echo 'insert pédale';
                         $base = $item->pubDate;
