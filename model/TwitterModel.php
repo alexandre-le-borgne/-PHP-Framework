@@ -78,7 +78,7 @@ class TwitterModel extends Model implements StreamModel
                     date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
 //                    $dateInsert->format(Database::DATE_FORMAT),
                     ArticleModel::TWITTER,
-                    $tweet->url,
+                    'YaPaDurlGroPD',
                     $twitterEntity->getId()));
             }
 
