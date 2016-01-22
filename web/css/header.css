@@ -12,12 +12,11 @@ header
     margin: auto;
     width: 100%;
     height: 54px;
-    position: fixed;
 }
 
 header nav
 {
-    width: 885px;
+    width: 870px;
     margin: auto;
 }
 
