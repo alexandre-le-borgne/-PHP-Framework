@@ -111,45 +111,6 @@ class RssModel extends Model implements StreamModel
         }
     }
 
-    public function cron()
-    {
-
-//            $dateFirstArticle = new DateTime();
-//            $dateFirstArticle->setTimestamp(strtotime($firstArticle->getArticleDate()));
-//            $dateLastArticle = new DateTime();
-//            $dateLastArticle->setTimestamp(strtotime($lastArticle->getArticleDate()));
-//            $dateFirstUpdate = new DateTime();
-//            $dateFirstUpdate->setTimestamp(strtotime($twitterEntity->getFirstUpdate()));
-
-            /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
-            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
-                $firstArticle->getArticleDate(), $lastArticle->getArticleDate());
-
-            /** On ajoute en BD les articles a inserer */
-            /** de plus, on les parse pour que les liens s'affichent */
-            $autolink = Twitter_Autolink::create();
-
-            $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
-            foreach ($tweetsToInsert as $tweet)
-            {
-//                $dateInsert = new DateTime();
-//                $dateInsert->setTimestamp(strtotime($tweet->created_at));
-
-                $db->execute($req, array(
-                    $autolink->autoLink('@' . $twitterEntity->getChannel()),
-                    $autolink->autoLink($tweet->text),
-                    date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
-//                    $dateInsert->format(Database::DATE_FORMAT),
-                    ArticleModel::TWITTER,
-                    'YaPaDurlGroPD',
-                    $twitterEntity->getId()));
-            }
-
-            /** On modifie en BD le lastUpdate du stream qu'on traite a now() */
-            $db->execute('UPDATE stream_twitter SET lastUpdate = now()');
-        }
-    }
-
     private function getFirstArticle(Database $db, RssEntity $rssStream)
     {
         $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate ASC LIMIT 1',
