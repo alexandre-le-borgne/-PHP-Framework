@@ -246,13 +246,7 @@ input:active, textarea:active{
     z-index: 1;
 }
 
-#fields_errors
-{
-    max-height: 90px;
-    transition: height 5s;
-}
-
-.errors_fields
+input[type="submit"].errors_fields
 {
     display: none;
     background-color: rgba(255, 255, 255, .3);

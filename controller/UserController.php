@@ -31,6 +31,10 @@ class UserController extends Controller
                             $this->redirectToRoute('index');
                             return;
                         }
+                        $error = "Votre mot de passe est incorrect !";
+                    }
+                    else {
+                        $error = 'Vous devez utilisez Facebook ou Google pour vous connecter !';
                     }
                 } else {
                     $error = 'Oups ! Votre compte est inexistant !';
