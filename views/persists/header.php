@@ -9,7 +9,6 @@
 
 
 <header>
-
     <?php
     if ($this->isGranted(Session::USER_IS_CONNECTED)) {
         ?>
@@ -25,7 +24,7 @@
         ?>
         <a href="<? View::getUrlFromRoute('index') ?>">Accueil</a>
         <form method="post" action="search">
-            <input type="textarea" name="search" placeholder="Votre recherche...">
+            <input class="search_bar" type="textarea" name="search" placeholder="Votre recherche...">
             <input type="submit" style="display: none">
         </form>
         <a href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>

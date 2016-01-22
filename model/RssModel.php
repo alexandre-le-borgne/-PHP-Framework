@@ -72,16 +72,12 @@ class RssModel extends Model implements StreamModel
         $result = $db->execute($req);
 
         while($fetch = $result->fetch()) {
-            $stream_id = $fetch['Id'];
-            var_dump($stream_id);
+            $stream_id = $fetch['id'];
             $streamFirst = $fetch['firstUpdate'];
-            var_dump($streamFirst);
             $streamLast = $fetch['lastUpdate'];
-            var_dump($streamLast);
             $url = $fetch['url'];
-            var_dump($url);
+
             $x = simplexml_load_file($url);
-            var_dump($x);
 
 
             $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
@@ -91,10 +87,13 @@ class RssModel extends Model implements StreamModel
 
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
+            $verif = $result->fetch();
 
-            while($verif = $result->fetch()) {
+            if(empty($verif)) {
+                echo "t'es pd?";
                 $cont = $verif['content'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
+                var_dump($cont);
 
                 foreach ($x->channel->item as $item) {
                     if ($item->description != $cont) {
@@ -103,6 +102,8 @@ class RssModel extends Model implements StreamModel
                     }
                 }
             }//while
+            echo "Theo ne sait pas jouer à Teeworld";
+
 
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
