@@ -282,7 +282,7 @@ class EmailModel
         foreach ($emailStreams as $emailEntity)
         {
             $firstEmail = $this->getFirstArticle($emailEntity);
-            $lastEmail = $this->getFirstArticle($emailEntity);
+            $lastEmail = $this->getLastArticle($emailEntity);
             $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
             $stream = $connection['conn'];
             $date = date ("d M Y", strtotime($emailEntity->getFirstUpdate()));
