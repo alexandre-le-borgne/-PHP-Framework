@@ -71,10 +71,15 @@ class RssModel extends Model implements StreamModel
         $req = "SELECT * FROM stream_rss";
         $result = $db->execute($req);
 
-        $i = 0;
-        while(($fetch = $result->fetch()) && $i < 20) {
-
+        while($fetch = $result->fetch()) {
             $url = $this->resolveFile($fetch['url']);
+
+            $reqFirst = "SELECT * FROM article WHERE url = ?";
+            $resultat = $db->execute($reqFirst, array($url))->$fetch();
+            $firstUpdate = $resultat['articleDate'];
+
+            $reqFindFirst = "SELECT * FROM article WHERE"
+
             if ($x = simplexml_load_file($url)) {
                 foreach ($x->channel->item as $item) {
                     $req = "SELECT * FROM article WHERE url = ?";
@@ -85,7 +90,6 @@ class RssModel extends Model implements StreamModel
                     }
                 }
             }
-        ++$i;
         }
     }
 
