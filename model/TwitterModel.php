@@ -205,7 +205,7 @@ class TwitterModel extends Model implements StreamModel
         if (!($fetch))
         {
             $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($channel, $firstUpdate));
+            $db->execute($req, array($channel, date(Database::DATE_FORMAT, $firstUpdate->getTimestamp())));
         }
         else if ($firstUpdate->getTimestamp() < strtotime($fetch['firstUpdate']))
         {
