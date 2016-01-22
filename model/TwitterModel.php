@@ -64,16 +64,13 @@ class TwitterModel extends Model implements StreamModel
         $req = 'INSERT INTO article (title, content, articleDate, articleType, stream_id, url) VALUES (?,?,?,?,?,?)';
         foreach ($tweetsToInsert as $tweet)
         {
-            echo 'probleme 1';
-            echo $req;
-            $db = new Database();
-            $db->execute($req, array(
+            $this->db->execute($req, array(
                 $twitterEntity->getChannel(),
                 $autolink->autoLink($tweet->text),
                 date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
                 ArticleModel::TWITTER,
-                $twitterEntity->getId()),
-                $autolink->autoLink('@' . $twitterEntity->getChannel()));
+                $twitterEntity->getId(),
+                $autolink->autoLink('@' . $twitterEntity->getChannel())));
         }
 
         /** On modifie en BD le lastUpdate du stream qu'on traite a now() */
