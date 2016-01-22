@@ -35,7 +35,6 @@ class TwitterModel extends Model implements StreamModel
             "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
         //Voila, ma variable de classe est chargee, je peux l'utiliser pour le cron, pour charger les tweets.
 
-
         $db = new Database();
 
         /** 1) Recuperation de tous les flux twitter existants en BD */
@@ -52,10 +51,16 @@ class TwitterModel extends Model implements StreamModel
             /** On recupere le premier et le dernier tweet en BD de ce flux */
             $firstArticle = $this->getFirstArticle($db, $twitterEntity);
             $lastArticle = $this->getLastArticle($db, $twitterEntity);
+            $dateFirstArticle = new DateTime();
+            $dateFirstArticle->setTimestamp(strtotime($firstArticle->getArticleDate()));
+            $dateLastArticle = new DateTime();
+            $dateLastArticle->setTimestamp(strtotime($lastArticle->getArticleDate()));
+            $dateFirstUpdate = new DateTime();
+            $dateFirstUpdate->setTimestamp(strtotime($twitterEntity->getFirstUpdate()));
 
             /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
-            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
-                $firstArticle->getDate(), $lastArticle->getDate());
+            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $dateFirstUpdate,
+                $dateFirstArticle, $dateLastArticle);
 
             /** On ajoute en BD les articles a inserer */
             /** de plus, on les parse pour que les liens s'affichent */
@@ -64,10 +69,13 @@ class TwitterModel extends Model implements StreamModel
             $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
             foreach ($tweetsToInsert as $tweet)
             {
+                $dateInsert = new DateTime();
+                $dateInsert->setTimestamp(strtotime($tweet->created_at));
+
                 $db->execute($req, array(
                     $autolink->autoLink('@' . $twitterEntity->getChannel()),
                     $autolink->autoLink($tweet->text),
-                    $tweet->created_at,
+                    $dateInsert->format(Database::DATE_FORMAT),
                     ArticleModel::TWITTER,
                     $tweet->url,
                     $twitterEntity->getId()));
@@ -112,8 +120,11 @@ class TwitterModel extends Model implements StreamModel
                 'count' => $count * $multiplicator
             ]);
 
+            if (!($tooMuchTweets)) //si l'on a rien, on a rien a recuperer
+                return null;
+
             /** On verifie que la date du denrier tweet coincide avec la date $firstUpdate */
-            if (strtotime(end($tooMuchTweet)->created_at) < strtotime($firstUpdate))//Alors on est bon, on a au moins recup ce qu'on veut
+            if (strtotime(end($tooMuchTweets)->created_at) < strtotime($firstUpdate))//Alors on est bon, on a au moins recup ce qu'on veut
                 break;
 
             //sinon, on continue la boucle pour recuperer plus de tweets
@@ -152,7 +163,9 @@ class TwitterModel extends Model implements StreamModel
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
             return $articleEntity;
-        return new ArticleEntity(time());
+        $articleEntity = new ArticleEntity();
+        $articleEntity->setArticleDate(time());
+        return $articleEntity;
     }
 
     private function getLastArticle(Database $db, TwitterEntity $twitterStream)
@@ -162,8 +175,11 @@ class TwitterModel extends Model implements StreamModel
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
             return $articleEntity;
-        return new ArticleEntity(time());//Si n'existe pas, on dit que l'on recuperera jusqua cet article
+        $articleEntity = new ArticleEntity();
+        $articleEntity->setArticleDate(time());
+        return $articleEntity;
     }
+
     /** Fin du tout ca pour le cron */
 
 

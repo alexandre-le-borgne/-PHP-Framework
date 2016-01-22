@@ -10,11 +10,6 @@ class ArticleEntity
 {
     private $id, $title, $content, $articleDate, $articleType, $url, $stream_id;
 
-    function __construct($articleDate)
-    {
-        $this->articleDate = $articleDate;
-    }
-
     public function persist(Database $db)
     {
         if ($this->id == null)
@@ -43,11 +38,6 @@ class ArticleEntity
     public function getContent()
     {
         return $this->content;
-    }
-
-    public function getDate()
-    {
-        return $this->articleDate;
     }
 
     public function getArticleDate()
@@ -84,11 +74,6 @@ class ArticleEntity
     public function setContent($content)
     {
         $this->content = $content;
-    }
-
-    public function setDate($date)
-    {
-        $this->date = $date;
     }
 
     public function setArticleDate($articleDate)
