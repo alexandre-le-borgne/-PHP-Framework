@@ -112,5 +112,5 @@ class RssModel extends Model implements StreamModel
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
             $db->execute($update, array($stream_id));
         }
-    }
+    }//Cron
 }
