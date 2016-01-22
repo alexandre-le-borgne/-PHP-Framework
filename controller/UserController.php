@@ -159,11 +159,11 @@ class UserController extends Controller
                 try {
                     $accessToken = $helper->getAccessToken();
                 } catch (Facebook\Exceptions\FacebookResponseException $e) {
-                    // When Graph returns an error
+                    $this->redirectToRoute('index', array('errors' => 'Erreur de connexion à Facebook'));
                     return;
                 } catch (Facebook\Exceptions\FacebookSDKException $e) {
-                    // When validation fails or other local issues
-                   return;
+                    $this->redirectToRoute('index', array('errors' => 'Erreur de connexion à Facebook'));
+                    return;
                 }
                 $error = '';
                 if (isset($accessToken)) {
