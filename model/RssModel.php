@@ -65,7 +65,7 @@ class RssModel extends Model implements StreamModel
         $req = "SELECT * FROM stream_rss";
         $result = $db->execute($req);
 
-
+        /*
         while($fetch = $result->fetch()) {
             $stream_id = $fetch['id'];
             $streamFirst = $fetch['firstUpdate'];
@@ -117,6 +117,6 @@ class RssModel extends Model implements StreamModel
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
             $db->execute($update, array($stream_id));
             */
-        }
+        }*/
     }
 }
