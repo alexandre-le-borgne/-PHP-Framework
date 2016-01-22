@@ -13,13 +13,11 @@ class EmailController extends Controller
         if (intval($id)) {
 
         } else {
-            $this->loadModel('EmailModel');
-            $this->emailmodel->cron();
-            return;
-
-            $emails = $this->emailmodel->getList();
-            $data = array('title' => 'Liste des emails', 'articles' => $emails);
-            $this->render('layouts/articles', $data);
+            $this->loadModel('ArticleModel');
+            /** @var ArticleEntity $article */
+            $article = $this->articlemodel->getById(16);
+            echo "<h1>$article->getTitle()</h1>";
+            echo "<div>$article->getContent()</div>";
         }
     }
 }
