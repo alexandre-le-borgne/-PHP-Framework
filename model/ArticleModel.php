@@ -18,15 +18,9 @@ class ArticleModel extends Model
     {
         if (intval($id)) {
             $db = new Database();
-            $result = $db->execute("SELECT * FROM article WHERE id = ?", array($id))->fetch();
-            if ($result) {
-                $article = new ArticleEntity();
-                $article->setId($result['id']);
-                $article->setTitle($result['title']);
-                $article->setContent($result['content']);
-                $article->setArticleDate($result['date']);
-                return $article;
-            }
+            $data = $db->execute("SELECT * FROM article WHERE id = ?", array($id));
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            return $data->fetch();
         }
         return null;
     }
