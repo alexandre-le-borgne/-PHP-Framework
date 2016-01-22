@@ -47,8 +47,7 @@
         function show_errors(errors) {
             if (errors == true) {
                 $('#fields_errors').css('max-height', 'none').css('transition', 'max-height 5s');
-                $('#errors_fields_pwd').css('display', 'block');
-                $('#errors_fields_mail').css('display', 'block');
+                $('.errors_fields').css('display', 'block');
             }
         }
         show_errors(<?php isset($errors); ?>);
