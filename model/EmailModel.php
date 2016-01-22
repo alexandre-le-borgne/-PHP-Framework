@@ -286,19 +286,14 @@ class EmailModel
             $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
             $stream = $connection['conn'];
             $date = date ("d M Y", strtotime($emailEntity->getFirstUpdate()));
-            echo 'SINCE "' . $date.'"'. strtotime($emailEntity->getFirstUpdate());
             $emails = imap_search($stream, 'SINCE "' .$date .'"');
-
-            //$emails = imap_search($this->conn, 'ALL');
 
             $articles = array();
             if (count($emails))
             {
                 foreach ($emails as $email)
                 {
-                    // Fetch the email's overview and show subject, from and date.
                     $overview = imap_fetch_overview($stream, $email, 0);
-                    echo $overview[0]->uid . ' : ';
                     $structure = imap_fetchstructure($stream, $overview[0]->uid, FT_UID);
                     switch($structure->encoding) {
                         case 4:
