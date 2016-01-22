@@ -164,7 +164,7 @@ class EmailModel
                     case 4:
                         return imap_qprint($text);
                     case 0:
-                        return mb_convert_encoding($text, "UTF-8", "auto");
+                        return imap_qprint($text);
                     case 1:
                         return utf8_encode($text);
                     default:
