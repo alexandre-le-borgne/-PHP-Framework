@@ -14,14 +14,15 @@ class ArticleEntity
     {
         if ($this->id == null)
         {
-            $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) ' .
-                'VALUES (?, ?, ?, ?, ?, ?)';
+            $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
             $db->execute($req, array($this->title, $this->content, $this->articleDate,
                 $this->articleType, $this->url, $this->stream_id));
         }
         else
         {
-            //on update, car existe deja
+            $req = 'UPDATE article SET title = ?, content = ?, articleDate = ?, articleType = ?, url = ?, stream_id = ?';
+            $db->execute($req, array($this->title, $this->content, $this->articleDate,
+                $this->articleType, $this->url, $this->stream_id));
         }
     }
 
