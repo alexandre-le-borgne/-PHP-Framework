@@ -13,32 +13,20 @@ class RssEntity extends Entity{
     private $lastUpdate;
     private $firstUpdate;
 
-    function __construct($id)
-    {
-        $this->id = $id;
-
-        if(intval($id)){
-            $db = new Database();
-            $req = "Select * From stream_rss Where Id = ?";
-            $result = $db->excecute($req, array($id))->fetch();
-
-            if($result) {
-                $this->id = $result['id'];
-                $this->url = $result['url'];
-                $this->lastUpdate = $result['lastUpdate'];
-                $this->firstUpdate = $result['firstUpdate'];
-                return;
-            }
-        }
-        throw new TraceableException("Flux rss manquant");
-    }
-
     /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -50,11 +38,27 @@ class RssEntity extends Entity{
     }
 
     /**
+     * @param mixed $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
      * @return mixed
      */
     public function getLastUpdate()
     {
         return $this->lastUpdate;
+    }
+
+    /**
+     * @param mixed $lastUpdate
+     */
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
     }
 
     /**
@@ -65,7 +69,13 @@ class RssEntity extends Entity{
         return $this->firstUpdate;
     }
 
-
+    /**
+     * @param mixed $firstUpdate
+     */
+    public function setFirstUpdate($firstUpdate)
+    {
+        $this->firstUpdate = $firstUpdate;
+    }
 
 
 }
