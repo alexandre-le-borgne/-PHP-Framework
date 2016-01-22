@@ -156,6 +156,7 @@ class UserController extends Controller
             // We don't have the accessToken
             // But are we in the process of getting it ?
             if (isset($_REQUEST['code'])) {
+                die("t");
                 try {
                     $accessToken = $helper->getAccessToken();
                 } catch (Facebook\Exceptions\FacebookResponseException $e) {
