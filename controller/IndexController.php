@@ -14,7 +14,7 @@ class IndexController extends Controller
         }
         else
         {
-            $this->render('forms/loginForm');
+            $this->render('layouts/layoutNotConnected');
         }
     }
 
