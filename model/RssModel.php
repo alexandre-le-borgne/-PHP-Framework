@@ -55,7 +55,6 @@ class RssModel extends Model implements StreamModel
         }
     }
 
-
     public function cron(){
         /*
          * DateTime $firstUpdate
@@ -64,36 +63,25 @@ class RssModel extends Model implements StreamModel
         $db = new Database();
         $req = "SELECT * FROM stream_rss";
         $result = $db->execute($req);
-
-
         while($fetch = $result->fetch()) {
             $stream_id = $fetch['id'];
             $streamFirst = $fetch['firstUpdate'];
             $streamLast = $fetch['lastUpdate'];
             $url = $fetch['url'];
-
-
             $x = simplexml_load_file($url);
-
             $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
             $minDate = $result['minDate']; //date du 1er article du stream
-
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
-
-
-
             if(!$verif = $result->fetch()) {
                 echo "t'es pd lol?";
                 $cont = $verif['title'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
-
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
                         echo "insert";
                         $base = $item->pubDate;
-
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                         $db->execute($req, array($item->title, $item->description, $base, $item->link, $stream_id));
                     }
@@ -103,10 +91,8 @@ class RssModel extends Model implements StreamModel
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
             $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
-
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
-
             if(!$verif = $result->fetch()) {
                 echo "gros pd";
                 $cont = $verif['title'];
@@ -115,7 +101,6 @@ class RssModel extends Model implements StreamModel
                     if ($item->title != $cont) {
                         echo 'insert pédale';
                         $base = $item->pubDate;
-
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                         $db->execute($req, array($item->title, $item->description, $base, $item->link, $stream_id));
                     }
@@ -123,7 +108,69 @@ class RssModel extends Model implements StreamModel
             }//while
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
             $db->execute($update, array($stream_id));
-
         }
+    }
+
+    public function cron()
+    {
+
+//            $dateFirstArticle = new DateTime();
+//            $dateFirstArticle->setTimestamp(strtotime($firstArticle->getArticleDate()));
+//            $dateLastArticle = new DateTime();
+//            $dateLastArticle->setTimestamp(strtotime($lastArticle->getArticleDate()));
+//            $dateFirstUpdate = new DateTime();
+//            $dateFirstUpdate->setTimestamp(strtotime($twitterEntity->getFirstUpdate()));
+
+            /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
+            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
+                $firstArticle->getArticleDate(), $lastArticle->getArticleDate());
+
+            /** On ajoute en BD les articles a inserer */
+            /** de plus, on les parse pour que les liens s'affichent */
+            $autolink = Twitter_Autolink::create();
+
+            $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
+            foreach ($tweetsToInsert as $tweet)
+            {
+//                $dateInsert = new DateTime();
+//                $dateInsert->setTimestamp(strtotime($tweet->created_at));
+
+                $db->execute($req, array(
+                    $autolink->autoLink('@' . $twitterEntity->getChannel()),
+                    $autolink->autoLink($tweet->text),
+                    date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
+//                    $dateInsert->format(Database::DATE_FORMAT),
+                    ArticleModel::TWITTER,
+                    'YaPaDurlGroPD',
+                    $twitterEntity->getId()));
+            }
+
+            /** On modifie en BD le lastUpdate du stream qu'on traite a now() */
+            $db->execute('UPDATE stream_twitter SET lastUpdate = now()');
+        }
+    }
+
+    private function getFirstArticle(Database $db, RssEntity $rssStream)
+    {
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate ASC LIMIT 1',
+            array($rssStream->getId()));
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+        if ($articleEntity = $result->fetch())
+            return $articleEntity;
+        $articleEntity = new ArticleEntity();
+        $articleEntity->setArticleDate(time());
+        return $articleEntity;
+    }
+
+    private function getLastArticle(Database $db, RssEntity $rssStream)
+    {
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate DESC LIMIT 1',
+            array($rssStream->getId()));
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+        if ($articleEntity = $result->fetch())
+            return $articleEntity;
+        $articleEntity = new ArticleEntity();
+        $articleEntity->setArticleDate(time());
+        return $articleEntity;
     }
 }
