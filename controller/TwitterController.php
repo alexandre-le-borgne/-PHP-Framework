@@ -3,7 +3,8 @@
 /**
  * Coucou
  */
-class TestTwitterController extends Controller
+
+class TwitterController extends Controller
 {
     function TwitterAction()
     {
