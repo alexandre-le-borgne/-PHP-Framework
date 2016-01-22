@@ -186,8 +186,13 @@ class UserController extends Controller
                             $request->getSession()->set('id', $id);
                         }
                     }
-                    if (!$request->isInternal())
-                        $this->render('index', array('errors' => $error));
+                    if ($request->isInternal())
+                    {
+                        $this->render('forms/facebookForm', array('errors' => $error));
+                    }
+                    else {
+                        $this->redirectToRoute('index');
+                    }
                 }
             }
             else {
