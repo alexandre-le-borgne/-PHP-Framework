@@ -297,28 +297,24 @@ class EmailModel
                 foreach ($emails as $email)
                 {
                     // Fetch the email's overview and show subject, from and date.
-                    $overview = imap_fetch_overview($this->conn, $email, 0);
+                    $overview = imap_fetch_overview($stream, $email, 0);
                     echo $overview[0]->uid . ' : ';
-                    $structure = imap_fetchstructure($this->conn, $overview[0]->uid, FT_UID);
-                    if ($structure->encoding == "3")
-                    {
-                        $body = base64_decode(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                    }
-                    elseif ($structure->encoding == "0")
-                    {
-                        $body = quoted_printable_decode(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                    }
-                    elseif ($structure->encoding == "1")
-                    {
-                        $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                    }
-                    elseif ($structure->encoding == "4")
-                    {
-                        $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
-                    }
-                    else
-                    {
-                        $body = imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1);
+                    $structure = imap_fetchstructure($stream, $overview[0]->uid, FT_UID);
+                    switch($structure->encoding) {
+                        case 4:
+                            $body = imap_qprint(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
+                            break;
+                        case 3:
+                            $body = base64_decode(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
+                            break;
+                        case 1:
+                            $body = imap_qprint(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
+                            break;
+                        case 0:
+                            $body = quoted_printable_decode(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
+                            break;
+                        default:
+                            $body = imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1);
                     }
                     var_dump($overview[0]->date);
                     $article = new ArticleEntity();
