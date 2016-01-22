@@ -86,7 +86,10 @@ class UserController extends Controller
                 if ($userEntity) {
                     if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
                         $request->getSession()->set('id', $userEntity->getId());
-                    } // sinon c'est un compte du site, donc pas connectable avec google/facebook
+                    }
+                    else {
+                        $data['errors'] = 'Le compte existe déjà. Utilisez le mot de passe pour vous connecter.';
+                    }
                 } else {
                     $id = $this->usermodel->addExternalUser($userData->getName(), $userData->getEmail());
                     $request->getSession()->set('id', $id);
@@ -162,6 +165,7 @@ class UserController extends Controller
                     // When validation fails or other local issues
                    return;
                 }
+                $error = '';
                 if (isset($accessToken)) {
                     $_SESSION['facebook_access_token'] = (string)$accessToken;
                     $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
@@ -173,6 +177,9 @@ class UserController extends Controller
                             if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
                                 $request->getSession()->set('id', $userEntity->getId());
                             }
+                            else {
+                                $error = 'Le compte existe déjà. Utilisez le mot de passe pour vous connecter.';
+                            }
 
                         } else {
                             $id = $this->usermodel->addExternalUser($userData['name'], $userData['email']);
@@ -180,9 +187,10 @@ class UserController extends Controller
                         }
                     }
                     if (!$request->isInternal())
-                        $this->redirectToRoute('index');
+                        $this->redirectToRoute('index', array('errors' => $error));
                 }
-            } else {
+            }
+            else {
                 // Well looks like we are a fresh dude, login to Facebook!
                 $helper = $fb->getRedirectLoginHelper();
                 $permissions = ['public_profile', 'email', 'user_likes']; // optional
