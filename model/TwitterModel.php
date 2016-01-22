@@ -56,9 +56,11 @@ class TwitterModel extends Model implements StreamModel
             $dateFirstArticle->setTimestamp(strtotime($firstArticle->getArticleDate()));
             $dateLastArticle = new DateTime();
             $dateLastArticle->setTimestamp(strtotime($lastArticle->getArticleDate()));
+            $dateFirstUpdate = new DateTime();
+            $dateFirstUpdate->setTimestamp(strtotime($twitterEntity->getFirstUpdate()));
 
             /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
-            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
+            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $dateFirstUpdate,
                 $dateFirstArticle, $dateLastArticle);
 
             /** On ajoute en BD les articles a inserer */
