@@ -90,8 +90,8 @@ class RssModel extends Model implements StreamModel
 
             while($verif = $result->fetch()) {
                 $cont = $verif['content'];
-                var_dump($cont);
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
+                var_dump($cont);
 
                 foreach ($x->channel->item as $item) {
                     if ($item->description != $cont) {
