@@ -246,10 +246,15 @@ body
 {
     border: solid 1px blue;
     width: 300px;
-    height: 600px;
+    height: 520px;
     float: left;
-    column-gap: 120px;
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
     column-count: 2;
+
+    -webkit-column-gap: 10px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 10px; /* Firefox */
+    column-gap: 10px;
 }
 
 #add_cat
