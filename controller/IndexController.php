@@ -34,11 +34,12 @@ class IndexController extends Controller
 
     public function RssAction()
     {
-        $firstUpdate = new DateTime('2016-01-01');
-        $lastUpdate = new DateTime('2016-01-16');
+        $test = new DateTime(time() - 608400);
+
+
         //var_dump($feed->getPosts());
         $this->loadModel('RssModel');
-        $this->rssmodel->createStream("http://www.journaldunet.com/rss/", time() - 608400);
+        $this->rssmodel->createStream("http://www.journaldunet.com/rss/", $test);
         $this->rssmodel->cron();
 
     }
