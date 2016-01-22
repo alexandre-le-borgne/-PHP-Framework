@@ -79,7 +79,7 @@ class RssModel extends Model implements StreamModel
             $x = simplexml_load_file($url);
 
 
-            $req = "SELECT Min(dateArticle) as minDate FROM article WHERE stream_id = ?";
+            $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
 
             $minDate = $result['minDate']; //date du 1er article du stream
@@ -99,7 +99,7 @@ class RssModel extends Model implements StreamModel
                 }
             }//while
 
-            $req = "SELECT Max(dateArticle) as maxDate FROM article WHERE stream_id = ?";
+            $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
 
             $maxDate = $result['maxDate']; //derniere date
