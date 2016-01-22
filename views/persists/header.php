@@ -16,7 +16,7 @@
     if ($this->isGranted(Session::USER_IS_CONNECTED)) {
         if ($this->isGranted(Session::USER_IS_ADMIN)) {
             ?>
-            <a href="<?= View::getUrlFromRoute('admin') ?>">Panel Administrateur</a>
+            <a href="<?= View::getUrlFromRoute('admin') ?>">Panel administrateur</a>
             <?php
         }
         $this->render('forms/logoutForm');
