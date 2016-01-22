@@ -16,6 +16,9 @@ class TwitterController extends Controller
         $dateTime->setDate(2015, 1, 1);
 
         $twitterModel->createStream('Spacesuit2', $dateTime);
+        $twitterModel->createStream('lalaitha', $dateTime);
+        $twitterModel->createStream('jikarponyland', $dateTime);
+
 
         $twitterModel->cron();
 
