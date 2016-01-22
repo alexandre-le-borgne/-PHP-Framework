@@ -117,6 +117,7 @@ class RssModel extends Model implements StreamModel
             $verif = $result->fetch();
 
             while(empty($verif)) {
+                echo 'lel';
                 $cont = $verif['content'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
 
