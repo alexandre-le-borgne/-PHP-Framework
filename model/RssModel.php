@@ -79,8 +79,9 @@ class RssModel extends Model implements StreamModel
             $streamLast = $fetch['lastUpdate'];
             var_dump($streamLast);
             $url = $fetch['url'];
-            var_dump($url);
+
             $x = simplexml_load_file($url);
+            var_dump($url);
             var_dump($x);
 
 
