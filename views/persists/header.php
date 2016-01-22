@@ -38,9 +38,9 @@
             <input type="submit" style="display: none">
         </form>
 
-        <a href="login">Se connecter</a>
+        <a href="<? View::getUrlFromRoute('login') ?>">Se connecter</a>
         <br>
-        <a href="register">S'enregistrer</a>
+        <a href="<? View::getUrlFromRoute('register') ?>"">S'enregistrer</a>
         <br>
         <?php
     }
