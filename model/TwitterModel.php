@@ -161,7 +161,9 @@ class TwitterModel extends Model implements StreamModel
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
             return $articleEntity;
-        return new ArticleEntity(time());
+        $articleEntity = new ArticleEntity();
+        $articleEntity->setArticleDate(time());
+        return $articleEntity;
     }
 
     private function getLastArticle(Database $db, TwitterEntity $twitterStream)
@@ -171,8 +173,9 @@ class TwitterModel extends Model implements StreamModel
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
             return $articleEntity;
-        return new ArticleEntity(time());//Si n'existe pas, on dit que l'on recuperera jusqua cet article
-    }
+        $articleEntity = new ArticleEntity();
+        $articleEntity->setArticleDate(time());
+        return $articleEntity;    }
 
     /** Fin du tout ca pour le cron */
 
