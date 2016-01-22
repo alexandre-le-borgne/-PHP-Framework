@@ -46,6 +46,7 @@ class Database
             // Création de la connexion
             $this->bdd = new PDO('mysql:host=mysql-alex83690.alwaysdata.net;dbname=alex83690_aaron;charset=utf8',
                 'alex83690', 'password', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $this->bdd->query("SET NAMES 'utf8'");
         }
         return $this->bdd;
     }
