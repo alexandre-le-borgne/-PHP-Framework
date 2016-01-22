@@ -15,8 +15,6 @@ if(isset($authUrl)) {
     </a>
     <?php
 }
-else {
-    if(isset($errors) && $errors != '') {
-        echo '<br><div class="errors_fields">'.$errors.'</div>';
-    }
+if(isset($errors) && $errors != '') {
+    echo '<br><div class="errors_fields">'.$errors.'</div>';
 }
