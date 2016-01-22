@@ -73,7 +73,6 @@ class RssModel extends Model implements StreamModel
             $x = simplexml_load_file($url);
             $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id));
-            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
             $fetch = $result->fetch();
             $minDate = $fetch['minDate']; //date du 1er article du stream
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
