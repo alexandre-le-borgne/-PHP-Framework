@@ -165,7 +165,7 @@ class UserController extends Controller
                         }
                     }
                 }
-                $this->render('forms/facebookForm', array('loginUrl' => $loginUrl, 'errors' => 'Erreur de connexion à Facebook'));
+                $this->render('forms/facebookForm', array('loginUrl' => $loginUrl, 'errors' => 'Le compte existe déjà. Utilisez le mot de passe pour vous connecter.'));
             }
         } else {
             // We don't have the accessToken
@@ -215,8 +215,7 @@ class UserController extends Controller
                                 }
                             }
                         }
-                        if ($request->isInternal())
-                            $this->render("forms/facebookForm", array('loginUrl' => $loginUrl, 'errors' => $error));
+                        $this->render("forms/facebookForm", array('loginUrl' => $loginUrl, 'errors' => $error));
                     }
                     else {
                         $this->redirectToRoute('index');
