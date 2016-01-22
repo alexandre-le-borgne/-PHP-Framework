@@ -24,6 +24,7 @@ class TwitterModel extends Model implements StreamModel
     private $twitter;
 
     /** Cron */
+
     public function cron()
     {
         //Je recupere d'abord le token, afin de pouvoir demander les tweets
@@ -51,12 +52,6 @@ class TwitterModel extends Model implements StreamModel
             /** On recupere le premier et le dernier tweet en BD de ce flux */
             $firstArticle = $this->getFirstArticle($db, $twitterEntity);
             $lastArticle = $this->getLastArticle($db, $twitterEntity);
-//            $dateFirstArticle = new DateTime();
-//            $dateFirstArticle->setTimestamp(strtotime($firstArticle->getArticleDate()));
-//            $dateLastArticle = new DateTime();
-//            $dateLastArticle->setTimestamp(strtotime($lastArticle->getArticleDate()));
-//            $dateFirstUpdate = new DateTime();
-//            $dateFirstUpdate->setTimestamp(strtotime($twitterEntity->getFirstUpdate()));
 
             /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
             $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
@@ -69,16 +64,12 @@ class TwitterModel extends Model implements StreamModel
             $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
             foreach ($tweetsToInsert as $tweet)
             {
-//                $dateInsert = new DateTime();
-//                $dateInsert->setTimestamp(strtotime($tweet->created_at));
-
                 $db->execute($req, array(
                     $autolink->autoLink('@' . $twitterEntity->getChannel()),
                     $autolink->autoLink($tweet->text),
                     date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
-//                    $dateInsert->format(Database::DATE_FORMAT),
                     ArticleModel::TWITTER,
-                    '',
+                    'Not yet Implemented',
                     $twitterEntity->getId()));
             }
 
@@ -103,7 +94,6 @@ class TwitterModel extends Model implements StreamModel
          * De plus, je vais devoir recupere un nombre de tweets arbitraires
          */
 
-        $tweets = array();
         $count = self::MIN_COUNT;
         $multiplicator = 2;
         $tooMuchTweets = array();
@@ -129,7 +119,6 @@ class TwitterModel extends Model implements StreamModel
                 break;
 
             //sinon, on continue la boucle pour recuperer plus de tweets
-
             $multiplicator *= 2;
         }
 
@@ -184,8 +173,7 @@ class TwitterModel extends Model implements StreamModel
     /** Fin du tout ca pour le cron */
 
 
-    public
-    function getStreamById($id)
+    public function getStreamById($id)
     {
         if (intval($id))
         {
@@ -197,8 +185,7 @@ class TwitterModel extends Model implements StreamModel
         return null;
     }
 
-    public
-    function createStream($channel, $firstUpdate)
+    public function createStream($channel, $firstUpdate)
     {
         $db = new Database();
         $req = 'SELECT * FROM stream_twitter WHERE channel = ?';
@@ -217,70 +204,3 @@ class TwitterModel extends Model implements StreamModel
         }
     }
 }
-
-/*class TwitterRSSStream
-{
-
-    private function parse($text)
-    {
-        $text = preg_replace('#http://[a-z0-9._/-]+#i', '<a href="$0">$0</a>', $text);
-        $text = preg_replace('#@([a-z0-9_]+)#i', '@<a href="http://twitter.com/$1">$1</a>', $text);
-        $text = preg_replace('# \#([a-z0-9_-]+)#i', ' #<a href="http://search.twitter.com/search?q=%23$1">$1</a>', $text);
-        return $text;
-    }
-
-    public function TwitterStream($user)
-    {
-        $count = 5;
-        $date_format = 'd M Y, H:i:s';
-
-        $url = 'https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=' . $user . '&count=' . $count;
-        $oXML = simplexml_load_file($url);
-        echo '<ul>';
-        foreach ($oXML->status as $oStatus) {
-            $datetime = date_create($oStatus->created_at);
-            $date = date_format($datetime, $date_format) . "\n";
-            echo '<li>' . parse(utf8_decode($oStatus->text));
-            echo ' (<a href="http://twitter.com/' . $user . '/status/' . $oStatus->id_str . '">' . $date . '</a>)</li>';
-        }
-        echo '</ul>';
-    }
-}
-
-
-
-
-
-
-
-public function getTweets($channel, $excludeReplies, $count)
-    {
-        /**
-         * Comme l'explique l'API twitter, quand on recupere des tweets avec exclude_replies (pas les reponses),
-         * il va d'abord recuperer $count tweets, puis enlever les reponses. Donc pour avoir au final $count reponses,
-         * je dois en recuperer plus que prevu, puis couper mon tableau
-         *
-         * $tweets = array();
-         * $multiplicator = 2;
-         *
-         * while (count($tweets) != $count)
-         * {
-         * $tooMuchTweets = $this->twitter->get('statuses/user_timeline', [
-         * 'screen_name' => $channel,
-         * 'exclude_replies' => ($excludeReplies ? true : false),
-         * 'count' => $count * $multiplicator
-         * ]);
-         * $multiplicator *= 2;
-         *
-         * $tweets = array_slice($tooMuchTweets, 0, $count);
-         *
-         * //Dans ce cas la, on suppose que l'on a suffisamment recupere de tweets, et l'utilisateur pourrait donc
-         * //avoir moins de $count tweets, donc pas de boucle infinie
-         * if ($multiplicator > self::MAX_MULTIPLICATOR)
-         * break;
-         * }
-         *
-         * return $tweets;
-}
-
-*/
