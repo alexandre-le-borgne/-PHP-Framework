@@ -47,11 +47,11 @@ class RssModel extends Model implements StreamModel
         $result = $db->execute($req, array($url));
         if(!($fetch = $result->fetch())){
             $req = 'INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($url, $firstUpdate));
+            $db->execute($req, array($url, $firstUpdate->format(Database::DATE_FORMAT)));
         }
         if($fetch['firstUpdate'] < $firstUpdate){
             $req = 'UPDATE stream_rss SET firstUpdate = ? WHERE url = ?';
-            $db->execute($req, array($firstUpdate, $url));
+            $db->execute($req, array($firstUpdate->format(Database::DATE_FORMAT), $url));
         }
     }
 
@@ -91,8 +91,12 @@ class RssModel extends Model implements StreamModel
 
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
+                        $date = new DateTime($item->pubDate);
+                        $date->format(Database::DATE_FORMAT);
+                        echo $date;
+
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, $item->pubDate, $item->link, $stream_id));
+                        $db->execute($req, array($item->title, $item->description, $date, $item->link, $stream_id));
                     }
                 }
             }//while
@@ -109,9 +113,11 @@ class RssModel extends Model implements StreamModel
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
-
+                        $date = new DateTime($item->pubDate);
+                        $date->format(Database::DATE_FORMAT);
+                        echo $date;
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
+                        $db->execute($req, array($item->title, $item->description, $date, $item->link, $stream_id));
                     }
                 }
             }//while
