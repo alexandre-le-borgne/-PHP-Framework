@@ -52,10 +52,14 @@ class TwitterModel extends Model implements StreamModel
             /** On recupere le premier et le dernier tweet en BD de ce flux */
             $firstArticle = $this->getFirstArticle($db, $twitterEntity);
             $lastArticle = $this->getLastArticle($db, $twitterEntity);
+            $dateFirstArticle = new DateTime();
+            $dateFirstArticle->setTimestamp(strtotime($firstArticle->getArticleDate()));
+            $dateLastArticle = new DateTime();
+            $dateLastArticle->setTimestamp(strtotime($lastArticle->getArticleDate()));
 
             /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
             $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
-                $firstArticle->getDate(), $lastArticle->getDate());
+                $dateFirstArticle, $dateLastArticle);
 
             /** On ajoute en BD les articles a inserer */
             /** de plus, on les parse pour que les liens s'affichent */
@@ -64,10 +68,13 @@ class TwitterModel extends Model implements StreamModel
             $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
             foreach ($tweetsToInsert as $tweet)
             {
+                $dateInsert = new DateTime();
+                $dateInsert->setTimestamp(strtotime($tweet->created_at));
+
                 $db->execute($req, array(
                     $autolink->autoLink('@' . $twitterEntity->getChannel()),
                     $autolink->autoLink($tweet->text),
-                    $tweet->created_at,
+                    $dateInsert->format(Database::DATE_FORMAT),
                     ArticleModel::TWITTER,
                     $tweet->url,
                     $twitterEntity->getId()));
@@ -164,6 +171,7 @@ class TwitterModel extends Model implements StreamModel
             return $articleEntity;
         return new ArticleEntity(time());//Si n'existe pas, on dit que l'on recuperera jusqua cet article
     }
+
     /** Fin du tout ca pour le cron */
 
 

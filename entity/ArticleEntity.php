@@ -45,11 +45,6 @@ class ArticleEntity
         return $this->content;
     }
 
-    public function getDate()
-    {
-        return $this->articleDate;
-    }
-
     public function getArticleDate()
     {
         return $this->articleDate;
@@ -84,11 +79,6 @@ class ArticleEntity
     public function setContent($content)
     {
         $this->content = $content;
-    }
-
-    public function setDate($date)
-    {
-        $this->date = $date;
     }
 
     public function setArticleDate($articleDate)
