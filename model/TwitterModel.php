@@ -23,6 +23,7 @@ class TwitterModel extends Model implements StreamModel
 
     private $twitter;
 
+    /** Tout ca c'est pour le cron */
     public function cron()
     {
         //Je recupere d'abord le token, afin de pouvoir demander les tweets
@@ -153,6 +154,8 @@ class TwitterModel extends Model implements StreamModel
     {
         return null;
     }
+    /** Fin du tout ca pour le cron */
+
 
     public function getStreamById($id)
     {
@@ -184,10 +187,6 @@ class TwitterModel extends Model implements StreamModel
             $db->execute($req, array($firstUpdate, $channel));
         }
     }
-
-
-
-
 }
 
 /*class TwitterRSSStream

@@ -26,7 +26,7 @@ class Router {
 
         $this->table[] = new Route('exemple',           'exemple',      'index');
 
-        $this->table[] = new Route('twitter',           'testTwitter',  'twitter');
+        $this->table[] = new Route('twitter',           'twitter',  'twitter');
 
         $this->table[] = new Route('email',             'email',        'index');
 
