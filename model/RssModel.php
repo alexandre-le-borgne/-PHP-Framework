@@ -101,6 +101,8 @@ class RssModel extends Model implements StreamModel
                     }
                 }
             }//while
+            echo "Theo ne sait pas jouer à Teeworld";
+
 
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
