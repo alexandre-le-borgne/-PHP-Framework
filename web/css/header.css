@@ -16,15 +16,16 @@ header
 
 header .search_bar
 {
-    background: white;
-    width: 100%;
+    background: #2f3d51 !important;
+    width: 500px;
+    color: white;
+    font-size: 10pt;
     height: 45px;
+    border-radius: 2px;
     padding: 11px 10px 11px 13px;
     display: block;
-    margin: 0px !important;
+    margin-top: 5px !important;
     border: 0px;
-    border-bottom: solid 1px #d8d8d8;
-    font: 16px/1.4 "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
     box-sizing: border-box;
 }
 
