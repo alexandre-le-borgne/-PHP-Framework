@@ -314,7 +314,7 @@ class EmailModel
                     $article = new ArticleEntity();
                     $subject = isset($overview[0]->subject) ? $this->decode_imap_text($overview[0]->subject) : 'Sans object';
                     $article->setTitle($structure->encoding."$$$".$subject . ' - ' . $this->decode_imap_text($overview[0]->from));
-                    $article->setContent($body);
+                    $article->setContent($this->getBody($overview[0]->uid, $stream));
                     $article->setArticleDate(date(Database::DATE_FORMAT, strtotime($overview[0]->date)));
                     $article->setArticleType(ArticleModel::EMAIL);
                     $article->setStreamId($emailEntity->getId());
