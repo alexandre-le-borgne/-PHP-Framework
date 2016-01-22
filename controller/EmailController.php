@@ -16,8 +16,8 @@ class EmailController extends Controller
             $this->loadModel('ArticleModel');
             /** @var ArticleEntity $article */
             $article = $this->articlemodel->getById(16);
-            echo "<h1>$article->getTitle()</h1>";
-            echo "<div>$article->getContent()</div>";
+            echo "<h1>".$article->getTitle()."</h1>";
+            echo "<div>".$article->getContent()."</div>";
         }
     }
 }
