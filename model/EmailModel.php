@@ -235,12 +235,10 @@ class EmailModel
 
     function __construct()
     {
-        $this->connect();
     }
 
     function __destruct()
     {
-        imap_close($this->conn);
     }
 
     private function connect($server, $port, $user, $password)
