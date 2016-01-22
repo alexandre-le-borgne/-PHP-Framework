@@ -12,7 +12,15 @@ header
     margin: auto;
     width: 100%;
     height: 54px;
+    position: fixed;
 }
+
+header nav
+{
+    width: 885px;
+    margin: auto;
+}
+
 
 header .search_bar
 {

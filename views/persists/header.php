@@ -9,39 +9,41 @@
 
 
 <header>
-    <?php
-    if ($this->isGranted(Session::USER_IS_CONNECTED)) {
-        ?>
-        <div id="profile">
-            <a href="<? View::getUrlFromRoute('profil')?>">Profil</a>
-        </div>
+    <nav>
         <?php
-        if ($this->isGranted(Session::USER_IS_ADMIN)) {
+        if ($this->isGranted(Session::USER_IS_CONNECTED)) {
             ?>
-            <a href="<?= View::getUrlFromRoute('admin') ?>">Panel administrateur</a>
+            <div id="profile">
+                <a href="<? View::getUrlFromRoute('profil')?>">Profil</a>
+            </div>
+            <?php
+            if ($this->isGranted(Session::USER_IS_ADMIN)) {
+                ?>
+                <a href="<?= View::getUrlFromRoute('admin') ?>">Panel administrateur</a>
+                <?php
+            }
+            ?>
+            <a id="logo_home" href="<? View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="web/img/logo-aaron.png"></a>
+            <form method="post" action="search">
+                <input class="search_bar" type="textarea" name="search" placeholder="Votre recherche...">
+                <input type="submit" style="display: none">
+            </form>
+
+            <?php
+            $this->render('forms/logoutForm');
+        } else {
+            ?>
+            <form method="post" action="search">
+                <input type="textarea" name="search" placeholder="Votre recherche...">
+                <input type="submit" style="display: none">
+            </form>
+
+            <a href="<? View::getUrlFromRoute('login') ?>">Se connecter</a>
+            <br>
+            <a href="<? View::getUrlFromRoute('register') ?>"">S'enregistrer</a>
+            <br>
             <?php
         }
         ?>
-        <a id="logo_home" href="<? View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="web/img/logo-aaron.png"></a>
-        <form method="post" action="search">
-            <input class="search_bar" type="textarea" name="search" placeholder="Votre recherche...">
-            <input type="submit" style="display: none">
-        </form>
-
-        <?php
-        $this->render('forms/logoutForm');
-    } else {
-        ?>
-        <form method="post" action="search">
-            <input type="textarea" name="search" placeholder="Votre recherche...">
-            <input type="submit" style="display: none">
-        </form>
-
-        <a href="<? View::getUrlFromRoute('login') ?>">Se connecter</a>
-        <br>
-        <a href="<? View::getUrlFromRoute('register') ?>"">S'enregistrer</a>
-        <br>
-        <?php
-    }
-    ?>
+    </nav>
 </header>
