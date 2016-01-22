@@ -281,8 +281,8 @@ class EmailModel
         /** @var EmailEntity $emailEntity */
         foreach ($emailStreams as $emailEntity)
         {
-            $firstEmail = getFirstArticle($emailEntity);
-            $lastEmail = getFirstArticle($emailEntity);
+            $firstEmail = $this->getFirstArticle($emailEntity);
+            $lastEmail = $this->getFirstArticle($emailEntity);
             $stream = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
             $emails = imap_search($stream, 'SINCE ' . $emailEntity->getFirstUpdate());
 
