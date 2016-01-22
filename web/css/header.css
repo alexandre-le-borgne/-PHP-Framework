@@ -28,10 +28,10 @@ header .search_bar
     color: white;
     font-size: 10pt;
     border-radius: 2px;
-    height: 42px;
+    height: 37px;
     padding: 11px 10px 11px 13px;
     display: block;
-    margin-top: 9px !important;
+    margin-top: 10px;
     border: 0px;
     box-sizing: border-box;
 }
@@ -75,10 +75,11 @@ header .logout_button
 
 #logo_aaron_home
 {
-    width: 42px;
+    width: 36px;
     margin-bottom: 6px;
     margin-right: 10px;
     vertical-align: middle;
+    margin-left: 1%;
 }
 
 .logout
