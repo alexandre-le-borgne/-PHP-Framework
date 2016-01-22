@@ -283,7 +283,8 @@ class EmailModel
         {
             $firstEmail = $this->getFirstArticle($emailEntity);
             $lastEmail = $this->getFirstArticle($emailEntity);
-            $stream = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
+            $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
+            $stream = $connection['conn'];
             $emails = imap_search($stream, 'SINCE ' . $emailEntity->getFirstUpdate());
 
             //$emails = imap_search($this->conn, 'ALL');
