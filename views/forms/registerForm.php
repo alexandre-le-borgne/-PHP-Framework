@@ -18,32 +18,15 @@ $view->extend('layouts/section_home');
 
     <!--SIGN UP FORM-->
     <form method="post" action="register">
-        <input type="text" name="username" placeholder="Pseudonyme" required>
-
-        <!--BIRTH DATE
-        <div class="input-prepend">
-            <span class="add-on">@</span>
-            <input class="span2" id="prependedInput" type="date" name="birthDate" placeholder="Date de naissance" required>
-        </div>-->
-
-        <!--EMAIL-->
-        <?php
-        if (isset($errors['email'])) { ?>
-            <div class="control-group info">
-                <input type="email" name="email" placeholder="Email" required pattern="*@-.-">
-                <span class="help-inline"><?php echo $errors['email'] ?></span>
-            </div>
-            <?php
-        } else
-            echo '<input type="email" name="email" placeholder="Email" required pattern="*@-.-"';
-        ?>
-
-        <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
-        $this->render('forms/passwordConfirmForm', (isset($errors) ? array("errors" => $errors) : null))
-        ?>
+        <input type="text" name="username" placeholder="Pseudonyme" required><br>
+        <input type="email" name="email" placeholder="Email" required pattern="*@-.-"><br>
         <input type="password" name="password" placeholder="Mot de passe" required><br>
         <input type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>';
-
+        <?php
+        if(isset($errors) && $errors != '') {
+            echo '<div class="errors_fields">'.$errors.'</div>';
+        }
+        ?>
         <!--SUBMIT ACTION-->
         <input type="submit" value="S'inscrire sur Aaron" class="btn">
 

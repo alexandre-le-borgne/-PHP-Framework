@@ -18,9 +18,7 @@
             <!--PASSWORD-->
             <input class="last" type="password" name="password" placeholder="Password" required>
             <?php
-            var_dump($errors);
             if(isset($errors) && $errors != '') {
-                echo "bite";
                 echo '<div class="errors_fields">'.$errors.'</div>';
             }
             ?>

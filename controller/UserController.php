@@ -44,15 +44,13 @@ class UserController extends Controller
         }
     }
 
-    public
-    function LogoutAction(Request $request)
+    public function LogoutAction(Request $request)
     {
         $request->getSession()->clear();
         $this->redirectToRoute('index');
     }
 
-    public
-    function GoogleAction(Request $request)
+    public function GoogleAction(Request $request)
     {
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
             $this->redirectToRoute('index');
@@ -159,12 +157,10 @@ class UserController extends Controller
                     $accessToken = $helper->getAccessToken();
                 } catch (Facebook\Exceptions\FacebookResponseException $e) {
                     // When Graph returns an error
-                    echo 'Graph returned an error: ' . $e->getMessage();
-                    exit;
+                    return;
                 } catch (Facebook\Exceptions\FacebookSDKException $e) {
                     // When validation fails or other local issues
-                    echo 'Facebook SDK returned an error: ' . $e->getMessage();
-                    exit;
+                   return;
                 }
                 if (isset($accessToken)) {
                     $_SESSION['facebook_access_token'] = (string)$accessToken;
@@ -176,7 +172,8 @@ class UserController extends Controller
                         if ($userEntity) {
                             if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
                                 $request->getSession()->set('id', $userEntity->getId());
-                            } // sinon c'est un compte du site, donc pas connectable avec google/facebook
+                            }
+
                         } else {
                             $id = $this->usermodel->addExternalUser($userData['name'], $userData['email']);
                             $request->getSession()->set('id', $id);
@@ -218,29 +215,29 @@ class UserController extends Controller
             if ($username && $email && $password && $confirmPwd) {
                 $this->loadModel('UserModel');
 
-                $errors = array();
+                $errors = '';
                 if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL) {
-                    $errors['email'] = 'Email déjà utilisé';
+                    $errors = 'Email déjà utilisé';
                 }
-                if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX) {
-                    $errors['email'] = 'Format d\'email incorrect';
+                else if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX) {
+                    $errors = 'Format d\'email incorrect';
                 }
-                if ($password != $confirmPwd) {
-                    $errors['password'] = 'Mot de passe différent';
+                else if ($password != $confirmPwd) {
+                    $errors = 'Mot de passe différent';
                 }
-                if (!($this->usermodel->correctPwd($password))) {
-                    $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
+                else if (!($this->usermodel->correctPwd($password))) {
+                    $errors = 'La taille du mdp doit être entre 6 et 20';
                 }
-                if (!($this->usermodel->availableUser($username))) {
-                    $errors['username'] = 'Pseudonyme déjà utilisé';
+                else if (!($this->usermodel->availableUser($username))) {
+                    $errors = 'Pseudonyme déjà utilisé';
                 }
-                if (!(empty($errors))) {
-                    $data = array('errors' => $errors);
-                    $this->render('forms/registerForm', $data);
+                else {
+                    $this->usermodel->addUser($username, $email, $password);
+                    $this->redirectToRoute('index');
                     return;
                 }
-                $this->usermodel->addUser($username, $email, $password);
-                $this->redirectToRoute('index');
+                $data = array('errors' => $errors);
+                $this->render('forms/registerForm', $data);
             } else {
                 $this->render('forms/registerForm');
             }
