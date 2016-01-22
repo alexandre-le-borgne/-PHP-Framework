@@ -77,7 +77,7 @@ class RssModel extends Model implements StreamModel
             $minDate = $fetch['minDate']; //date du 1er article du stream
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
-            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
+
             if(!$verif = $result->fetch()) {
 
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
@@ -95,7 +95,6 @@ class RssModel extends Model implements StreamModel
             $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
-            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
             if(!$verif = $result->fetch()) {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
