@@ -114,16 +114,19 @@ class RssModel extends Model implements StreamModel
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
 
-            while($verif = $result->fetch()) {
+            $verif = $result->fetch();
+
+            if(empty($verif)) {
                 $cont = $verif['content'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
 
-                foreach ($x->channel->item as $item) {
-                    if ($item->description != $cont) {
-                        $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
-                    }
+                $item = $x->channel->item;
+
+                if ($item->description != $cont) {
+                    $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                    $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
                 }
+
             }//while
 
 
