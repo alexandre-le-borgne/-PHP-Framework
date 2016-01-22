@@ -95,12 +95,13 @@ class RssModel extends Model implements StreamModel
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 var_dump($cont);
 
-                foreach ($x->channel->item as $item) {
-                    if ($item->description != $cont) {
-                        $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
-                    }
+                $item = $x->channel->item;
+
+                if ($item->description != $cont) {
+                    $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                    $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
                 }
+
             }//while
             echo "Theo ne sait pas jouer à Teeworld";
 
