@@ -171,7 +171,7 @@ class UserController extends Controller
                             }
                         }
                     }
-                    $this->render('index', array('errors' => 'Erreur de connexion à Facebook'));
+                    $this->render('index', array('loginUrl' => $loginUrl, 'errors' => 'Erreur de connexion à Facebook'));
                     return;
                 } catch (Facebook\Exceptions\FacebookSDKException $e) {
                     $helper = $fb->getRedirectLoginHelper();
@@ -186,7 +186,7 @@ class UserController extends Controller
                             }
                         }
                     }
-                    $this->render('index', array('errors' => 'Erreur de connexion à Facebook'));
+                    $this->render('index', array('loginUrl' => $loginUrl, 'errors' => 'Erreur de connexion à Facebook'));
                     return;
                 }
                 $error = '';
