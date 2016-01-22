@@ -188,7 +188,20 @@ class UserController extends Controller
                     }
                     if ($request->isInternal())
                     {
-                        $this->render('forms/facebookForm', array('errors' => $error));
+                        $helper = $fb->getRedirectLoginHelper();
+                        $permissions = ['public_profile', 'email', 'user_likes']; // optional
+                        $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
+                        foreach ($_SESSION as $k => $v) {
+                            if (strpos($k, "FBRLH_") !== FALSE) {
+                                if (!setcookie($k, $v)) {
+                                    //what??
+                                } else {
+                                    $_COOKIE[$k] = $v;
+                                }
+                            }
+                        }
+                        if ($request->isInternal())
+                            $this->render("forms/facebookForm", array('loginUrl' => $loginUrl, 'errors' => $error));
                     }
                     else {
                         $this->redirectToRoute('index');
