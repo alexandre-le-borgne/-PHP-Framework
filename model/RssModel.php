@@ -94,7 +94,8 @@ class RssModel extends Model implements StreamModel
 
                         $base = strtotime($item->pubDate);
 
-                        $date = new DateTime($base);
+                        $date = new DateTime();
+                        $date->setTimestamp($base);
                         $date->format(Database::DATE_FORMAT);
 
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
@@ -118,7 +119,8 @@ class RssModel extends Model implements StreamModel
 
                         $base = strtotime($item->pubDate);
 
-                        $date = new DateTime($base);
+                        $date = new DateTime();
+                        $date->setTimestamp($base);
                         $date->format(Database::DATE_FORMAT);
 
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";

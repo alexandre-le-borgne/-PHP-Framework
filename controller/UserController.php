@@ -159,10 +159,34 @@ class UserController extends Controller
                 try {
                     $accessToken = $helper->getAccessToken();
                 } catch (Facebook\Exceptions\FacebookResponseException $e) {
-                    $this->render('index', array('errors' => 'Erreur de connexion à Facebook'));
+                    $helper = $fb->getRedirectLoginHelper();
+                    $permissions = ['public_profile', 'email', 'user_likes']; // optional
+                    $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
+                    foreach ($_SESSION as $k => $v) {
+                        if (strpos($k, "FBRLH_") !== FALSE) {
+                            if (!setcookie($k, $v)) {
+                                //what??
+                            } else {
+                                $_COOKIE[$k] = $v;
+                            }
+                        }
+                    }
+                    $this->render('index', array('loginUrl' => $loginUrl, 'errors' => 'Erreur de connexion à Facebook'));
                     return;
                 } catch (Facebook\Exceptions\FacebookSDKException $e) {
-                    $this->render('index', array('errors' => 'Erreur de connexion à Facebook'));
+                    $helper = $fb->getRedirectLoginHelper();
+                    $permissions = ['public_profile', 'email', 'user_likes']; // optional
+                    $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
+                    foreach ($_SESSION as $k => $v) {
+                        if (strpos($k, "FBRLH_") !== FALSE) {
+                            if (!setcookie($k, $v)) {
+                                //what??
+                            } else {
+                                $_COOKIE[$k] = $v;
+                            }
+                        }
+                    }
+                    $this->render('index', array('loginUrl' => $loginUrl, 'errors' => 'Erreur de connexion à Facebook'));
                     return;
                 }
                 $error = '';
@@ -188,7 +212,20 @@ class UserController extends Controller
                     }
                     if ($request->isInternal())
                     {
-                        $this->render('forms/facebookForm', array('errors' => $error));
+                        $helper = $fb->getRedirectLoginHelper();
+                        $permissions = ['public_profile', 'email', 'user_likes']; // optional
+                        $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
+                        foreach ($_SESSION as $k => $v) {
+                            if (strpos($k, "FBRLH_") !== FALSE) {
+                                if (!setcookie($k, $v)) {
+                                    //what??
+                                } else {
+                                    $_COOKIE[$k] = $v;
+                                }
+                            }
+                        }
+                        if ($request->isInternal())
+                            $this->render("forms/facebookForm", array('loginUrl' => $loginUrl, 'errors' => $error));
                     }
                     else {
                         $this->redirectToRoute('index');
