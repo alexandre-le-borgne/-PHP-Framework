@@ -10,19 +10,18 @@ class ArticleEntity
 {
     private $id, $title, $content, $articleDate, $articleType, $url, $stream_id;
 
-    public function persist(Database $db)
+    public function persist()
     {
+        $db = new Database();
         if ($this->id == null)
         {
             $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
-            $db->execute($req, array($this->title, $this->content, $this->articleDate,
-                $this->articleType, $this->url, $this->stream_id));
+            $db->execute($req, array($this->title, $this->content, $this->articleDate, $this->articleType, $this->url, $this->stream_id));
         }
         else
         {
-            $req = 'UPDATE article SET title = ?, content = ?, articleDate = ?, articleType = ?, url = ?, stream_id = ?';
-            $db->execute($req, array($this->title, $this->content, $this->articleDate,
-                $this->articleType, $this->url, $this->stream_id));
+            $req = 'UPDATE article SET title = ?, content = ?, articleDate = ?, articleType = ?, url = ?, stream_id = ? WHERE id = ?';
+            $db->execute($req, array($this->title, $this->content, $this->articleDate, $this->articleType, $this->url, $this->stream_id, $this->id));
         }
     }
 

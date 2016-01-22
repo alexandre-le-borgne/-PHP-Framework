@@ -316,7 +316,6 @@ class EmailModel
                         default:
                             $body = imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1);
                     }
-                    var_dump($overview[0]->date);
                     $article = new ArticleEntity();
                     $subject = isset($overview[0]->subject) ? $this->decode_imap_text($overview[0]->subject) : 'Sans object';
                     $article->setTitle($subject . ' - ' . $this->decode_imap_text($overview[0]->from));
