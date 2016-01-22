@@ -77,7 +77,7 @@ class RssModel extends Model implements StreamModel
 
             $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
-            $minDate = DateTime::createFromFormat('j-m-y', $result['minDate']); //date du 1er article du stream
+            $minDate = $result['minDate']; //date du 1er article du stream
 
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
