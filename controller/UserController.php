@@ -19,6 +19,7 @@ class UserController extends Controller
             /** @var UserEntity $userEntity */
             $login = $request->post('login');
             $password = $request->post('password');
+            $error = '';
             if ($login && $password) {
                 $userEntity = $this->usermodel->getByNameOrEmail($login);
                 if($userEntity) {
@@ -33,10 +34,10 @@ class UserController extends Controller
                     }
                 }
                 else {
-
+                    $error = 'Oups ! Votre compte est inexistant !';
                 }
             }
-            $this->render('layouts/layoutNotConnected');
+            $this->render('layouts/layoutNotConnected', array('errors' => $error));
         }
     }
 

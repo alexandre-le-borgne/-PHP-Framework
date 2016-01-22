@@ -17,9 +17,11 @@
             <input class="first" type="text" name="login" placeholder="Identifiant ou Email" required>
             <!--PASSWORD-->
             <input class="last" type="password" name="password" placeholder="Password" required>
-            <input class="errors_fields" type="submit" value="N'oubliez pas votre e-mail !">
-            <input class="errors_fields" type="submit" value="N'oubliez pas votre mot de passe !">
-            <!--<input class="errors_fields" type="submit" value="Oups ! Votre compte est inexistant !">-->
+            <?php
+            if(isset($errors)) {
+                echo '<input class="errors_fields" type="submit" value="'.$errors.'">';
+            }
+            ?>
         </div>
         <!--SUBMIT-->
         <input class="btn" type="submit" value="Connectez-vous !">
@@ -41,17 +43,3 @@
         ?>
     </div>
 </div>
-
-<script>
-    $(function () {
-        function show_errors(errors) {
-            if (errors == true) {
-                $('#fields_errors').css('max-height', 'none').css('transition', 'max-height 5s');
-                $('.errors_fields').css('display', 'block');
-            }
-        }
-        show_errors(<?php var_dump($errors); echo (isset($errors) ? 'true' : 'false'); ?>);
-    });
-
-
-</script>
