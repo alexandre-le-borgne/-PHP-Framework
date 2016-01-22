@@ -91,8 +91,8 @@ class RssModel extends Model implements StreamModel
 
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
-
-                        $base = strtotime($item->pubDate);
+                        echo "insert";
+                        $base = $item->pubDate;
 
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                         $db->execute($req, array($item->title, $item->description, $base, $item->link, $stream_id));
@@ -108,19 +108,16 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
 
             if(!$verif = $result->fetch()) {
+                echo "gros pd";
                 $cont = $verif['title'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
-
-                        $base = strtotime($item->pubDate);
-
-                        $date = new DateTime();
-                        $date->setTimestamp($base);
-                        $date->format(Database::DATE_FORMAT);
+                        echo 'insert pédale';
+                        $base = $item->pubDate;
 
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, $date, $item->link, $stream_id));
+                        $db->execute($req, array($item->title, $item->description, $base, $item->link, $stream_id));
                     }
                 }
             }//while
