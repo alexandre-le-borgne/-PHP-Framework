@@ -329,10 +329,8 @@ class EmailModel
                 if (!$firstEmail || strtotime($article->getArticleDate()) < strtotime($firstEmail->getArticleDate())
                     || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate()))
                 {
-                    $article->persist();
-                    if($db->lastInsertId() == 16) {
-                        var_dump($article);
-                    }
+                    var_dump($article->getContent());
+                    //$article->persist();
                 }
             }
         }
