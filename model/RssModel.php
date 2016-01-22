@@ -68,15 +68,15 @@ class RssModel extends Model implements StreamModel
 
         while($fetch = $result->fetch()) {
             $stream_id = $fetch['id'];
-            $streamFirst = $fetch['firstUpdate'];
-            $streamLast = $fetch['lastUpdate'];
+            $streamFirst = DateTime::createFromFormat('j-m-y', $fetch['firstUpdate']);
+            $streamLast = DateTime::createFromFormat('j-m-y', $fetch['lastUpdate']);
             $url = $fetch['url'];
 
             $x = simplexml_load_file($url);
 
             $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
-            $minDate = $result['minDate']; //date du 1er article du stream
+            $minDate = DateTime::createFromFormat('j-m-y', $result['minDate']); //date du 1er article du stream
 
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
@@ -99,11 +99,10 @@ class RssModel extends Model implements StreamModel
             echo "Theo ne sait pas jouer à Teeworld";
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
-            $maxDate = $result['maxDate']; //derniere date
+            $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
 
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
-            $verif = $result->fetch();
 
             if(!$verif = $result->fetch()) {
                 $cont = $verif['title'];
