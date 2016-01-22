@@ -281,13 +281,12 @@ class EmailModel
         /** @var EmailEntity $emailEntity */
         foreach ($emailStreams as $emailEntity)
         {
-            var_dump($emailEntity);
             $firstEmail = $this->getFirstArticle($emailEntity);
             $lastEmail = $this->getFirstArticle($emailEntity);
             $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
             $stream = $connection['conn'];
             $date = date_create_from_format ("d M Y", strtotime($emailEntity->getFirstUpdate()));
-            echo 'SINCE "' . $date.'"'.$emailEntity->getFirstUpdate();
+            echo 'SINCE "' . $date.'"'. strtotime($emailEntity->getFirstUpdate());
             $emails = imap_search($stream, 'SINCE "' .$date .'"');
 
             //$emails = imap_search($this->conn, 'ALL');
