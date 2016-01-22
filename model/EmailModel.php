@@ -285,8 +285,9 @@ class EmailModel
             $lastEmail = $this->getFirstArticle($emailEntity);
             $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
             $stream = $connection['conn'];
-            echo 'SINCE "' . $emailEntity->getFirstUpdate().'"';
-            $emails = imap_search($stream, 'SINCE "' . $emailEntity->getFirstUpdate().'"');
+            $date = date_create_from_format ("d M Y", $emailEntity->getFirstUpdate());
+            echo 'SINCE "' . $date.'"';
+            $emails = imap_search($stream, 'SINCE "' .$date .'"');
 
             //$emails = imap_search($this->conn, 'ALL');
 
