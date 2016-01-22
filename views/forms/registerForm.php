@@ -41,6 +41,8 @@ $view->extend('layouts/section_home');
         <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
         $this->render('forms/passwordConfirmForm', (isset($errors) ? array("errors" => $errors) : null))
         ?>
+        <input type="password" name="password" placeholder="Mot de passe" required><br>
+        <input type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>';
 
         <!--SUBMIT ACTION-->
         <input type="submit" value="S'inscrire sur Aaron" class="btn">
