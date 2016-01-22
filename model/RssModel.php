@@ -47,11 +47,11 @@ class RssModel extends Model implements StreamModel
         $result = $db->execute($req, array($url));
         if(!($fetch = $result->fetch())){
             $req = 'INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($url, $firstUpdate));
+            $db->execute($req, array($url, $firstUpdate->format(Database::DATE_FORMAT)));
         }
         if($fetch['firstUpdate'] < $firstUpdate){
             $req = 'UPDATE stream_rss SET firstUpdate = ? WHERE url = ?';
-            $db->execute($req, array($firstUpdate, $url));
+            $db->execute($req, array($firstUpdate->format(Database::DATE_FORMAT), $url));
         }
     }
 
