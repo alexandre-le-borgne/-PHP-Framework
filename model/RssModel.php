@@ -72,6 +72,7 @@ class RssModel extends Model implements StreamModel
             $streamLast = $fetch['lastUpdate'];
             $url = $fetch['url'];
 
+
             $x = simplexml_load_file($url);
 
             $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
