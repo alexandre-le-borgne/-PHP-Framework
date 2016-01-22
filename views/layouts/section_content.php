@@ -14,7 +14,7 @@
         <div id="text_content">
             <h1>Suivez le contenu que vous aimez.</h1><br>
             <h3>Suivez vos artistes, journaux,<br> blogs ou personnalités<br> préférées.</h3>
-            <br><div id="button_action">Inscrivez-vous !</div>
+            <br><a id="button_action" href="<?= View::getUrlFromRoute('register') ?>">Inscrivez-vous !</a>
         </div>
     </div>
 

@@ -7,49 +7,56 @@
  * - d’envoyer un e-mail de confirmation d’inscription à l’internaute ;
  */
 
-$view->extend('layouts/section_home');
+$view->extend('layouts/fullpage');
 ?>
 
-<div class="registerDiv">
+<a id="register_button" href="<?= View::getUrlFromRoute('login') ?>">Connectez-vous !</a>
 
-    <a href="index"><img id="logo" src="web/img/aaron_text_logo.png"></a>
-    <br><br>
-    <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
-    <!--SIGN UP FORM-->
-    <form method="post" action="register">
-        <input class="first" type="text" name="username" placeholder="Pseudonyme" required>
-        <input type="email" name="email" placeholder="Email" required pattern="*@-.-">
-        <input type="password" name="password" placeholder="Mot de passe" required>
-        <input class="last" type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required>';
-        <?php
-        if(isset($errors) && $errors != '') {
-            echo '<br><div class="errors_fields">'.$errors.'</div>';
-        }
-        ?>
-        <!--SUBMIT ACTION-->
-        <input type="submit" value="S'inscrire sur Aaron" class="btn">
+<div class="section section_home">
 
-        <!--CAPTCHA
-        <fieldset id="captchafield">
-            <div id="captcha"></div>
-        </fieldset>-->
+    <div class="registerDiv">
 
-    </form>
+        <a href="index"><img id="logo" src="web/img/aaron_text_logo.png"></a>
+        <br><br>
+        <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
+
+        <!--SIGN UP FORM-->
+        <form method="post" action="register">
+            <input class="first" type="text" name="username" placeholder="Pseudonyme" required>
+            <input type="email" name="email" placeholder="Email" required pattern="*@-.-">
+            <input type="password" name="password" placeholder="Mot de passe" required>
+            <input class="last" type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required>';
+            <?php
+            if(isset($errors) && $errors != '') {
+                echo '<br><div class="errors_fields">'.$errors.'</div>';
+            }
+            ?>
+            <!--SUBMIT ACTION-->
+            <input type="submit" value="S'inscrire sur Aaron" class="btn">
+
+            <!--CAPTCHA
+            <fieldset id="captchafield">
+                <div id="captcha"></div>
+            </fieldset>-->
+
+        </form>
+    </div>
+
+
+    <script type="text/javascript">
+        /*
+         $(function() {
+         var s = new Slider("captchafield",{
+         message: "Glissez pour créer le compte",
+         handler: function(){
+         $("#captchafield").hide("slow");
+         document.register.submit();
+         }
+         });
+         s.init();
+         });
+         */
+    </script>
+
 </div>
-
-
-<script type="text/javascript">
-    /*
-     $(function() {
-     var s = new Slider("captchafield",{
-     message: "Glissez pour créer le compte",
-     handler: function(){
-     $("#captchafield").hide("slow");
-     document.register.submit();
-     }
-     });
-     s.init();
-     });
-     */
-</script>

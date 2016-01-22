@@ -40,7 +40,7 @@ class UserController extends Controller
                     $error = 'Oups ! Votre compte est inexistant !';
                 }
             }
-            $this->render('layouts/layoutNotConnected', array('errors' => $error));
+            $this->render('forms/loginForm', array('errors' => $error));
         }
     }
 
