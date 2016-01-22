@@ -6,4 +6,4 @@
  * Time: 11:44
  */
 $view->extend('layouts/section_home');
-$this->render('forms/loginForm', array('errors' => $this->output($errors)));
+$this->render('forms/loginForm', array('errors' => $this->output('errors')));
