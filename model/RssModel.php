@@ -87,26 +87,31 @@ class RssModel extends Model implements StreamModel
                 $cont = $verif['content'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 var_dump($cont);
-                $item = $x->channel->item;
-                if ($item->description != $cont) {
-                    $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                    $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
+
+                foreach ($x->channel->item as $item) {
+                    if ($item->description != $cont) {
+                        $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
+                    }
                 }
             }//while
             echo "Theo ne sait pas jouer à Teeworld";
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
             $maxDate = $result['maxDate']; //derniere date
+
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
             $verif = $result->fetch();
+
             while(empty($verif)) {
                 $cont = $verif['content'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
-                $item = $x->channel->item;
-                if ($item->description != $cont) {
-                    $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                    $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
+                foreach ($x->channel->item as $item) {
+                    if ($item->description != $cont) {
+                        $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
+                    }
                 }
             }//while
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
