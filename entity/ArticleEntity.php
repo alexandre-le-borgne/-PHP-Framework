@@ -10,6 +10,11 @@ class ArticleEntity
 {
     private $id, $title, $content, $articleDate, $articleType, $url, $stream_id;
 
+    function __construct($articleDate)
+    {
+        $this->articleDate = $articleDate;
+    }
+
     public function persist(Database $db)
     {
         if ($this->id == null)

@@ -50,8 +50,8 @@ class TwitterModel extends Model implements StreamModel
             /** @var ArticleEntity $firstArticle */
             /** @var ArticleEntity $lastArticle */
             /** On recupere le premier et le dernier tweet en BD de ce flux */
-            $firstArticle = $this->getFirstArticle($twitterEntity);
-            $lastArticle = $this->getLastArticle($twitterEntity);
+            $firstArticle = $this->getFirstArticle($db, $twitterEntity);
+            $lastArticle = $this->getLastArticle($db, $twitterEntity);
 
             /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
             $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
@@ -145,20 +145,30 @@ class TwitterModel extends Model implements StreamModel
         return $tweetsToInsert;
     }
 
-    private function getFirstArticle(TwitterEntity $twitterStream)
+    private function getFirstArticle(Database $db, TwitterEntity $twitterStream)
     {
-        return null;
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate ASC LIMIT 1',
+            array($twitterStream->getId()));
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+        if ($articleEntity = $result->fetch())
+            return $articleEntity;
+        return new ArticleEntity(time());
     }
 
-    private function getLastArticle(TwitterEntity $twitterEntity)
+    private function getLastArticle(Database $db, TwitterEntity $twitterStream)
     {
-        return null;
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate DESC LIMIT 1',
+            array($twitterStream->getId()));
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+        if ($articleEntity = $result->fetch())
+            return $articleEntity;
+        return new ArticleEntity(time());//Si n'existe pas, on dit que l'on recuperera jusqua cet article
     }
-
     /** Fin du tout ca pour le cron */
 
 
-    public function getStreamById($id)
+    public
+    function getStreamById($id)
     {
         if (intval($id))
         {
@@ -170,7 +180,8 @@ class TwitterModel extends Model implements StreamModel
         return null;
     }
 
-    public function createStream($channel, DateTime $firstUpdate)
+    public
+    function createStream($channel, DateTime $firstUpdate)
     {
         $db = new Database();
         $req = 'SELECT * FROM stream_twitter WHERE channel = ?';
