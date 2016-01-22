@@ -52,6 +52,7 @@ header .logout_button
 #logo_aaron_home
 {
     width: 46px;
+    vertical-align: middle;
 }
 
 .logout
