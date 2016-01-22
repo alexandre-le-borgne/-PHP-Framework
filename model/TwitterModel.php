@@ -196,7 +196,7 @@ class TwitterModel extends Model implements StreamModel
         return null;
     }
 
-    public function createStream($channel, $firstUpdate)
+    public function createStream($channel, DateTime $firstUpdate)
     {
         $db = new Database();
         $req = 'SELECT * FROM stream_twitter WHERE channel = ?';
