@@ -39,7 +39,7 @@ class IndexController extends Controller
         //var_dump($feed->getPosts());
         $this->loadModel('RssModel');
         $this->rssmodel->createStream("http://www.journaldunet.com/rss/", time() - 608400);
-        $this->rssmodel->cron($firstUpdate, $lastUpdate);
+        $this->rssmodel->cron();
 
     }
 }
