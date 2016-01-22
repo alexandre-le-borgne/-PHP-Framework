@@ -229,21 +229,34 @@ body
 
 #layout_connected
 {
+    border: solid 1px blue;
     margin: auto;
     width: 1000px;
+    height: 600px;
 }
 
 #feed
 {
+    border: solid 1px blue;
     float: left;
     width: 600px;
 }
 
 #categories
 {
+    border: solid 1px blue;
+    width: 300px;
+    height: 600px;
     float: left;
     column-gap: 120px;
     column-count: 2;
+}
+
+#add_cat
+{
+    margin: auto;
+    vertical-align: middle;
+    width: 30px;
 }
 
 .post
