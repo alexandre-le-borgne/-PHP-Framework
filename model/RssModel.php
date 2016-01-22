@@ -81,7 +81,7 @@ class RssModel extends Model implements StreamModel
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
 
-
+            /*
             while(!$verif = $result->fetch()) {
                 echo "t'es pd?";
                 $cont = $verif['content'];
@@ -105,7 +105,7 @@ class RssModel extends Model implements StreamModel
             $verif = $result->fetch();
 
             while(!$verif = $result->fetch()) {
-                $cont = $verif['content'];
+                $cont = $verif['title'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
                     if ($item->description != $cont) {
@@ -116,6 +116,7 @@ class RssModel extends Model implements StreamModel
             }//while
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
             $db->execute($update, array($stream_id));
+            */
         }
     }
 }
