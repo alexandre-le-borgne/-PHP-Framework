@@ -72,7 +72,7 @@ class RssModel extends Model implements StreamModel
         $result = $db->execute($req);
 
         while($fetch = $result->fetch()) {
-            $stream_id = $fetch['Id'];
+            $stream_id = $fetch['id'];
             var_dump($stream_id);
             $streamFirst = $fetch['firstUpdate'];
             var_dump($streamFirst);
