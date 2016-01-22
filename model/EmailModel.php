@@ -318,7 +318,8 @@ class EmailModel
                     }
                     var_dump($overview[0]->date);
                     $article = new ArticleEntity();
-                    $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
+                    $subject = isset($overview[0]->subject) ? $this->decode_imap_text($overview[0]->subject) : 'Sans object';
+                    $article->setTitle($subject . ' - ' . $this->decode_imap_text($overview[0]->from));
                     $article->setContent($this->getBody($overview[0]->uid, $stream));
                     $article->setArticleDate($overview[0]->date);
                     $article->setArticleType(ArticleModel::EMAIL);
@@ -326,24 +327,16 @@ class EmailModel
                     $articles[] = $article;
                 }
             }
-            /*
-            $articlesARecuperer = array();
-            /** @var ArticleEntity $article * /
-            if ($firstEmail && $lastEmail)
+
+            /** @var ArticleEntity $article */
+            foreach ($articles as $article)
             {
-                foreach ($articles as $article)
+                if (!$firstEmail || strtotime($article->getArticleDate()) < strtotime($firstEmail->getArticleDate())
+                    || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate()))
                 {
-                    if ($article->getArticleDate() <= $firstEmail->getArticleDate)
-                    {
-
-                    }
-
-            //si bon   $article->persist()
+                    $article->persist();
                 }
             }
-            else {
-                $articlesARecuperer = $articles;
-            }*/
         }
         return $articles;
     }
