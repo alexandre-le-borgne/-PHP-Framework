@@ -22,7 +22,7 @@ class UserController extends Controller
             $error = '';
             if ($login && $password) {
                 $userEntity = $this->usermodel->getByNameOrEmail($login);
-                if($userEntity) {
+                if ($userEntity) {
                     if ($userEntity->getAuthentification() == 0) {
                         $passwordEntity = $this->passwordmodel->getByUser($userEntity);
                         if (Security::equals($passwordEntity->getPassword(), $password)) {
@@ -32,8 +32,7 @@ class UserController extends Controller
                             return;
                         }
                     }
-                }
-                else {
+                } else {
                     $error = 'Oups ! Votre compte est inexistant !';
                 }
             }
@@ -102,8 +101,7 @@ class UserController extends Controller
             $this->redirectToRoute('index');
     }
 
-    public
-    function FacebookAction(Request $request)
+    public function FacebookAction(Request $request)
     {
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
             $this->redirectToRoute('index');
@@ -204,46 +202,48 @@ class UserController extends Controller
         }
     }
 
-    public
-    function RegisterAction(Request $request)
+    public function RegisterAction(Request $request)
     {
-        $email = $request->post('email');
-        $password = $request->post('password');
-        $confirmPwd = $request->post('confirmPwd');
-        $username = $request->post('username');
-        if ($username && $email && $password && $confirmPwd) {
-            $this->loadModel('UserModel');
-
-            $errors = array();
-            if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL) {
-                $errors['email'] = 'Email déjà utilisé';
-            }
-            if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX) {
-                $errors['email'] = 'Format d\'email incorrect';
-            }
-            if ($password != $confirmPwd) {
-                $errors['password'] = 'Mot de passe différent';
-            }
-            if (!($this->usermodel->correctPwd($password))) {
-                $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
-            }
-            if (!($this->usermodel->availableUser($username))) {
-                $errors['username'] = 'Pseudonyme déjà utilisé';
-            }
-            if (!(empty($errors))) {
-                $data = array('errors' => $errors);
-                $this->render('forms/registerForm', $data);
-                return;
-            }
-            $this->usermodel->addUser($username, $email, $password);
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
             $this->redirectToRoute('index');
         } else {
-            $this->render('forms/registerForm');
+            $email = $request->post('email');
+            $password = $request->post('password');
+            $confirmPwd = $request->post('confirmPwd');
+            $username = $request->post('username');
+            if ($username && $email && $password && $confirmPwd) {
+                $this->loadModel('UserModel');
+
+                $errors = array();
+                if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL) {
+                    $errors['email'] = 'Email déjà utilisé';
+                }
+                if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX) {
+                    $errors['email'] = 'Format d\'email incorrect';
+                }
+                if ($password != $confirmPwd) {
+                    $errors['password'] = 'Mot de passe différent';
+                }
+                if (!($this->usermodel->correctPwd($password))) {
+                    $errors['password'] = 'La taille du mdp doit être entre 6 et 20';
+                }
+                if (!($this->usermodel->availableUser($username))) {
+                    $errors['username'] = 'Pseudonyme déjà utilisé';
+                }
+                if (!(empty($errors))) {
+                    $data = array('errors' => $errors);
+                    $this->render('forms/registerForm', $data);
+                    return;
+                }
+                $this->usermodel->addUser($username, $email, $password);
+                $this->redirectToRoute('index');
+            } else {
+                $this->render('forms/registerForm');
+            }
         }
     }
 
-    public
-    function MailResetAction(Request $request)
+    public function MailResetAction(Request $request)
     {
 
         $email = Security::escape($request->post('email'));
@@ -261,8 +261,7 @@ class UserController extends Controller
         echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
     }
 
-    public
-    function MailValidationAction($user, $key)
+    public function MailValidationAction($user, $key)
     {
         $db = new Database();
         $req = "Select email, userKey, active From accounts Where username = ?";

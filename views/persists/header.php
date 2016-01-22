@@ -8,10 +8,20 @@
 ?>
 
 
-
 <header>
     <div id="profile">
 
     </div>
-    <?php $this->render('forms/logoutForm'); ?>
+    <?php
+    if ($this->isGranted(Session::USER_IS_CONNECTED)) {
+        $this->render('forms/logoutForm');
+    } else {
+        ?>
+        <a href="login">Se connecter</a>
+        <br>
+        <a href="register">S'enregistrer</a>
+        <br>
+        <?php
+    }
+    ?>
 </header>
