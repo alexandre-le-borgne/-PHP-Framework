@@ -8,7 +8,7 @@ body.css contient les règles css concernant la structure globale du site
 header
 {
     display: inline-block;
-    border-bottom: solid 1pt #9aa2ad;
+    border-bottom: 1px solid rgba(255,255,255,.13);
     margin: auto;
     width: 100%;
     height: 54px;
