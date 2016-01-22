@@ -285,7 +285,7 @@ class EmailModel
             $lastEmail = $this->getFirstArticle($emailEntity);
             $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
             $stream = $connection['conn'];
-            $date = date_create_from_format ("d M Y", strtotime($emailEntity->getFirstUpdate()));
+            $date = date ("d M Y", strtotime($emailEntity->getFirstUpdate()));
             echo 'SINCE "' . $date.'"'. strtotime($emailEntity->getFirstUpdate());
             $emails = imap_search($stream, 'SINCE "' .$date .'"');
 
