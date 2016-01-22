@@ -245,7 +245,8 @@ body
 #categories
 {
     border: solid 1px blue;
-    width: 300px;
+    width: 251px;
+    margin-right: 32px;
     height: 520px;
     float: left;
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
