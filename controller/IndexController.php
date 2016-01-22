@@ -24,6 +24,7 @@ class IndexController extends Controller
     }
 
     public function CronAction() {
+        // Vérifier qu'on est bien dans les horaires du cron (5H du mat)
         $this->loadModel('EmailModel');
         $this->loadModel('RssModel');
         $this->loadModel('TwitterModel');
