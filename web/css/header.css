@@ -85,6 +85,7 @@ header .logout_button
 {
     float: right;
     height: 100%;
+    margin-right: 1%;
 }
 
 #profile, .logout, header form
