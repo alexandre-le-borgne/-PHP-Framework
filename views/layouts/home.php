@@ -6,5 +6,12 @@
  * Time: 14:07
  */
 $view->extend('layouts/layoutConnected');
-$this->render('forms/logoutForm');
+if($this->isGranted(Session::USER_IS_CONNECTED)) {
+    $this->render('forms/logoutForm');
+}
+else {
+    ?>
+    <a href="login">Se connecter</a>
+    <?php
+}
 echo $this->output('home');

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Le Controlleur correspondant a l'utilisateur
  * - PreregisterAction est appele a la suite du preregisterForm, lors du submit
@@ -7,12 +8,42 @@
  */
 class UserController extends Controller
 {
-    public function LogoutAction(Request $request) {
+    public function LoginAction(Request $request)
+    {
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+            $this->redirectToRoute('index');
+        } else {
+            $this->loadModel('UserModel');
+            $this->loadModel('PasswordModel');
+
+            /** @var UserEntity $userEntity */
+            $login = $request->post('login');
+            $password = $request->post('password');
+            if ($login && $password) {
+                $userEntity = $this->usermodel->getByNameOrEmail($login);
+                if ($userEntity->getAuthentification() == 0) {
+                    $passwordEntity = $this->passwordmodel->getByUser($userEntity);
+                    if (Security::equals($passwordEntity->getPassword(), $password)) {
+                        $request->getSession()->set("id", $userEntity->getId());
+                        $request->getSession()->set("password", $passwordEntity->getPassword());
+                        $this->redirectToRoute('index');
+                        return;
+                    }
+                }
+            }
+            $this->render('layouts/layoutNotConnected');
+        }
+    }
+
+    public
+    function LogoutAction(Request $request)
+    {
         $request->getSession()->clear();
         $this->redirectToRoute('index');
     }
 
-    public function GoogleAction(Request $request)
+    public
+    function GoogleAction(Request $request)
     {
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
             $this->redirectToRoute('index');
@@ -65,7 +96,8 @@ class UserController extends Controller
             $this->redirectToRoute('index');
     }
 
-    public function FacebookAction(Request $request)
+    public
+    function FacebookAction(Request $request)
     {
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
             $this->redirectToRoute('index');
@@ -75,9 +107,9 @@ class UserController extends Controller
         $appId = '1563533667270416';
         $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
 
-        foreach ($_COOKIE as $k=>$v) {
-            if(strpos($k, "FBRLH_")!==FALSE) {
-                $_SESSION[$k]=$v;
+        foreach ($_COOKIE as $k => $v) {
+            if (strpos($k, "FBRLH_") !== FALSE) {
+                $_SESSION[$k] = $v;
             }
         }
 
@@ -87,15 +119,15 @@ class UserController extends Controller
             'default_graph_version' => 'v2.5',
         ]);
 
-        foreach ($_COOKIE as $k=>$v) {
-            if(strpos($k, "FBRLH_")!==FALSE) {
-                $_SESSION[$k]=$v;
+        foreach ($_COOKIE as $k => $v) {
+            if (strpos($k, "FBRLH_") !== FALSE) {
+                $_SESSION[$k] = $v;
             }
         }
 
         $helper = $fb->getRedirectLoginHelper();
 
-        if (isset($_SESSION['facebook_access_token'] )) {
+        if (isset($_SESSION['facebook_access_token'])) {
             $accessToken = $_SESSION['facebook_access_token'];
             $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
             $this->loadModel('UserModel');
@@ -117,21 +149,21 @@ class UserController extends Controller
             if (isset($_REQUEST['code'])) {
                 try {
                     $accessToken = $helper->getAccessToken();
-                } catch(Facebook\Exceptions\FacebookResponseException $e) {
+                } catch (Facebook\Exceptions\FacebookResponseException $e) {
                     // When Graph returns an error
                     echo 'Graph returned an error: ' . $e->getMessage();
                     exit;
-                } catch(Facebook\Exceptions\FacebookSDKException $e) {
+                } catch (Facebook\Exceptions\FacebookSDKException $e) {
                     // When validation fails or other local issues
                     echo 'Facebook SDK returned an error: ' . $e->getMessage();
                     exit;
                 }
                 if (isset($accessToken)) {
-                    $_SESSION['facebook_access_token'] = (string) $accessToken;
+                    $_SESSION['facebook_access_token'] = (string)$accessToken;
                     $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
                     $this->loadModel('UserModel');
                     /** @var UserEntity $userEntity */
-                    if(isset($userData['email'])) {
+                    if (isset($userData['email'])) {
                         $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
                         if ($userEntity) {
                             if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
@@ -150,12 +182,12 @@ class UserController extends Controller
                 $helper = $fb->getRedirectLoginHelper();
                 $permissions = ['public_profile', 'email', 'user_likes']; // optional
                 $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
-                foreach ($_SESSION as $k=>$v) {
-                    if(strpos($k, "FBRLH_")!==FALSE) {
-                        if(!setcookie($k, $v)) {
+                foreach ($_SESSION as $k => $v) {
+                    if (strpos($k, "FBRLH_") !== FALSE) {
+                        if (!setcookie($k, $v)) {
                             //what??
                         } else {
-                            $_COOKIE[$k]=$v;
+                            $_COOKIE[$k] = $v;
                         }
                     }
                 }
@@ -166,7 +198,8 @@ class UserController extends Controller
         }
     }
 
-    public function RegisterAction(Request $request)
+    public
+    function RegisterAction(Request $request)
     {
         $email = $request->post('email');
         $password = $request->post('password');
@@ -198,31 +231,13 @@ class UserController extends Controller
             }
             $this->usermodel->addUser($username, $email, $password);
             $this->redirectToRoute('index');
-        }
-        else {
+        } else {
             $this->render('forms/registerForm');
         }
     }
 
-    public function LoginAction(Request $request)
-    {
-        $this->loadModel('UserModel');
-        $this->loadModel('PasswordModel');
-
-        /** @var UserEntity $userEntity */
-        $userEntity = $this->usermodel->getByNameOrEmail($request->post('login'));
-        $password = $request->post('password');
-        if ($userEntity && $userEntity->getAuthentification() == 0) {
-            $passwordEntity = $this->passwordmodel->getByUser($userEntity);
-            if (Security::equals($passwordEntity->getPassword(), $password)) {
-                $request->getSession()->set("id", $userEntity->getId());
-                $request->getSession()->set("password", $passwordEntity->getPassword());
-            }
-        }
-        $this->redirectToRoute('index');
-    }
-
-    public function MailResetAction(Request $request)
+    public
+    function MailResetAction(Request $request)
     {
 
         $email = Security::escape($request->post('email'));
@@ -240,7 +255,8 @@ class UserController extends Controller
         echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
     }
 
-    public function MailValidationAction($user, $key)
+    public
+    function MailValidationAction($user, $key)
     {
         $db = new Database();
         $req = "Select email, userKey, active From accounts Where username = ?";
