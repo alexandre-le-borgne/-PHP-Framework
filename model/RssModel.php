@@ -83,7 +83,7 @@ class RssModel extends Model implements StreamModel
 
 
 
-            if($verif = $result->fetch()) {
+            if(!$verif = $result->fetch()) {
                 echo "t'es pd lol?";
                 $cont = $verif['title'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
@@ -105,7 +105,7 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
             $verif = $result->fetch();
 
-            while($verif = $result->fetch()) {
+            if(!$verif = $result->fetch()) {
                 $cont = $verif['title'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
