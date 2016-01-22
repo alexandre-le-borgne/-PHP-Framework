@@ -13,9 +13,6 @@
         <?php
         if ($this->isGranted(Session::USER_IS_CONNECTED)) {
             ?>
-            <div id="profile">
-                <a href="<? View::getUrlFromRoute('profil')?>">Profil</a>
-            </div>
             <?php
             if ($this->isGranted(Session::USER_IS_ADMIN)) {
                 ?>
@@ -29,6 +26,9 @@
                 <input type="submit" style="display: none">
             </form>
 
+            <div id="profile">
+                <a href="<? View::getUrlFromRoute('profil')?>">Profil</a>
+            </div>
             <?php
             $this->render('forms/logoutForm');
         } else {
