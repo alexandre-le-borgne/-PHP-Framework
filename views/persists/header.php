@@ -29,7 +29,7 @@
             $this->render('forms/logoutForm');
             ?>
             <a id="profile" href="<? View::getUrlFromRoute('profil')?>">Profil</a>
-
+        <?php
         } else {
             ?>
             <form method="post" action="search">
