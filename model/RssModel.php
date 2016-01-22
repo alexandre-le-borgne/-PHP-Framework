@@ -65,7 +65,8 @@ class RssModel extends Model implements StreamModel
         $result = $db->execute($req);
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
         while($fetch = $result->fetch()) {
-            $stream_id = $fetch['id'];
+            /** @var RssEntity $fetch */
+            $fetch->getId();
             $streamFirst = $fetch['firstUpdate'];
             $streamLast = $fetch['lastUpdate'];
             $url = $fetch['url'];
