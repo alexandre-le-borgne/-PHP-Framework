@@ -320,7 +320,9 @@ class EmailModel
                     $article = new ArticleEntity();
                     $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
                     $article->setContent($this->getBody($overview[0]->uid, $stream));
-                    $article->setDate($overview[0]->date);
+                    $article->setArticleDate($overview[0]->date);
+                    $article->setArticleType(ArticleModel::EMAIL);
+                    $article->setStreamId($emailEntity->getId());
                     $articles[] = $article;
                 }
             }
@@ -335,6 +337,8 @@ class EmailModel
                     {
 
                     }
+
+            //si bon   $article->persist()
                 }
             }
             else {
