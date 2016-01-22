@@ -37,6 +37,7 @@
             <input type="textarea" name="search" placeholder="Votre recherche...">
             <input type="submit" style="display: none">
         </form>
+
         <a href="login">Se connecter</a>
         <br>
         <a href="register">S'enregistrer</a>
