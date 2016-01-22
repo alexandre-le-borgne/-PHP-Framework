@@ -14,7 +14,7 @@ class IndexController extends Controller
         }
         else
         {
-            $this->render('layouts/home', array('home' => 'Pas Connecté'));
+            $this->render('layouts/login');
         }
     }
 
