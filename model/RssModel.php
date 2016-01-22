@@ -72,24 +72,58 @@ class RssModel extends Model implements StreamModel
         $result = $db->execute($req);
 
         while($fetch = $result->fetch()) {
-            $url = $this->resolveFile($fetch['url']);
+            $stream_id = $fetch['Id'];
+            $streamFirst = $fetch['firstUpdate'];
+            $streamLast = $fetch['lastUpdate'];
+            $url = $fetch['url'];
+            $x = simplexml_load_file($url);
 
-            $reqFirst = "SELECT * FROM article WHERE url = ?";
-            $resultat = $db->execute($reqFirst, array($url))->$fetch();
-            $firstUpdate = $resultat['articleDate'];
 
-            $reqFindFirst = "SELECT * FROM article WHERE"
+            $req = "SELECT Min(dateArticle) as minDate FROM article WHERE stream_id = ?";
+            $result = $db->execute($req, array($stream_id))->fetch();
 
-            if ($x = simplexml_load_file($url)) {
+            $minDate = $result['minDate']; //date du 1er article du stream
+
+            $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
+            $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
+
+            while($verif = $result->fetch()) {
+                $cont = $verif['content'];
+                //$req = "SELECT content FROM article WHERE stream_id = ?";
+
                 foreach ($x->channel->item as $item) {
-                    $req = "SELECT * FROM article WHERE url = ?";
-                    $result = $db->execute($req, array($item->link));
-                    if(!$result->fetch() && strtotime($item->pubDate) < $lastUpdate && strtotime($item->pubDate) > $firstUpdate) {
-                        $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, ?,". ArticleModel::RSS .",  ?)";
-                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link));
+                    if ($item->description != $cont) {
+                        $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
                     }
                 }
-            }
+            }//while
+
+            $req = "SELECT Max(dateArticle) as maxDate FROM article WHERE stream_id = ?";
+            $result = $db->execute($req, array($stream_id))->fetch();
+
+            $maxDate = $result['maxDate']; //derniere date
+
+            $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
+            $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
+
+            while($verif = $result->fetch()) {
+                $cont = $verif['content'];
+                //$req = "SELECT content FROM article WHERE stream_id = ?";
+
+                foreach ($x->channel->item as $item) {
+                    if ($item->description != $cont) {
+                        $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
+                    }
+                }
+            }//while
+
+
+
+            $update = "UPDATE stream_rss SET lastUpdate = ? WHERE Id = ?";
+            $db->execute($update, array(now(), $stream_id));
+
         }
     }
 
