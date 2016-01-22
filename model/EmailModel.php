@@ -281,6 +281,7 @@ class EmailModel
         /** @var EmailEntity $emailEntity */
         foreach ($emailStreams as $emailEntity)
         {
+            var_dump($emailEntity);
             $firstEmail = $this->getFirstArticle($emailEntity);
             $lastEmail = $this->getFirstArticle($emailEntity);
             $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
