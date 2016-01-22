@@ -18,13 +18,13 @@ $view->extend('layouts/section_home');
 
     <!--SIGN UP FORM-->
     <form method="post" action="register">
-        <input type="text" name="username" placeholder="Pseudonyme" required><br>
-        <input type="email" name="email" placeholder="Email" required pattern="*@-.-"><br>
-        <input type="password" name="password" placeholder="Mot de passe" required><br>
-        <input type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required><br><br>';
+        <input class="first" type="text" name="username" placeholder="Pseudonyme" required>
+        <input type="email" name="email" placeholder="Email" required pattern="*@-.-">
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <input class="last" type="password" name="confirmPwd" placeholder="Confirmez votre mot de passe" required>';
         <?php
         if(isset($errors) && $errors != '') {
-            echo '<div class="errors_fields">'.$errors.'</div>';
+            echo '<br><div class="errors_fields">'.$errors.'</div>';
         }
         ?>
         <!--SUBMIT ACTION-->
