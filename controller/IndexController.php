@@ -6,15 +6,20 @@
 
 class IndexController extends Controller
 {
-    public function IndexAction(Request $request)
+    public function IndexAction(Request $request, $channel = null)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
-        {
-            $this->render('layouts/home', array('home' => 'Connecté'));
+        if($channel) {
+            echo "Chargement de la chaine de $channel";
         }
-        else
-        {
-            $this->render('layouts/layoutNotConnected');
+        else {
+            if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+            {
+                $this->render('layouts/home', array('home' => 'Connecté'));
+            }
+            else
+            {
+                $this->render('layouts/layoutNotConnected');
+            }
         }
     }
 
