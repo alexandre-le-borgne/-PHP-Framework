@@ -87,8 +87,9 @@ class RssModel extends Model implements StreamModel
 
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
+            $verif = $result->fetch();
 
-            while($verif = $result->fetch()) {
+            if(empty($verif)) {
                 echo "t'es pd?";
                 $cont = $verif['content'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
