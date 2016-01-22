@@ -50,7 +50,7 @@
                 $('.errors_fields').css('display', 'block');
             }
         }
-        show_errors(<?php isset($errors); ?>);
+        show_errors(<?php echo (isset($errors) ? 'true' : 'false'); ?>);
     });
 
 
