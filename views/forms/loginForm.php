@@ -51,8 +51,7 @@
                 $('#errors_fields_mail').css('display', 'block');
             }
         }
-
-        show_errors(true);
+        show_errors(<?php isset($errors); ?>);
     });
 
 
