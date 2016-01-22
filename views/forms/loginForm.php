@@ -20,7 +20,8 @@
             <?php
             var_dump($errors);
             if(isset($errors) && $errors != '') {
-                echo '<input class="errors_fields" type="submit" value="'.$errors.'">';
+                echo "bite";
+                echo '<div class="errors_fields">'.$errors.'</div>';
             }
             ?>
         </div>
