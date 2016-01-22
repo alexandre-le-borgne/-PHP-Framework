@@ -80,7 +80,7 @@ class RssModel extends Model implements StreamModel
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
-                        echo "insert";
+                        echo $item->pubDate;
                         $base = $item->pubDate;
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                         $db->execute($req, array($item->title, $item->description, $base, $item->link, $stream_id));
