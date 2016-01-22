@@ -65,8 +65,9 @@ class TwitterModel extends Model implements StreamModel
         foreach ($tweetsToInsert as $tweet)
         {
             echo 'probleme 1';
-
-            $this->db->execute($req, array(
+            echo $req;
+            $db = new Database();
+            $db->execute($req, array(
                 $twitterEntity->getChannel(),
                 $autolink->autoLink($tweet->text),
                 date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
