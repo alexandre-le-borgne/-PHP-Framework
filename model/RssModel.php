@@ -63,6 +63,7 @@ class RssModel extends Model implements StreamModel
         $db = new Database();
         $req = "SELECT * FROM stream_rss";
         $result = $db->execute($req);
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
         while($fetch = $result->fetch()) {
             $stream_id = $fetch['id'];
             $streamFirst = $fetch['firstUpdate'];
@@ -74,6 +75,7 @@ class RssModel extends Model implements StreamModel
             $minDate = $result['minDate']; //date du 1er article du stream
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
+            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
             if(!$verif = $result->fetch()) {
 
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
@@ -91,6 +93,7 @@ class RssModel extends Model implements StreamModel
             $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
+            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
             if(!$verif = $result->fetch()) {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
