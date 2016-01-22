@@ -14,7 +14,7 @@ class IndexController extends Controller
         }
         else
         {
-            $this->render('layouts/login');
+            $this->render('layouts/loginForm');
         }
     }
 
