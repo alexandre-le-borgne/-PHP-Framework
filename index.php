@@ -3,6 +3,8 @@ error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
 ini_set('include_path', '/www/aaron');
 set_include_path( '/www/aaron' );
+header ('Content-type:text/html; charset=utf-8');
+
 require 'vendor/autoload.php';
 
 spl_autoload_register(function ($class_name)
