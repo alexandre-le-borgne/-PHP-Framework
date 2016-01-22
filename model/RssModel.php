@@ -64,12 +64,15 @@ class RssModel extends Model implements StreamModel
         $req = "SELECT * FROM stream_rss";
         $result = $db->execute($req);
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
-        while($fetch = $result->fetch()) {
-            /** @var RssEntity $fetch */
-            $stream_id = $fetch->getId();
-            $streamFirst = $fetch->getFirstUpdate();
-            $streamLast = $fetch->getLastUpdate();
-            $url = $fetch->getUrl();
+
+        $rssEntityArray = $result->fetchAll();
+
+        foreach($rssEntityArray as $rssEntity) {
+                /** @var RssEntity $fetch */
+            $stream_id = $rssEntity->getId();
+            $streamFirst = $rssEntity->getFirstUpdate();
+            $streamLast = $rssEntity->getLastUpdate();
+            $url = $rssEntity->getUrl();
             $x = simplexml_load_file($url);
             $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id));
