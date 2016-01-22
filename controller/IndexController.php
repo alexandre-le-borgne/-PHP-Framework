@@ -35,6 +35,7 @@ class IndexController extends Controller
     public function RssAction()
     {
         $test = new DateTime(time() - 608400);
+        var_dump($test);
 
 
         //var_dump($feed->getPosts());
