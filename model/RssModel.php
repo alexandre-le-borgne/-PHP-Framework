@@ -88,7 +88,6 @@ class RssModel extends Model implements StreamModel
                 echo "t'es pd lol?";
                 $cont = $verif['title'];
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
-                var_dump($cont);
 
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
