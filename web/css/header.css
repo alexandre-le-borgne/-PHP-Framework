@@ -7,12 +7,11 @@ body.css contient les règles css concernant la structure globale du site
 
 header
 {
-    border-bottom: 1px solid #e1e8ed;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: inline-block;
+    border-bottom: solid 1pt #9aa2ad;
+    margin: auto;
     width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    height: 46px;
+    height: 54px;
 }
 
 header #logo_txt
@@ -21,3 +20,22 @@ header #logo_txt
     text-align: center;
     margin-top: 11px;
 }
+
+header .logout_button
+{
+    vertical-align: middle;
+
+}
+
+.logout
+{
+    float: right;
+    margin-right: 45px;
+    height: 100%;
+}
+
+#profile, .logout, header form
+{
+    display: inline-block;
+}
+

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="<?= View::getAsset('css/footer.css') ?>">
 <link rel="stylesheet" href="<?= View::getAsset('css/form.css') ?>">
 <link rel="stylesheet" href="<?= View::getAsset('css/nav.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/header.css') ?>">
 
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>

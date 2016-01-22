@@ -6,6 +6,6 @@
  * Time: 19:38
  */
 ?>
-<form class="form-horizontal" method="post" action="logout">
-    <input class="btn" type="submit" value="Se déconnecter">
+<form class="logout" method="post" action="logout">
+    <input class="logout_button" type="image" src="web/img/disconnect.png" width="24">
 </form>

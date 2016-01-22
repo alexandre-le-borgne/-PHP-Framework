@@ -5,11 +5,13 @@
  * Date: 19/01/16
  * Time: 16:59
  */
-
 ?>
 
+
+
 <header>
-    <div id="profile" >
+    <div id="profile">
 
     </div>
+    <?php $this->render('forms/logoutForm'); ?>
 </header>
