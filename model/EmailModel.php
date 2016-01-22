@@ -201,12 +201,10 @@ class EmailModel
 
     public function getList()
     {
-        echo 'V15<br>';
         //$emails = imap_search($stream, 'SINCE '. date('d-M-Y',strtotime("-1 week")));
         $emails = imap_search($this->conn, 'ALL');
         $articles = array();
         if (count($emails)) {
-            // If we've got some email IDs, sort them from new to old and show them
             rsort($emails);
             foreach ($emails as $email) {
 
@@ -232,30 +230,6 @@ class EmailModel
                 $articles[] = $article;
             }
         }
-
-        /*
-        $mails = imap_fetch_overview($this->conn, '1:' . $this->info->Nmsgs, 0);
-        $articles = array();
-        echo 'La boite aux lettres contient ' . $this->info->Nmsgs . ' message(s) dont ' .
-            $this->info->Recent . ' recent(s)' .
-            "<br />\n" .
-            "<br />\n";
-        foreach ($mails as $mail) {
-            $headerText = imap_fetchHeader($this->conn, $mail->uid, FT_UID & FT_PEEK);
-            $header = imap_rfc822_parse_headers($headerText);
-            //$corps = imap_fetchbody($this->conn, $mail->uid, 1, FT_UID & FT_PEEK);
-            /*$corps = imap_fetchbody($this->conn, $mail->uid,1.2);
-            if(!strlen($corps)>0){
-                $corps = imap_fetchbody($this->conn, $mail->uid,1);
-            }* /
-            $corps = imap_qprint(imap_fetchbody($this->conn, $mail->uid, 1.2));
-            $article = new ArticleEntity();
-            $article->setTitle($this->decode_body($mail->subject) . ' - ' . imap_utf8($header->from[0]->personal . ' [' . $header->from[0]->mailbox . '@' . $header->from[0]->host . ']'));
-            $article->setContent($corps);
-            $article->setDate(imap_utf8($mail->date));
-            $articles[] = $article;
-        }
-        */
         return $articles;
     }
 
@@ -269,15 +243,82 @@ class EmailModel
         imap_close($this->conn);
     }
 
-    function connect()
+    private function connect($server, $port, $user, $password)
     {
-        $conn = imap_open('{' . $this->server . ':' . $this->port . '/ssl}INBOX', $this->user, $this->pass);
+        $conn = imap_open('{' . $server . ':' . $port . '/ssl}INBOX', $user, $password);
         if (FALSE !== $conn) {
             $info = imap_check($conn);
             if (FALSE !== $info) {
-                $this->conn = $conn;
-                $this->info = $info;
+                return array('conn' => $conn, 'info' => $info);
             }
         }
+        return false;
+    }
+
+    private function getFirstArticle(EmailEntity $emailEntity)
+    {
+        $db = new Database();
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate ASC LIMIT 1',
+            array($emailEntity->getId(), ArticleModel::EMAIL));
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+        return $result->fetch();
+    }
+
+    private function getLastArticle(EmailEntity $emailEntity)
+    {
+        $db = new Database();
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate DESC LIMIT 1',
+            array($emailEntity->getId(), ArticleModel::EMAIL));
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+        return $result->fetch();
+    }
+
+    public function cron()
+    {
+        $db = new Database();
+        $result = $db->execute('SELECT * FROM stream_twitter');
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
+        $emailStreams = $result->fetchAll();
+
+        /** @var EmailEntity $emailEntity */
+        foreach ($emailStreams as $emailEntity) {
+            $firstEmail = getFirstArticle($emailEntity);
+            $lastEmail = getFirstArticle($emailEntity);
+            $stream = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
+            $emails = imap_search($stream, 'SINCE '. $emailEntity->getFirstUpdate());
+
+            //$emails = imap_search($this->conn, 'ALL');
+
+            $articles = array();
+            if (count($emails)) {
+                foreach ($emails as $email) {
+                    // Fetch the email's overview and show subject, from and date.
+                    $overview = imap_fetch_overview($this->conn, $email, 0);
+                    echo $overview[0]->uid . ' : ';
+                    $structure = imap_fetchstructure($this->conn, $overview[0]->uid, FT_UID);
+                    if ($structure->encoding == "3") {
+                        $body = base64_decode(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
+                    } elseif ($structure->encoding == "0") {
+                        $body = quoted_printable_decode(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
+                    } elseif ($structure->encoding == "1") {
+                        $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
+                    } elseif ($structure->encoding == "4") {
+                        $body = imap_qprint(imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1));
+                    } else {
+                        $body = imap_fetchbody($this->conn, imap_msgno($this->conn, $overview[0]->uid), 1);
+                    }
+                    $article = new ArticleEntity();
+                    $article->setTitle($this->decode_imap_text($overview[0]->subject) . ' - ' . $this->decode_imap_text($overview[0]->from));
+                    $article->setContent($this->getBody($overview[0]->uid, $this->conn));
+                    $article->setDate($overview[0]->date);
+                    $articles[] = $article;
+                }
+            }
+
+            foreach($articles as $article) {
+
+            }
+        }
+        return $articles;
     }
 }

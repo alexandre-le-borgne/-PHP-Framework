@@ -23,7 +23,7 @@ class TwitterModel extends Model implements StreamModel
 
     private $twitter;
 
-    /** Tout ca c'est pour le cron */
+    /** Cron */
     public function cron()
     {
         //Je recupere d'abord le token, afin de pouvoir demander les tweets
@@ -78,7 +78,7 @@ class TwitterModel extends Model implements StreamModel
                     date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
 //                    $dateInsert->format(Database::DATE_FORMAT),
                     ArticleModel::TWITTER,
-                    'YaPaDurlGroPD',
+                    '',
                     $twitterEntity->getId()));
             }
 
@@ -159,8 +159,8 @@ class TwitterModel extends Model implements StreamModel
 
     private function getFirstArticle(Database $db, TwitterEntity $twitterStream)
     {
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate ASC LIMIT 1',
-            array($twitterStream->getId()));
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate ASC LIMIT 1',
+            array($twitterStream->getId(), ArticleModel::TWITTER));
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
             return $articleEntity;
@@ -171,8 +171,8 @@ class TwitterModel extends Model implements StreamModel
 
     private function getLastArticle(Database $db, TwitterEntity $twitterStream)
     {
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate DESC LIMIT 1',
-            array($twitterStream->getId()));
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate DESC LIMIT 1',
+            array($twitterStream->getId(), ArticleModel::TWITTER));
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
             return $articleEntity;
@@ -282,18 +282,5 @@ public function getTweets($channel, $excludeReplies, $count)
          *
          * return $tweets;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 */
