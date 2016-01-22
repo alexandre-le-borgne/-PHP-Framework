@@ -229,7 +229,6 @@ body
 
 #layout_connected
 {
-    border: solid 1px blue;
     margin: auto;
     width: 1000px;
     height: 600px;
@@ -237,14 +236,12 @@ body
 
 #feed
 {
-    border: solid 1px blue;
     float: right;
     width: 600px;
 }
 
 #categories
 {
-    border: solid 1px blue;
     width: 251px;
     margin-right: 32px;
     height: 520px;
