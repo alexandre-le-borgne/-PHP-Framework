@@ -68,8 +68,8 @@ class RssModel extends Model implements StreamModel
 
         while($fetch = $result->fetch()) {
             $stream_id = $fetch['id'];
-            $streamFirst = DateTime::createFromFormat('j-m-y', $fetch['firstUpdate']);
-            $streamLast = DateTime::createFromFormat('j-m-y', $fetch['lastUpdate']);
+            $streamFirst = $fetch['firstUpdate'];
+            $streamLast = $fetch['lastUpdate'];
             $url = $fetch['url'];
 
             $x = simplexml_load_file($url);
