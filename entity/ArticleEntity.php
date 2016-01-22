@@ -6,11 +6,24 @@
  * Date: 14/01/16
  * Time: 10:31
  */
-
 class ArticleEntity
 {
-    private $id, $title, $content, $date;
+    private $id, $title, $content, $articleDate, $articleType, $url, $stream_id;
 
+    public function persist(Database $db)
+    {
+        if ($this->id == null)
+        {
+            $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) ' .
+                'VALUES (?, ?, ?, ?, ?, ?)';
+            $db->execute($req, array($this->title, $this->content, $this->articleDate,
+                $this->articleType, $this->url, $this->stream_id));
+        }
+        else
+        {
+            //on update, car existe deja
+        }
+    }
 
     public function getId()
     {
@@ -32,6 +45,26 @@ class ArticleEntity
         return $this->date;
     }
 
+    public function getArticleDate()
+    {
+        return $this->articleDate;
+    }
+
+    public function getArticleType()
+    {
+        return $this->articleType;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function getStreamId()
+    {
+        return $this->stream_id;
+    }
+
 
     public function setId($id)
     {
@@ -51,5 +84,25 @@ class ArticleEntity
     public function setDate($date)
     {
         $this->date = $date;
+    }
+
+    public function setArticleDate($articleDate)
+    {
+        $this->articleDate = $articleDate;
+    }
+
+    public function setArticleType($articleType)
+    {
+        $this->articleType = $articleType;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    public function setStreamId($stream_id)
+    {
+        $this->stream_id = $stream_id;
     }
 }
