@@ -229,9 +229,9 @@ body
 
 #layout_connected
 {
-    margin: auto;
-    width: 870px;
     height: 600px;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 #feed
