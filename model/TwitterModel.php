@@ -35,7 +35,6 @@ class TwitterModel extends Model implements StreamModel
             "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
         //Voila, ma variable de classe est chargee, je peux l'utiliser pour le cron, pour charger les tweets.
 
-
         $db = new Database();
 
         /** 1) Recuperation de tous les flux twitter existants en BD */
@@ -121,8 +120,11 @@ class TwitterModel extends Model implements StreamModel
                 'count' => $count * $multiplicator
             ]);
 
+            if (!($tooMuchTweets)) //si l'on a rien, on a rien a recuperer
+                return null;
+
             /** On verifie que la date du denrier tweet coincide avec la date $firstUpdate */
-            if (strtotime(end($tooMuchTweet)->created_at) < strtotime($firstUpdate))//Alors on est bon, on a au moins recup ce qu'on veut
+            if (strtotime(end($tooMuchTweets)->created_at) < strtotime($firstUpdate))//Alors on est bon, on a au moins recup ce qu'on veut
                 break;
 
             //sinon, on continue la boucle pour recuperer plus de tweets
@@ -175,7 +177,8 @@ class TwitterModel extends Model implements StreamModel
             return $articleEntity;
         $articleEntity = new ArticleEntity();
         $articleEntity->setArticleDate(time());
-        return $articleEntity;    }
+        return $articleEntity;
+    }
 
     /** Fin du tout ca pour le cron */
 
