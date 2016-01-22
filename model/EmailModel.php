@@ -330,6 +330,9 @@ class EmailModel
                     || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate()))
                 {
                     $article->persist();
+                    if($db->lastInsertId() == 16) {
+                        var_dump($article);
+                    }
                 }
             }
         }
