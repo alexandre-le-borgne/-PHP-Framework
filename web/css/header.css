@@ -20,11 +20,11 @@ header .search_bar
     width: 500px;
     color: white;
     font-size: 10pt;
-    height: 45px;
     border-radius: 2px;
+    height: 42px;
     padding: 11px 10px 11px 13px;
     display: block;
-    margin-top: 5px !important;
+    margin-top: 7px !important;
     border: 0px;
     box-sizing: border-box;
 }

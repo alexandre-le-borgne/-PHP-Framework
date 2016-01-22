@@ -12,6 +12,8 @@ class Database
 {
     private $bdd;
 
+    const DATE_FORMAT = 'Y-m-d H:i:s';
+
     // Exécute une requête SQL éventuellement paramétrée
     public function execute($sql, $params = null)
     {
