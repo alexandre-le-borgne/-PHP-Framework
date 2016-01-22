@@ -24,7 +24,7 @@ class ArticleModel extends Model
                 $article->setId($result['id']);
                 $article->setTitle($result['title']);
                 $article->setContent($result['content']);
-                $article->setDate($result['date']);
+                $article->setArticleDate($result['date']);
                 return $article;
             }
         }
