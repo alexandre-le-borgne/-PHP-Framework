@@ -334,7 +334,8 @@ class EmailModel
                 if (!$firstEmail || strtotime($article->getArticleDate()) < strtotime($firstEmail->getArticleDate())
                     || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate()))
                 {
-                    $article->persist();
+                    echo strtotime($article->getArticleDate())." ** ".strtotime($firstEmail->getArticleDate())."<br>";
+                    //$article->persist();
                 }
             }
         }
