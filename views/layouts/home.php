@@ -12,6 +12,9 @@ if($this->isGranted(Session::USER_IS_CONNECTED)) {
 else {
     ?>
     <a href="login">Se connecter</a>
+    <br>
+    <a href="register">S'enregistrer</a>
+    <br>
     <?php
 }
 echo $this->output('home');

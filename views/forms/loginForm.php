@@ -6,7 +6,7 @@
 ?>
 <div class="loginDiv">
 
-    <img id="logo" src="web/img/aaron_text_logo.png">
+    <a href="index"><img id="logo" src="web/img/aaron_text_logo.png"></a>
 
     <!--SIGN IN FORM-->
 
