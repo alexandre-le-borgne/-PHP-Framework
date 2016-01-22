@@ -113,28 +113,4 @@ class RssModel extends Model implements StreamModel
             $db->execute($update, array($stream_id));
         }
     }
-
-    private function getFirstArticle(Database $db, RssEntity $rssStream)
-    {
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate ASC LIMIT 1',
-            array($rssStream->getId()));
-        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
-        if ($articleEntity = $result->fetch())
-            return $articleEntity;
-        $articleEntity = new ArticleEntity();
-        $articleEntity->setArticleDate(time());
-        return $articleEntity;
-    }
-
-    private function getLastArticle(Database $db, RssEntity $rssStream)
-    {
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? ORDER BY articleDate DESC LIMIT 1',
-            array($rssStream->getId()));
-        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
-        if ($articleEntity = $result->fetch())
-            return $articleEntity;
-        $articleEntity = new ArticleEntity();
-        $articleEntity->setArticleDate(time());
-        return $articleEntity;
-    }
 }

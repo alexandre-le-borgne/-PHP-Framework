@@ -61,7 +61,7 @@ class TwitterModel extends Model implements StreamModel
         /** de plus, on les parse pour que les liens s'affichent */
         $autolink = Twitter_Autolink::create();
 
-        $req = 'INSERT INTO article (title, content, articleDate, articleType, stream_id, url) VALUES (?, ?, ?, ?, ?, ?)';
+        $req = 'INSERT INTO article (title, content, articleDate, articleType, stream_id, url) VALUES (?,?,?,?,?,?)';
         foreach ($tweetsToInsert as $tweet)
         {
             $this->db->execute($req, array(
