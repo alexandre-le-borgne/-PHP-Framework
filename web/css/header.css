@@ -14,6 +14,20 @@ header
     height: 54px;
 }
 
+header .search_bar
+{
+    background: white;
+    width: 100%;
+    height: 45px;
+    padding: 11px 10px 11px 13px;
+    display: block;
+    margin: 0px !important;
+    border: 0px;
+    border-bottom: solid 1px #d8d8d8;
+    font: 16px/1.4 "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
 header #logo_txt
 {
     width: 100px;
