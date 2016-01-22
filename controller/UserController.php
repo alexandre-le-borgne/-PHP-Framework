@@ -165,7 +165,7 @@ class UserController extends Controller
                         }
                     }
                 }
-                $this->render('index', array('loginUrl' => $loginUrl, 'errors' => 'Erreur de connexion à Facebook'));
+                $this->render('forms/facebookForm', array('loginUrl' => $loginUrl, 'errors' => 'Erreur de connexion à Facebook'));
             }
         } else {
             // We don't have the accessToken
