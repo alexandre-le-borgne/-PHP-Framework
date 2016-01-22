@@ -9,8 +9,13 @@
 $view->extend('layouts/layout');
 $this->render('persists/header');
 ?>
+<div id="layout_connected">
+    <?php
+    $this->render('persists/categories');
+    $this->render('persists/feed');
+    ?>
+</div>
 
-<a href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
 
 <?php
 echo $this->output('_content');
