@@ -9,10 +9,8 @@
 
 require_once './vendor/abraham/twitteroauth/autoload.php';
 require_once './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
-require_once './app/util/time_to_.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-
 
 class TwitterModel extends Model implements StreamModel
 {
@@ -22,60 +20,61 @@ class TwitterModel extends Model implements StreamModel
     const CONSUMER_SECRET = "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j";
 
     private $twitter;
+    private $db;
 
     /** Cron */
 
     public function cron()
     {
-        //Je recupere d'abord le token, afin de pouvoir demander les tweets
-        $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
-        $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
-
-        //Je cree l'instance de TwitterOAuth, avec le token genere precedemment qui me permettra de recuperer les tweets
-        $this->twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa",
-            "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
-        //Voila, ma variable de classe est chargee, je peux l'utiliser pour le cron, pour charger les tweets.
-
-        $db = new Database();
+        $this->initTwitterOAuth();
+        $this->db = new Database();
 
         /** 1) Recuperation de tous les flux twitter existants en BD */
-        $result = $db->execute('SELECT * FROM stream_twitter');
+        $result = $this->db->execute('SELECT * FROM stream_twitter');
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
         $twitterStreams = $result->fetchAll();
 
-        /** 2) Pour chaque flux */
+        /** 2) Pour chaque flux, on appelle le cron correspondant a ce stream */
         foreach ($twitterStreams as $twitterEntity)
         {
-            /** @var TwitterEntity $twitterEntity Pour l'autocompletion de l'IDE */
-            /** @var ArticleEntity $firstArticle */
-            /** @var ArticleEntity $lastArticle */
-            /** On recupere le premier et le dernier tweet en BD de ce flux */
-            $firstArticle = $this->getFirstArticle($db, $twitterEntity);
-            $lastArticle = $this->getLastArticle($db, $twitterEntity);
-
-            /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
-            $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
-                $firstArticle->getArticleDate(), $lastArticle->getArticleDate());
-
-            /** On ajoute en BD les articles a inserer */
-            /** de plus, on les parse pour que les liens s'affichent */
-            $autolink = Twitter_Autolink::create();
-
-            $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
-            foreach ($tweetsToInsert as $tweet)
-            {
-                $db->execute($req, array(
-                    $autolink->autoLink('@' . $twitterEntity->getChannel()),
-                    $autolink->autoLink($tweet->text),
-                    date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
-                    ArticleModel::TWITTER,
-                    'Not yet Implemented',
-                    $twitterEntity->getId()));
-            }
-
-            /** On modifie en BD le lastUpdate du stream qu'on traite a now() */
-            $db->execute('UPDATE stream_twitter SET lastUpdate = now()');
+            $this->streamCron($twitterEntity);
         }
+    }
+
+    public function streamCron(TwitterEntity $twitterEntity)
+    {
+        if ($this->db == null)
+            $this->db = new Database();
+
+        /** @var TwitterEntity $twitterEntity Pour l'autocompletion de l'IDE */
+        /** @var ArticleEntity $firstArticle */
+        /** @var ArticleEntity $lastArticle */
+        /** On recupere le premier et le dernier tweet en BD de ce flux */
+        $firstArticle = $this->getFirstArticle($twitterEntity);
+        $lastArticle = $this->getLastArticle($twitterEntity);
+
+        /** On recupere tous les tweets de maintenant a stream.firstUpdate. dans $articles, en enlevant ceux deja presents en BD*/
+        $tweetsToInsert = $this->loadTweets($twitterEntity->getChannel(), $twitterEntity->getFirstUpdate(),
+            $firstArticle->getArticleDate(), $lastArticle->getArticleDate());
+
+        /** On ajoute en BD les articles a inserer */
+        /** de plus, on les parse pour que les liens s'affichent */
+        $autolink = Twitter_Autolink::create();
+
+        $req = 'INSERT INTO article (title, content, articleDate, articleType, stream_id, url) VALUES (?, ?, ?, ?, ?, ?)';
+        foreach ($tweetsToInsert as $tweet)
+        {
+            $this->db->execute($req, array(
+                $twitterEntity->getChannel(),
+                $autolink->autoLink($tweet->text),
+                date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
+                ArticleModel::TWITTER,
+                $twitterEntity->getId()),
+                $autolink->autoLink('@' . $twitterEntity->getChannel()));
+        }
+
+        /** On modifie en BD le lastUpdate du stream qu'on traite a now() */
+        $this->db->execute('UPDATE stream_twitter SET lastUpdate = now()');
     }
 
     /**
@@ -146,9 +145,9 @@ class TwitterModel extends Model implements StreamModel
         return $tweetsToInsert;
     }
 
-    private function getFirstArticle(Database $db, TwitterEntity $twitterStream)
+    private function getFirstArticle(TwitterEntity $twitterStream)
     {
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate ASC LIMIT 1',
+        $result = $this->db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate ASC LIMIT 1',
             array($twitterStream->getId(), ArticleModel::TWITTER));
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
@@ -158,9 +157,9 @@ class TwitterModel extends Model implements StreamModel
         return $articleEntity;
     }
 
-    private function getLastArticle(Database $db, TwitterEntity $twitterStream)
+    private function getLastArticle(TwitterEntity $twitterStream)
     {
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate DESC LIMIT 1',
+        $result = $this->db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate DESC LIMIT 1',
             array($twitterStream->getId(), ArticleModel::TWITTER));
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
@@ -168,9 +167,21 @@ class TwitterModel extends Model implements StreamModel
         $articleEntity = new ArticleEntity();
         $articleEntity->setArticleDate(time());
         return $articleEntity;
+    }
+
+    private function initTwitterOAuth()
+    {
+        /** Creation de l'objet TwitterOAuth qui me permet de recuperer les tweets */
+        $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
+        $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
+        $this->twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa",
+            "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
     }
 
     /** Fin du tout ca pour le cron */
+
+
+    /** */
 
 
     public function getStreamById($id)
