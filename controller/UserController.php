@@ -159,10 +159,10 @@ class UserController extends Controller
                 try {
                     $accessToken = $helper->getAccessToken();
                 } catch (Facebook\Exceptions\FacebookResponseException $e) {
-                    $this->redirectToRoute('index', array('errors' => 'Erreur de connexion à Facebook'));
+                    $this->render('index', array('errors' => 'Erreur de connexion à Facebook'));
                     return;
                 } catch (Facebook\Exceptions\FacebookSDKException $e) {
-                    $this->redirectToRoute('index', array('errors' => 'Erreur de connexion à Facebook'));
+                    $this->render('index', array('errors' => 'Erreur de connexion à Facebook'));
                     return;
                 }
                 $error = '';
@@ -187,7 +187,7 @@ class UserController extends Controller
                         }
                     }
                     if (!$request->isInternal())
-                        $this->redirectToRoute('index', array('errors' => $error));
+                        $this->render('index', array('errors' => $error));
                 }
             }
             else {
