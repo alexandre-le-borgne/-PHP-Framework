@@ -92,7 +92,7 @@ class RssModel extends Model implements StreamModel
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
+                        $db->execute($req, array($item->title, $item->description, $item->pubDate, $item->link, $stream_id));
                     }
                 }
             }//while
@@ -111,7 +111,7 @@ class RssModel extends Model implements StreamModel
                 foreach ($x->channel->item as $item) {
                     if ($item->title != $cont) {
                         $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, strtotime($item->pubDate), $item->link, $stream_id));
+                        $db->execute($req, array($item->title, $item->description, $item->pubDate, $item->link, $stream_id));
                     }
                 }
             }//while
