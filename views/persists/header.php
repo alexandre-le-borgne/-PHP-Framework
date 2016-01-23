@@ -7,7 +7,9 @@
  */
 ?>
 
-
+<div id="conf_pwd">
+    <p>Une petite chose: Nous avon besoins de verifier votre adresse e-mail !</p>
+</div>
 <header>
     <nav>
         <?php

@@ -293,3 +293,18 @@ body
     box-sizing: border-box;
 }
 
+#conf_pwd
+{
+    white-space: nowrap;
+    position: fixed;
+    text-align: center;
+    line-height: 48px;
+    min-width: 100%;
+    background: #56bc8a;
+    overflow: hidden;
+    height: 50px;
+    top: 0;
+    color: #fff;
+    z-index: 91;
+}
+
