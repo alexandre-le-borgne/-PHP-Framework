@@ -14,7 +14,4 @@ $this->render('persists/header');
         $this->render('persists/categories', array('categories' => $categories));
         ?>
     </div>
-
-
 <?php
-echo $this->output('_content');
