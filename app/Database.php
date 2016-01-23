@@ -17,7 +17,7 @@ class Database
     // Exécute une requête SQL éventuellement paramétrée
     public function execute($sql, $params = null)
     {
-        echo $sql."<br><hr><br>";
+        echo "<br><hr><br>".$sql."<br>";
         var_dump($params);
 
         if ($params == null) {
@@ -29,7 +29,7 @@ class Database
 
                 $resultat->execute($params);
             } catch (PDOException $e) {
-                 var_dump($resultat->debugDumpParams());
+                //var_dump($resultat->debugDumpParams());
                 throw new Exception($e->getMessage());
             }
         }
