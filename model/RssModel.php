@@ -82,9 +82,8 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
 
+            $verif = $result->fetchAll();
 
-            if(!$verif = $result->fetch())
-            {
 
                 foreach ($verif as $verifTest)
                 {
@@ -103,16 +102,17 @@ class RssModel extends Model implements StreamModel
                         }
                     }
                 }
-            }
+
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
             $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
-            if(!$verif = $result->fetch) {
 
-                foreach($verif as $verifTest)
+            $verif = $result->fetchAll();
+
+            foreach($verif as $verifTest)
                 {
                     //$req = "SELECT content FROM article WHERE stream_id = ?";
                     foreach ($x->channel->item as $item)
@@ -128,7 +128,7 @@ class RssModel extends Model implements StreamModel
                         }
                     }
                 }
-            }
+
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
             $db->execute($update, array($stream_id));
         }
