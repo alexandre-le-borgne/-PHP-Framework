@@ -7,6 +7,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500italic,500,700,700italic,900,900italic,300italic,300' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,100italic,100' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?= View::getAsset('inc/fullPage/jquery.fullPage.css') ?>" />
+<link rel="stylesheet" href="<?= View::getAsset('inc/jquery-ui/jquery-ui.theme.min.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.webui-popover.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('css/body.css') ?>">
 <link rel="stylesheet" href="<?= View::getAsset('css/footer.css') ?>">
@@ -22,6 +23,6 @@
 <!-- This following line is only necessary in the case of using the plugin option `scrollOverflow:true` -->
 <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/vendors/jquery.slimscroll.min.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/jquery.fullPage.js') ?>"></script>
-<script type="text/javascript" src="<?= View::getAsset('inc/webuiPopover.js') ?>"></script>
+<script type="text/javascript" src="<?= View::getAsset('inc/jquery-ui/jquery-ui.min.js.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('js/slide.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('js/script.js') ?>"></script>
