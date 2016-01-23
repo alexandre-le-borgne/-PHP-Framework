@@ -2,8 +2,13 @@
   <dictionary name="maxbook">
     <words>
       <w>adresse</w>
+      <w>avec</w>
+      <w>avons</w>
+      <w>envoyé</w>
       <w>fullpage</w>
       <w>raison</w>
+      <w>utilisateur</w>
+      <w>valider</w>
     </words>
   </dictionary>
 </component>

@@ -8,7 +8,8 @@
 ?>
 
 <div id="conf_pwd">
-    <p>Une petite chose: Nous avon besoins de verifier votre adresse e-mail !</p>
+    <p>N'oubliez pas de valider votre inscription avec le mail nous avons envoyé !<br>
+    <?php echo 'Adresse mail de l\'utilisateur'; ?></p>
 </div>
 <header>
     <nav>
