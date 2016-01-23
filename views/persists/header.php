@@ -64,7 +64,7 @@ if (isset($mailValidationMessage))
 <script>
     $(function() {
         $('#add_flux').webuiPopover({content:'' +
-        '<?php $this->render('layouts/ajouterFlux') ?>',
+        '',
 
             width:300,height:200,placement:'bottom',trigger:'click', animation:'pop', arrow:true});
 
