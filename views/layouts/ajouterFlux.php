@@ -38,7 +38,7 @@ $this->render('persists/header');
 
 <script>
     $(function() {
-        $('a').webuiPopover({width:300,height:200,placement:'bottom',trigger:'click'});
+        $('a').webuiPopover({width:300,height:200,placement:'bottom',trigger:'click', animation:'pop'});
 
         $('.flux_twitter').show();
         $('.flux_rss').hide();
