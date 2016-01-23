@@ -41,7 +41,7 @@ if (isset($mailValidationMessage))
             <?php
             $this->render('forms/logoutForm');
             ?>
-            <a id="add_flux" href="<?= View::getUrlFromRoute('addflux')?>"><img src="<?= View::getAsset('img/add_cat.png') ?>" width="30"><p id="text_cat">Ajouter un flux !</p></a>
+            <div id="add_flux"><img src="<?= View::getAsset('img/add_cat.png') ?>" width="30"><p id="text_cat">Ajouter un flux !</p></div>
             <a id="profile" href="<?= View::getUrlFromRoute('profil')?>">Profil</a>
         <?php
         } else {
