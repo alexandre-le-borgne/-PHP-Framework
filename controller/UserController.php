@@ -379,7 +379,7 @@ class UserController extends Controller
         }
     }
 
-    public function PwdForgotAction(Request $request){
+    public function PwdforgotAction(Request $request){
         echo 'pd';
 
         $email = $request->post('email');
