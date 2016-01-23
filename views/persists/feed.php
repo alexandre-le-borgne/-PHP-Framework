@@ -42,8 +42,8 @@
                     CONTENT :
                     <?php
                     if($article->getStreamType() == ArticleModel::TWITTER) {
-                        echo htmlentities($article->getContent());
-                        preg_match('/a>/i', $article->getContent(), $result);
+                        echo "2 - " . htmlentities($article->getContent());
+                        preg_match('/<img[^>]+>/i', $article->getContent(), $result);
                         print_r($result);
                     }
 
