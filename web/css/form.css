@@ -86,7 +86,7 @@ input[type="image"]:hover
     transition: 150ms background;
 }
 
-input[type="submit"], input[type="image"]
+input[type="submit"]
 {
     margin-top: 10px !important;
     font-family: 'Roboto', sans-serif;
