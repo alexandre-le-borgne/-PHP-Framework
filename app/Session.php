@@ -76,8 +76,10 @@ class Session
         switch ($role)
         {
             case self::USER_HAS_ACTIVE_ACCOUNT:
-                $user = $model->getById(Request::getInstance()->get('id'));
-                return $user->getActive();
+                $user = $model->getById($session->getInstance()->get('id'));
+                if ($user)
+                    return $user->getActive();
+                break;
             case self::USER_IS_ADMIN:
                 if ($session->isConnected())
                 {
