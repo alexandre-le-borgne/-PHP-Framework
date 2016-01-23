@@ -8,9 +8,9 @@
 ?>
 
 <div id="flux_choice">
-    <span id="twitter_button">Twitter</span>
-    <span id="RSS_button" >RSS</span>
-    <span id="IMAP_button">IMAP</span>
+    <div id="twitter_button">Twitter</div>
+    <div id="RSS_button" >RSS</div>
+    <div id="IMAP_button">IMAP</div>
 </div>
 <div id="add_flux_body">
     <form class="flux_twitter" action="" method="post">
