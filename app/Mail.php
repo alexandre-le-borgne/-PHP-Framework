@@ -49,7 +49,7 @@ class Mail
         mail($email, $subject, $message, $head);
     }
 
-    public static function sendForgottMail($email, $user, $key)
+    public static function sendForgotMail($email, $user, $key)
     {
         $subject = "Oubli de votre mot de passe Aaron";
         $head = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";

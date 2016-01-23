@@ -128,7 +128,7 @@ class UserModel extends Model
         $key = $stmt['userKey'];
         var_dump($key);
 
-        Mail::sendForgottMail($email, $user, $key);
+        Mail::sendForgotMail($email, $user, $key);
     }
 
     public function resetPassword($user, $key, $password){
