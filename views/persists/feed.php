@@ -78,7 +78,7 @@
                 </div>
 
                 <div id="post_footer">
-                    FOOTER
+
                 </div>
 
             </div>
