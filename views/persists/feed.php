@@ -41,7 +41,8 @@
                 <div id="post_content">
                     CONTENT :
                     <?php
-                    if($article->getStreamType() == ArticleModel::TWITTER) {
+                    /*
+                    /if($article->getStreamType() == ArticleModel::TWITTER) {
                         echo "2 - " . htmlentities($article->getContent());
                         $doc = new DOMDocument();
                         $doc->loadHTML($article->getContent());
@@ -55,13 +56,11 @@
                                 <img src="http://www.robothumb.com/src/?url=<?= $tag->getAttribute('href') ?>&size=240x180">
                             </a>
                             <?php
-                               */
+                               * /
                         }
                     }
-
-                    else {
-                        echo $article->getContent();
-                    }
+                     */
+                    echo $article->getContent();
                     ?>
                 </div>
 
