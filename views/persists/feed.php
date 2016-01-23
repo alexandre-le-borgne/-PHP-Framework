@@ -44,13 +44,8 @@
                     <?php
                     if($article->getStreamType() == ArticleModel::TWITTER) {
                         echo "2 - " . htmlentities($article->getContent());
-                        @$doc->loadHTML($article->getContent());
-
-                        $tags = $doc->getElementsByTagName('a');
-
-                        foreach ($tags as $tag) {
-                            echo $tag->getAttribute('href');
-                        }
+                        preg_match('/<img[^>]+>/i', $article->getContent(), $result);
+                        print_r($result);
                     }
 
                     else {
