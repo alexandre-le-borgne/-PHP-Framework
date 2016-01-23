@@ -68,7 +68,7 @@ class RssModel extends Model implements StreamModel
             $fetch = $result->fetch();
             $minDate = $fetch['minDate']; //date du 1er article du stream
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
-            $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
+            $result = $db->execute($req, array($stream_id, $minDate, $streamFirst));
             foreach ($x->channel->item as $item) {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 if(!$verif = $result->fetch()) {
