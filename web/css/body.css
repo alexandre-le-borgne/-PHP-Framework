@@ -284,6 +284,16 @@ body
     padding: 20px;
 }
 
+.post_footer .follow
+{
+    padding: 12px;
+    border-radius: 3px;
+    float: right;
+    background-color: #3b3b3b;
+}
+
+
+
 .post_content
 {
     padding: 22px 20px 20px 20px;
