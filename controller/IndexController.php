@@ -17,7 +17,9 @@ class IndexController extends Controller
                 $this->loadModel('CategoryModel');
                 $this->loadModel('ArticleModel');
                 $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
+                echo "ma bite";
                 $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 20);
+                var_dump($articles);
                 $data = array('categories' => $categories, 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }
