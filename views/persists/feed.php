@@ -30,8 +30,11 @@
                         break;
                 }
                 ?>
-                <?= $article->getTitle(); ?>
-                <hr>
+                <div id="post_twitter">
+                    <?= $article->getTitle(); ?>
+                </div>
+
+
                 <?= $article->getContent(); ?>
             </div>
             <?php
