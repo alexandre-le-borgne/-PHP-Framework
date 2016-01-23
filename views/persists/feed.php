@@ -20,10 +20,10 @@
 
                 switch($article->getStreamType()) {
                     case ArticleModel::EMAIL:
-                        echo 'Twitter';
+                        echo 'Email';
                         break;
                     case ArticleModel::RSS:
-                        echo 'Twitter';
+                        echo 'RSS';
                         break;
                     case ArticleModel::TWITTER:
                         echo 'Twitter';
