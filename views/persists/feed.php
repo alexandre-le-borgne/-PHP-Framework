@@ -44,7 +44,7 @@
                     if($article->getStreamType() == ArticleModel::TWITTER) {
                         echo "2 - " . htmlentities($article->getContent());
                         $doc = new DOMDocument();
-                        $doc->loadHTML($html);
+                        $doc->loadHTML($article->getContent());
 
                         $tags = $doc->getElementsByTagName('img');
 
