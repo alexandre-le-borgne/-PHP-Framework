@@ -39,7 +39,8 @@ class AdminController extends Controller
         $this->isAdmin($request);
         $id = $request->post('id');
         $this->loadModel('AdminModel');
-        if ($id)
+        $this->loadModel('UserModel');
+        if ($this->usermodel->getById($id) != null)
         {
             $this->adminmodel->deleteUser($id);
             $this->redirectToRoute('adminusers/' . self::DELETED_OK);
