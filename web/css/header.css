@@ -67,6 +67,7 @@ header .search_bar:active, header .search_bar:focus {
     width: 49px;
     padding: 3px 1px 1px 2px;
     background: #529ecc !important;
+    transition: 150ms width;
 }
 
 #add_flux:hover
