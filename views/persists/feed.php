@@ -40,7 +40,7 @@
                                 echo '<img src="' . View::getAsset('img/email.png') . 'width=60"';
                                 break;
                             case ArticleModel::RSS:
-                                echo '<img src="' . View::getAsset('img/rss.png') . 'width=42"';
+                                echo '<img src="' . View::getAsset('img/rss.png') . '\"width=42\""';
                                 break;
                             case ArticleModel::TWITTER:
                                 echo '<img src="' . View::getAsset('img/twitter.png') . '"';
