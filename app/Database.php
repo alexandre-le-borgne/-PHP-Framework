@@ -30,7 +30,7 @@ class Database
                 $resultat->execute($params);
             } catch (PDOException $e) {
                 //var_dump($resultat->debugDumpParams());
-                throw new Exception($e->getMessage());
+                //throw new Exception($e->getMessage());
             }
         }
         return $resultat;
