@@ -100,7 +100,7 @@ input[type="submit"], input[type="image"]
     color: #ffffff;
 }
 
-input[type="submit"]:hover, input[type="image"]:hover
+input[type="submit"]:hover
 {
     background-color: rgba(85, 159, 202, 0.9);
     transition: background-color 1s;
