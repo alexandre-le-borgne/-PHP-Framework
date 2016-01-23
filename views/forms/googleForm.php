@@ -9,7 +9,7 @@ if(isset($authUrl)) {
     ?>
     <a href="<?php echo $authUrl; ?>">
         <div class="gologin">
-            <img src="web/img/share-googleplus.png">
+            <img src="<?= View::getAsset('img/share-googleplus.png') ?>">
             <p>Connectez vous avec Google</p>
         </div>
     </a>

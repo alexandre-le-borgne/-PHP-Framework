@@ -13,7 +13,7 @@ $view->extend('layouts/fullpage');
 
     <div class="loginDiv">
 
-        <a href="index"><img id="logo" src="web/img/aaron_text_logo.png"></a>
+        <a href="index"><img id="logo" src="<?= View::getAsset('img/aaron_text_logo.png') ?>"></a>
 
         <!--SIGN IN FORM-->
 
@@ -38,7 +38,7 @@ $view->extend('layouts/fullpage');
         <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
 
         <br>
-        <h4><img id="logo_explorer" src="web/img/logo_explorer.png"></h4>
+        <h4><img id="logo_explorer" src="<?= View::getAsset('img/logo_explorer.png') ?>"></h4>
         <br>
         <!--SOCIAL CONNECT-->
         <div class="socialConnect">
