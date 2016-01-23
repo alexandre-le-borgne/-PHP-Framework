@@ -81,7 +81,7 @@ class RssModel extends Model implements StreamModel
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
-            $verif = $result->fetchAll();
+            $verif = $result->fetch();
 
             if(!$verif) {
 
@@ -103,7 +103,7 @@ class RssModel extends Model implements StreamModel
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
-            if(!$verif = $result->fetchAll()) {
+            if(!$verif = $result->fetch()) {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                 foreach ($x->channel->item as $item) {
                     $cont = $verif->getTitle();
