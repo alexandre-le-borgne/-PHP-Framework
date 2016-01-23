@@ -393,7 +393,7 @@ class UserController extends Controller
         $this->render('/forms/forgotForm');
     }
 
-    public function ResetformAction(){
+    public function ResetFormAction(){
         $this->render('/forms/resetForm');
     }
 
