@@ -282,6 +282,16 @@ body
     float: right;
 }
 
+.post_content
+{
+    padding: 22px 20px 20px 20px;
+}
+
+.post_content img
+{
+    width: 100%;
+}
+
 .post_header
 {
     line-height: 40px;
