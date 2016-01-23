@@ -23,6 +23,15 @@ class AdminModel extends Model
         return $allUsers;
     }
 
+    public function deleteUser($id)
+    {
+        $db= new Database();
+        $db->execute('DELETE FROM accounts WHERE id = ?', array($id));
+        $db->execute('DELETE FROM passwords WHERE account = ?', array($id));
+        $db->execute('DELETE FROM articlesfavoris WHERE account = ?', array($id));
+        $db->execute('DELETE FROM categories WHERE account = ?', array($id));
+    }
+
     private function getAllId(Database $database)
     {
         $query = 'SELECT id FROM accounts';

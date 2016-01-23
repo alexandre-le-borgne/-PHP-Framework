@@ -28,12 +28,15 @@ class AdminController extends Controller
 
     function deleteUserAction(Request $request)
     {
+        $this->isAdmin($request);
         $id = $request->post('id');
+        $this->loadModel('AdminModel');
         if ($id)
         {
-            echo 'olol jte supprim';
+            $this->adminmodel->deleteUser($id);
+            $this->render('layouts/admin/manageUsers', array('deleted' => $id));
         }
         else
-            $this->redirectToRoute('adminusers');//Probleme
+            $this->render('layouts/admin/manageUsers', array('error' => 'L\'utilisateur ' . $id . ' n\'existe pas'));
     }
 }
