@@ -15,30 +15,44 @@
         foreach ($articles as $article)
         {
             ?>
-            <div id="author">
-                AUTHOR :
-                <?php
 
+            <div class="post">
+                <?php
                 switch($article->getStreamType()) {
                     case ArticleModel::EMAIL:
-                        echo 'Email';
+                        $type = 'email';
                         break;
                     case ArticleModel::RSS:
-                        echo 'RSS';
+                        $type = 'rss';
                         break;
                     case ArticleModel::TWITTER:
-                        echo 'Twitter';
+                        $type = 'twitter';
                         break;
                 }
                 ?>
-            </div>
-            <div class="post">
-                <div id="post_header">
-                    HEADER :
+                <div class="post_header_<?= $type ?>">
                     <?= $article->getTitle(); ?>
+                    <span class="author">
+                        <?php
+
+                        switch($article->getStreamType()) {
+                            case ArticleModel::EMAIL:
+                                echo '<img src="' . View::getAsset('img/email.png') . '" ' . 'width="60" ' . '"';
+                                break;
+                            case ArticleModel::RSS:
+                                echo '<img src="' . View::getAsset('img/rss.png') . '" ' . 'width="42" ' . '"';
+                                break;
+                            case ArticleModel::TWITTER:
+                                echo '<img src="' . View::getAsset('img/twitter.png') . '" ' . 'width="50" ' . '"';
+                                break;
+                            default:
+                                echo '<img src="' . View::getAsset('img/default.png') . '" ' . 'width="42" ' . '"';
+                        }
+                        ?>
+                    </span>
                 </div>
 
-                <div id="post_content">
+                <div class="post_content">
                     CONTENT :
                     <?php
                     /*
