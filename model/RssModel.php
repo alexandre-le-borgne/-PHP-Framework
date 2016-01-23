@@ -86,10 +86,9 @@ class RssModel extends Model implements StreamModel
             $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
-            if(!$verif = $result->fetch()) {
-
+            foreach ($x->channel->item as $item) {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
-                foreach ($x->channel->item as $item) {
+                if(!$verif = $result->fetch()) {
                     $cont = $verif['articleDate'];
                     if ($item->articleDate != $cont) {
                         echo'lel';
