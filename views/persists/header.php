@@ -30,7 +30,7 @@
             <?php
             $this->render('forms/logoutForm');
             ?>
-            <a id="add_flux" href="<? View::getUrlFromRoute('addflux')?>"><img src="web/img/add_cat.png"></a>
+            <a id="add_flux" href="<? View::getUrlFromRoute('addflux')?>"><img src="web/img/add_cat.png" width="30"></a>
             <a id="profile" href="<? View::getUrlFromRoute('profil')?>">Profil</a>
         <?php
         } else {
