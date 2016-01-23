@@ -20,19 +20,28 @@ header nav
 }
 
 
-header .search_bar
-{
-    background: #2f3d51 !important;
-    width: 500px;
-    color: white;
-    font-size: 10pt;
-    border-radius: 2px;
-    height: 37px;
-    padding: 11px 10px 11px 13px;
-    display: block;
+header .search_bar {
+    transition: 150ms background,150ms color;
+    color: rgba(255,255,255,.5);
+    padding-right: 10px;
+    padding-bottom: 2px;
+    padding-left: 39px;
+    background: rgba(0,0,0,.13);
+    font-weight: 400;
+    line-height: inherit;
+    font-size: 15px;
+    height: 34px;
+    width: 540px;
+    border: 0;
+    border-radius: 3px;
     margin-top: 10px;
-    border: 0px;
-    box-sizing: border-box;
+}
+
+header .search_bar:active {
+    transition: 75ms background, 75ms color;
+    background: #fff;
+    color: #444;
+    font-weight: 400;
 }
 
 #profile
