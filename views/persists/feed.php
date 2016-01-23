@@ -17,6 +17,7 @@
             ?>
             <div class="post">
                 <div id="post_author">
+                    AUTHOR :
                     <?php
 
                     switch($article->getStreamType()) {
@@ -34,10 +35,12 @@
                 </div>
 
                 <div id="post_header">
+                    HEADER :
                     <?= $article->getTitle(); ?>
                 </div>
 
                 <div id="post_content">
+                    CONTENT :
                     <?php
                     if($article->getStreamType() == ArticleModel::TWITTER) {
                         echo "2 - " . htmlentities($article->getContent());
@@ -52,7 +55,7 @@
                 </div>
 
                 <div id="post_footer">
-
+                    FOOTER
                 </div>
 
             </div>
