@@ -238,6 +238,9 @@ class TwitterModel extends Model implements StreamModel
     private function getImageLink($tweet)
     {
         $imageLink = '';
-//        if ($tweet->)
+        if (isset($tweet->extended_entities->media[0]->url, $tweet->extended_entities->media[0]->media_url))
+            $imageLink = '<a href="' . $tweet->extended_entities->media[0]->url . '" target="_blank"><img src="' .
+                $tweet->extended_entities->media[0]->media_url . '"></a>';
+        return $imageLink;
     }
 }
