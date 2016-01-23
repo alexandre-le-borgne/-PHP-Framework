@@ -280,6 +280,7 @@ body
 
 .item_cat
 {
+    cursor: pointer;
     background: #2f3d51 !important;
     width: 120px;
     color: white;
