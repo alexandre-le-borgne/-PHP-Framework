@@ -42,8 +42,20 @@
                     <?php
                     if($article->getStreamType() == ArticleModel::TWITTER) {
                         echo "2 - " . htmlentities($article->getContent());
-                        preg_match('/<img[^>]+>/i', $article->getContent(), $result);
-                        print_r($result);
+                        $doc = new DOMDocument();
+                        $doc->loadHTML($article->getContent());
+
+                        $tags = $doc->getElementsByTagName('a');
+
+                        foreach ($tags as $tag) {
+                            echo $tag->getAttribute('href');/*
+                            ?>
+                            <a href="<?= $tag->getAttribute('href') ?>" target="_blank">
+                                <img src="http://www.robothumb.com/src/?url=<?= $tag->getAttribute('href') ?>&size=240x180">
+                            </a>
+                            <?php
+                               */
+                        }
                     }
 
                     else {
