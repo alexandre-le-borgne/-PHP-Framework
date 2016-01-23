@@ -290,6 +290,7 @@ body
 .post_content img
 {
     width: 100%;
+    display: block;
 }
 
 .post_header
