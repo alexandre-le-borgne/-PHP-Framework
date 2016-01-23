@@ -73,7 +73,7 @@ header .search_bar:active, header .search_bar:focus {
 header form img
 {
     width: 28px;
-    position: fixed;
+    position: absolute;
     display: inline-block;
     margin-top: 15px;
     margin-left: 5px;
