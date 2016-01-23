@@ -16,37 +16,45 @@
         {
             ?>
             <div class="post">
-                <?php
+                <div id="post_author">
+                    <?php
 
-                switch($article->getStreamType()) {
-                    case ArticleModel::EMAIL:
-                        echo 'Email';
-                        break;
-                    case ArticleModel::RSS:
-                        echo 'RSS';
-                        break;
-                    case ArticleModel::TWITTER:
-                        echo 'Twitter';
-                        break;
-                }
-                ?>
-                <div id="jew">
+                    switch($article->getStreamType()) {
+                        case ArticleModel::EMAIL:
+                            echo 'Email';
+                            break;
+                        case ArticleModel::RSS:
+                            echo 'RSS';
+                            break;
+                        case ArticleModel::TWITTER:
+                            echo 'Twitter';
+                            break;
+                    }
+                    ?>
+                </div>
+
+                <div id="post_header">
                     <?= $article->getTitle(); ?>
                 </div>
 
-                <?php
-                if($article->getStreamType() == ArticleModel::TWITTER) {
-                    echo "2 - ".htmlentities($article->getContent());
+                <div id="post_content">
+                    <?php
+                    if($article->getStreamType() == ArticleModel::TWITTER) {
+                        echo htmlentities($article->getContent());
+                        preg_match('/a>/i', $article->getContent(), $result);
+                        print_r($result);
+                    }
 
-                    //<a[^>]+
-                    preg_match('/^<a[^>]+>$/i', $article->getContent(), $result);
-                    print_r($result);
-                }
+                    else {
+                        echo $article->getContent();
+                    }
+                    ?>
+                </div>
 
-                else {
-                    echo $article->getContent();
-                }
-                ?>
+                <div id="post_footer">
+
+                </div>
+
             </div>
             <?php
         }
