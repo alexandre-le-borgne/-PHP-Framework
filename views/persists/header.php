@@ -32,7 +32,7 @@ if (isset($mailValidationMessage))
                 <?php
             }
             ?>
-            <a id="logo_home" href="<? View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="<?= View::getAsset('img/logo-aaron.png') ?>/img/"></a>
+            <a id="logo_home" href="<? View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="<?= View::getAsset('img/logo-aaron.png') ?>"></a>
             <form method="post" action="search">
                 <img src="<?= View::getAsset('img/search_logo.png') ?>">
                 <input class="search_bar" type="textarea" name="search" placeholder="Recherchez sur Aaron">

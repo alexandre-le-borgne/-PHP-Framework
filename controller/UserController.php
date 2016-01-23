@@ -25,8 +25,7 @@ class UserController extends Controller
             $error = '';
             if ($login && $password)
             {
-                //Si l'utilisateur n'a pas active son compte
-                if (!$request->getSession()->isGranted(Session::USER_HAS_ACTIVE_ACCOUNT))
+                if ($request->getSession()->isGranted(Session::USER_IS_INACTIVE))
                 {
                     $error = 'Veuillez activer votre compte avec le mail que nous vous avons envoyé !';
                 }
