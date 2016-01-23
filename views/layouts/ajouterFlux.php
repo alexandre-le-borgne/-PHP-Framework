@@ -5,6 +5,9 @@
  * Date: 23/01/16
  * Time: 16:20
  */
+
+$view->extend('layouts/layout');
+$this->render('persists/header');
 ?>
 
 <div id="flux_choice">
