@@ -138,8 +138,7 @@ class TwitterController extends Controller
 
         foreach ($tweets as  $tweet)
         {
-            echo $tweet->text;
-            var_dump($tweet);
+            print_r($tweet);
             echo '<br/>#############################################################################<br/>';
         }
     }
