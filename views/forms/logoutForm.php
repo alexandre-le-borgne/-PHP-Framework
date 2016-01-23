@@ -7,6 +7,5 @@
  */
 ?>
 <form class="logout" method="post" action="logout">
-    <input class="
-    logout_button" type="image" src="<?= View::getAsset('img/disconnect.png') ?>" width="24">
+    <input class="logout_button" type="image" src="<?= View::getAsset('img/disconnect.png') ?>" width="24">
 </form>
