@@ -31,6 +31,7 @@
             $this->render('forms/logoutForm');
             ?>
             <a id="profile" href="<? View::getUrlFromRoute('profil')?>">Profil</a>
+            <a id="profile" href="<? View::getUrlFromRoute('profil')?>"><img id="web/img/add_cat.png" width="20" ></a>
         <?php
         } else {
             ?>
