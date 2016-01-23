@@ -10,8 +10,8 @@ $this->render('persists/header');
 ?>
     <div id="layout_connected">
         <?php
-        $this->render('persists/categories', array('categories' => $categories));
         $this->render('persists/feed', array('articles' => $articles));
+        $this->render('persists/categories', array('categories' => $categories));
         ?>
     </div>
 

@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     public function FavorisAction(Request $request)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        if (!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
         {
             $this->redirectToRoute('index');
         }
