@@ -86,16 +86,6 @@ class TwitterController extends Controller
 
         //
 
-        //
-
-        //
-
-        //
-
-        //
-
-        //
-
         //Todo redirection sur le home, on affiche les streams
 
         //Creation de la categorie
