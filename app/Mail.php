@@ -60,7 +60,7 @@ class Mail
 
         Sinon, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
 
-        http://alex83690.alwaysdata.net/aaron/resetForm.php?user=$user&key=$key
+        http://alex83690.alwaysdata.net/aaron/resetform.php?user=$user&key=$key
 
 
         Ce message est automatique, merci de ne pas y repondre.
