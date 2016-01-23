@@ -37,8 +37,10 @@ class ArticleModel extends Model
 
     public function getArticlesByUserId($user, $start = 0, $len = 0)
     {
-        var_dump($user);
+        var_dump($start);
+        var_dump($len);
         if (intval($user) && intval($start) && intval($len)) {
+            echo "super bite";
             $db = new Database();
             $req = "SELECT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category IN (SELECT id FROM categories WHERE account = ?) ORDER BY articleDate DESC LIMIT ?, ?";
             var_dump($req);
