@@ -43,7 +43,7 @@
                                 echo '<img src="' . View::getAsset('img/rss.png') . '" ' . 'width="42" ' . '"';
                                 break;
                             case ArticleModel::TWITTER:
-                                echo '<img src="' . View::getAsset('img/twitter.png') . '" ' . 'width="42" ' . '"';
+                                echo '<img src="' . View::getAsset('img/twitter.png') . '" ' . 'width="50" ' . '"';
                                 break;
                             default:
                                 echo '<img src="' . View::getAsset('img/default.png') . '" ' . 'width="42" ' . '"';
