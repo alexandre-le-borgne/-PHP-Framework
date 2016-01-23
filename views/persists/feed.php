@@ -52,10 +52,10 @@
                     </span>
                 </div>
 
-                <div class="post_content">
-                    CONTENT :
+                <div id="post_content">
                     <?php
-                    if($article->getStreamType() == ArticleModel::TWITTER) {
+                    /*
+                    /if($article->getStreamType() == ArticleModel::TWITTER) {
                         echo "2 - " . htmlentities($article->getContent());
                         $doc = new DOMDocument();
                         $doc->loadHTML($article->getContent());
@@ -69,22 +69,15 @@
                                 <img src="http://www.robothumb.com/src/?url=<?= $tag->getAttribute('href') ?>&size=240x180">
                             </a>
                             <?php
-                               */
+                               * /
                         }
                     }
-
-                    else {
-                        echo $article->getContent();
-                    }
+                     */
+                    echo $article->getContent();
                     ?>
                 </div>
 
                 <div id="post_footer">
-                    <a id="follow" href="#" >Suivre ce flux</a>
-                    <a id="ignore" href="#" >Ignorer</a>
-                    <a id="like" href="#" >Favoris</a>
-                    <a id="like" href="#" >Retweeter</a>
-                    <a id="global_url" href="#" >Partager</a>
 
                 </div>
 
