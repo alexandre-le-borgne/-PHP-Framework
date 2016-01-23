@@ -313,7 +313,7 @@ body
 #RSS_button, #IMAP_button, #twitter_button
 {
     background: black;
-
+    color: #ffffff;
     width: 100px;
     height: 100px;
     cursor: pointer;
