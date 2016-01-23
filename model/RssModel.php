@@ -83,7 +83,7 @@ class RssModel extends Model implements StreamModel
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
 
 
-            if($verif = $result->fetchAll())
+            if($verif = $result->fetch())
             {
 
                 foreach ($verif as $verifTest)
