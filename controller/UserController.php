@@ -311,18 +311,17 @@ class UserController extends Controller
             $email = $data['email'];
             $realKey = $data['userKey'];
             $active = $data['active'];
-        }
-
-        if ($active == 1)
-            $this->render("layouts/mailValidation", array("message" => "Votre compte est déjà actif"));
-        else {
-            if ($key == $realKey) {
-                $this->render("layouts/mailValidation", array("message" => "Votre compte a bien été activé"));
-                $req = "Update accounts Set active = 1 Where username = ?";
-                $db->execute($req, array($user));
-                Mail::sendWelcomingMail($email);
-            } else
-                $this->render("layouts/mailValidation", array("message" => "Erreur : aucun compte n'est associé à cette adresse"));
+            if ($active == 1)
+                $this->render("forms/loginForm", array("errors" => "Votre compte est déjà actif"));
+            else {
+                if ($key == $realKey) {
+                    $this->render("forms/loginForm", array("errors" => "Votre compte a bien été activé"));
+                    $req = "Update accounts Set active = 1 Where username = ?";
+                    $db->execute($req, array($user));
+                    Mail::sendWelcomingMail($email);
+                } else
+                    $this->render("forms/loginForm", array("errors" => "Erreur : aucun compte n'est associé à cette adresse"));
+            }
         }
     }
 }
