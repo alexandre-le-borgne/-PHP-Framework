@@ -35,7 +35,7 @@
                 <?php
                 if($article->getStreamType() == ArticleModel::TWITTER) {
                     echo htmlentities($article->getContent());
-                    preg_match_all('/<a[^>]+>/i', htmlentities($article->getContent()), $result);
+                    preg_match('/<a[^>]+>/i', htmlentities($article->getContent()), $result);
                     print_r($result);
                 }
                 else {
