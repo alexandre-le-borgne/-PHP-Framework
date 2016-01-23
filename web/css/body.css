@@ -279,6 +279,11 @@ body
     float: right;
 }
 
+.post_footer
+{
+    padding: 20px;
+}
+
 .post_content
 {
     padding: 22px 20px 20px 20px;
