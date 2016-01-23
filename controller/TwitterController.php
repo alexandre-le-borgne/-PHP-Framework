@@ -144,18 +144,15 @@ class TwitterController extends Controller
 
         $imageLink = '';
 
-        if ($tweet->extended_entities)
-            if ($tweet->extended_entities->media)
-                if ($tweet->extended_entities->media[0])
-                    if ($tweet->extended_entities->media[0]->url && $tweet->extended_entities->media[0]->media_url)
-                        $imageLink = '<a href="' . $tweet->extended_entities->media[0]->url . '" target="_blank"><img src="' . $tweet->extended_entities->media[0]->media_url . '"></a>';
+        if (isset($tweet->extended_entities->media[0]->url, $tweet->extended_entities->media[0]->media_url))
+            $imageLink = '<a href="' . $tweet->extended_entities->media[0]->url . '" target="_blank"><img src="' . $tweet->extended_entities->media[0]->media_url . '"></a>';
 
 
         var_dump($tweet->extended_entities);
         $href = $tweet->extended_entities->media[0]->url;
         $src = $tweet->extended_entities->media[0]->media_url;
 
-        echo '<br><a href="' . $href . '" target="_blank"><img src="' . $src . '"></a>';
+        echo $imageLink;
         echo '<br/>#############################################################################<br/>';
 
     }
