@@ -8,6 +8,24 @@
  */
 class CategoryModel extends Model
 {
+    public function createCategory($account, $title) {
+        $db = new Database();
+        $data = array($account, $title);
+        $data = $db->execute("SELECT * FROM categories WHERE account = ? AND title = ?", $data);
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'CategoryEntity');
+        $emailEntity = $data->fetch();
+        if($emailEntity) {
+            return $emailEntity;
+        }
+        else {
+            $categoryEntity = new CategoryEntity();
+            $categoryEntity->setAccount($account);
+            $categoryEntity->setTitle($title);
+            $categoryEntity->persist();
+            return $categoryEntity;
+        }
+    }
+
     public function getById($id)
     {
         if (intval($id))
