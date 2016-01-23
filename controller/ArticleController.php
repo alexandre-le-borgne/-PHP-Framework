@@ -25,7 +25,7 @@ class ArticleController extends Controller
         }
     }
 
-    public function PublicArticleAction(Request $request, $id)
+    public function ArticleAction(Request $request, $id)
     {
         //$id est rempli par l'url : aaron/publicarticle/54651346546132, l'id de l'article
         $this->loadModel('ArticleModel');
