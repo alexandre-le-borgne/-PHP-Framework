@@ -40,7 +40,7 @@
                 <div id="post_content">
                     <?php
                     if($article->getStreamType() == ArticleModel::TWITTER) {
-                        echo htmlentities($article->getContent());
+                        echo "2 - " . htmlentities($article->getContent());
                         preg_match('/a>/i', $article->getContent(), $result);
                         print_r($result);
                     }
