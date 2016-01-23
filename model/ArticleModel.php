@@ -28,7 +28,7 @@ class ArticleModel extends Model
     public function getByCategoryId($id) {
         if (intval($id)) {
             $db = new Database();
-            $data = $db->execute("SELECT * FROM article WHERE stream IN (SELECT stream FROM stream_category WHERE category = ?)", array($id));
+            $data = $db->execute("SELECT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category = ?)", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
         }
@@ -39,7 +39,9 @@ class ArticleModel extends Model
     {
         if (intval($user) && intval($start) && intval($len)) {
             $db = new Database();
-            $req = "SELECT * FROM article WHERE stream IN (SELECT stream FROM stream_category WHERE category IN (SELECT id FROM categories WHERE account = ?)) ORDER BY articleDate DESC LIMIT ?, ?";
+            $req = "SELECT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category IN (SELECT id FROM categories WHERE account = ?) ORDER BY articleDate DESC LIMIT ?, ?";
+            var_dump($req);
+            die();
             $data = $db->execute($req, array($user, $start, $len));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
