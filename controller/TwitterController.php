@@ -136,11 +136,10 @@ class TwitterController extends Controller
             'count' => 1
         ]);
 
-        foreach ($tweets as  $tweet)
-        {
-            print_r($tweet);
-            echo '<br/>#############################################################################<br/>';
-        }
+        $tweet = $tweets[0];
+        print_r($tweet);
+        echo '<br/>#############################################################################<br/>';
+
     }
 }
 
