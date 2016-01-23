@@ -31,7 +31,7 @@
                 }
                 ?>
                 <?= $article->getTitle(); ?>
-                <hr>
+                <hr>2
                 <?php
                 if($article->getStreamType() == ArticleModel::TWITTER) {
                     echo htmlentities($article->getContent());
