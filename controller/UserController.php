@@ -8,7 +8,7 @@
  */
 class UserController extends Controller
 {
-    public function LoginAction(Request $request)
+    public function LoginAction(Request $request, $state)
     {
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
             $this->redirectToRoute('index');
@@ -311,17 +311,24 @@ class UserController extends Controller
             $email = $data['email'];
             $realKey = $data['userKey'];
             $active = $data['active'];
-            die('t');
             if ($active == 1)
+            {
+                //$this->redirectToRoute('index', array('alreadyactif'));
                 $this->render("forms/loginForm", array("errors" => "Votre compte est déjà actif"));
+            }
             else {
                 if ($key == $realKey) {
+                    //$this->redirectToRoute('index', array('actif'));
                     $this->render("forms/loginForm", array("errors" => "Votre compte a bien été activé"));
                     $req = "Update accounts Set active = 1 Where username = ?";
                     $db->execute($req, array($user));
                     Mail::sendWelcomingMail($email);
-                } else
+                }
+                else
+                {
+                    //$this->redirectToRoute('index', array('noaccount'));
                     $this->render("forms/loginForm", array("errors" => "Erreur : aucun compte n'est associé à cette adresse"));
+                }
             }
         }
     }
