@@ -52,8 +52,7 @@
                     </span>
                 </div>
 
-                <div class="post_content">
-                    CONTENT :
+                <div id="post_content">
                     <?php
                     /*
                     /if($article->getStreamType() == ArticleModel::TWITTER) {
