@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Alexandre
  * Date: 23/01/2016
  * Time: 21:19
  */
-
 class ArticleController extends Controller
 {
     public function FavorisAction(Request $request)
@@ -14,7 +14,8 @@ class ArticleController extends Controller
         {
             $this->redirectToRoute('index');
         }
-        else {
+        else
+        {
             $this->loadModel('CategoryModel');
             $this->loadModel('ArticleModel');
             $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
@@ -22,5 +23,13 @@ class ArticleController extends Controller
             $data = array('categories' => $categories, 'articles' => $articles);
             $this->render('layouts/home', $data);
         }
+    }
+
+    public function ArticleAction(Request $request, $id)
+    {
+        //$id est rempli par l'url : aaron/publicarticle/54651346546132, l'id de l'article
+        $this->loadModel('ArticleModel');
+        $article = $this->articlemodel->getById($id);
+        $this->render('layouts/article', array('article' => $article));
     }
 }
