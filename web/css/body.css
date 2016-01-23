@@ -284,6 +284,7 @@ body
 .post_content
 {
     padding: 22px 20px 20px 20px;
+    word-break: break-all;
 }
 
 .post_content img
