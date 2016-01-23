@@ -34,7 +34,7 @@
                 <hr>
                 <?php
                 if($article->getStreamType() == ArticleModel::TWITTER) {
-                    preg_match_all('/<a[^>]+>/i', $article->getContent(), $result);
+                    preg_match_all('/<a[^>]+>/i', htmlentities($article->getContent()), $result);
                     print_r($result);
                 }
                 ?>
