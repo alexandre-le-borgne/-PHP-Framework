@@ -49,7 +49,7 @@ foreach ($users as $user):
         <form action="<?= View::getUrlFromRoute('deleteuser') ?>" method="post">
             <input type="hidden" name="id" value="<?php echo $user->getId(); ?>">
             <input type="submit" value="Supprimer" name="delUser">
-            <input type="submit" value="faire autre chose" name="other">
+            <input type="submit" value="Voir le profil" name="seeBlog">
         </form>
     </td>
 
