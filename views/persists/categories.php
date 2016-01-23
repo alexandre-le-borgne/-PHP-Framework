@@ -16,7 +16,9 @@
         foreach($categories as $category)
         {
             ?>
-            <a class="item_cat" href="<?= View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
+            <a class="item_cat" href="<?= View::getUrlFromRoute('category/'.$category->getId()) ?>">
+                <?= $category->getTitle() ?>
+            </a>
             <?php
         }
     }
