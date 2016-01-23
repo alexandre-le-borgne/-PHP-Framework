@@ -80,7 +80,12 @@
                 </div>
 
                 <div id="post_footer">
-                    FOOTER
+                    <a id="follow" href="#" >Suivre ce flux</a>
+                    <a id="ignore" href="#" >Ignorer</a>
+                    <a id="like" href="#" >Favoris</a>
+                    <a id="like" href="#" >Retweeter</a>
+                    <a id="global_url" href="#" >Partager</a>
+
                 </div>
 
             </div>
