@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<?= View::getAsset('inc/fullPage/jquery.fullPage.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery-ui/jquery-ui.theme.min.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.webui-popover.css') ?>" />
+<link rel="stylesheet" href="<?= View::getAsset('inc/jquery.mCustomScrollbar.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('css/body.css') ?>">
 <link rel="stylesheet" href="<?= View::getAsset('css/footer.css') ?>">
 <link rel="stylesheet" href="<?= View::getAsset('css/form.css') ?>">
@@ -25,5 +26,7 @@
 <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/jquery.fullPage.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('inc/jquery-ui/jquery-ui.min.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('inc/jquery.webui-popover.js') ?>"></script>
+<script type="text/javascript" src="<?= View::getAsset('inc/jquery-1.9.1.min.js') ?>"></script>
+<script type="text/javascript" src="<?= View::getAsset('inc/jquery.mCustomScrollbar.concat.min.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('js/slide.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('js/script.js') ?>"></script>
