@@ -38,6 +38,7 @@
                     preg_match('/<a[^>]+>/i', stripslashes($article->getContent()), $result);
                     print_r($result);
                 }
+
                 else {
                     echo $article->getContent();
                 }
