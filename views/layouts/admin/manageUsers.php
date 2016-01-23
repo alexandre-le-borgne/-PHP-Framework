@@ -6,9 +6,25 @@
  * Time: 11:48
  */
 
-if (!isset($users))
-    throw new Exception('Erreur manageUsers.php : $users n\'est pas set');
 
+if (isset($deleted))
+{?>
+<div id="text_cat" >
+    <?= $deleted ?>
+</div>
+<?php
+}
+
+if (isset($error))
+{?>
+<div id="text_cat" >
+    <?= $error ?>
+</div>
+<?php
+}
+
+if (isset($users))
+{
 ?>
 
     <div class="wrapper">
@@ -43,5 +59,7 @@ foreach ($users as $user):
 endforeach;
 
 echo '</table></div></div>';
+}
+
 
 
