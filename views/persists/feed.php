@@ -50,9 +50,12 @@
 
                         foreach ($tags as $tag) {
                             echo $tag->getAttribute('href');
+                            ?>
+                            <a href="<?= $tag->getAttribute('href') ?>" target="_blank">
+                                <img src="http://www.robothumb.com/src/?url=<?= $tag->getAttribute('href') ?>&size=240x180">
+                            </a>
+                            <?php
                         }
-                        preg_match('/<img[^>]+>/i', $article->getContent(), $result);
-                        print_r($result);
                     }
 
                     else {
