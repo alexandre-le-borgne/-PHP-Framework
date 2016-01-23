@@ -169,6 +169,7 @@ class EmailModel
                         return utf8_encode($text);
                     default:
                         return $text;
+                    return htmlentities($text, ENT_SUBSTITUTE, "UTF-8");
                 }
             }
 
