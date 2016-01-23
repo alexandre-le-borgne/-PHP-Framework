@@ -114,12 +114,16 @@ class TwitterModel extends Model implements StreamModel
         /** de plus, on les parse pour que les liens s'affichent */
         $autolink = Twitter_Autolink::create();
 
+
         $req = 'INSERT INTO article (title, content, articleDate, streamType, stream_id, url) VALUES (?,?,?,?,?,?)';
         foreach ($tweetsToInsert as $tweet)
         {
+            $text1 = $autolink->autoLink($tweet->text);
+            $imageLink = $this->getImageLink($tweet);
+
             $this->db->execute($req, array(
                 $twitterEntity->getChannel(),
-                $autolink->autoLink($tweet->text),
+                $text1 . '<br/>' . $imageLink,
                 date(Database::DATE_FORMAT, strtotime($tweet->created_at)),
                 ArticleModel::TWITTER,
                 $twitterEntity->getId(),
@@ -229,5 +233,11 @@ class TwitterModel extends Model implements StreamModel
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
         $this->twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa",
             "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
+    }
+
+    private function getImageLink($tweet)
+    {
+        $imageLink = '';
+        if ($tweet->)
     }
 }
