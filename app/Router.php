@@ -16,6 +16,7 @@ class Router
 
         $this->table[] = new Route('cron',              'index',        'cron');
         $this->table[] = new Route('rss',               'index',        'rss');
+        $this->table[] = new Route('ajouterflux',       'index',        'addStream');
 
         $this->table[] = new Route('login',             'user',         'login');
         $this->table[] = new Route('logout',            'user',         'logout');

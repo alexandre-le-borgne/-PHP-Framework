@@ -28,6 +28,10 @@ class IndexController extends Controller
         }
     }
 
+    public function AddStreamAction() {
+        $this->render('layouts/ajouterFlux');
+    }
+
     public function CronAction() {
         // Vérifier qu'on est bien dans les horaires du cron (5H du mat)
         $this->loadModel('EmailModel');
