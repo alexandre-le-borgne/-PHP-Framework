@@ -133,11 +133,12 @@ class TwitterController extends Controller
         $tweets = $twitter->get('statuses/user_timeline', [
             'screen_name' => 'MonsieurDream',
             'exclude_replies' => true,
-            'count' => 10
+            'count' => 1
         ]);
 
         foreach ($tweets as  $tweet)
         {
+            echo $tweet->text;
             var_dump($tweet);
             echo '<br/>#############################################################################<br/>';
         }
