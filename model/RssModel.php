@@ -71,7 +71,7 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
             foreach ($x->channel->item as $item) {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
-                if($verif = $result->fetch()) {
+                if(!$verif = $result->fetch()) {
                     $cont = $verif['articleDate'];
                     if ($item->articleDate != $cont) {
                         echo 'loul';
@@ -88,7 +88,7 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id, $maxDate, $streamLast));
             foreach ($x->channel->item as $item) {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
-                if($verif = $result->fetch()) {
+                if(!$verif = $result->fetch()) {
                     $cont = $verif['articleDate'];
                     if ($item->articleDate != $cont) {
                         echo'lel';
