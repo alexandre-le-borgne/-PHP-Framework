@@ -34,12 +34,19 @@ class TwitterModel extends Model implements StreamModel
         return null;
     }
 
-    public function createStream($channel, DateTime $firstUpdate)
+    public function getStreamByChannel($channel)
     {
         $db = new Database();
         $req = 'SELECT * FROM stream_twitter WHERE channel = ?';
         $result = $db->execute($req, array($channel));
-        $fetch = $result->fetch();
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
+        return $result->fetch();
+    }
+
+    public function createStream($channel, DateTime $firstUpdate)
+    {
+        $db = new Database();
+        $fetch = $this->getStreamByChannel($channel);
         if (!($fetch))
         {
             $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
