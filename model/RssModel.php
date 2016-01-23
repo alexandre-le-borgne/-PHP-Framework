@@ -83,20 +83,25 @@ class RssModel extends Model implements StreamModel
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
 
             $verif = $result->fetchAll();
+            var_dump($verif);
 
 
                 foreach ($verif as $verifTest)
                 {
-
+                    echo 'lel';
+                    var_dump($verifTest);
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
                     foreach ($x->channel->item as $item)
                     {
                         $cont = $verifTest->getTitle();
+                        var_dump($item);
+                        var_dump($cont);
                         echo 'first';
                         if ($item->title != $cont)
                         {
                             echo 'insert first';
                             $base = $item->pubDate;
+                            var_dump($base);
                             $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                             $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                         }
