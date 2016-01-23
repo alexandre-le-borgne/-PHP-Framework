@@ -37,7 +37,7 @@ header .search_bar {
     margin-top: 10px;
 }
 
-header .search_bar:active {
+header .search_bar:active, header .search_bar:focus {
     transition: 75ms background, 75ms color;
     background: #fff;
     color: #444;
