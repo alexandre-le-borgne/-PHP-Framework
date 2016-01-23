@@ -379,7 +379,7 @@ class UserController extends Controller
         }
     }
 
-    public function ForgotFormAction(Request $request){
+    /*public function ForgotFormAction(Request $request){
         echo 'pd';
 
         $email = $request->post('email');
@@ -387,6 +387,10 @@ class UserController extends Controller
         $this->loadModel('UserModel');
 
         $this->usermodel->forgotPassword($email);
+    }*/
+
+    public function ForgotFormAction(){
+        $this->render('/forms/forgotForm');
     }
 
     public function ResetMailAction(Request $request){
