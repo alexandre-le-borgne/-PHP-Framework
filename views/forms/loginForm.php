@@ -18,6 +18,7 @@ $view->extend('layouts/fullpage');
         <!--SIGN IN FORM-->
 
         <br><br>
+
         <form class="form-horizontal" method="post" action="<?= View::getUrlFromRoute('login') ?>">
             <div id="fields_errors">
                 <!--USERNAME-->
@@ -25,8 +26,9 @@ $view->extend('layouts/fullpage');
                 <!--PASSWORD-->
                 <input class="last" type="password" name="password" placeholder="Password" required>
                 <?php
-                if(isset($errors) && $errors != '') {
-                    echo '<br><div class="errors_fields">'.$errors.'</div>';
+                if (isset($errors) && $errors != '')
+                {
+                    echo '<br><div class="errors_fields">' . $errors . '</div>';
                 }
                 ?>
             </div>
@@ -35,7 +37,7 @@ $view->extend('layouts/fullpage');
             <!--SUBMIT-->
         </form>
 
-        <a class="forgot" href="./forgotForm.php">Mot de passe oublié ?</a>
+        <a class="forgot" href="<?= View::getUrlFromRoute('forgotForm') ?>">Mot de passe oublié ?</a>
 
         <br>
         <h4><img id="logo_explorer" src="<?= View::getAsset('img/logo_explorer.png') ?>"></h4>

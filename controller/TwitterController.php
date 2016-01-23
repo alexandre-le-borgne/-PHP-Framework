@@ -3,9 +3,29 @@
 /**
  * Coucou
  */
-
 class TwitterController extends Controller
 {
+    function addTwitterStreamAction(Request $request)
+    {
+        $channel = $request->get('channel');
+        $firstUpdate = $request->get('firstUpdate');
+
+        $this->loadModel('TwitterModel');
+        /** @var TwitterModel $twitterModel */
+        $twitterModel = $this->twittermodel;
+
+        $dateTime = new DateTime();
+        $dateTime->setTimestamp(strtotime($firstUpdate));
+
+        $twitterModel->createStream($channel, $dateTime);
+        $entity = new TwitterEntity();
+        $entity->setChannel($channel);
+        $twitterModel->streamCron($entity);
+
+        //Todo redirection sur le home, on affiche les streams
+    }
+
+    //Test
     function TwitterAction()
     {
         $this->loadModel('TwitterModel');
@@ -21,6 +41,30 @@ class TwitterController extends Controller
 
 
         $twitterModel->cron();
+
+
+    }
+}
+
+
+//http://www.grafikart.fr/tutoriels/php/twitter-api-tweets-100
+//"token_type": "bearer",s
+//"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
+/**
+ *
+ *
+ * <ul class="white_text">
+ * <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
+ * <li><?php $this->render('layouts/tweetTemplate', $tweet->text); ?></li>
+ * <?php endforeach; ?>
+ * </ul>
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 
 
 //        $i = 1;
@@ -50,25 +94,3 @@ class TwitterController extends Controller
 //                    $autolink->autoLink($article->getContent()) .
 //                    '<br/>Il y a ' . time_to_delay(strtotime($article->getDate())) . '.<br/>';
 //        endforeach;
-    }
-}
-
-
-//http://www.grafikart.fr/tutoriels/php/twitter-api-tweets-100
-//"token_type": "bearer",s
-//"access_token": "AAAAAAAAAAAAAAAAAAAAAGszjwAAAAAAQ9wM2BLgs2H5JAbsI6Iv9gE6xDU%3DiXa5ZguYCBBgkWld7lIhMWzfPUHbpqDuwQgktXQ8qVoR8GjnOj"
-/**
- *
- *
- * <ul class="white_text">
- * <?php foreach (array_slice($tweets, 0, 12) as $tweet): ?>
- * <li><?php $this->render('layouts/tweetTemplate', $tweet->text); ?></li>
- * <?php endforeach; ?>
- * </ul>
- *
- *
- *
- *
- *
- *
- */

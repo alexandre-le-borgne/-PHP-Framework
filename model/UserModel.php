@@ -121,15 +121,20 @@ class UserModel extends Model
         $req = "Select * From accounts WHERE email = ?";
         $result = $db->execute($req, array($email));
 
-        if($stmt = $result->fetch()){
+        if ($stmt = $result->fetch())
+        {
             $user = $stmt['username'];
             $key = $stmt['userKey'];
+            Mail::sendForgottMail($email, $user, $key);
         }
-
-        Mail::sendForgottMail($email, $user, $key);
+        else
+        {
+            echo 'erreur, julien repare ça';
+        }
     }
 
-    public function resetPassword($user, $key, $password){
+    public function resetPassword($user, $key, $password)
+    {
         $db = new Database();
 
         $user = Security::escape($user);
@@ -139,7 +144,8 @@ class UserModel extends Model
         $req = "Select * From accounts WHERE username = ? AND userKey = ?";
         $result = $db->execute($req, array($user, $oldKey));
 
-        while($stmt = $result->fetch()){
+        while ($stmt = $result->fetch())
+        {
             $key = Security::generateKey();
             $password = Security::encode($password);
 
