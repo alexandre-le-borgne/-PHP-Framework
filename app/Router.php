@@ -28,13 +28,23 @@ class Router
 
         $this->table[] = new Route('exemple',           'exemple',      'index');
 
-        $this->table[] = new Route('twitter',           'twitter',  'twitter');
+
 
         $this->table[] = new Route('email',             'email',        'index');
 
         $this->table[] = new Route('admin',             'admin',        'index');
         $this->table[] = new Route('adminusers',        'admin',        'users');
         $this->table[] = new Route('deleteuser',        'admin',        'deleteUser');
+
+        /** Ajouts de flux */
+        $this->table[] = new Route('addtwitterstream',  'twitter',      'addTwitterStream');
+        $this->table[] = new Route('addrssstream',      'rss',          'addRSSStream');
+        $this->table[] = new Route('addimapstream',     'email',        'addIMAPStream');
+
+
+        //Test
+        $this->table[] = new Route('twitter',           'twitter',  'twitter');
+
     }
 
     public function getRoute($name)
