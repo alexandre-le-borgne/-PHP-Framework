@@ -45,7 +45,7 @@ class Router
         $this->table[] = new Route('favoris',     'article',        'favoris');
 
         //Test
-        $this->table[] = new Route('twitter',           'twitter',      'twitter');
+        $this->table[] = new Route('twitter',           'twitter',      'testTwitter');
         $this->table[] = new Route('rss',               'index',        'rss');
         $this->table[] = new Route('ajouterflux',       'index',        'addStream');
         $this->table[] = new Route('email',             'email',        'index');

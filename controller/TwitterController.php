@@ -3,6 +3,12 @@
 /**
  * Coucou
  */
+
+require_once './vendor/abraham/twitteroauth/autoload.php';
+require_once './vendor/nojimage/twitter-text-php/lib/Twitter/Autolink.php';
+
+use Abraham\TwitterOAuth\TwitterOAuth;
+
 class TwitterController extends Controller
 {
     function addTwitterStreamAction(Request $request)
@@ -110,21 +116,31 @@ class TwitterController extends Controller
     }
 
     //Test
-    function TwitterAction()
+    function TestTwitterAction()
     {
+        $CONSUMER_KEY = "rC3gP2pji5zoKoGf4FlUYdvaa";
+        $CONSUMER_SECRET = "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j";
         $this->loadModel('TwitterModel');
         /** @var TwitterModel $twitterModel */
         $twitterModel = $this->twittermodel;
 
-        $dateTime = new DateTime();
-        $dateTime->setDate(2015, 1, 1);
-
-        $twitterModel->createStream('Spacesuit2', $dateTime);
-        $twitterModel->createStream('lalaitha', $dateTime);
-        $twitterModel->createStream('jikarponyland', $dateTime);
+        $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
+        $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
+        $twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa",
+            "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
 
 
-        $twitterModel->cron();
+        $tweets = $twitter->get('statuses/user_timeline', [
+            'screen_name' => 'MonsieurDream',
+            'exclude_replies' => true,
+            'count' => 10
+        ]);
+
+        foreach ($tweets as  $tweet)
+        {
+            var_dump($tweet);
+            echo '<br/>#############################################################################<br/>';
+        }
     }
 }
 
