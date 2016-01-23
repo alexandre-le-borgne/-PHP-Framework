@@ -49,12 +49,13 @@
                         $tags = $doc->getElementsByTagName('a');
 
                         foreach ($tags as $tag) {
-                            echo $tag->getAttribute('href');
+                            echo $tag->getAttribute('href');/*
                             ?>
                             <a href="<?= $tag->getAttribute('href') ?>" target="_blank">
                                 <img src="http://www.robothumb.com/src/?url=<?= $tag->getAttribute('href') ?>&size=240x180">
                             </a>
                             <?php
+                               */
                         }
                     }
 
