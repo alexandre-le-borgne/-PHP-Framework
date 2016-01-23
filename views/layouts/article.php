@@ -4,7 +4,6 @@ $this->render('persists/header');
 ?>
     <div id="layout_connected">
         <?php
-        var_dump($article);
         $this->render('persists/feed', array('articles' => $article));
         ?>
     </div>
