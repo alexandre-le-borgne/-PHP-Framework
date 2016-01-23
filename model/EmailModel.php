@@ -164,7 +164,7 @@ class EmailModel
                     case 4:
                         return imap_qprint($text);
                     case 0:
-                        return imap_utf8($text);
+                        return mb_convert_encoding($text, 'UTF-8', 'ASCII');
                     case 1:
                         return utf8_encode($text);
                     default:
@@ -330,7 +330,7 @@ class EmailModel
                     || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate()))
                 {
                     echo $article->getTitle()."<br><hr>";
-                    echo mb_detect_encoding($article->getContent())."<br>".mb_convert_encoding($article->getContent(), 'UTF-8', 'ASCII')."<br>";
+                    echo $article->getContent();
                     //$article->persist();
                 }
             }
