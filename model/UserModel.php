@@ -121,10 +121,12 @@ class UserModel extends Model
         $req = "Select * From accounts WHERE email = ?";
         $result = $db->execute($req, array($email));
 
-        if(!$stmt = $result->fetch()){
-            $user = $stmt['username'];
-            $key = $stmt['userKey'];
-        }
+        $stmt = $result->fetch();
+
+        $user = $stmt['username'];
+        var_dump($user);
+        $key = $stmt['userKey'];
+        var_dump($key);
 
         Mail::sendForgottMail($email, $user, $key);
     }

@@ -5,6 +5,9 @@
  */
 class AdminController extends Controller
 {
+    const DELETED_OK = 'deleted';
+    const ERROR_NO_USER = 'nouser';
+
     private function isAdmin($request)
     {
         if (!($request->getSession()->isGranted(Session::USER_IS_ADMIN)))
@@ -18,12 +21,17 @@ class AdminController extends Controller
         $this->render('layouts/admin/adminDashboard', $data);
     }
 
-    function UsersAction(Request $request)
+    function UsersAction(Request $request, $message)
     {
         $this->isAdmin($request);
         $this->loadModel('AdminModel');
         $data = $this->adminmodel->getAllUsers();
-        $this->render('layouts/admin/manageUsers', array('users' => $data));
+        $allData = array('users' => $data);
+        if ($message == self::DELETED_OK)
+            $allData['deleted'] = 'Utilisateur supprimé';
+        if ($message == self::ERROR_NO_USER)
+            $allData['error'] = 'Utilisateur inexistant';
+        $this->render('layouts/admin/manageUsers', $allData);
     }
 
     function deleteUserAction(Request $request)
@@ -34,9 +42,9 @@ class AdminController extends Controller
         if ($id)
         {
             $this->adminmodel->deleteUser($id);
-            $this->render('layouts/admin/manageUsers', array('deleted' => $id));
+            $this->redirectToRoute('layouts/admin/manageUsers/' . self::DELETED_OK);
         }
         else
-            $this->render('layouts/admin/manageUsers', array('error' => 'L\'utilisateur ' . $id . ' n\'existe pas'));
+            $this->redirectToRoute('layouts/admin/manageUsers/' . self::ERROR_NO_USER);
     }
 }
