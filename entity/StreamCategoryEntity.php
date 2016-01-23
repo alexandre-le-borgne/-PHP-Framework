@@ -44,32 +44,48 @@ class StreamCategoryEntity extends Entity {
     /**
      * @return mixed
      */
-    public function getAccount()
+    public function getStream()
     {
-        return $this->account;
+        return $this->stream;
     }
 
     /**
-     * @param mixed $account
+     * @param mixed $stream
      */
-    public function setAccount($account)
+    public function setStream($stream)
     {
-        $this->account = $account;
+        $this->stream = $stream;
     }
 
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getCategory()
     {
-        return $this->title;
+        return $this->category;
     }
 
     /**
-     * @param mixed $title
+     * @param mixed $category
      */
-    public function setTitle($title)
+    public function setCategory($category)
     {
-        $this->title = $title;
+        $this->category = $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStreamType()
+    {
+        return $this->streamType;
+    }
+
+    /**
+     * @param mixed $streamType
+     */
+    public function setStreamType($streamType)
+    {
+        $this->streamType = $streamType;
     }
 }
