@@ -7,10 +7,13 @@ class TwitterController extends Controller
 {
     function addTwitterStreamAction(Request $request)
     {
-        $categoryTitle = $request->post('category');
         $channel = $request->post('channel');
         $firstUpdate = $request->get('firstUpdate');
         $userId = $request->getSession()->get('id');
+        $categoryTitle = $request->post('category');
+
+        if (!($channel && $firstUpdate && $categoryTitle))
+            throw new Exception('Pas tous les arguments inseres');
 
         //Chargement des models
         $this->loadModel('CategoryModel');
