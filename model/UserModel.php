@@ -121,7 +121,7 @@ class UserModel extends Model
         $req = "Select * From accounts WHERE email = ?";
         $result = $db->execute($req, array($email));
 
-        if($stmt = $result->fetch()){
+        while(!$stmt = $result->fetch()){
             $user = $stmt['username'];
             $key = $stmt['userKey'];
         }
