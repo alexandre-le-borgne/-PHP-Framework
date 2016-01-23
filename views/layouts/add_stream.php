@@ -14,8 +14,9 @@
     </div>
     <div id="add_flux_body">
         <form class="flux_twitter" action="" method="post">
-            <input type="date" name="since_date" placeholder="À partir de" required>
-            <input type="text" name="twitter_account" placeholder="Nom du compte @" required>
+            <input type="date" name="firstUpdate" placeholder="À partir de" required>
+            <input type="text" name="channel" placeholder="Nom du compte @" required>
+            <input type="text" name="category" placeholder="La catégorie pour le ranger" required>
         </form>
 
         <form class="flux_rss" action="" method="post">
