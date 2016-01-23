@@ -23,11 +23,11 @@ class Database
             if(!is_array($params)) throw new Exception("Paramètres innatendus : " . var_dump($params));
             try {
                 $resultat = $this->getBdd()->prepare($sql);  // requête préparée
-                var_dump($resultat->queryString);
+                //var_dump($resultat->queryString);
 
                 $resultat->execute($params);
             } catch (PDOException $e) {
-                // var_dump($resultat->debugDumpParams());
+                 var_dump($resultat->debugDumpParams());
                 throw new Exception($e->getMessage());
             }
         }
