@@ -10,7 +10,7 @@
 
 <div id="categories">
     <div class="item_cat""><img id="add_cat" src="web/img/add_cat.png"></div>
-    <a href="<?= View::getUrlFromRoute('favoris') ?>" class="item_cat""><img id="add_cat" src="web/img/add_cat.png"></div>
+    <a href="<?= View::getUrlFromRoute('favoris') ?>" class="item_cat"">Mes favoris</div>
     <?php
     /** @var CategoryEntity $category */
     if(!empty($categories)) {

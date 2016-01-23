@@ -6,7 +6,7 @@
  * Time: 21:19
  */
 
-class IndexController extends Controller
+class ArticleController extends Controller
 {
     public function FavorisAction(Request $request)
     {
