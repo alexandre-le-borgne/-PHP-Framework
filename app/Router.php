@@ -42,6 +42,7 @@ class Router
         $this->table[] = new Route('addrssstream',      'rss',          'addRSSStream');
         $this->table[] = new Route('addimapstream',     'email',        'addIMAPStream');
 
+        $this->table[] = new Route('favoris',     'article',        'favoris');
 
         //Test
         $this->table[] = new Route('twitter',           'twitter',      'twitter');

@@ -47,6 +47,18 @@ class ArticleModel extends Model
         return null;
     }
 
+    public function getArticlesFavorisByUserId($user, $start = 0, $len = 0)
+    {
+        if (is_numeric($user) && is_numeric($start) && is_numeric($len)) {
+            $db = new Database();
+            $req = "SELECT article.* FROM article JOIN articlesfavoris ON article.id = articlesfavoris.article WHERE articlesfavoris.account = ? ORDER BY articleDate DESC LIMIT $start, $len";
+            $data = $db->execute($req, array($user));
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            return $data->fetchAll();
+        }
+        return null;
+    }
+
 
     /*public function addArticle($title, $content, $date, $type, $url){
         $db = new Database();
