@@ -13,7 +13,7 @@ class PasswordModel {
         if($result) {
             $password = new PasswordEntity();
             $password->setId($result['id']);
-            $password->setUser($result['user']);
+            $password->setUser($result['account']);
             $password->setPassword($result['password']);
             return $password;
         }
