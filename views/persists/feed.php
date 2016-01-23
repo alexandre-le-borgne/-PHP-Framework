@@ -38,6 +38,9 @@
                     preg_match_all('/<a[^>]+>/i', htmlentities($article->getContent()), $result);
                     print_r($result);
                 }
+                else {
+                    echo $article->getContent();
+                }
                 ?>
             </div>
             <?php
