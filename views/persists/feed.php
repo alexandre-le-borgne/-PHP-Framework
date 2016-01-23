@@ -52,7 +52,7 @@
                     </span>
                 </div>
 
-                <div id="post_content">
+                <div class="post_content">
                     <?php
                     /*
                     /if($article->getStreamType() == ArticleModel::TWITTER) {
@@ -77,12 +77,12 @@
                     ?>
                 </div>
 
-                <div id="post_footer">
-                    <a id="follow" href="#" >Suivre ce flux</a>
-                    <a id="ignore" href="#" >Ignorer</a>
-                    <a id="like" href="#" >Favoris</a>
-                    <a id="like" href="#" >Retweeter</a>
-                    <a id="global_url" href="#" >Partager</a>
+                <div class="post_footer">
+                    <a class="follow" href="#" >Suivre ce flux</a>
+                    <a class="ignore" href="#" >Ignorer</a>
+                    <a class="like" href="#" >Favoris</a>
+                    <a class="like" href="#" >Retweeter</a>
+                    <a class="global_url" href="#" >Partager</a>
                 </div>
 
             </div>

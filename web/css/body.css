@@ -283,6 +283,7 @@ body
 {
     padding: 22px 20px 20px 20px;
     word-break: break-all;
+    font-size: 10pt;
 }
 
 .post_content img
