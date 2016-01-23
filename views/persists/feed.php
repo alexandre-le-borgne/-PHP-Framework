@@ -30,8 +30,10 @@
                         break;
                 }
                 ?>
-                <?= $article->getTitle(); ?>
-                <hr>
+                <div id="jew">
+                    <?= $article->getTitle(); ?>
+                </div>
+
                 <?php
                 if($article->getStreamType() == ArticleModel::TWITTER) {
                     echo htmlentities($article->getContent());
