@@ -72,6 +72,7 @@ header .search_bar:active, header .search_bar:focus {
 #add_flux:hover
 {
     width: 100px;
+    transition: 150ms width;
 }
 
 
