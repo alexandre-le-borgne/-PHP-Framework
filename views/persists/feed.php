@@ -37,16 +37,16 @@
 
                         switch($article->getStreamType()) {
                             case ArticleModel::EMAIL:
-                                echo '<img src="<?= View::getAsset(\'img/email.png\') ?>"';
+                                echo '<img src=\"' . View::getAsset('img/email.png') . '\"';
                                 break;
                             case ArticleModel::RSS:
-                                echo '<img src="<?= View::getAsset(\'img/rss.png\') ?>"';
+                                echo '<img src=\"' . View::getAsset('img/email.png') . '\"';
                                 break;
                             case ArticleModel::TWITTER:
-                                echo '<img src="<?= View::getAsset(\'img/twitter.png\')  ?>"';
+                                echo '<img src=\"' . View::getAsset('img/email.png') . '\"';
                                 break;
                             default:
-                                echo '<img src="<?= View::getAsset(\'img/default.png\') ?>"';
+                                echo '<img src=\"' . View::getAsset('img/email.png') . '\"';
                         }
                         ?>
                     </span>
