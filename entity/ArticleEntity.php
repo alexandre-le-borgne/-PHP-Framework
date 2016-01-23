@@ -15,12 +15,12 @@ class ArticleEntity
         $db = new Database();
         if ($this->id == null)
         {
-            $req = 'INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
+            $req = 'INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
             $db->execute($req, array($this->title, $this->content, $this->articleDate, $this->streamType, $this->url, $this->stream_id));
         }
         else
         {
-            $req = 'UPDATE article SET title = ?, content = ?, articleDate = ?, articleType = ?, url = ?, stream_id = ? WHERE id = ?';
+            $req = 'UPDATE article SET title = ?, content = ?, articleDate = ?, streamType = ?, url = ?, stream_id = ? WHERE id = ?';
             $db->execute($req, array($this->title, $this->content, $this->articleDate, $this->streamType, $this->url, $this->stream_id, $this->id));
         }
     }

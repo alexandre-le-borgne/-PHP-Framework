@@ -107,7 +107,7 @@ class TwitterModel extends Model implements StreamModel
         /** de plus, on les parse pour que les liens s'affichent */
         $autolink = Twitter_Autolink::create();
 
-        $req = 'INSERT INTO article (title, content, articleDate, articleType, stream_id, url) VALUES (?,?,?,?,?,?)';
+        $req = 'INSERT INTO article (title, content, articleDate, streamType, stream_id, url) VALUES (?,?,?,?,?,?)';
         foreach ($tweetsToInsert as $tweet)
         {
             $this->db->execute($req, array(
@@ -193,7 +193,7 @@ class TwitterModel extends Model implements StreamModel
 
     private function getFirstArticle(TwitterEntity $twitterStream)
     {
-        $result = $this->db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate ASC LIMIT 1',
+        $result = $this->db->execute('SELECT * FROM article WHERE stream_id = ? AND streamType = ? ORDER BY articleDate ASC LIMIT 1',
             array($twitterStream->getId(), ArticleModel::TWITTER));
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())
@@ -205,7 +205,7 @@ class TwitterModel extends Model implements StreamModel
 
     private function getLastArticle(TwitterEntity $twitterStream)
     {
-        $result = $this->db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate DESC LIMIT 1',
+        $result = $this->db->execute('SELECT * FROM article WHERE stream_id = ? AND streamType = ? ORDER BY articleDate DESC LIMIT 1',
             array($twitterStream->getId(), ArticleModel::TWITTER));
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         if ($articleEntity = $result->fetch())

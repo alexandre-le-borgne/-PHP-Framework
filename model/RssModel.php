@@ -75,7 +75,7 @@ class RssModel extends Model implements StreamModel
                     $cont = $verif['articleDate'];
                     if ($item->articleDate != $cont) {
                         $base = $item->pubDate;
-                        $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                        $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                         $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                     }
                 }
@@ -91,7 +91,7 @@ class RssModel extends Model implements StreamModel
                     $cont = $verif['articleDate'];
                     if ($item->articleDate != $cont) {
                         $base = $item->pubDate;
-                        $req = "INSERT INTO article (title, content, articleDate, articleType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                        $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                         $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                     }
                 }

@@ -257,7 +257,7 @@ class EmailModel
     private function getFirstArticle(EmailEntity $emailEntity)
     {
         $db = new Database();
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate ASC LIMIT 1',
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND streamType = ? ORDER BY articleDate ASC LIMIT 1',
             array($emailEntity->getId(), ArticleModel::EMAIL));
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         return $result->fetch();
@@ -266,7 +266,7 @@ class EmailModel
     private function getLastArticle(EmailEntity $emailEntity)
     {
         $db = new Database();
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND articleType = ? ORDER BY articleDate DESC LIMIT 1',
+        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND streamType = ? ORDER BY articleDate DESC LIMIT 1',
             array($emailEntity->getId(), ArticleModel::EMAIL));
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         return $result->fetch();

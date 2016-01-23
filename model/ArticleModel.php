@@ -65,7 +65,7 @@ class ArticleModel extends Model
 
             $date = $post->getDate();
 
-            $req = "INSERT INTO article (title, content, articleDate, articleType, url) VALUES (?, ?, ". ArticleModel::RSS  .", ?, ?)";
+            $req = "INSERT INTO article (title, content, articleDate, streamType, url) VALUES (?, ?, ". ArticleModel::RSS  .", ?, ?)";
             $db->execute($req, array($title, $content, $date, $url));
         }
 

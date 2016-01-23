@@ -21,11 +21,11 @@ $this->render('persists/header');
         <input type="text" name="twitter_account" placeholder="Nom du compte @" required>
     </form>
 
-    <form action="flux_rss" action="" method="post">
+    <form class="flux_rss" action="" method="post">
         <input type="text" name="url_flux" placeholder="URL du flux" required>
     </form>
 
-    <form action="flux_imap" action="" method="post">
+    <form class="flux_imap" action="" method="post">
         <input type="text" name="host_name" placeholder="Serveur IMAP" required>
         <input type="text" name="username" placeholder="Nom d'utilisateur" required>
         <input type="password" name="password" placeholder="Mot de passe" required>
