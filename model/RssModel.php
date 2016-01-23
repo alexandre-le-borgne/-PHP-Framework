@@ -74,6 +74,7 @@ class RssModel extends Model implements StreamModel
                 foreach ($x->channel->item as $item) {
                     $cont = $verif['articleDate'];
                     if ($item->articleDate != $cont) {
+                        echo 'loul';
                         $base = $item->pubDate;
                         $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                         $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
@@ -90,6 +91,7 @@ class RssModel extends Model implements StreamModel
                 foreach ($x->channel->item as $item) {
                     $cont = $verif['articleDate'];
                     if ($item->articleDate != $cont) {
+                        echo'lel';
                         $base = $item->pubDate;
                         $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                         $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
