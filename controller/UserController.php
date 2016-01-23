@@ -323,8 +323,8 @@ class UserController extends Controller
     {
         $db = new Database();
         $req = "Select email, userKey, active From accounts Where username = ?";
-
-        if ($db->execute($req, array($user)) && $data = $db->execute($req, array($user))->fetch()) {
+        $result = $db->execute($req, array($user));
+        if ($result && ($data = $result->fetch())) {
             $email = $data['email'];
             $realKey = $data['userKey'];
             $active = $data['active'];
@@ -348,9 +348,10 @@ class UserController extends Controller
                 else
                 {
                     //$this->redirectToRoute('index', array('noaccount'));
-                    $this->render("forms/loginForm", array("errors" => "Erreur : aucun compte n'est associé à cette adresse"));
+                    $this->render("forms/loginForm", array("errors" => "La clé d'activation est incorrect"));
                 }
             }
         }
+        $this->render("forms/loginForm", array("errors" => "Le compte n'existe pas."));
     }
 }
