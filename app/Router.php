@@ -1,10 +1,12 @@
 <?php
 
-class Router {
+class Router
+{
 
     private $table = array();
 
-    public function __construct() {
+    public function __construct()
+    {
 
         //"exampleroute" is the name of the route, e.g. /exampleroute
         //Here, class names are used rather than instances so instances are only ever created when needed, otherwise every model, view and
@@ -44,7 +46,8 @@ class Router {
         return $this->getDefaultRoute();
     }
 
-    public function getDefaultRoute() {
+    public function getDefaultRoute()
+    {
         return new Route('index', 'index', 'index');
     }
 }
