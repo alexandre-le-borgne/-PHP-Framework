@@ -28,7 +28,7 @@ class ArticleModel extends Model
     public function getByCategoryId($id) {
         if (intval($id)) {
             $db = new Database();
-            $data = $db->execute("SELECT * FROM article WHERE id IN (SELECT article FROM stream_category WHERE category = ?)", array($id));
+            $data = $db->execute("SELECT * FROM article WHERE stream IN (SELECT stream FROM stream_category WHERE category = ?)", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
         }
@@ -39,7 +39,7 @@ class ArticleModel extends Model
     {
         if (intval($user) && intval($start) && intval($len)) {
             $db = new Database();
-            $req = "SELECT * FROM article WHERE id IN (SELECT article FROM stream_category WHERE category IN (SELECT id FROM categories WHERE account = ?)) ORDER BY articleDate DESC LIMIT ?, ?";
+            $req = "SELECT * FROM article WHERE stream IN (SELECT stream FROM stream_category WHERE category IN (SELECT id FROM categories WHERE account = ?)) ORDER BY articleDate DESC LIMIT ?, ?";
             $data = $db->execute($req, array($user, $start, $len));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
