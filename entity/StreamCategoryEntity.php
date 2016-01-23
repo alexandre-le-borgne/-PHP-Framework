@@ -4,24 +4,24 @@
  * Created by PhpStorm.
  * User: Alexandre
  * Date: 23/01/2016
- * Time: 16:29
+ * Time: 16:59
  */
-class CategoryEntity extends Entity
-{
-    private $id, $account, $name;
+class StreamCategoryEntity extends Entity {
+
+    private $id, $stream, $category, $streamType;
 
     public function persist()
     {
         $db = new Database();
         if ($this->id == null)
         {
-            $req = 'INSERT INTO categories (account, title) VALUES (?, ?)';
-            $db->execute($req, array($this->account, $this->name));
+            $req = 'INSERT INTO stream_category (stream, category, streamType) VALUES (?, ?, ?)';
+            $db->execute($req, array($this->stream, $this->category, $this->streamType));
         }
         else
         {
-            $req = 'UPDATE categories SET account = ?, title = ? WHERE id = ?';
-            $db->execute($req, array($this->account, $this->name, $this->id));
+            $req = 'UPDATE stream_category SET stream = ?, category = ?, streamType = ? WHERE id = ?';
+            $db->execute($req, array($this->stream, $this->category, $this->streamType, $this->id));
         }
     }
 
@@ -60,17 +60,16 @@ class CategoryEntity extends Entity
     /**
      * @return mixed
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $title
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
     }
-
 }
