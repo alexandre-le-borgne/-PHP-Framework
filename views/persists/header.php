@@ -24,13 +24,14 @@
             ?>
             <a id="logo_home" href="<? View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="web/img/logo-aaron.png"></a>
             <form method="post" action="search">
-                <input class="search_bar" type="textarea" name="search" placeholder="Votre recherche...">
+                <img src="web/img/search_logo.png">
+                <input class="search_bar" type="textarea" name="search" placeholder="Recherchez sur Aaron">
                 <input type="submit" style="display: none">
             </form>
             <?php
             $this->render('forms/logoutForm');
             ?>
-            <a id="add_flux" href="<? View::getUrlFromRoute('addflux')?>"><img src="web/img/add_cat.png" width="30"></a>
+            <a id="add_flux" href="<? View::getUrlFromRoute('addflux')?>"><img src="web/img/add_cat.png" width="30">Ajouter une categorie !</a>
             <a id="profile" href="<? View::getUrlFromRoute('profil')?>">Profil</a>
         <?php
         } else {
