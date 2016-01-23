@@ -40,9 +40,7 @@ class ArticleModel extends Model
         if (is_numeric($user) && is_numeric($start) && is_numeric($len)) {
             $db = new Database();
             $req = "SELECT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category IN (SELECT id FROM categories WHERE account = ?) ORDER BY articleDate DESC LIMIT ?, ?";
-            var_dump($req);
             $data = $db->execute($req, array($user, $start, $len));
-            var_dump($data->queryString);
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
         }
