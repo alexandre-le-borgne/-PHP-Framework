@@ -9,11 +9,10 @@
 ?>
 
 <div id="categories">
-    <a class="item_cat" href="<? View::getUrlFromRoute('streamadd') ?>"><img id="add_cat" src="web/img/add_cat.png"></a>
-    <a class="item_cat" href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
-    <a class="item_cat" href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
-    <a class="item_cat" href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
-    <a class="item_cat" href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
-    <a class="item_cat" href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
-    <a class="item_cat" href="<? View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
+    <a class="item_cat" href="<?= View::getUrlFromRoute('categoryadd') ?>"><img id="add_cat" src="web/img/add_cat.png"></a>
+    <?php
+    /** @var CategoryEntity $category */
+    foreach($categories as $category): ?>
+        <a class="item_cat" href="<?= View::getUrlFromRoute('streamadd') ?>">Ajouter un flux</a>
+    <?php endforeach; ?>
 </div>

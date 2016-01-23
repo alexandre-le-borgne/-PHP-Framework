@@ -14,7 +14,12 @@ class IndexController extends Controller
         else {
             if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
             {
-                $this->render('layouts/home');
+                $this->loadModel('CategoryModel');
+                $this->loadModel('ArticleModel');
+                $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
+                $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 20);
+                $data = array('categories' => $categories, 'articles' => $articles);
+                $this->render('layouts/home', $data);
             }
             else
             {

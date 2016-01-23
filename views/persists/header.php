@@ -32,7 +32,7 @@ if (isset($mailValidationMessage))
                 <?php
             }
             ?>
-            <a id="logo_home" href="<? View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="<?= View::getAsset('img/logo-aaron.png') ?>"></a>
+            <a id="logo_home" href="<?= View::getUrlFromRoute('index') ?>"><img id="logo_aaron_home" src="<?= View::getAsset('img/logo-aaron.png') ?>"></a>
             <form method="post" action="<?= View::getUrlFromRoute('search') ?>">
                 <img src="<?= View::getAsset('img/search_logo.png') ?>">
                 <input class="search_bar" type="textarea" name="search" placeholder="Recherchez sur Aaron">
@@ -41,8 +41,8 @@ if (isset($mailValidationMessage))
             <?php
             $this->render('forms/logoutForm');
             ?>
-            <a id="add_flux" href="<? View::getUrlFromRoute('addflux')?>"><img src="<?= View::getAsset('img/add_cat.png') ?>" width="30"><p id="text_cat">Ajouter un flux !</p></a>
-            <a id="profile" href="<? View::getUrlFromRoute('profil')?>">Profil</a>
+            <a id="add_flux" href="<?= View::getUrlFromRoute('addflux')?>"><img src="<?= View::getAsset('img/add_cat.png') ?>" width="30"><p id="text_cat">Ajouter un flux !</p></a>
+            <a id="profile" href="<?= View::getUrlFromRoute('profil')?>">Profil</a>
         <?php
         } else {
             ?>
@@ -51,9 +51,9 @@ if (isset($mailValidationMessage))
                 <input type="submit" style="display: none">
             </form>
 
-            <a href="<? View::getUrlFromRoute('login') ?>">Se connecter</a>
+            <a href="<?= View::getUrlFromRoute('login') ?>">Se connecter</a>
             <br>
-            <a href="<? View::getUrlFromRoute('register') ?>"">S'enregistrer</a>
+            <a href="<?= View::getUrlFromRoute('register') ?>"">S'enregistrer</a>
             <br>
             <?php
         }

@@ -25,6 +25,29 @@ class ArticleModel extends Model
         return null;
     }
 
+    public function getByCategoryId($id) {
+        if (intval($id)) {
+            $db = new Database();
+            $data = $db->execute("SELECT * FROM article WHERE id IN (SELECT article FROM articles_category WHERE category = ?)", array($id));
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            return $data->fetchAll();
+        }
+        return null;
+    }
+
+    public function getArticlesByUserId($user, $start = 0, $len = 0)
+    {
+        if (intval($user) && intval($start) && intval($len)) {
+            $db = new Database();
+            $req = "SELECT * FROM article WHERE id IN (SELECT article FROM articles_category WHERE category IN (SELECT id FROM categories WHERE account = ?)) ORDER BY articleDate DESC LIMIT ?, ?";
+            $data = $db->execute($req, array($user, $start, $len));
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            return $data->fetchAll();
+        }
+        return null;
+    }
+
+
     /*public function addArticle($title, $content, $date, $type, $url){
         $db = new Database();
 
