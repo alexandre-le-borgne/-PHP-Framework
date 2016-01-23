@@ -4,12 +4,20 @@
  * User: maxbook
  * Date: 19/01/16
  * Time: 16:59
+ * Ceci est une vue, donc on peut utiliser $this->uneFonction()
+ * @var View $this
  */
 ?>
 
-<div id="conf_pwd">
-    <p>N'oubliez pas de valider votre inscription avec le mail que nous avons envoyé !</p>
-</div>
+<?php
+if (!($this->isGranted(Session::USER_HAS_ACTIVE_ACCOUNT)))
+{
+    ?>
+    <div id="conf_pwd">
+        <p>N'oubliez pas de valider votre inscription avec le mail que nous vous avons envoyé !</p>
+    </div>
+<?php } ?>
+
 <header>
     <nav>
         <?php

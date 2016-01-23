@@ -11,6 +11,7 @@ class Session
     const USER_IS_NOT_CONNECTED = 0;
     const USER_IS_CONNECTED = 1;
     const USER_IS_ADMIN = 2;
+    const USER_HAS_ACTIVE_ACCOUNT = 3;
 
     private static $instance;
 
@@ -44,16 +45,23 @@ class Session
         {
             $userModel = new UserModel();
             $user = $userModel->getById($id);
-            if ($user) {
-                if($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD) {
+            /** @var UserEntity $user */
+            if ($user)
+            {
+                if (!($user->getActive()))
+                    return false;
+                if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD)
+                {
                     $password = $this->get("password");
-                    if($password != null) {
+                    if ($password != null)
+                    {
                         $passwordModel = new PasswordModel();
                         $passwordEntity = $passwordModel->getByUser($user);
                         return $passwordEntity->getPassword() === $password;
                     }
                 }
-                else if($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                else if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL)
+                {
                     return true;
                 }
             }
@@ -64,19 +72,22 @@ class Session
     public function isGranted($role)
     {
         $session = Request::getInstance()->getSession();
+        $model = new UserModel();
         switch ($role)
         {
-            case Session::USER_IS_ADMIN:
+            case self::USER_HAS_ACTIVE_ACCOUNT:
+                $user = $model->getById(Request::getInstance()->get('id'));
+                return $user->getActive();
+            case self::USER_IS_ADMIN:
                 if ($session->isConnected())
                 {
-                    $model = new UserModel();
                     $user = $model->getById($session->get('id'));
                     return ($user->getAccountLevel() == UserModel::ACCOUNT_LEVEL_ADMIN);
                 }
                 break;
-            case Session::USER_IS_CONNECTED:
+            case self::USER_IS_CONNECTED:
                 return $session->isConnected();
-            case Session::USER_IS_NOT_CONNECTED:
+            case self::USER_IS_NOT_CONNECTED:
                 return true;
 
         }
@@ -88,8 +99,8 @@ class Session
      */
     public static function getInstance()
     {
-        if (!Session::$instance)
-            Session::$instance = new Session();
-        return Session::$instance;
+        if (!self::$instance)
+            self::$instance = new Session();
+        return self::$instance;
     }
 }
