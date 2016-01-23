@@ -271,11 +271,15 @@ body
     font-size: 10pt;
     border-radius: 2px;
     height: 500px;
-    padding: 12px;
     display: block;
     margin-top: 10px;
     border: 0px;
     box-sizing: border-box;
+}
+
+.author
+{
+    float: right;
 }
 
 .post_header
@@ -288,6 +292,8 @@ body
     font-size: 14pt;
     font-weight: 500;
 }
+
+
 
 .item_cat
 {
