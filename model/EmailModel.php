@@ -273,7 +273,7 @@ class EmailModel
 
     public function cron()
     {
-        echo "iso";
+        echo "iso2";
         $db = new Database();
         $result = $db->execute('SELECT * FROM stream_email');
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
