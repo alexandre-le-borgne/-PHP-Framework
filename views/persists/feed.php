@@ -46,10 +46,10 @@
                         $doc = new DOMDocument();
                         $doc->loadHTML($article->getContent());
 
-                        $tags = $doc->getElementsByTagName('img');
+                        $tags = $doc->getElementsByTagName('a');
 
                         foreach ($tags as $tag) {
-                            echo $tag->getAttribute('src');
+                            echo $tag->getAttribute('href');
                         }
                         preg_match('/<img[^>]+>/i', $article->getContent(), $result);
                         print_r($result);
