@@ -143,8 +143,8 @@ class TwitterController extends Controller
         // $tweet->extended_entities->media->type; = le type 'photo si photo'
         // $tweet->extended_entities->media->url; = l'url du tweet, du statut
         var_dump($tweet->extended_entities);
-        $href = $tweet->extended_entities->media->url;
-        $src = $tweet->extended_entities->media->media_url;
+        $href = $tweet->extended_entities->media[0]->url;
+        $src = $tweet->extended_entities->media[0]->media_url;
 
         echo '<br><a href="' . $href . '" target="_blank"><img src="' . $src . '"></a>';
         echo '<br/>#############################################################################<br/>';
