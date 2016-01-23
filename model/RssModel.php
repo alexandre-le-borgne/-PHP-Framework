@@ -82,15 +82,16 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id, $streamFirst, $minDate));
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
 
-            $verif = $result->fetchAll();
-            var_dump($verif);
+            if(!$verif = $result->fetchAll())
+            {
+                var_dump($verif);
 
 
                 foreach ($verif as $verifTest)
                 {
                     echo 'lel';
                     var_dump($verifTest);
-                //$req = "SELECT content FROM article WHERE stream_id = ?";
+                    //$req = "SELECT content FROM article WHERE stream_id = ?";
                     foreach ($x->channel->item as $item)
                     {
                         $cont = $verifTest->getTitle();
@@ -107,7 +108,7 @@ class RssModel extends Model implements StreamModel
                         }
                     }
                 }
-
+            }
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
             $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
