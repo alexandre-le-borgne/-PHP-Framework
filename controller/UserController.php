@@ -311,6 +311,7 @@ class UserController extends Controller
             $email = $data['email'];
             $realKey = $data['userKey'];
             $active = $data['active'];
+            die('t');
             if ($active == 1)
                 $this->render("forms/loginForm", array("errors" => "Votre compte est déjà actif"));
             else {
