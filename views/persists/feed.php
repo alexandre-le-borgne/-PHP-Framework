@@ -17,21 +17,36 @@
             ?>
 
             <div class="post">
-                <div class="post_header">
+                <?php
+                switch($article->getStreamType()) {
+                    case ArticleModel::EMAIL:
+                        $type = 'email';
+                        break;
+                    case ArticleModel::RSS:
+                        $type = 'rss';
+                        break;
+                    case ArticleModel::TWITTER:
+                        $type = 'twitter';
+                        break;
+                }
+                ?>
+                <div class="post_header_<?= $type ?>">
                     <?= $article->getTitle(); ?>
                     <span class="author">
                         <?php
 
                         switch($article->getStreamType()) {
                             case ArticleModel::EMAIL:
-                                echo 'Email';
+                                echo 'View::getAsset(\'img/mail.png\')';
                                 break;
                             case ArticleModel::RSS:
-                                echo 'RSS';
+                                echo 'View::getAsset(\'img/rss.png\')';
                                 break;
                             case ArticleModel::TWITTER:
-                                echo 'Twitter';
+                                echo 'View::getAsset(\'img/twitter.png\')';
                                 break;
+                            default:
+                                echo 'View::getAsset(\'img/default.png\')';
                         }
                         ?>
                     </span>
