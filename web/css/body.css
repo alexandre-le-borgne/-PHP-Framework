@@ -305,4 +305,9 @@ body
     top: 0;
     color: #fff;
 }
+#conf_pwd p
+{
+    font-size: 14pt;
+    vertical-align: center;
+}
 
