@@ -380,6 +380,8 @@ class UserController extends Controller
     }
 
     public function ForgotFormAction(Request $request){
+        echo 'pd';
+
         $email = $request->post('email');
 
         $this->loadModel('UserModel');
