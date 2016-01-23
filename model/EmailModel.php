@@ -331,7 +331,7 @@ class EmailModel
                 {
                     echo $article->getTitle()."<br><hr>";
                     echo $article->getContent();
-                    //$article->persist();
+                    $article->persist();
                 }
             }
         }
