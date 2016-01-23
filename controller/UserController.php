@@ -21,7 +21,7 @@ class UserController extends Controller
                 $this->loadModel('ArticleModel');
                 $categories = $this->categorymodel->getByUserId($userEntity->getId());
                 $articles = $this->articlemodel->getArticlesByUserId($userEntity->getId(), 0, 500);
-                $data = array('channel' => $channel, 'categories' => $categories, 'articles' => $articles);
+                $data = array('channel' => $userEntity->getUsername(), 'categories' => $categories, 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }
             else {
