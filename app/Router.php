@@ -14,9 +14,13 @@ class Router
         // Route(routename, controllername, actionname);
         $this->table[] = $this->getDefaultRoute();
 
+
+        //Exemple les layouts
+        $this->table[] = new Route('exemple',           'exemple',      'index');
+
+
         $this->table[] = new Route('cron',              'index',        'cron');
-        $this->table[] = new Route('rss',               'index',        'rss');
-        $this->table[] = new Route('ajouterflux',       'index',        'addStream');
+
 
         $this->table[] = new Route('login',             'user',         'login');
         $this->table[] = new Route('logout',            'user',         'logout');
@@ -28,11 +32,6 @@ class Router
         $this->table[] = new Route('forgotform',        'user',         'forgotform');
         $this->table[] = new Route('resetform',         'user',         'resetform');
 
-        $this->table[] = new Route('exemple',           'exemple',      'index');
-
-
-
-        $this->table[] = new Route('email',             'email',        'index');
 
         $this->table[] = new Route('admin',             'admin',        'index');
         $this->table[] = new Route('adminusers',        'admin',        'users');
@@ -45,8 +44,10 @@ class Router
 
 
         //Test
-        $this->table[] = new Route('twitter',           'twitter',  'twitter');
-
+        $this->table[] = new Route('twitter',           'twitter',      'twitter');
+        $this->table[] = new Route('rss',               'index',        'rss');
+        $this->table[] = new Route('ajouterflux',       'index',        'addStream');
+        $this->table[] = new Route('email',             'email',        'index');
     }
 
     public function getRoute($name)

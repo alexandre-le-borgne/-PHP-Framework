@@ -1,11 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Alexandre
  * Date: 23/01/2016
  * Time: 16:29
  */
-class CategoryEntity {
+class CategoryEntity
+{
     private $id, $account, $name;
 
     /**

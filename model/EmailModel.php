@@ -318,7 +318,7 @@ class EmailModel
                     $article->setTitle($structure->encoding."$$$".$subject . ' - ' . $this->decode_imap_text($overview[0]->from));
                     $article->setContent($this->getBody($overview[0]->uid, $stream));
                     $article->setArticleDate(date(Database::DATE_FORMAT, strtotime($overview[0]->date)));
-                    $article->setArticleType(ArticleModel::EMAIL);
+                    $article->setStreamType(ArticleModel::EMAIL);
                     $article->setStreamId($emailEntity->getId());
                     $article->setUrl('');
                     $articles[] = $article;
