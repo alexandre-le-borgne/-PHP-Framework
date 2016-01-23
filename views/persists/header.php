@@ -4,12 +4,20 @@
  * User: maxbook
  * Date: 19/01/16
  * Time: 16:59
+ * Ceci est une vue, donc on peut utiliser $this->uneFonction()
+ * @var View $this
  */
 ?>
 
-<div id="conf_pwd">
-    <p>N'oubliez pas de valider votre inscription avec le mail que nous avons envoyé !</p>
-</div>
+<?php
+if (!($this->isGranted(Session::USER_HAS_ACTIVE_ACCOUNT)))
+{
+    ?>
+    <div id="conf_pwd">
+        <p>N'oubliez pas de valider votre inscription avec le mail que nous vous avons envoyé !</p>
+    </div>
+<?php } ?>
+
 <header>
     <nav>
         <?php
@@ -31,7 +39,7 @@
             <?php
             $this->render('forms/logoutForm');
             ?>
-            <a id="add_flux" href="<? View::getUrlFromRoute('addflux')?>"><img src="web/img/add_cat.png" width="30">Ajouter une categorie !</a>
+            <a id="add_flux" href="<? View::getUrlFromRoute('addflux')?>"><img src="web/img/add_cat.png" width="30"><p id="text_cat">Ajouter un flux !</p></a>
             <a id="profile" href="<? View::getUrlFromRoute('profil')?>">Profil</a>
         <?php
         } else {

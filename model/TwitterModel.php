@@ -53,7 +53,13 @@ class TwitterModel extends Model implements StreamModel
         }
     }
 
-//    public function delStream
+    /**
+     * Fonction de suppression d'un flux, verifie d'abord que plus personne ne suit ce flux
+     */
+    public function deleteStream(TwitterEntity $twitterEntity)
+    {
+
+    }
 
 
     /******************************************   CRON   *******************************************************/

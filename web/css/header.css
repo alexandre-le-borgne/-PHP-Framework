@@ -70,6 +70,15 @@ header .search_bar:active, header .search_bar:focus {
     transition: 150ms width;
 }
 
+header form img
+{
+    width: 28px;
+    position: fixed;
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
 #add_flux:hover
 {
     width: 100px;
@@ -126,4 +135,11 @@ header .logout_button:hover
 {
     display: inline-block;
 }
+
+#text_cat
+{
+    display: none;
+}
+
+
 
