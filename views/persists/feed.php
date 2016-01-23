@@ -30,12 +30,18 @@
                         break;
                 }
                 ?>
-                <div id="post_twitter">
-                    <?= $article->getTitle(); ?>
-                </div>
-
-
-                <?= $article->getContent(); ?>
+                <?= $article->getTitle(); ?>
+                <hr>
+                <?php
+                if($article->getStreamType() == ArticleModel::TWITTER) {
+                    echo htmlentities($article->getContent());
+                    preg_match('#<a[^>]+>#', htmlentities($article->getContent()), $result);
+                    print_r($result);
+                }
+                else {
+                    echo $article->getContent();
+                }
+                ?>
             </div>
             <?php
         }
