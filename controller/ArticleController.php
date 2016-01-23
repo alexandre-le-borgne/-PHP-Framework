@@ -20,7 +20,7 @@ class ArticleController extends Controller
             $this->loadModel('ArticleModel');
             $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
             $articles = $this->articlemodel->getArticlesFavorisByUserId($request->getSession()->get('id'), 0, 50);
-            $data = array('categories' => $categories, 'articles' => $articles);
+            $data = array('title' => 'Mes favoris', 'categories' => $categories, 'articles' => $articles);
             $this->render('layouts/home', $data);
         }
     }

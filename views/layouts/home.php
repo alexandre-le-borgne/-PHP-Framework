@@ -7,11 +7,24 @@
  */
 $view->extend('layouts/layout');
 $this->render('persists/header');
+echo $this->output('_content');
 ?>
+    <h1>
+        <?php
+        if(isset($channel)) {
+            echo '<a href="'.View::getUrlFromRoute('channel/'.$channel).'">Blog de  '.$this->escape($channel).'</a>';
+        }
+        else {
+            echo $this->output('title', 'Mes actualités');
+        }
+        ?>
+    </h1>
     <div id="layout_connected">
         <?php
-        $this->render('persists/feed', array('articles' => $articles));
-        $this->render('persists/categories', array('categories' => $categories));
+        if(isset($articles))
+            $this->render('persists/feed', array('articles' => $articles));
+        if(isset($categories))
+            $this->render('persists/categories', array('categories' => $categories));
         ?>
     </div>
 <?php

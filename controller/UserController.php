@@ -8,6 +8,28 @@
  */
 class UserController extends Controller
 {
+    public function ChannelAction(Request $request, $channel) {
+        if(!$channel) {
+            $this->redirectToRoute('index');
+        }
+        else {
+            $this->loadModel('UserModel');
+            /** @var UserEntity $userEntity */
+            $userEntity = $this->usermodel->getByNameOrEmail($channel);
+            if($userEntity) {
+                $this->loadModel('CategoryModel');
+                $this->loadModel('ArticleModel');
+                $categories = $this->categorymodel->getByUserId($userEntity->getId());
+                $articles = $this->articlemodel->getArticlesByUserId($userEntity->getId(), 0, 500);
+                $data = array('channel' => $channel, 'categories' => $categories, 'articles' => $articles);
+                $this->render('layouts/home', $data);
+            }
+            else {
+                $this->render('layouts/error', array('error' => 'La chaîne n\'existe pas'));
+            }
+        }
+    }
+
     public function LoginAction(Request $request, $state)
     {
         if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))

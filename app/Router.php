@@ -31,6 +31,8 @@ class Router
         $this->table[] = new Route('google',            'user',         'google');
         $this->table[] = new Route('forgotform',        'user',         'forgotform');
         $this->table[] = new Route('resetform',         'user',         'resetform');
+        $this->table[] = new Route('channel',           'user',        'channel');
+
         $this->table[] = new Route('article',           'article',      'article');
 
         $this->table[] = new Route('admin',             'admin',        'index');
