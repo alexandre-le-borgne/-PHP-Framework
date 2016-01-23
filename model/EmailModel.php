@@ -33,6 +33,7 @@ class EmailModel
             $emailEntity->setPassword($password);
             $emailEntity->setPort($port);
             $emailEntity->persist();
+            return $emailEntity;
         }
     }
 

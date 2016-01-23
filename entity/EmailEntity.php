@@ -17,6 +17,7 @@ class EmailEntity extends Entity
         {
             $req = 'INSERT INTO stream_email (server, account, password, port, firstUpdate) VALUES (?, ?, ?, ?, ?)';
             $db->execute($req, array($this->server, $this->account, $this->password, $this->port, $this->firstUpdate));
+            $this->id = $db->lastInsertId();
         }
         else
         {

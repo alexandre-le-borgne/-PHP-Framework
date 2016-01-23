@@ -17,6 +17,7 @@ class ArticleEntity
         {
             $req = 'INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?, ?, ?, ?)';
             $db->execute($req, array($this->title, $this->content, $this->articleDate, $this->streamType, $this->url, $this->stream_id));
+            $this->id = $db->lastInsertId();
         }
         else
         {

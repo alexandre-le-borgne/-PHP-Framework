@@ -17,6 +17,7 @@ class StreamCategoryEntity extends Entity {
         {
             $req = 'INSERT INTO stream_category (stream, category, streamType) VALUES (?, ?, ?)';
             $db->execute($req, array($this->stream, $this->category, $this->streamType));
+            $this->id = $db->lastInsertId();
         }
         else
         {
