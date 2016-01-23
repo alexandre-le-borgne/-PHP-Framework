@@ -124,8 +124,9 @@ class UserModel extends Model
         $stmt = $result->fetch();
 
         $user = $stmt['username'];
+        var_dump($user);
         $key = $stmt['userKey'];
-
+        var_dump($key);
 
         Mail::sendForgottMail($email, $user, $key);
     }
