@@ -356,4 +356,16 @@ class UserController extends Controller
             $this->render("forms/loginForm", array("errors" => "Le compte n'existe pas."));
         }
     }
+
+    public function ForgotFormAction(Request $request){
+        $email = $request->post('email');
+
+        $this->loadModel('UserModel');
+
+        $this->usermodel->forgotPassword($email);
+    }
+
+    public function ResetMailAction(Request $request){
+        $this->usermodel->resetPassword($request->get('username'), $request->get('key'), $request->post('reset'));
+    }
 }

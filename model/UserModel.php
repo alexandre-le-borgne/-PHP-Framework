@@ -19,20 +19,22 @@ class UserModel extends Model
     const BAD_EMAIL_REGEX = 2;
     const CORRECT_EMAIL = 3;
 
-    public function getByNameOrEmail($nameOrEmail) {
+    public function getByNameOrEmail($nameOrEmail)
+    {
         $db = new Database();
         $data = $db->execute("SELECT * FROM accounts WHERE username = ? OR email = ?", array($nameOrEmail, $nameOrEmail));
-        $data->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'UserEntity');
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'UserEntity');
         $data = $data->fetch();
         return $data;
     }
 
     public function getById($id)
     {
-        if (intval($id)) {
+        if (intval($id))
+        {
             $db = new Database();
             $result = $db->execute("SELECT * FROM accounts WHERE id = ?", array($id));
-            $result->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'UserEntity');
+            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'UserEntity');
             return $result->fetch();
         }
         return null;
@@ -72,7 +74,8 @@ class UserModel extends Model
         return (6 <= strlen($password) && strlen($password) <= 20);
     }
 
-    public function addExternalUser($username, $email) {
+    public function addExternalUser($username, $email)
+    {
         $db = new Database();
         $db->execute("INSERT INTO accounts (username, email, authentification, active) VALUES (?, ?, "
             . UserModel::AUTHENTIFICATION_BY_EXTERNAL . ", 1)", array($username, $email));
@@ -109,5 +112,44 @@ class UserModel extends Model
         $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
 
         Mail::sendVerificationMail($username, $email, $key);
+    }
+
+
+    public function forgotPassword($email)
+    {
+        $db = new Database();
+        $req = "Select * From accounts WHERE email = ?";
+        $result = $db->execute($req, array($email));
+
+        if($stmt = $result->fetch()){
+            $user = $stmt['username'];
+            $key = $stmt['userKey'];
+        }
+
+        Mail::sendForgottMail($email, $user, $key);
+    }
+
+    public function resetPassword($user, $key, $password){
+        $db = new Database();
+
+        $user = Security::escape($user);
+        $oldKey = Security::escape($key);
+        $password = Security::escape($password);
+
+        $req = "Select * From accounts WHERE username = ? AND userKey = ?";
+        $result = $db->execute($req, array($user, $oldKey));
+
+        while($stmt = $result->fetch()){
+            $key = Security::generateKey();
+            $password = Security::encode($password);
+
+            $data = $this->getByNameOrEmail($user);
+
+            $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
+            $db->execute($req, array($key, $data['id']));
+
+            $req = "UPDATE passwords SET password = ? WHERE user = ?";
+            $db->execute($req, array($password, $data['id']));
+        }
     }
 }
