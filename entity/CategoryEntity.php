@@ -10,6 +10,21 @@ class CategoryEntity
 {
     private $id, $account, $name;
 
+    public function persist()
+    {
+        $db = new Database();
+        if ($this->id == null)
+        {
+            $req = 'INSERT INTO categories (account, title) VALUES (?, ?)';
+            $db->execute($req, array($this->account, $this->name));
+        }
+        else
+        {
+            $req = 'UPDATE categories SET account = ?, title = ? WHERE id = ?';
+            $db->execute($req, array($this->account, $this->name));
+        }
+    }
+
     /**
      * @return mixed
      */
