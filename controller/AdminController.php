@@ -42,7 +42,7 @@ class AdminController extends Controller
         if ($id)
         {
             $this->adminmodel->deleteUser($id);
-            $this->redirectToRoute('layouts/admin/manageUsers/deleted' . self::DELETED_OK);
+            $this->redirectToRoute('layouts/admin/manageUsers/' . self::DELETED_OK);
         }
         else
             $this->redirectToRoute('layouts/admin/manageUsers/' . self::ERROR_NO_USER);
