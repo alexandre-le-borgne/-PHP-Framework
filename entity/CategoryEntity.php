@@ -17,6 +17,7 @@ class CategoryEntity extends Entity
         {
             $req = 'INSERT INTO categories (account, title) VALUES (?, ?)';
             $db->execute($req, array($this->account, $this->name));
+            $this->id = $db->lastInsertId();
         }
         else
         {
