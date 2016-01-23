@@ -59,12 +59,14 @@ if (isset($mailValidationMessage))
         }
         ?>
     </nav>
+    <div class="webui-popover-content">
+        hgiuhvivivliyvulyv
+    </div>
 </header>
 
 <script>
     $(function() {
         $('#add_flux').webuiPopover({
-        url:'<?= View::getUrlFromRoute('ajouterFlux') ?>',
         width:300,
         height:200,
         placement:'bottom',
