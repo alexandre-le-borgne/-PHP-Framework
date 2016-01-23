@@ -270,7 +270,6 @@ body
     color: white;
     font-size: 10pt;
     border-radius: 2px;
-    height: 500px;
     display: block;
     margin-top: 10px;
     border: 0px;
@@ -289,12 +288,13 @@ body
 
 .post_content img
 {
-    width: 100%;
+    width: 25%;
     display: block;
 }
 
 .post_header
 {
+
     line-height: 40px;
     padding: 13px;
     background: #56bc8a;
