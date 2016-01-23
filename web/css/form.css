@@ -76,14 +76,14 @@ input[type="image"]
 {
     padding: 8px 12px 8px 12px;
     background: #d95e40 !important;
-    transition: background 200ms;
+    transition: 150ms background;
 }
 
 input[type="image"]:hover
 {
     padding: 8px 12px 8px 12px;
     background: #d95e40 !important;
-    transition: background 200ms;
+    transition: 150ms background;
 }
 
 input[type="submit"], input[type="image"]
