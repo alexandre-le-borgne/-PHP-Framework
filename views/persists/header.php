@@ -36,7 +36,7 @@
         } else {
             ?>
             <form method="post" action="search">
-                <input type="textarea" name="search" placeholder="Votre recherche...">
+                <input type="textarea" name="search" placeholder="Recherchez sur Aaron">
                 <input type="submit" style="display: none">
             </form>
 
