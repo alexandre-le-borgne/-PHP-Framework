@@ -11,7 +11,7 @@ class Session
     const USER_IS_NOT_CONNECTED = 0;
     const USER_IS_CONNECTED = 1;
     const USER_IS_ADMIN = 2;
-    const USER_HAS_ACTIVE_ACCOUNT = 3;
+    const USER_IS_INACTIVE = 3;
 
     private static $instance;
 
@@ -75,10 +75,10 @@ class Session
         $model = new UserModel();
         switch ($role)
         {
-            case self::USER_HAS_ACTIVE_ACCOUNT:
+            case self::USER_IS_INACTIVE:
                 $user = $model->getById($session->getInstance()->get('id'));
                 if ($user)
-                    return $user->getActive();
+                    return !$user->getActive();
                 break;
             case self::USER_IS_ADMIN:
                 if ($session->isConnected())
