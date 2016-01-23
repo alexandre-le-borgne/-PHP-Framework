@@ -8,7 +8,7 @@
  */
 class CategoryEntity extends Entity
 {
-    private $id, $account, $name;
+    private $id, $account, $title;
 
     public function persist()
     {
@@ -60,17 +60,17 @@ class CategoryEntity extends Entity
     /**
      * @return mixed
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $title
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
 }
