@@ -9,7 +9,7 @@
 ?>
 
 <div id="categories">
-    <div class="item_cat"><img id="add_cat" src="web/img/add_cat.png"></div>
+    <div class="item_cat"><img id="add_cat" src="<?= View::getAsset('img/add_cat.png') ?>"></div>
     <a href="<?= View::getUrlFromRoute('favoris') ?>" class="item_cat"">Mes favoris</a>
     <?php
     /** @var CategoryEntity $category */
