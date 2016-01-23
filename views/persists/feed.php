@@ -8,16 +8,27 @@
 ?>
 
 <div id="feed">
-    <div class="post">
-        iwebqfiboewq
-    </div>
-    <div class="post">
-        iwebqfiboewq
-    </div>
-    <div class="post">
-        iwebqfiboewq
-    </div>
-    <div class="post">
-        iwebqfiboewq
-    </div>
+    <?php
+    if(!empty($articles))
+    {
+        /** @var ArticleEntity $article */
+        foreach ($articles as $article)
+        {
+            ?>
+            <div class="post">
+                <?php
+
+                switch($article->getStreamType()) {
+                    case ArticleModel::EMAIL:
+                        break;
+                }
+                ?>
+                <?= $article->getTitle(); ?>
+                <hr>
+                <?= $article->getContent(); ?>
+            </div>
+            <?php
+        }
+    }
+    ?>
 </div>

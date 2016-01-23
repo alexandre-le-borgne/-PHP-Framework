@@ -9,7 +9,7 @@
 ?>
 
 <div id="categories">
-    <a class="item_cat" href="<?= View::getUrlFromRoute('categoryadd') ?>"><img id="add_cat" src="web/img/add_cat.png"></a>
+    <img id="add_cat" src="web/img/add_cat.png">
     <?php
     /** @var CategoryEntity $category */
     if(!empty($categories)) {
