@@ -60,7 +60,7 @@ if (isset($mailValidationMessage))
         ?>
     </nav>
     <div class="webui-popover-content">
-        hgiuhvivivliyvulyv
+
     </div>
 </header>
 
