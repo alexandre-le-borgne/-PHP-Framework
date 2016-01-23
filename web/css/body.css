@@ -244,16 +244,17 @@ body
 {
     position: fixed;
     width: 251px;
-    margin-right: 32px;
-    height: 520px;
+    height: 220px;
     float: left;
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
+    -moz-column-count: 2;
     column-count: 2;
-
-    -webkit-column-gap: 10px; /* Chrome, Safari, Opera */
-    -moz-column-gap: 10px; /* Firefox */
+    -moz-column-gap: 10px;
     column-gap: 10px;
+    width: 330px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
 
 #add_cat
@@ -340,11 +341,13 @@ body
     font-size: 10pt;
     border-radius: 2px;
     height: 120px;
-    padding: 11px 10px 11px 13px;
+    padding: 11px;
     display: block;
     margin-top: 10px;
     border: 0px;
-    box-sizing: border-box;
+    display: inline-block;
+    margin-left: 1em;
+    float: inherit;
 }
 
 #conf_pwd

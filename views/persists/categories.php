@@ -9,19 +9,28 @@
 ?>
 
 <div id="categories">
-    <div class="item_cat""><img id="add_cat" src="web/img/add_cat.png"></div>
-    <a href="<?= View::getUrlFromRoute('favoris') ?>" class="item_cat"">Mes favoris</div>
-    <?php
-    /** @var CategoryEntity $category */
-    if(!empty($categories)) {
-        foreach($categories as $category)
-        {
-            ?>
-            <a class="item_cat" href="<?= View::getUrlFromRoute('category/'.$category->getId()) ?>">
-                <?= $category->getTitle() ?>
-            </a>
-            <?php
-        }
+    <div class="item_cat"
+    "><img id="add_cat" src="web/img/add_cat.png"></div>
+<a href="<?= View::getUrlFromRoute('favoris') ?>" class="item_cat"">Mes favoris</div>
+<?php
+/** @var CategoryEntity $category */
+if (!empty($categories))
+{
+    foreach ($categories as $category)
+    {
+        ?>
+        <a class="item_cat" href="<?= View::getUrlFromRoute('category/' . $category->getId()) ?>">
+            <?= $category->getTitle() ?>
+        </a>
+        <?php
     }
-    ?>
+}
+?>
 </div>
+<script>
+    (function ($) {
+        $(window).load(function () {
+            $("#categories").mCustomScrollbar();
+        });
+    })(jQuery);
+</script>
