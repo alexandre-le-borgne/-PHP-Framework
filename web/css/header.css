@@ -69,6 +69,12 @@ header .search_bar:active, header .search_bar:focus {
     background: #529ecc !important;
 }
 
+#add_flux:hover
+{
+    width: 100px;
+}
+
+
 header #logo_txt
 {
     width: 100px;
