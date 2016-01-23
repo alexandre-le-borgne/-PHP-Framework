@@ -238,6 +238,6 @@ class TwitterModel extends Model implements StreamModel
     private function getImageLink($tweet)
     {
         $imageLink = '';
-        if ($tweet->)
+//        if ($tweet->)
     }
 }
