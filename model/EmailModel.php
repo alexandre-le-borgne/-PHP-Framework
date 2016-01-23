@@ -164,9 +164,9 @@ class EmailModel
                     case 4:
                         return imap_qprint($text);
                     case 0:
-                        return imap_qprint($text);
+                        return quoted_printable_decode($text);
                     case 1:
-                        return utf8_encode($text);
+                        return imap_utf8($text);
                     default:
                         return $text;
                 }
