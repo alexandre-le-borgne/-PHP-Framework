@@ -17,13 +17,15 @@ class Database
     // Exécute une requête SQL éventuellement paramétrée
     public function execute($sql, $params = null)
     {
+        echo $sql."<br><hr><br>";
+        var_dump($params);
+
         if ($params == null) {
             $resultat = $this->getBdd()->query($sql);    // exécution directe
         } else {
             if(!is_array($params)) throw new Exception("Paramètres innatendus : " . var_dump($params));
             try {
                 $resultat = $this->getBdd()->prepare($sql);  // requête préparée
-                var_dump($params);
 
                 $resultat->execute($params);
             } catch (PDOException $e) {
