@@ -394,7 +394,7 @@ class UserController extends Controller
     }
 
     public function ResetformAction(){
-        $this->render('/forms/resetform');
+        $this->render('/forms/resetForm');
     }
 
     public function ResetMailAction(Request $request){
