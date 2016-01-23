@@ -10,13 +10,15 @@
 ?>
 
 <?php
-if (!($this->isGranted(Session::USER_HAS_ACTIVE_ACCOUNT)))
+if (isset($mailValidationMessage))
 {
     ?>
     <div id="conf_pwd">
-        <p>N'oubliez pas de valider votre inscription avec le mail que nous vous avons envoyé !</p>
+        <p><?= $mailValidationMessage ?></p>
     </div>
-<?php } ?>
+    <?php
+}
+?>
 
 <header>
     <nav>

@@ -10,9 +10,12 @@ class UserController extends Controller
 {
     public function LoginAction(Request $request, $state)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        {
             $this->redirectToRoute('index');
-        } else {
+        }
+        else
+        {
             $this->loadModel('UserModel');
             $this->loadModel('PasswordModel');
 
@@ -20,24 +23,39 @@ class UserController extends Controller
             $login = $request->post('login');
             $password = $request->post('password');
             $error = '';
-            if ($login && $password) {
-                $userEntity = $this->usermodel->getByNameOrEmail($login);
-                if ($userEntity) {
-                    if ($userEntity->getAuthentification() == 0) {
-                        $passwordEntity = $this->passwordmodel->getByUser($userEntity);
-                        if (Security::equals($passwordEntity->getPassword(), $password)) {
-                            $request->getSession()->set("id", $userEntity->getId());
-                            $request->getSession()->set("password", $passwordEntity->getPassword());
-                            $this->redirectToRoute('index');
-                            return;
+            if ($login && $password)
+            {
+                //Si l'utilisateur n'a pas active son compte
+                if (!$request->getSession()->isGranted(Session::USER_HAS_ACTIVE_ACCOUNT))
+                {
+                    $error = 'Veuillez activer votre compte avec le mail que nous vous avons envoyé !';
+                }
+                else
+                {
+                    $userEntity = $this->usermodel->getByNameOrEmail($login);
+                    if ($userEntity)
+                    {
+                        if ($userEntity->getAuthentification() == 0)
+                        {
+                            $passwordEntity = $this->passwordmodel->getByUser($userEntity);
+                            if (Security::equals($passwordEntity->getPassword(), $password))
+                            {
+                                $request->getSession()->set("id", $userEntity->getId());
+                                $request->getSession()->set("password", $passwordEntity->getPassword());
+                                $this->redirectToRoute('index');
+                                return;
+                            }
+                            $error = "Votre mot de passe est incorrect !";
                         }
-                        $error = "Votre mot de passe est incorrect !";
+                        else
+                        {
+                            $error = 'Vous devez utilisez Facebook ou Google pour vous connecter !';
+                        }
                     }
-                    else {
-                        $error = 'Vous devez utilisez Facebook ou Google pour vous connecter !';
+                    else
+                    {
+                        $error = 'Oups ! Votre compte est inexistant !';
                     }
-                } else {
-                    $error = 'Oups ! Votre compte est inexistant !';
                 }
             }
             $this->render('forms/loginForm', array('errors' => $error));
@@ -302,7 +320,7 @@ class UserController extends Controller
         echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
     }
 
-    public function MailValidationAction($user, $key)
+    public function MailValidationAction(Request $request, $user, $key)
     {
         $db = new Database();
         $req = "Select email, userKey, active From accounts Where username = ?";
@@ -318,11 +336,15 @@ class UserController extends Controller
             }
             else {
                 if ($key == $realKey) {
-                    //$this->redirectToRoute('index', array('actif'));
-                    $this->render("forms/loginForm", array("errors" => "Votre compte a bien été activé"));
                     $req = "Update accounts Set active = 1 Where username = ?";
                     $db->execute($req, array($user));
                     Mail::sendWelcomingMail($email);
+                    //$this->redirectToRoute('index', array('actif'));
+                    $this->loadModel('UserModel');
+                    if($this->usermodel->getById($request->getSession()->get('id')))
+                        $this->render('layouts/home', array("mailValidationMessage" => "Votre compte a bien été activé"));
+                    else
+                        $this->render("forms/loginForm", array("errors" => "Votre compte a bien été activé"));
                 }
                 else
                 {
