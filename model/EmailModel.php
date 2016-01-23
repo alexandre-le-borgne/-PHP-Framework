@@ -330,7 +330,7 @@ class EmailModel
                     || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate()))
                 {
                     echo $article->getTitle()."<br><hr>";
-                    echo mb_detect_encoding($article->getContent());
+                    echo mb_detect_encoding($article->getContent())."<br>".$article->getContent()."<br>";
                     //$article->persist();
                 }
             }
