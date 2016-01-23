@@ -36,31 +36,4 @@ $this->render('persists/header');
     </div>
 </div>
 
-<script>
-    $(function() {
-        $('#add_flux').webuiPopover({width:300,height:200,placement:'bottom',trigger:'click', animation:'pop'});
 
-        $('.flux_twitter').show();
-        $('.flux_rss').hide();
-        $('.flux_imap').hide();
-
-        $('#twitter_button').click(function()
-        {
-            $('.flux_twitter').show();
-            $('.flux_rss').hide();
-            $('.flux_imap').hide();
-        });
-        $('#RSS_button').click(function()
-        {
-            $('.flux_twitter').hide();
-            $('.flux_rss').show();
-            $('.flux_imap').hide();
-        });
-        $('#IMAP_button').click(function()
-        {
-            $('.flux_twitter').hide();
-            $('.flux_rss').hide();
-            $('.flux_imap').show();
-        });
-    });
-</script>
