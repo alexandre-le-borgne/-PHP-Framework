@@ -332,6 +332,7 @@ class UserController extends Controller
             {
                 //$this->redirectToRoute('index', array('alreadyactif'));
                 $this->render("forms/loginForm", array("errors" => "Votre compte est déjà actif"));
+                return;
             }
             else {
                 if ($key == $realKey) {
@@ -352,6 +353,9 @@ class UserController extends Controller
                 }
             }
         }
-        $this->render("forms/loginForm", array("errors" => "Le compte n'existe pas."));
+        else
+        {
+            $this->render("forms/loginForm", array("errors" => "Le compte n'existe pas."));
+        }
     }
 }
