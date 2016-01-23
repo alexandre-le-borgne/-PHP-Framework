@@ -14,7 +14,7 @@ class IndexController extends Controller
         else {
             if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
             {
-                $this->render('layouts/home', array('home' => 'Connecté'));
+                $this->render('layouts/home');
             }
             else
             {
