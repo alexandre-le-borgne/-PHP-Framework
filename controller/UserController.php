@@ -302,7 +302,7 @@ class UserController extends Controller
         echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
     }
 
-    public function MailValidationAction($user, $key)
+    public function MailValidationAction(Request $request, $user, $key)
     {
         $db = new Database();
         $req = "Select email, userKey, active From accounts Where username = ?";
@@ -318,11 +318,15 @@ class UserController extends Controller
             }
             else {
                 if ($key == $realKey) {
-                    //$this->redirectToRoute('index', array('actif'));
-                    $this->render('layouts/home', array("mailValidationMessage" => "Votre compte a bien été activé"));
                     $req = "Update accounts Set active = 1 Where username = ?";
                     $db->execute($req, array($user));
                     Mail::sendWelcomingMail($email);
+                    //$this->redirectToRoute('index', array('actif'));
+                    $this->loadModel('UserModel');
+                    if($this->usermodel->getById($request->getSession()->get('id')))
+                        $this->render('layouts/home', array("mailValidationMessage" => "Votre compte a bien été activé"));
+                    else
+                        $this->render("forms/loginForm", array("errors" => "Votre compte a bien été activé"));
                 }
                 else
                 {
