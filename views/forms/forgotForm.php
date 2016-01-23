@@ -12,7 +12,7 @@
     <h2><strong>Retrouvez votre mot de passe !</strong></h2>
 
     <!--FORGOT PWD FORM-->
-    <form class="form-horizontal" method="post" name="register" action="<?= View::getUrlFromRoute('pwdForgot') ?>">
+    <form class="form-horizontal" method="post" name="register" action="<?= View::getUrlFromRoute('pwdforgot') ?>">
         <!--E-MAIL-->
         <div class="control-group">
             <div class="controls">
