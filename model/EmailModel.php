@@ -273,7 +273,7 @@ class EmailModel
 
     public function cron()
     {
-        echo "iso2";
+        echo "iso3";
         $db = new Database();
         $result = $db->execute('SELECT * FROM stream_email');
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
@@ -307,7 +307,7 @@ class EmailModel
                             $body = imap_qprint(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
                             break;
                         case 0:
-                            $body = quoted_printable_decode(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
+                            $body = utf8_encode(quoted_printable_decode(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1)));
                             break;
                         default:
                             $body = imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1);
