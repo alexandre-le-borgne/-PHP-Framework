@@ -40,6 +40,8 @@ class ArticleModel extends Model
         if (intval($user) && intval($start) && intval($len)) {
             $db = new Database();
             $req = "SELECT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category IN (SELECT id FROM categories WHERE account = ?) ORDER BY articleDate DESC LIMIT ?, ?";
+            var_dump($req);
+            die();
             $data = $db->execute($req, array($user, $start, $len));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
