@@ -352,5 +352,6 @@ class UserController extends Controller
                 }
             }
         }
+        $this->render("forms/loginForm", array("errors" => "Le compte n'existe pas."));
     }
 }
