@@ -52,11 +52,11 @@ header .search_bar:active, header .search_bar:focus {
     width: 200px;
     color: white;
     font-size: 10pt;
-    border-radius: 2px;
-    height: 42px;
-    padding: 11px 10px 11px 13px;
+    text-align: center;
+    border-radius: 3px;
+    padding: 11px 10px 11px 10px;
     display: block;
-    margin-top: 7px !important;
+    margin-top: 10px !important;
     border: 0px;
     box-sizing: border-box;
     float: right;
