@@ -23,6 +23,6 @@
 <!-- This following line is only necessary in the case of using the plugin option `scrollOverflow:true` -->
 <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/vendors/jquery.slimscroll.min.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('inc/fullPage/jquery.fullPage.js') ?>"></script>
-<script type="text/javascript" src="<?= View::getAsset('inc/jquery-ui/jquery-ui.min.js.js') ?>"></script>
+<script type="text/javascript" src="<?= View::getAsset('inc/jquery-ui/jquery-ui.min.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('js/slide.js') ?>"></script>
 <script type="text/javascript" src="<?= View::getAsset('js/script.js') ?>"></script>
