@@ -11,7 +11,7 @@ class CategoryModel extends Model {
     {
         if (intval($id)) {
             $db = new Database();
-            $data = $db->execute("SELECT * FROM article WHERE id = ?", array($id));
+            $data = $db->execute("SELECT * FROM category WHERE id = ?", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'CategoryModel');
             return $data->fetch();
         }
@@ -22,7 +22,7 @@ class CategoryModel extends Model {
     {
         if (intval($id)) {
             $db = new Database();
-            $data = $db->execute("SELECT * FROM article WHERE account = ?", array($id));
+            $data = $db->execute("SELECT * FROM category WHERE account = ?", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'CategoryModel');
             return $data->fetch();
         }
