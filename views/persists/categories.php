@@ -9,7 +9,7 @@
 ?>
 
 <div id="categories">
-    <img id="add_cat" src="web/img/add_cat.png">
+    <div class="item_cat""><img id="add_cat" src="web/img/add_cat.png"></div>
     <?php
     /** @var CategoryEntity $category */
     if(!empty($categories)) {
