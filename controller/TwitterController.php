@@ -147,7 +147,10 @@ class TwitterController extends Controller
         // $tweet->extended_entities->media->url; = l'url du tweet, du statut
         //
 
-        echo '<br><a href="' . $tweet->extended_entities->media->url . '" target="_blank"><img src="' . $tweet->extended_entities->media->media_url . '"></a>';
+        $href = $tweet->extended_entities->media->url;
+        $src = $tweet->extended_entities->media->media_url;
+
+        echo '<br><a href="' . $href . '" target="_blank"><img src="' . $src . '"></a>';
         echo '<br/>#############################################################################<br/>';
 
     }
