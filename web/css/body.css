@@ -278,6 +278,17 @@ body
     box-sizing: border-box;
 }
 
+.post_header
+{
+    line-height: 40px;
+    padding: 13px;
+    background: #56bc8a;
+    box-sizing: border-box;
+    border-radius: 3px 3px 0px 0px;
+    font-size: 14pt;
+    font-weight: 500;
+}
+
 .item_cat
 {
     cursor: pointer;

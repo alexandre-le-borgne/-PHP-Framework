@@ -15,27 +15,26 @@
         foreach ($articles as $article)
         {
             ?>
-            <div id="author">
-                AUTHOR :
-                <?php
 
-                switch($article->getStreamType()) {
-                    case ArticleModel::EMAIL:
-                        echo 'Email';
-                        break;
-                    case ArticleModel::RSS:
-                        echo 'RSS';
-                        break;
-                    case ArticleModel::TWITTER:
-                        echo 'Twitter';
-                        break;
-                }
-                ?>
-            </div>
             <div class="post">
-                <div id="post_header">
-                    HEADER :
+                <div class="post_header">
                     <?= $article->getTitle(); ?>
+                    <span id="author">
+                        <?php
+
+                        switch($article->getStreamType()) {
+                            case ArticleModel::EMAIL:
+                                echo 'Email';
+                                break;
+                            case ArticleModel::RSS:
+                                echo 'RSS';
+                                break;
+                            case ArticleModel::TWITTER:
+                                echo 'Twitter';
+                                break;
+                        }
+                        ?>
+                    </span>
                 </div>
 
                 <div id="post_content">
