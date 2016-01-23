@@ -319,7 +319,7 @@ class UserController extends Controller
             else {
                 if ($key == $realKey) {
                     //$this->redirectToRoute('index', array('actif'));
-                    $this->render("forms/loginForm", array("errors" => "Votre compte a bien été activé"));
+                    $this->render('layouts/home', array("mailValidationMessage" => "Votre compte a bien été activé"));
                     $req = "Update accounts Set active = 1 Where username = ?";
                     $db->execute($req, array($user));
                     Mail::sendWelcomingMail($email);
