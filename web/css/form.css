@@ -72,13 +72,6 @@ hr
     box-sizing: border-box;
 }
 
-input[type="image"]
-{
-    padding: 7px 12px 6px 12px;
-    background: #2f3d51 !important;
-    transition: 150ms background;
-}
-
 input[type="image"]:hover
 {
     background: #d95e40 !important;

@@ -70,7 +70,17 @@ header #logo_txt
 
 header .logout_button
 {
-    vertical-align: middle;
+    padding: 7px 12px 6px 12px;
+    background: #2f3d51 !important;
+    transition: 150ms background;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+header .logout_button:hover
+{
+    background: #d95e40 !important;
+    transition: 150ms background;
 }
 
 #home_logo
