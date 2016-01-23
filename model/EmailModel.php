@@ -164,7 +164,7 @@ class EmailModel
                     case 4:
                         return imap_qprint($text);
                     case 0:
-                        return utf8_encode(quoted_printable_decode($text));
+                        return quoted_printable_decode($text);
                     case 1:
                         return utf8_encode($text);
                     default:
@@ -273,7 +273,6 @@ class EmailModel
 
     public function cron()
     {
-        echo "iso3";
         $db = new Database();
         $result = $db->execute('SELECT * FROM stream_email');
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
@@ -307,7 +306,7 @@ class EmailModel
                             $body = imap_qprint(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
                             break;
                         case 0:
-                            $body = utf8_encode(quoted_printable_decode(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1)));
+                            $body = quoted_printable_decode(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
                             break;
                         default:
                             $body = imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1);
@@ -331,8 +330,8 @@ class EmailModel
                     || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate()))
                 {
                     echo $article->getTitle()."<br><hr>";
-                    echo $article->getContent();
-                    $article->persist();
+                    echo mb_detect_encoding($article->getContent());
+                    //$article->persist();
                 }
             }
         }
