@@ -93,7 +93,7 @@ class UserModel extends Model
 
         $id = $db->lastInsertId();
 
-        $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
+        $db->execute("INSERT INTO passwords (account, password) VALUES (?, ?)", array($id, $password));
 
         Mail::sendVerificationMail($username, $email, $key);
     }
@@ -109,7 +109,7 @@ class UserModel extends Model
 
         $id = $db->lastInsertId();
 
-        $db->execute("INSERT INTO passwords (user, password) VALUES (?, ?)", array($id, $password));
+        $db->execute("INSERT INTO passwords (account, password) VALUES (?, ?)", array($id, $password));
 
         Mail::sendVerificationMail($username, $email, $key);
     }
@@ -148,7 +148,7 @@ class UserModel extends Model
             $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
             $db->execute($req, array($key, $data['id']));
 
-            $req = "UPDATE passwords SET password = ? WHERE user = ?";
+            $req = "UPDATE passwords SET password = ? WHERE account = ?";
             $db->execute($req, array($password, $data['id']));
         }
     }

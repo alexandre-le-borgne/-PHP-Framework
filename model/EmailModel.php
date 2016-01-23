@@ -17,6 +17,25 @@ class EmailModel
     private $pass = 'SylverCrest';
     private $port = 993;
 
+    public function createEmailStream($server, $account, $password, $port) {
+        $db = new Database();
+        $data = array();
+        $data = $db->execute("SELECT * FROM stream_email WHERE server = ? AND account = ? AND password = ? AND port = ?", $data);
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
+        $emailEntity = $data->fetch();
+        if($emailEntity) {
+            return $emailEntity;
+        }
+        else {
+            $emailEntity = new EmailEntity();
+            $emailEntity->setServer($server);
+            $emailEntity->setAccount($account);
+            $emailEntity->setPassword($password);
+            $emailEntity->setPort($port);
+            $emailEntity->persist();
+        }
+    }
+
     public function getStreamById($id)
     {
         if (intval($id)) {
@@ -274,7 +293,6 @@ class EmailModel
 
     public function cron()
     {
-        echo "AAA";
         $db = new Database();
         $result = $db->execute('SELECT * FROM stream_email');
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
@@ -285,7 +303,7 @@ class EmailModel
         {
             $firstEmail = $this->getFirstArticle($emailEntity);
             $lastEmail = $this->getLastArticle($emailEntity);
-            $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getUser(), $emailEntity->getPassword());
+            $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getAccount(), $emailEntity->getPassword());
             $stream = $connection['conn'];
             $date = date ("d M Y", strtotime($emailEntity->getFirstUpdate()));
             $emails = imap_search($stream, 'SINCE "' .$date .'"');

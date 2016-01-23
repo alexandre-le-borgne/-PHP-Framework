@@ -23,9 +23,15 @@ class EmailController extends Controller
 
     function addEmailStreamAction(Request $request)
     {
-        $channel = $request->post('channel');
-        $firstUpdate = $request->get('firstUpdate');
+        $server = $request->post('server');
+        $account = $request->post('user');
+        $password = $request->post('password');
+        $port = $request->post('port');
         $userId = $request->getSession()->get('id');
+        $this->loadModel('EmailModel');
+        $emailentity = $this->emailmodel->createEmailStream($server, $account, $password, $port);
+
+
         $categoryTitle = $request->post('category');
 
         if (!($channel && $firstUpdate && $categoryTitle))
