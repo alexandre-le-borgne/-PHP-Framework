@@ -330,9 +330,7 @@ class UserController extends Controller
             $active = $data['active'];
             if ($active == 1)
             {
-                //$this->redirectToRoute('index', array('alreadyactif'));
                 $this->render("forms/loginForm", array("errors" => "Votre compte est déjà actif"));
-                return;
             }
             else {
                 if ($key == $realKey) {

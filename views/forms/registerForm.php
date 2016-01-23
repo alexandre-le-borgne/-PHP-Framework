@@ -22,7 +22,7 @@ $view->extend('layouts/fullpage');
         <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
         <!--SIGN UP FORM-->
-        <form method="post" action="register">
+        <form method="post" action="<?= View::getUrlFromRoute('register') ?>">
             <input class="first" type="text" name="username" placeholder="Pseudonyme" required>
             <input type="email" name="email" placeholder="Email" required pattern="*@-.-">
             <input type="password" name="password" placeholder="Mot de passe" required>

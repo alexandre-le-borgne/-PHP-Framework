@@ -75,6 +75,7 @@ class View
         self::$instance->render($view, $data);
     }
 
+
     public static function getAsset($asset)
     {
         return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . "://" . $_SERVER['SERVER_NAME'] . '/aaron/web/' . $asset;

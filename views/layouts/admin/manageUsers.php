@@ -30,7 +30,7 @@ foreach ($users as $user):
     echo "<td>" . $user->getUsername() . "</td>";
     ?>
     <td>
-        <form action="deleteuser" method="post">
+        <form action="<?= View::getUrlFromRoute('deleteuser') ?>" method="post">
             <input type="hidden" name="id" value="<?php echo $user->getId(); ?>">
             <input type="submit" value="Supprimer" name="delUser">
             <input type="submit" value="faire autre chose" name="other">

@@ -18,7 +18,7 @@ $view->extend('layouts/fullpage');
         <!--SIGN IN FORM-->
 
         <br><br>
-        <form class="form-horizontal" method="post" action="login">
+        <form class="form-horizontal" method="post" action="<?= View::getUrlFromRoute('login') ?>">
             <div id="fields_errors">
                 <!--USERNAME-->
                 <input class="first" type="text" name="login" placeholder="Identifiant ou Email" required>
