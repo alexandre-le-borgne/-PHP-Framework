@@ -6,8 +6,6 @@
  * Time: 16:20
  */
 ?>
-<a href="#" data-title="Title" data-content="Contents..." data-placement="right">SHOW POP</a>
-
 <div class="webui-popover-content">
     <div id="flux_choice">
         <div id="twitter_button">Twitter</div>
