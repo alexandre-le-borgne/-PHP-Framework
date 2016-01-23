@@ -22,8 +22,45 @@ class TwitterModel extends Model implements StreamModel
     private $twitter;
     private $db;
 
-    /** Cron */
+    public function getStreamById($id)
+    {
+        if (intval($id))
+        {
+            $db = new Database();
+            $result = $db->execute("SELECT * FROM stream_twitter WHERE id = ?", array($id));
+            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
+            return $result->fetch();
+        }
+        return null;
+    }
 
+    public function createStream($channel, DateTime $firstUpdate)
+    {
+        $db = new Database();
+        $req = 'SELECT * FROM stream_twitter WHERE channel = ?';
+        $result = $db->execute($req, array($channel));
+        $fetch = $result->fetch();
+        if (!($fetch))
+        {
+            $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
+            $db->execute($req, array($channel, date(Database::DATE_FORMAT, $firstUpdate->getTimestamp())));
+        }
+        else if ($firstUpdate->getTimestamp() < strtotime($fetch['firstUpdate']))
+        {
+            //On modifie le stream pour qu'il prenne en compte le debut plus tot
+            $req = "UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?";
+            $db->execute($req, array(date(Database::DATE_FORMAT, $firstUpdate->getTimestamp()), $channel));
+        }
+    }
+
+//    public function delStream
+
+
+    /******************************************   CRON   *******************************************************/
+
+    /**
+     * La tache cron appelee tous les soirs, qui va recharger tous les flux twitters en BD et les mettre a jour.
+     */
     public function cron()
     {
         $this->initTwitterOAuth();
@@ -41,6 +78,9 @@ class TwitterModel extends Model implements StreamModel
         }
     }
 
+    /**
+     * La tache cron pour un flux particulier (une TwitterEntity, donc une chaine avec ses dates)
+     */
     public function streamCron(TwitterEntity $twitterEntity)
     {
         if ($this->db == null)
@@ -176,42 +216,5 @@ class TwitterModel extends Model implements StreamModel
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
         $this->twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa",
             "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
-    }
-
-    /** Fin du tout ca pour le cron */
-
-
-    /** */
-
-
-    public function getStreamById($id)
-    {
-        if (intval($id))
-        {
-            $db = new Database();
-            $result = $db->execute("SELECT * FROM stream_twitter WHERE id = ?", array($id));
-            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
-            return $result->fetch();
-        }
-        return null;
-    }
-
-    public function createStream($channel, DateTime $firstUpdate)
-    {
-        $db = new Database();
-        $req = 'SELECT * FROM stream_twitter WHERE channel = ?';
-        $result = $db->execute($req, array($channel));
-        $fetch = $result->fetch();
-        if (!($fetch))
-        {
-            $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($channel, date(Database::DATE_FORMAT, $firstUpdate->getTimestamp())));
-        }
-        else if ($firstUpdate->getTimestamp() < strtotime($fetch['firstUpdate']))
-        {
-            //On modifie le stream pour qu'il prenne en compte le debut plus tot
-            $req = "UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?";
-            $db->execute($req, array($firstUpdate, $channel));
-        }
     }
 }
