@@ -243,14 +243,13 @@ body
 #categories
 {
     position: fixed;
-    width: 251px;
     height: 220px;
     float: left;
     -moz-column-count: 2;
     column-count: 2;
     -moz-column-gap: 10px;
     column-gap: 10px;
-    width: 330px;
+    width: 350px;
     overflow-x: hidden;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -347,7 +346,7 @@ body
     border: 0px;
     display: inline-block;
     margin-left: 1em;
-    float: inherit;
+    float: left;
 }
 
 #conf_pwd
