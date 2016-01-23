@@ -296,7 +296,6 @@ body
 #conf_pwd
 {
     white-space: nowrap;
-    position: fixed;
     text-align: center;
     line-height: 48px;
     min-width: 100%;
@@ -305,6 +304,5 @@ body
     height: 50px;
     top: 0;
     color: #fff;
-    z-index: 91;
 }
 
