@@ -54,7 +54,7 @@
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
-                    action: 'noblog',
+                    action: 'blog',
                     id: post.attr("id"),
                 };
                 $.ajax({
@@ -71,7 +71,7 @@
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
-                    action: 'blog',
+                    action: 'noblog',
                     id: post.attr("id"),
                 };
                 $.ajax({
