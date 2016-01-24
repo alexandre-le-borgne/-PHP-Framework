@@ -75,7 +75,7 @@ function formTr($string, $streams, $streamType)
                     $cat = $category['categories'];
                     ?>
                     <table border = 1>
-                    <tr bgcolor = #DDD>
+                    <tr bgcolor = #a77dc2>
                         <td>
                             <b><?= 'Categorie : ' . $category['title'] ?></b>
                         </td>
