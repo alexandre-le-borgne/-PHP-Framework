@@ -68,7 +68,7 @@ class RssModel extends Model implements StreamModel
         return $result->fetch();
     }
 
-    public function createStream($url, DateTime $firstUpdate)
+    public function createStream($url, $firstUpdate)
     {
         $db = new Database();
 

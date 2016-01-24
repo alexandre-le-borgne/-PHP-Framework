@@ -42,8 +42,6 @@ class RssController extends Controller
         $url = $this->rssmodel->resolveFile($url);
         $userId = $request->getSession()->get('id');
 
-        $firstUpdate = new DateTime($firstUpdate);
-
         $rssEntity = $this->rssmodel->createStream($url, $firstUpdate);
 
         if($rssEntity)
