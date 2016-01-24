@@ -413,7 +413,7 @@ class UserController extends Controller
                     Mail::sendWelcomingMail($email);
                     //$this->redirectToRoute('index', array('actif'));
                     $this->loadModel('UserModel');
-                    if ($this->usermodel->getById($data['id']))
+                    if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
                         $this->render('layouts/home', array("mailValidationMessage" => "Votre compte a bien été activé"));
                     else
                         $this->render("forms/loginForm", array("errors" => "Votre compte a bien été activé"));
