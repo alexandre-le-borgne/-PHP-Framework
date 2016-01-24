@@ -106,6 +106,7 @@
                 });
             });
             $(".post_footer .nolike").on("click", function() {
+                console.log("t");
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
