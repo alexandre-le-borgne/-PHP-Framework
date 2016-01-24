@@ -167,31 +167,31 @@ table
 #barrack_content
 {
     /* #cf3630 */
-    background: url('../img/content/time.png') no-repeat center center fixed;
+    background: url('../img/content/time.png') no-repeat center center fixed !important;
 }
 
 #charlie_content
 {
     /* #1ba848 */
-    background: url('../img/content/charlie.png') no-repeat center center fixed;
+    background: url('../img/content/charlie.png') no-repeat center center fixed !important;;
 }
 
 #robin_content
 {
     /* #f8f7e5 */
-    background: url('../img/content/robin.png') no-repeat center center fixed;
+    background: url('../img/content/robin.png') no-repeat center center fixed !important;;
 }
 
 #gims_content
 {
     /* #0b0509 */
-    background: url('../img/content/acdc.png') no-repeat center center fixed;
+    background: url('../img/content/acdc.png') no-repeat center center fixed !important;;
 }
 
 #david_guetta_content
 {
     /* #1a181d */
-    background: url('../img/content/david.png') no-repeat center center fixed;
+    background: url('../img/content/david.png') no-repeat center center fixed !important;;
 }
 
 /* Pictures Size Setting */
