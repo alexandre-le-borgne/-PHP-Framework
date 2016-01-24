@@ -139,4 +139,28 @@ if (isset($error))
 </div>
 <?php
 }
+
+
+
+pour les longues pages Web, un ancrage permettant remonter en haut de la page ;
+
+ les balises meta description et keywords devront être renseignées (sur chaque page
+
+Web) ;
+
+ un favicon (contenant plusieurs images de différent formats pour un affichage optimal en fonction de la taille et du nombre de couleurs supporté par le système d’exploitation) doit apparaitre sur l’ensemble des pages Web ;
+
+ utilisation « correcte » de HTML, CSS, JavaScript et PHP ;
+ bonne indentation de l’ensemble des codes sources ;
+ bonne architecture des répertoires sources ;
+ validationW3C de toutes vos pages HTML (documents au minimum de type HTML5) ;
+ validation W3C de toutes vos pages CSS (documents au minimum de profil CSS niveau
+
+2.1 avec aucun avertissement et en tenant compte des extensions propriétaires comme avertissement)
+
+
+
+
+
+
 */
