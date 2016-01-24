@@ -21,10 +21,9 @@
 
 #aside
 {
-    height: calc(50% - 100px);
     min-height: 200px;
     position: fixed;
-    height: 100%;
+    height: calc(100% - 160px);
     float: left;
     column-count: 2;
     column-gap: 10px;

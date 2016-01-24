@@ -30,6 +30,7 @@ echo $this->output('_content');
         <?php
     if (isset($categories))
         $this->render('persists/categories', array('categories' => $categories));
+    echo '<br><hr>';
     if (isset($streams))
         $this->render('persists/streams', array('streams' => $streams));
     ?>
