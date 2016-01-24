@@ -59,7 +59,12 @@ if (isset($mailValidationMessage))
                             }
                         });
                     }).autocomplete({
-                        source: function() { return availableTags; }
+                        source: function() { return availableTags; },
+                        'open': function(e, ui) {
+                            $('.ui-autocomplete').css('top', $("ul.ui-autocomplete").cssUnit('top')[0] + 4);
+                            $('.ui-autocomplete').css('left', $("ul.ui-autocomplete").cssUnit('left')[0] - 2);
+                            $('.ui-autocomplete').append("<div id='autofill_results'><span>2,000</span> results found, showing <span>10</span></div>");
+                        }
                     });
                 });
             </script>
