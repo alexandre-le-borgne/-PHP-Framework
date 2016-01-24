@@ -31,6 +31,7 @@ echo $this->output('_content');
     if (isset($categories))
         $this->render('persists/categories', array('categories' => $categories));
     echo '<br><br>';
+        var_dump($streams);
     if (isset($streams))
         $this->render('persists/streams', array('streams' => $streams));
     ?>
