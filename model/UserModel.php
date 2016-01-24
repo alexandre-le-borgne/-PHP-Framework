@@ -137,6 +137,7 @@ class UserModel extends Model
         var_dump($user);
         $oldKey = Security::escape($key);
         var_dump($oldKey);
+
         $password = Security::escape($password);
 
         $key = Security::generateKey();
