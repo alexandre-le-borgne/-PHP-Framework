@@ -62,9 +62,21 @@ header .search_bar:active, header .search_bar:focus {
     float: right;
 }
 
-#profile
+#profile, #home
 {
+    float: right;
+    margin: 10px;
+    vertical-align: middle;
+}
 
+#profile img
+{
+    width: 20px;
+}
+
+#home img
+{
+    width: 20px;
 }
 
 #add_flux
