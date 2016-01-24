@@ -48,6 +48,7 @@ class ArticleModel extends Model
     }
 
     public function userHasStream($user, $stream, $type) {
+        var_dump($user);
         if (is_numeric($user) && is_numeric($stream) && is_numeric($type)) {
             $db = new Database();
             $req = "SELECT * FROM stream_category JOIN categories ON stream_category.category = categories.id WHERE categories.account = ? AND stream_category.stream = ? AND stream_category.streamType = ?";
