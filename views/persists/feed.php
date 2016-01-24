@@ -96,8 +96,10 @@
                     id: post.attr("id"),
                 };
                 if(ajax(data)) {
-                    $(this).children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
-                    $(this).removeClass('like').addClass('nolike');
+                    console.log($(this));
+                    console.log($(this).children());
+                    this.children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
+                    this.removeClass('like').addClass('nolike');
                 }
             });
             $(".post_footer .nolike").click(function() {
