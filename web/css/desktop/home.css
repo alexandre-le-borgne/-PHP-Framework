@@ -6,6 +6,11 @@
 /************************************                               ***************************************************/
 /*****************************                                              *******************************************/
 
+#header_fixed {
+    position: fixed;
+    top: 50px;
+}
+
 #layout_connected
 {
     height: 600px;
@@ -29,7 +34,7 @@
 {
     min-height: 200px;
     position: fixed;
-    height: calc(100% - 200px);
+    height: calc(100% - 120px);
     float: left;
     column-count: 2;
     column-gap: 10px;

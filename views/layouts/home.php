@@ -10,13 +10,12 @@ $this->render('persists/header');
 
 if (isset($errors))
 {
-    var_dump($errors);
     echo '<div class="errors_fields">' . $errors . '</div>';
 }
 
 echo $this->output('_content');
 ?>
-<h1>
+<h1 id="header_fixed">
     <?php
     if (isset($channel))
     {
