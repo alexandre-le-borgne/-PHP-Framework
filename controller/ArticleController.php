@@ -82,6 +82,7 @@ class ArticleController extends Controller
                     /** @var EmailEntity $stream */
                     $stream = $this->emailmodel->getStreamById($id);
                     var_dump($stream);
+                    die();
                     if(!$stream)
                         $this->redirectToRoute('index');
                     $title = $stream->getAccount();
