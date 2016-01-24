@@ -66,17 +66,17 @@ class ArticleController extends Controller
             {
                 case ArticleModel::RSS:
                     /** @var RssEntity $stream */
-                    $stream = $this->rssmodel->getById($id);
+                    $stream = $this->rssmodel->getByStreamId($id);
                     $title = $stream->getUrl();
                     break;
                 case ArticleModel::TWITTER:
                     /** @var TwitterEntity $stream */
-                    $stream = $this->twittermodel->getById($id);
+                    $stream = $this->twittermodel->getByStreamId($id);
                     $title = $stream->getChannel();
                     break;
                 case ArticleModel::EMAIL:
                     /** @var EmailEntity $stream */
-                    $stream = $this->emailmodel->getById($id);
+                    $stream = $this->emailmodel->getByStreamId($id);
                     $title = $stream->getAccount();
                     break;
                 default:
