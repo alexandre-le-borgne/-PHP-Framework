@@ -214,12 +214,16 @@ table
     background-size: cover;
 }
 
-@media (max-width: 410px) {
-    #table_section_content
-    {
-        display: none;
-    }
-    #table_section_news
+@media (max-width: 1120px) {
+    /*#table_section_content*/
+    /*{*/
+        /*display: none;*/
+    /*}*/
+    /*#table_section_news*/
+    /*{*/
+        /*display: none;*/
+    /*}*/
+    #usatoday_magazine, #courrierinter_magazine, #figaro_magazine
     {
         display: none;
     }
