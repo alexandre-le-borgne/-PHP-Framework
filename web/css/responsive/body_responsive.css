@@ -1,27 +1,102 @@
-@media (max-width: 1120px) {
-    #time_magazine, #courrierinter_magazine, #figaro_magazine
-    {
-        display: none;
-    }
+/*****************************                                              *******************************************/
+/************************************                               ***************************************************/
+/********************************************               ***********************************************************/
+/*                                                 BODY                                                               */
+/********************************************               ***********************************************************/
+/************************************                               ***************************************************/
+/*****************************                                              *******************************************/
+
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: #36465d;
 }
 
-@media (max-width: 1000px) {
-    /*#table_section_content*/
-    /*{*/
-    /*display: none;*/
-    /*}*/
-    /*#table_section_news*/
-    /*{*/
-    /*display: none;*/
-    /*}*/
-    #title_section_news {
-        float: none;
-        height: 100%;
-        width: 100%;
-        background-color: #36465d;
-    }
-    #usatoday_magazine, #liberation_magazine, #lemonde_magazine
-    {
-        display: none;
-    }
+*
+{
+    font-family: 'Roboto', sans-serif;
+}
+
+a
+{
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #EEE;
+}
+
+table
+{
+    border-collapse: collapse !important;
+}
+
+td
+{
+    cursor: pointer !important;
+}
+
+h1, h2, h5, h6
+{
+    text-align: left;
+    width: 100%;
+    color: #ffffff;
+    font-family: 'Roboto', thin100;
+}
+
+h3
+{
+    font-weight: 700;
+    color: #9aa2ad;
+    font-size: 42pt;
+    margin-top: -45px;
+}
+
+input:focus, textarea:focus{
+    outline: none;
+}
+
+input:hover, textarea:hover{
+    outline: none;
+}
+
+input:active, textarea:active{
+    outline: none;
+}
+
+input[type="image"]:hover
+{
+    background: #d95e40 !important;
+    transition: 150ms background;
+}
+
+input[type="submit"]
+{
+    margin-top: 10px !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: none !important;
+    background: #559fca;
+    transition: 150ms background-color;
+    color: #ffffff;
+}
+
+input[type="submit"]:hover
+{
+    background-color: rgba(85, 159, 202, 0.9);
+    transition: background-color 1s;
+    cursor: pointer;
+}
+
+.first
+{
+    border-radius: 2px 2px 0px 0px;
+}
+
+.last
+{
+    border-radius: 0px 0px 2px 2px;
+    border: none !important;
 }

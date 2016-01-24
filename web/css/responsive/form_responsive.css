@@ -1,0 +1,230 @@
+/*****************************                                              *******************************************/
+/************************************                               ***************************************************/
+/********************************************               ***********************************************************/
+/*                                              FORMULAIRE                                                            */
+/********************************************               ***********************************************************/
+/************************************                               ***************************************************/
+/*****************************                                              *******************************************/
+
+
+.loginDiv, .registerDiv
+{
+    /* width: 100%; */
+    padding: 10px;
+    margin: auto !important;
+}
+
+.loginDiv input , .registerDiv input
+{
+    background: white;
+    width: 100%;
+    /* height: 18%; */
+    padding: 6% 5% 6% 5%;
+    display: block;
+    margin: 0px !important;
+    border: 0px;
+    border-bottom: solid 1px #d8d8d8;
+    /* font: 16px/1.4 "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; */
+    box-sizing: border-box;
+    font-size: 35pt;
+}
+
+#register_button
+{
+    background-color: rgba(255, 255, 255, .3);
+    border: none !important;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35pt;
+    padding: 5% 0% 0% 0%;
+    width: 97%;
+    margin: auto;
+    height: 8%;
+    text-decoration: none;
+    border-radius: 2px;
+    float: right;
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    left: 15px;
+    vertical-align: top !important;
+    z-index: 1;
+}
+
+.errors_fields
+{
+    background-color: rgba(255, 255, 255, .3);
+    border: none !important;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 10pt;
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.forgot
+{
+    position: relative;
+    top: 2px;
+    font-size: 32pt;
+    font-weight: normal;
+    color: #ffffff;
+}
+
+#logo
+{
+    width: 100%;
+    /* text-align: center; */
+    /* margin: auto; */
+}
+
+#logo_explorer
+{
+    width: 23px;
+    display: none;
+}
+
+h4
+{
+    text-align: center;
+}
+
+
+
+
+/*.line*/
+/*{*/
+/*background : transparent;*/
+/*border-color : #ffffff;*/
+/*border-width : 0 0 1px;*/
+/*border-style : solid;*/
+/*margin: auto;*/
+/*text-align: center;*/
+/*width: 298px;*/
+
+/*}*/
+
+
+.fblogin p, .gologin p
+{
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    top: -18px;
+    margin-left: 8%;
+    font-size: 35pt;
+}
+
+/*****************************************/
+/*****************FACEBOOK****************/
+/*****************************************/
+
+.fblogin img
+{
+    height: 45px;
+    display: none;
+    width: 45px;
+}
+
+.fblogin a
+{
+    color: -webkit-link;
+    text-decoration: none;
+    cursor: auto;
+    height: 45px;
+    width: 100%;
+}
+
+.fblogin
+{
+    margin-top: 16px !important;
+    /* width: 100% !important; */
+    background-color: #3b55a0 !important;
+    height: 45px !important;
+    /* line-height: 45px; */
+    padding: 3% 6% 10% 0%;
+    /* vertical-align: middle; */
+    text-align: center;
+    background: #4c69ba;
+    background: -webkit-linear-gradient(#4c69ba, #3b55a0);
+    background: linear-gradient(#4c69ba, #3b55a0);
+    border-color: #4c69ba;
+    border-radius: 2px;
+    color: #fff;
+    font-family: "Helvetica neue";
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 -1px 0 #354c8c;
+}
+
+.fblogin:hover
+{
+    background: -webkit-linear-gradient(#5b7bd5, #4864b1);
+    background: linear-gradient(#5b7bd5, #4864b1);
+    border-bottom-color: #3b5998;
+    border-left-color: #4961a8;
+    border-right-color: #4961a8;
+    border-top-color: #5874c3;
+    box-shadow: inset 0 1px 0 #607fd6;
+    cursor: pointer;
+}
+
+/*****************************************/
+/*****************GOOGLE_CONNECT**********/
+/*****************************************/
+
+.gologin p
+{
+    top: -18px;
+    margin-left: 4%;
+}
+
+.gologin img
+{
+    height: 81px;
+    display: none;
+    width: 60px;
+}
+
+.gologin
+{
+    /* width: 100% !important; */
+    background-color: #de4b3a !important;
+    /* height: 10% !important; */
+    /* line-height: 45px; */
+    padding: 3% 7% 0% 0%;
+    text-align: center;
+    /* vertical-align: middle; */
+    background: #de4b3a;
+    background: -webkit-linear-gradient(#e25646, #de4b3a);
+    background: linear-gradient(#e25646, #de4b3a);
+    border-color: #de4b3a;
+    border-radius: 2px;
+    color: #fff;
+    font-family: "Helvetica neue";
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 -1px 0 #cc4c3e;
+}
+
+.gologin:hover
+{
+    background: -webkit-linear-gradient(#e25646, #de4b3a);
+    background: linear-gradient(#e25646, #de4b3a);
+    border-bottom-color: #cc4c3e;
+    border-left-color: #de4b3a;
+    border-right-color: #e25646;
+    border-top-color: #e75747;
+    box-shadow: inset 0 1px 0 #e75747;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
