@@ -511,8 +511,6 @@ class UserController extends Controller
                 }
             }
 
-            exit(0);
-
             $categoryStreams = array(
                 'twitter' => $twitterStreams,
                 'email' => $emailStreams,
