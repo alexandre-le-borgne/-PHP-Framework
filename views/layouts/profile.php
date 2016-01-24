@@ -15,7 +15,7 @@ function formTr($string, $streams)
 ?>
     <tr bgcolor="#DDD">
         <td>
-            <?= 'Nom du flux ' . $string; ?>
+            <?= 'Nom du flux (' . $string . ')'; ?>
         </td>
         <td>
             Action
@@ -79,6 +79,7 @@ if (isset($categories))
     echo '</div>';
 }
 
+
 if (isset($following) && !empty($following))
 {
     echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
@@ -110,6 +111,7 @@ if (isset($following) && !empty($following))
 
     echo '</table></div>';
 }
+
 
 if (isset($followers) && !empty($followers))
 {
