@@ -11,18 +11,23 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.webui-popover.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.mCustomScrollbar.min.css') ?>" />
-<link rel="stylesheet" media="only screen and (min-width:480px)" href="<?= View::getAsset('css/desktop/form.css') ?>">
-<link rel="stylesheet" media="only screen and (min-width:480px)" href="<?= View::getAsset('css/desktop/body.css') ?>">
-<link rel="stylesheet" media="only screen and (min-width:480px)" href="<?= View::getAsset('css/desktop/fullpage.css') ?>">
-<link rel="stylesheet" media="only screen and (min-width:480px)" href="<?= View::getAsset('css/desktop/footer.css') ?>">
-<link rel="stylesheet" media="only screen and (min-width:480px)" href="<?= View::getAsset('css/desktop/nav.css') ?>">
-<link rel="stylesheet" media="only screen and (min-width:480px)" href="<?= View::getAsset('css/desktop/header.css') ?>">
-<link rel="stylesheet" media="only screen and (min-width:480px)" href="<?= View::getAsset('css/desktop/post.css') ?>">
-<link rel="stylesheet" media="only screen and (min-width:480px)" href="<?= View::getAsset('css/desktop/home.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/form.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/body.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/fullpage.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/footer.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/nav.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/header.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/post.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/home.css') ?>">
 
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/form_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/body_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/fullpage_responsive.css') ?>">
+<link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/footer_responsive.css') ?>">
+<link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/nav_responsive.css') ?>">
+<link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/header_responsive.css') ?>">
+<link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/post_responsive.css') ?>">
+<link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/home_responsive.css') ?>">
 
 
 
