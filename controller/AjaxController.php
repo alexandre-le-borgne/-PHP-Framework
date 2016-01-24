@@ -29,7 +29,7 @@ class AjaxController extends Controller
     private function SearchAction(Request $request) {
         $channel = $request->post('channel');
         $this->loadModel('UserModel');
-        return json_encode($this->usermodel->getLike($channel));
+        echo json_encode($this->usermodel->getLike($channel));
     }
 
     private function LikeAction(Request $request) {
