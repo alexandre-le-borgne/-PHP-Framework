@@ -29,7 +29,7 @@ class IndexController extends Controller
     }
 
     public function AddStreamAction() {
-        $this->render('layouts/ajouterFlux');
+        $this->render('layouts/addStream');
     }
 
     public function CronAction() {
