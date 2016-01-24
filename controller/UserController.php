@@ -376,8 +376,7 @@ class UserController extends Controller
                 else
                 {
                     $this->usermodel->addUser($username, $email, $password);
-                    $this->render('forms/loginForm',
-                        array('validate' => 'Veuillez valider votre compte via le mail que nous vous avons envoyé'));
+                    $this->render('forms/loginForm', array('validate' => 'Veuillez valider votre compte via le mail que nous vous avons envoyé'));
                     return;
                 }
                 $data = array('errors' => $errors);
