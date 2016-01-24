@@ -35,7 +35,6 @@ class TwitterEntity
         }
     }
 
-
     //Getters
     public function getId()
     {
@@ -77,6 +76,11 @@ class TwitterEntity
     public function setFirstUpdate($firstUpdate)
     {
         $this->firstUpdate = $firstUpdate;
+    }
+
+    public function toString()
+    {
+        return $this->channel;
     }
 }
 

@@ -13,6 +13,11 @@ class RssEntity extends Entity{
     private $lastUpdate;
     private $firstUpdate;
 
+    public function toString()
+    {
+        return $this->url;
+    }
+
     /**
      * @return mixed
      */
