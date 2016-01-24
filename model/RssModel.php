@@ -79,30 +79,25 @@ class RssModel extends Model implements StreamModel
             $stream_id = $rssEntity->getId();
             $url = $rssEntity->getUrl();
             $x = simplexml_load_file($url);
-            $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
-            $result = $db->execute($req, array($stream_id));
-            $fetch = $result->fetch();
-            $minDate = $fetch['minDate']; //date du 1er article du stream
+
             foreach ($x->channel->item as $item)
             {
                 $firstDate = $firstRss->getArticleDate();
                 if ($item->articleDate < $firstDate)
                 {
-                    $base = $item->pubDate;
+                    $base = $item->articleDate;
                     $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                     $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                 }
 
             }//while
-            $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
-            $result = $db->execute($req, array($stream_id))->fetch();
-            $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
+
             foreach ($x->channel->item as $item)
             {
                 $lastDate = $lastRss->getArticleDate();
                 if ($item->articleDate > $lastDate)
                 {
-                    $base = $item->pubDate;
+                    $base = $item->articleDate;
                     $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                     $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                 }
