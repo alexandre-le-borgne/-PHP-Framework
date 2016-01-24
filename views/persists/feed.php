@@ -100,8 +100,7 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    console.log("ok");
-                    $(".post_footer .like").attr('src', '<?= View::getAsset('img/nolike.png') ?>');
+                    $(".post_footer .like img").attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     $(".post_footer .like").removeClass('like').addClass('nolike');
                 });
             });
@@ -116,8 +115,8 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    $(this).children().attr('src', '<?= View::getAsset('img/like.png') ?>');
-                    $(this).removeClass('nolike').addClass('like');
+                    $(".post_footer .like img").attr('src', '<?= View::getAsset('img/like.png') ?>');
+                    $(".post_footer .like").removeClass('nolike').addClass('like');
                 });
             });
         </script>
