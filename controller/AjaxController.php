@@ -12,6 +12,7 @@ class AjaxController extends Controller
     public function IndexAction(Request $request) {
         if(!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
             return;
+        echo $request->post('action');
         switch($request->post('action')) {
             case 'like':
                 $this->LikeAction($request);
@@ -70,12 +71,13 @@ class AjaxController extends Controller
         $this->loadModel('ArticleModel');
         /** @var ArticleEntity $articleEntity */
         $articleEntity = $this->articlemodel->getById($post);
+        echo "bite";
         if($articleEntity) {
             $articleEntity = $this->articlemodel->getArticleFromBlog($request->getSession()->get('id'), $articleEntity->getId());
             if(!$articleEntity) {
                 $blogEntity = new BlogEntity();
                 $blogEntity->setAccount($request->getSession()->get('id'));
-                $blogEntity->setArticle($articleEntity->getId());
+                $blogEntity->setArticle($post);
                 $blogEntity->persist();
             }
         }

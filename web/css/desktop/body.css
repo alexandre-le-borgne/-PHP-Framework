@@ -110,12 +110,11 @@ input[type="submit"]:hover
     bottom: 1%;
     z-index: 1;
     cursor: pointer;
-    display: none;
     filter: alpha(opacity = 50); /* IE < 8 */
     height: 48px;
     opacity: 0.5;
     position: fixed;
-    right: 1%;
+    left: 1%;
     width: 48px;
 }
 

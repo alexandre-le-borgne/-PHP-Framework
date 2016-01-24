@@ -28,6 +28,20 @@ class ArticleController extends Controller
         }
     }
 
+    public function BlogAction(Request $request) {
+        if (!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        {
+            $this->redirectToRoute('index');
+        }
+        else
+        {
+            $this->loadModel('ArticleModel');
+            $articles = $this->articlemodel->getArticlesBlogByUserId($request->getSession()->get('id'), 0, 10);
+            $data = array('title' => 'Mon blog (articles publiques)', 'articles' => $articles);
+            $this->render('layouts/home', $data);
+        }
+    }
+
     public function CategoryAction(Request $request, $id) {
         if (!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
         {

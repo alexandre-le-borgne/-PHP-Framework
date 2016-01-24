@@ -54,22 +54,6 @@
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
-                    action: 'noblog',
-                    id: post.attr("id"),
-                };
-                $.ajax({
-                    method: "POST",
-                    url: "<?= View::getUrlFromRoute('ajax') ?>",
-                    data: data
-                }).done(function( msg ) {
-                    $("img", thispost).attr('src', '<?= View::getAsset('img/hide.png') ?>');
-                    $(thispost).removeClass('blog').addClass('noblog');
-                });
-            });
-            $(document).on("click", ".post_footer .noblog", function() {
-                var thispost = this;
-                var post = $(this).parents(".post");
-                var data = {
                     action: 'blog',
                     id: post.attr("id"),
                 };
@@ -78,6 +62,24 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
+                    console.log(msg);
+                    $("img", thispost).attr('src', '<?= View::getAsset('img/hide.png') ?>');
+                    $(thispost).removeClass('blog').addClass('noblog');
+                });
+            });
+            $(document).on("click", ".post_footer .noblog", function() {
+                var thispost = this;
+                var post = $(this).parents(".post");
+                var data = {
+                    action: 'noblog',
+                    id: post.attr("id"),
+                };
+                $.ajax({
+                    method: "POST",
+                    url: "<?= View::getUrlFromRoute('ajax') ?>",
+                    data: data
+                }).done(function( msg ) {
+                    console.log(msg);
                     $("img", thispost).attr('src', '<?= View::getAsset('img/retweet.png') ?>');
                     $(thispost).removeClass('noblog').addClass('blog');
                 });

@@ -71,6 +71,18 @@ class ArticleModel extends Model
         return null;
     }
 
+    public function getArticlesBlogByUserId($user, $start = 0, $len = 0)
+    {
+        if (is_numeric($user) && is_numeric($start) && is_numeric($len)) {
+            $db = new Database();
+            $req = "SELECT DISTINCT article.* FROM article JOIN blog ON article.id = blog.article WHERE blog.account = ? ORDER BY articleDate DESC LIMIT $start, $len";
+            $data = $db->execute($req, array($user));
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            return $data->fetchAll();
+        }
+        return null;
+    }
+
     public function getArticlesByCategoryId($category, $start = 0, $len = 0)
     {
         if (is_numeric($category) && is_numeric($start) && is_numeric($len)) {
