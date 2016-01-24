@@ -11,7 +11,6 @@
     <h2>Mes flux</h2>
     <div class="item_streams"><img id="add_stream" src="<?= View::getAsset('img/add_cat.png') ?>"></div>
     <?php
-    var_dump($emailStreams);
     if (!empty($emailStreams))
     {
         ?>
@@ -21,7 +20,7 @@
         foreach ($emailStreams as $emailStream)
         {
             ?>
-            <a class="item_streams" href="<?= View::getUrlFromRoute('category/' . $category->getId()) ?>">
+            <a class="item_streams" href="<?= View::getUrlFromRoute('category/' . $emailStream->getId()) ?>">
                 <?= $emailStream->getAccount() ?>
             </a>
             <?php
