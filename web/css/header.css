@@ -45,7 +45,7 @@ header .search_bar:active, header .search_bar:focus {
     font-weight: 400;
 }
 
-#profile, #add_flux
+#add_flux
 {
     margin-right: 1%;
     background: #2f3d51 !important;
@@ -60,6 +60,24 @@ header .search_bar:active, header .search_bar:focus {
     border: 0px;
     box-sizing: border-box;
     float: right;
+}
+
+#profile, #home
+{
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+#profile img
+{
+    width: 32px;
+}
+
+#home img
+{
+    width: 35px;
 }
 
 #add_flux
