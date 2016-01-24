@@ -71,6 +71,7 @@ class ArticleController extends Controller
             $article = $this->articlemodel->getById($id);
             if($article)
             {
+                $this->loadModel('CategoryModel');
                 $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
                 $this->render('layouts/home', array('title' => $article->getTitle(), 'categories' => $categories, 'articles' => array($article)));
             }

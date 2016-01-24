@@ -38,6 +38,9 @@ if (isset($mailValidationMessage))
                 <input class="search_bar" type="textarea" name="search" placeholder="Recherchez sur Aaron">
                 <input type="submit" style="display: none">
             </form>
+            <scipt>
+
+            </scipt>
             <?php
             $this->render('forms/logoutForm');
             ?>
