@@ -53,7 +53,7 @@ class ArticleModel extends Model
             $db = new Database();
             $req = "SELECT * FROM stream_category JOIN categories ON stream_category.category = categories.id WHERE categories.account = ? AND stream_category.stream = ? AND stream_category.streamType = ?";
             $data = $db->execute($req, array($user, $stream, $type));
-            var_dump($data);
+            var_dump($data->fetch());
             if($data->fetch())
                 return true;
         }
