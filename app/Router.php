@@ -18,8 +18,9 @@ class Router
         //Exemple les layouts
         $this->table[] = new Route('exemple',           'exemple',      'index');
 
-
         $this->table[] = new Route('cron',              'index',        'cron');
+
+        $this->table[] = new Route('ajax',              'ajax',        'index');
 
         $this->table[] = new Route('login',             'user',         'login');
         $this->table[] = new Route('logout',            'user',         'logout');
