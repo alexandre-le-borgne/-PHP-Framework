@@ -13,14 +13,11 @@
     <?php
     if (!empty($emailStreams))
     {
-        ?>
-        <h2>Flux emails</h2>
-        <?php
         /** @var EmailEntity $emailStream */
         foreach ($emailStreams as $emailStream)
         {
             ?>
-            <a class="item_streams" href="<?= View::getUrlFromRoute('category/' . $emailStream->getId()) ?>">
+            <a class="item_streams email" href="<?= View::getUrlFromRoute('category/' . $emailStream->getId()) ?>">
                 <?= $emailStream->getAccount() ?>
             </a>
             <?php
@@ -28,14 +25,11 @@
     }
     if (!empty($twitterStreams))
     {
-        ?>
-        <h2>Flux emails</h2>
-        <?php
         /** @var TwitterEntity $twitterStream */
         foreach ($twitterStreams as $twitterStream)
         {
             ?>
-            <a class="item_streams" href="<?= View::getUrlFromRoute('category/' . $twitterStream->getId()) ?>">
+            <a class="item_streams twitter" href="<?= View::getUrlFromRoute('category/' . $twitterStream->getId()) ?>">
                 <?= $twitterStream->getChannel() ?>
             </a>
             <?php
@@ -43,14 +37,11 @@
     }
     if (!empty($rssStreams))
     {
-        ?>
-        <h2>Flux emails</h2>
-        <?php
         /** @var RssEntity $rssStreams */
         foreach ($rssStreams as $rssStream)
         {
             ?>
-            <a class="item_streams" href="<?= View::getUrlFromRoute('category/' . $rssStream->getId()) ?>">
+            <a class="item_streams rss" href="<?= View::getUrlFromRoute('category/' . $rssStream->getId()) ?>">
                 <?= $rssStreams->getUrl() ?>
             </a>
             <?php
