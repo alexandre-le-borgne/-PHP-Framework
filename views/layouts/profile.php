@@ -166,7 +166,7 @@ function formTr($string, $streams, $streamType)
         $('#following').hide();
         $('#followers').hide();
 
-        $('#followers_button').css('background', '#529ecc');
+        $('#stream_button').css('background', '#2f3d51');
 
         $('#followers_button').click(function()
         {
