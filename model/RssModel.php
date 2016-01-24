@@ -9,6 +9,7 @@
 class RssModel extends Model implements StreamModel
 {
     private $posts = array();
+    private $db;
 
     private function resolveFile($url)
     {
@@ -101,25 +102,33 @@ class RssModel extends Model implements StreamModel
         /** @var EmailEntity $emailEntity */
         foreach ($rssStreams as $rssEntity)
         {
-            $firstRss = $this->getFirstArticle($rssEntity);
-
-            $stream_id = $rssEntity->getId();
-            $url = $rssEntity->getUrl();
-            $x = simplexml_load_file($url);
-
-            if(!$firstRss)
-            {
-
-                foreach ($x->channel->item as $item)
-                {
-                    $base = $item->articleDate;
-                    $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                    $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
-                }
-            }
-            $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
-            $db->execute($update, array($stream_id));
+            $this->streamCron($rssEntity);
         }
+    }
+
+    public function streamCron($rssEntity)
+    {
+        if ($this->db == null)
+            $this->db = new Database();
+
+        $firstRss = $this->getFirstArticle($rssEntity);
+
+        $stream_id = $rssEntity->getId();
+        $url = $rssEntity->getUrl();
+        $x = simplexml_load_file($url);
+
+        if (!$firstRss)
+        {
+
+            foreach ($x->channel->item as $item)
+            {
+                $base = $item->articleDate;
+                $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                $this->db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
+            }
+        }
+        $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
+        $this->db->execute($update, array($stream_id));
     }
 
     private function getFirstArticle(RssEntity $rssEntity)
