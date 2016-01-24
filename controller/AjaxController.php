@@ -45,6 +45,6 @@ class AjaxController extends Controller
         $this->loadModel('CategoryModel');
         $this->loadModel('ArticleModel');
         /** @var ArticleEntity $articleEntity */
-        $this->articlemodel->removeFromFavoris($request->getSession()->get('id'), $post);
+        $this->articlemodel->removeArticleFromFavoris($request->getSession()->get('id'), $post);
     }
 }

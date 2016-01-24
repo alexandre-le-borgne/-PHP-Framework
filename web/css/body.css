@@ -419,10 +419,29 @@ body
     cursor: pointer;
 }
 
+#add_flux_body input
+{
+    background: white;
+    width: 100%;
+    height: 45px;
+    padding: 11px 10px 11px 13px;
+    display: block;
+    margin: 0px !important;
+    border: 0px;
+    border-bottom: solid 1px #d8d8d8;
+    font: 16px/1.4 "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
 #add_flux_body
 {
-    margin: auto;
-    width: 681px;
+    border-radius: 3px;
+    /* display: inline-block; */
+    background-color: #2f3d51;
+    padding: 18px;
+    cursor: pointer;
+    margin: 7px auto;
+    width: 633px;
 }
 
 div#RSS_button:active, div#RSS_button:visited {
