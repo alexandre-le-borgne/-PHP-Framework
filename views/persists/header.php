@@ -53,6 +53,7 @@ if (isset($mailValidationMessage))
                             },
                             success: function(result) {
                                 if(Array.isArray(result)) {
+                                    console.log(result);
                                     availableTags = result;
                                     $( ".search_bar" ).autocomplete('option', 'source', availableTags);
                                 }
