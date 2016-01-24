@@ -43,9 +43,11 @@ if (isset($mailValidationMessage))
                     var availableTags = [];
                     $(".search_bar").keyup(function() {
                         var channel = $(this).val();
+                        console.log('t');
                         $.ajax({
                             method: "POST",
                             url: "<?= View::getUrlFromRoute('ajax') ?>",
+                            dataType: 'json',
                             data: {
                                 action: 'search',
                                 channel: channel
