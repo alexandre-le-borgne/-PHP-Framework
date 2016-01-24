@@ -31,7 +31,7 @@ class RssController extends  Controller{
         var_dump($url);
 
 
-
+        /*
         $this->loadModel('CategoryModel');
         $this->loadModel('RssModel');
         $url = $this->rssmodel->resolveFile($url);
@@ -54,7 +54,7 @@ class RssController extends  Controller{
         else
         {
             $this->render('layouts/addStream', array('errors' => array('Une erreur est survenue dans la connexion au flux rss. Veuillez réssayer ! ')));
-        }
+        }*/
 
     }
 
