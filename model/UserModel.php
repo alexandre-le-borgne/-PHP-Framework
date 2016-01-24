@@ -142,19 +142,13 @@ class UserModel extends Model
         $req = "SELECT * FROM accounts WHERE username = ? AND userKey = ?";
         $result = $db->execute($req, array($user, $oldKey));
 
-        while(!$stmt = $result->fetch())
-        {
-            var_dump($stmt);
-            var_dump($stmt['id']);
-            $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
-            echo '1';
-            $db->execute($req, array($key, $stmt['id']));
-            echo '2';
+        $stmt = $result->fetch();
 
-            $req = "UPDATE passwords SET password = ? WHERE account = ?";
-            echo '3';
-            $db->execute($req, array($password, $stmt['id']));
-            echo '4';
-        }
+        $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
+        $db->execute($req, array($key, $stmt['id']));
+
+        $req = "UPDATE passwords SET password = ? WHERE account = ?";
+        $db->execute($req, array($password, $stmt['id']));
+
     }
 }

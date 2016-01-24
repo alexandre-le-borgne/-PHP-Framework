@@ -2,9 +2,7 @@
 /**
  * Formulaire de remise a zero du mot de passe
  */
-
-//$user = $_GET['user'];
-//$oldKey = $_GET['key']; ?>
+?>
 
 <div class="resetDiv">
 

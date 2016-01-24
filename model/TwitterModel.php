@@ -45,21 +45,39 @@ class TwitterModel extends Model implements StreamModel
         return $result->fetch();
     }
 
-    public function createStream($channel, DateTime $firstUpdate)
+    public function createStream($channel, $firstUpdate)
     {
         $db = new Database();
-        $fetch = $this->getStreamByChannel($channel);
-        if (!($fetch))
-        {
-            $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($channel, date(Database::DATE_FORMAT, $firstUpdate->getTimestamp())));
+        /** @var TwitterEntity $result */
+        $result = $this->getStreamByChannel($channel);
+        if ($result)
+        {   //Si existe deja, et nouvelle date plus ancienne, alors on modifie le firstUpdate a la nouvelle date donnee
+            if (strtotime($firstUpdate) < strtotime($result->getFirstUpdate()))
+                $db->execute('UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?', array(date(Database::DATE_FORMAT, strtotime($firstUpdate))));
+            return $result;
         }
-        else if ($firstUpdate->getTimestamp() < strtotime($fetch['firstUpdate']))
-        {
-            //On modifie le stream pour qu'il prenne en compte le debut plus tot
-            $req = "UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?";
-            $db->execute($req, array(date(Database::DATE_FORMAT, $firstUpdate->getTimestamp()), $channel));
+        else
+        {   //Sinon, on cree le flux
+            $twitterEntity = new TwitterEntity();
+            $twitterEntity->setChannel($channel);
+            $twitterEntity->setFirstUpdate($firstUpdate);
+            $twitterEntity->setLastUpdate(date(Database::DATE_FORMAT));
+            $twitterEntity->persist();
+            return $twitterEntity;
         }
+    }
+
+    public function isValidChannel($channel)
+    {
+        $this->initTwitterOAuth();
+        $result = $this->twitter->get('users/show', [
+            'screen_name' => $channel,
+        ]);
+        if (isset($result->errors))
+        {
+            return false; // $result->errors[0]->message; affiche 'User not found.'
+        }
+        return true;
     }
 
     /**
@@ -98,6 +116,8 @@ class TwitterModel extends Model implements StreamModel
      */
     public function streamCron(TwitterEntity $twitterEntity)
     {
+        $this->initTwitterOAuth();
+
         if ($this->db == null)
             $this->db = new Database();
 
@@ -169,7 +189,7 @@ class TwitterModel extends Model implements StreamModel
                 'count' => $count * $multiplicator
             ]);
 
-            if (!($tooMuchTweets)) //si l'on a rien, on a rien a recuperer
+            if (empty($tooMuchTweets)) //si l'on a rien, on a rien a recuperer
                 return null;
 
             /** On verifie que la date du denrier tweet coincide avec la date $firstUpdate */
@@ -230,6 +250,7 @@ class TwitterModel extends Model implements StreamModel
 
     private function initTwitterOAuth()
     {
+        if ($this->twitter != null) return;
         /** Creation de l'objet TwitterOAuth qui me permet de recuperer les tweets */
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);

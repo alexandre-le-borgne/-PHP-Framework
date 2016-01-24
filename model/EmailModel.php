@@ -17,13 +17,20 @@ class EmailModel
     private $pass = 'SylverCrest';
     private $port = 993;
 
-    public function createEmailStream($server, $account, $password, $port) {
+    public function createEmailStream($server, $account, $password, $port, $firstUpdate) {
         $db = new Database();
         $data = array($server, $account, $password, $port);
         $data = $db->execute("SELECT * FROM stream_email WHERE server = ? AND account = ? AND password = ? AND port = ?", $data);
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
+        /** @var EmailEntity $emailEntity */
         $emailEntity = $data->fetch();
         if($emailEntity) {
+            $firstUpdate = strtotime($firstUpdate);
+            if(strtotime($emailEntity->getFirstUpdate()) > $firstUpdate)
+            {
+                $emailEntity->setFirstUpdate(date(Database::DATE_FORMAT, $firstUpdate));
+                $emailEntity->persist();
+            }
             return $emailEntity;
         }
         else {
@@ -351,8 +358,6 @@ class EmailModel
                 if (!$firstEmail || strtotime($article->getArticleDate()) < strtotime($firstEmail->getArticleDate())
                     || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate()))
                 {
-                    echo $article->getTitle()."<br><hr>";
-                    echo $article->getContent();
                     $article->persist();
                 }
             }
