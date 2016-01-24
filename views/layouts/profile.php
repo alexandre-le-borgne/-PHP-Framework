@@ -79,10 +79,20 @@ if (isset($categories))
     echo '</div>';
 }
 
+if (isset($following))
+{
+        echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
+
+
+
+        echo '</div>';
+}
+
 if (isset($followers))
 {
     $i = 0;
-    echo '<br/><h5>Les gens qui me suivent :</h5><br/>';
+    echo '<div class="wrapper"><h1>Les gens qui me suivent :</h1>';
+
     foreach ($followers as $follower)
     {
         echo $follower->username . ', ';
@@ -93,7 +103,10 @@ if (isset($followers))
             echo '<br/>';
         }
     }
+    echo '</div>';
 }
+
+
 
 
 /*

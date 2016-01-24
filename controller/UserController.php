@@ -481,6 +481,8 @@ class UserController extends Controller
         $this->loadModel('FollowerModel');
 
         $followers = $this->followermodel->getFollowersById($request->getSession()->get('id'));
+        $following = $this->followermodel->getFollowingById($request->getSession()->get('id'));
+
         $data = array();
         $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
         foreach ($categories as $category)
@@ -521,6 +523,6 @@ class UserController extends Controller
             $data[] = array('title' => $category->getTitle(), 'id' => $category->getId(), 'categories' => $categoryStreams);
         }
 
-        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers));
+        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers, 'following' => $following));
     }
 }

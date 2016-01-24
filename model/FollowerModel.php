@@ -36,7 +36,17 @@ class FollowerModel extends Model
         $data = $db->execute(
             "SELECT * FROM followers JOIN accounts ON followers.follower = accounts.id  WHERE followers.user = ?",
             array($userId));
-        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FollowerEntity');
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'MagicTable');
+        return $data->fetchAll();
+    }
+
+    public function getFollowingById($userId)
+    {
+        $db = new Database();
+        $data = $db->execute(
+            "SELECT * FROM followers JOIN accounts ON followers.follower = accounts.id  WHERE followers.follower = ?",
+            array($userId));
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'MagicTable');
         return $data->fetchAll();
     }
 }
