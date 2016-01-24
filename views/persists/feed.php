@@ -117,8 +117,10 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    if(msg)
+                    if(msg) {
+                        console.log(msg);
                         return msg;
+                    }
                     return true;
                 });
                 return false;
