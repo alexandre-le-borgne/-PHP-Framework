@@ -478,9 +478,6 @@ class UserController extends Controller
     {
         session_start();
         $this->loadModel('UserModel');
-        var_dump($_SESSION['user']);
-        var_dump($_SESSION['key']);
-        var_dump($request->post('password'));
 
         $this->usermodel->resetPassword($_SESSION['user'], $_SESSION['key'], $request->post('password'));
     }
