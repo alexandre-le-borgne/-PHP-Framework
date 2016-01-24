@@ -17,7 +17,7 @@
         foreach ($emailStreams as $emailStream)
         {
             ?>
-            <a class="item_streams email" href="<?= View::getUrlFromRoute('stream/' . ArticleModel::TWITTER. '/' . $emailStream->getId()) ?>">
+            <a class="item_streams email" href="<?= View::getUrlFromRoute('stream/' . ArticleModel::EMAIL. '/' . $emailStream->getId()) ?>">
                 <?= $emailStream->getAccount() ?>
             </a>
             <?php
