@@ -100,6 +100,7 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
+                    console.log("ok");
                     $(this).children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     $(this).removeClass('like').addClass('nolike');
                 });
