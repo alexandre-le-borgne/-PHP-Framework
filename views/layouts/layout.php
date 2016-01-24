@@ -14,6 +14,8 @@
     <body>
         <div id = "entete"></div>
         <?= $_content; ?>
-        <a href="#entete">Remonter</a>
+        <div id = "returnOnTop">
+            <a href="#entete">Remonter !</a>
+        </div>
     </body>
 </html>
