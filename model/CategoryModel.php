@@ -8,22 +8,38 @@
  */
 class CategoryModel extends Model
 {
-    public function createCategory($account, $title) {
+    public function createCategory($account, $title)
+    {
         $db = new Database();
         $data = array($account, $title);
         $data = $db->execute("SELECT * FROM categories WHERE account = ? AND title = ?", $data);
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'CategoryEntity');
         $emailEntity = $data->fetch();
-        if($emailEntity) {
+        if ($emailEntity)
+        {
             return $emailEntity;
         }
-        else {
+        else
+        {
             $categoryEntity = new CategoryEntity();
             $categoryEntity->setAccount($account);
             $categoryEntity->setTitle($title);
             $categoryEntity->persist();
             return $categoryEntity;
         }
+    }
+
+    public function getStreamCategoriesByCategoryId($id)
+    {
+        if (intval($id))
+        {
+            $db = new Database();
+            $req = 'SELECT * FROM stream_category WHERE category = ?';
+            $result = $db->execute($req, array($id));
+            $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'StreamCategoryEntity');
+            return $result->fetchAll();
+        }
+        return null;
     }
 
     public function getById($id)
@@ -49,4 +65,29 @@ class CategoryModel extends Model
         }
         return null;
     }
+
+    /**
+     * Renvoit un tableau de streamCategory entity avec le titre de la category, et l'url du stream associé, qui est
+     * plus exploitable que des ID
+
+    public function getStreamsByCategoryId($id)
+    {
+        if (intval($id))
+        {
+            $return = array();
+            $db = new Database();
+            $req =
+                'SELECT c1.id,  FROM categories c1 JOIN stream_categories sc1 ON c1.id = sc1.category JOIN stream_email s1'
+            $result = $db->execute("SELECT * FROM categories JOIN stream_category ON categories.id = stream_category.category WHERE categories.id = ?", array($id));
+            while ($fetch = $result->fetch())
+            {
+                $streamCategory = new StreamCategoryEntity();
+                $streamCategory->setId($fetch['stream_category.id']);
+                $streamCategory->setStream($fetch['']);//l'url du stream
+                $streamCategory->setCategory($fetch['categories.title']);
+                $streamCategory->setStreamType($fetch['streamType']);
+            }
+            return $data->fetch();
+        }
+    }*/
 }
