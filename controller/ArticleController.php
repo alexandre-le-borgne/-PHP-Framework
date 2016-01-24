@@ -93,9 +93,7 @@ class ArticleController extends Controller
             // L'utilisateur a acces a ce flux car fait parti d'une de ces categories
             if($this->articlemodel->userHasStream($request->getSession()->get('id'), $stream->getId(), $type))
             {
-                echo "bite";
-                $articles = $this->articlemodel->getArticlesByStreamTypeAndId($type, $id, 0, 10);
-                var_dump($articles);
+                $articles = $this->articlemodel->getArticlesByStreamTypeAndId($type, $stream->getId(), 0, 10);
                 $data = array('title' => $title, 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }
