@@ -182,14 +182,27 @@
 #text_content #button_action
 {
     text-align: center;
-    padding: 20px;
+    padding: 20px 40px 20px 40px;
+    position: relative;
     font-size: 15pt;
-    background: #2f3d51;
+    display: block;
     color: #ffffff;
-    border: solid 2px #2f3d51;
     font-weight: 600;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 40px;
+}
+
+.content_action
+{
+    background: #2f3d51;
+    border: solid 2px #2f3d51;
+}
+
+.news_action
+{
+    background: #d95e40;
+    border: solid 2px #d95e40;
 }
 
 #text_content #button_action:hover
