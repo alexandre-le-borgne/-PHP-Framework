@@ -43,6 +43,23 @@ $view->extend('layouts/fullpage');
         </form>
     </div>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // $(window).resize() est appelée chaque fois que la fenêtre est redimensionnée par l'utilisateur.
+            $(window).resize(function() {
+                $(".registerDiv").css({
+                    position:'absolute',
+                    left:($(window).width() - $(".registerDiv").outerWidth()) / 2,
+                    top:($(window).height() - $(".registerDiv").outerHeight()) / 2
+                });
+            });
+        });
+
+        $(window).resize(function() {
+            // au chargement complet de la page, la fonction resize() est appelée une fois pour initialiser le centrage.
+            $(window).resize();
+        });
+    </script>
 
     <script type="text/javascript">
         /*
