@@ -45,7 +45,7 @@ class TwitterModel extends Model implements StreamModel
         return $result->fetch();
     }
 
-    public function createStream($channel, DateTime $firstUpdate)
+    public function createStream($channel, $firstUpdate)
     {
         $db = new Database();
         /** @var TwitterEntity $result */
@@ -61,7 +61,7 @@ class TwitterModel extends Model implements StreamModel
             $twitterEntity = new TwitterEntity();
             $twitterEntity->setChannel($channel);
             $twitterEntity->setFirstUpdate($firstUpdate);
-            $twitterEntity->setLastUpdate(new DateTime());
+            $twitterEntity->setLastUpdate(date());
             $twitterEntity->persist();
             return $twitterEntity;
         }
