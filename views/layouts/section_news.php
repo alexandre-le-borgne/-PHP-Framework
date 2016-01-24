@@ -10,6 +10,7 @@
 ?>
 
 <div class="section section_news">
+    <div id="returnOnTop" title="Retour en haut">&nbsp;</div>
         <div id="title_section_news">
             <div id="text_content">
                 <h1>Profitez de vos journaux preferés.</h1><br>

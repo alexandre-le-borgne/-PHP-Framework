@@ -9,6 +9,7 @@
 ?>
 
 <div class="section section_social">
+    <div id="returnOnTop" title="Retour en haut">&nbsp;</div>
         <div id="title_section_social">
             <div id="text_content">
                 <h1>Ne ratez pas une news avec Twitter.</h1><br>

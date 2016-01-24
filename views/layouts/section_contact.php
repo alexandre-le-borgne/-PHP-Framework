@@ -8,10 +8,7 @@
 ?>
 
 <div class="section contact">
-    <div id="contact">
-
-    </div>
-
+    <div id="returnOnTop" title="Retour en haut">&nbsp;</div>
     <div id="footer">
 
     </div>

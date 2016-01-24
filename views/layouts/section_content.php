@@ -10,6 +10,7 @@
 ?>
 
 <div class="section section_content">
+    <div id="returnOnTop" title="Retour en haut">&nbsp;</div>
     <div id="title_section_content">
         <div id="text_content">
             <h1>Suivez le contenu que vous aimez.</h1><br>
