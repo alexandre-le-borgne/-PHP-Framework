@@ -86,7 +86,7 @@ class RssModel extends Model implements StreamModel
             foreach ($x->channel->item as $item)
             {
                 $firstDate = $firstRss->getArticleDate();
-                if ($item->articleDate != $firstDate)
+                if ($item->articleDate < $firstDate)
                 {
                     $base = $item->pubDate;
                     $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
@@ -100,7 +100,7 @@ class RssModel extends Model implements StreamModel
             foreach ($x->channel->item as $item)
             {
                 $lastDate = $lastRss->getArticleDate();
-                if ($item->articleDate != $lastDate)
+                if ($item->articleDate > $lastDate)
                 {
                     $base = $item->pubDate;
                     $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
