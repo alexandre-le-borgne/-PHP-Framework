@@ -96,7 +96,8 @@
                     id: post.attr("id"),
                 };
                 if(ajax(data)) {
-                    console.log(this.children())
+                    console.log($(this));
+                    console.log($(this).children());
                     this.children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     this.removeClass('like').addClass('nolike');
                 }
