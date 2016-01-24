@@ -44,7 +44,7 @@ class FollowerModel extends Model
     {
         $db = new Database();
         $data = $db->execute(
-            "SELECT * FROM followers JOIN accounts ON followers.follower = accounts.id  WHERE followers.follower = ?",
+            "SELECT * FROM followers JOIN accounts ON followers.user = accounts.id  WHERE followers.follower = ?",
             array($userId));
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FollowerEntity');
         return $data->fetchAll();

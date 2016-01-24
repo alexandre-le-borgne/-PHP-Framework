@@ -85,7 +85,20 @@ if (isset($following))
 
         foreach ($following as $follow)
         {
-        var_dump($follow);
+        var_dump($follow);?>
+            <table border = 1>
+        <tr bgcolor = #DDD>
+            <td>
+                <b><?= 'Categorie : ' . $category['title'] ?></b>
+            </td>
+            <td>
+                <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $category['id'] ?>">
+                    <input type="submit" value="Supprimer" name="delCat">
+                    <input type="submit" value="Voir la categorie" name="seeCat">
+                </form>
+            </td>
+        </tr><?php
         }
 
 
