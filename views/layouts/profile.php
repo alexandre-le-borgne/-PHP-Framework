@@ -81,28 +81,34 @@ if (isset($categories))
 
 if (isset($following))
 {
-        echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
-
-        foreach ($following as $follow)
-        {
-        var_dump($follow);?>
-            <table border = 1>
+    echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
+    ?>
+    <table border = 1>
         <tr bgcolor = #DDD>
             <td>
-                <b><?= 'Categorie : ' . $category['title'] ?></b>
+                <b>Utilisateur</b>
             </td>
             <td>
-                <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
-                    <input type="hidden" name="id" value="<?= $category['id'] ?>">
-                    <input type="submit" value="Supprimer" name="delCat">
-                    <input type="submit" value="Voir la categorie" name="seeCat">
-                </form>
+                <b>Action</b>
             </td>
-        </tr><?php
-        }
+        </tr>
+    <?php
+    foreach ($following as $follow)
+    { ?>
+    <tr bgcolor = #EEE>
+        <td>
+            <b><?= $follow->username ?></b>
+        </td>
+        <td>
+            <form action="<?= View::getUrlFromRoute('unfollow') ?>" method="post">
+                <input type="hidden" name="id" value="<?= $follow->id ?>">
+                <input type="submit" value="Arrêter de le suivre">
+            </form>
+        </td>
+    </tr>
+    <?php }
 
-
-        echo '</div>';
+    echo '</table></div>';
 }
 
 if (isset($followers))
