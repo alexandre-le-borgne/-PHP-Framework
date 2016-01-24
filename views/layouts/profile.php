@@ -34,7 +34,6 @@ function formTr($string, $streams, $streamType)
                     <input type="hidden" name="id" value="<?= $stream->getId() ?>">
                     <input type="hidden" name="streamType" value="<?= $streamType ?>">
                     <input type="submit" value="Supprimer" name="delStream">
-                    <input type="submit" value="Enlever de la catégorie" name="removeFromCat">
                 </form>
             </td>
         </tr>
@@ -48,6 +47,11 @@ function formTr($string, $streams, $streamType)
     <div id="header">
         <h1><?= $profile ?></h1>
     </div>
+    <nav>
+        <div id="stream">Mes Flux</div>
+        <div id="followers_button">Mes Abonnés</div>
+        <div id="following_botton">Mes Abonnements</div>
+    </nav>
     <div id="categories">
         <?php
             if (isset($categories))
