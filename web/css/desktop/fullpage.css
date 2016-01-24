@@ -195,14 +195,14 @@
 
 .content_action
 {
-    background: #2f3d51;
-    border: solid 2px #2f3d51;
+    background: #d95e40;
+    border: solid 2px #d95e40;
 }
 
 .news_action
 {
-    background: #d95e40;
-    border: solid 2px #d95e40;
+    background: #2f3d51;
+    border: solid 2px #2f3d51;
 }
 
 #text_content #button_action:hover
@@ -235,7 +235,8 @@
     float: left;
     height: 100%;
     width: 40%;
-    background-color: #f037a5;
+    color: #ffffff !important;
+    background-color: #a77dc2;
 }
 
 /*****************************************/
