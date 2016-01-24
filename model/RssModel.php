@@ -19,6 +19,7 @@ class RssModel extends Model implements StreamModel
         return $feed_uri;
     }
 
+
     private function summarizeText($summary)
     {
         $summary = strip_tags($summary);
