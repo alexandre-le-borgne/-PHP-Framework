@@ -23,7 +23,7 @@ $view->extend('layouts/layout');
 
             var haut = (hauteur_fenetre - $(element).height()) / 2 + $(window).scrollTop();
             var gauche = (largeur_fenetre - $(element).width()) / 2 + $(window).scrollLeft();
-            $(element).css({position: 'absolue', top: haut, left: gauche});
+            $(element).css({position: 'absolute', top: haut, left: gauche});
         }
 
         centrerElementAbsolu('.loginDiv');
