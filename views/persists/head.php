@@ -20,6 +20,7 @@
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/header.css') ?>">
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/post.css') ?>">
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/home.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/profil.css') ?>">
 
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/form_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/body_responsive.css') ?>">
