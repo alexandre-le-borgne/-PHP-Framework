@@ -45,6 +45,9 @@ function formTr($string, $streams, $streamType)
 
 ?>
 <div class="user_section">
+    <div id="header">
+        <?= var_dump($profile); ?>
+    </div>
     <div id="categories">
         <?php
             if (isset($categories))
