@@ -98,8 +98,6 @@ class RssModel extends Model implements StreamModel
         }
     }
 
-
-
     private function getFirstArticle(RssEntity $rssEntity)
     {
         $db = new Database();
