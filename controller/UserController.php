@@ -546,13 +546,16 @@ class UserController extends Controller
         $streamId = $request->post('id');
         $streamType = $request->post('streamType');
 
+
+
         if ($streamType && $streamId && ($delStream || $removeFromCat))
         {
+            $this->loadModel('CategoryModel');
+
             switch($streamType)
             {
                 case ArticleModel::TWITTER:
                     $this->loadModel('TwitterModel');
-                    $this->twittermodel->deleteStream()
                     break;
                 case ArticleModel::EMAIL:
 
@@ -560,6 +563,8 @@ class UserController extends Controller
                 case ArticleModel::RSS:
 
                     break;
+                default:
+
             }
         }
     }
