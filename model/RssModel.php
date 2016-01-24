@@ -108,13 +108,4 @@ class RssModel extends Model implements StreamModel
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         return $result->fetch();
     }
-
-    private function getLastArticle(RssEntity $rssEntity)
-    {
-        $db = new Database();
-        $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND streamType = ? ORDER BY articleDate DESC LIMIT 1',
-            array($rssEntity->getId(), ArticleModel::RSS));
-        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
-        return $result->fetch();
-    }
 }
