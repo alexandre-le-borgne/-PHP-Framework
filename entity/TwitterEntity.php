@@ -17,9 +17,11 @@ class TwitterEntity
     {
         $db = new Database();
 
-        $firstUpdate = ($this->firstUpdate instanceof DateTime) ? $this->firstUpdate->getTimestamp() :
+        $firstUpdate = ($this->firstUpdate instanceof DateTime) ?
+            date(Database::DATE_FORMAT, $this->firstUpdate->getTimestamp()) :
             date(Database::DATE_FORMAT, strtotime($this->firstUpdate));
-        $lastUpdate = ($this->lastUpdate instanceof DateTime) ? $this->lastUpdate->getTimestamp() :
+        $lastUpdate = ($this->lastUpdate instanceof DateTime) ?
+            date(Database::DATE_FORMAT, $this->lastUpdate->getTimestamp()) :
             date(Database::DATE_FORMAT, strtotime($this->lastUpdate));
 
         if ($this->id == null)
