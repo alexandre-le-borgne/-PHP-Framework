@@ -495,7 +495,7 @@ class UserController extends Controller
                 {
                     $var = $this->twittermodel->getStreamById($streamCategory->getStream());
                     if ($var)
-                        $twitterStreams = $var;
+                        $twitterStreams[] = $var;
                 }
                 else if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
                 {

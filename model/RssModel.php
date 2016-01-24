@@ -78,40 +78,21 @@ class RssModel extends Model implements StreamModel
         foreach ($rssStreams as $rssEntity)
         {
             $firstRss = $this->getFirstArticle($rssEntity);
-            $lastRss = $this->getLastArticle($rssEntity);
-            var_dump($firstRss);
-            var_dump($lastRss);
-            $firstDate = $firstRss->getArticleDate();
-            $lastDate = $lastRss->getArticleDate();
-            var_dump($firstDate);
-            var_dump($lastDate);
 
-            /** @var RssEntity $fetch */
             $stream_id = $rssEntity->getId();
             $url = $rssEntity->getUrl();
             $x = simplexml_load_file($url);
 
-            foreach ($x->channel->item as $item)
+            if(!$firstRss)
             {
-                if ($item->articleDate < $firstDate)
+
+                foreach ($x->channel->item as $item)
                 {
                     $base = $item->articleDate;
                     $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
                     $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                 }
-
-            }//while
-
-            foreach ($x->channel->item as $item)
-            {
-                if ($item->articleDate > $lastDate)
-                {
-                    $base = $item->articleDate;
-                    $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                    $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
-                }
-
-            }//while
+            }
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
             $db->execute($update, array($stream_id));
         }
