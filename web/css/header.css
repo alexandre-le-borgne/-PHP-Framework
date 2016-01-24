@@ -20,6 +20,10 @@ header nav
     margin-top: 3px !important;
 }
 
+header form
+{
+
+}
 
 header .search_bar {
     transition: 150ms background,150ms color;
@@ -111,6 +115,8 @@ header form img
     width: 100px;
     transition: 150ms width;
 }
+
+
 
 
 header #logo_txt
