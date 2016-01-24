@@ -141,7 +141,7 @@ class UserModel extends Model
         $key = Security::generateKey();
         $password = Security::encode($password);
 
-        $data = $this->getByNameOrEmail($user);
+        $data = getByNameOrEmail($user);
 
         $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
         $db->execute($req, array($key, $data['id']));
