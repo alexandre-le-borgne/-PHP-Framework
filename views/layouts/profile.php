@@ -20,9 +20,9 @@ if (isset($categories))
 
     foreach ($categories as $category)
     {
-        echo '<b>' . $category['title'] . '</b> : ';
         ?>
         <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
+            <b><?php $category['title'] ?></b>
             <input type="hidden" name="id" value="<?= $category['id'] ?>">
             <input type="submit" value="Supprimer" name="delCat">
             <input type="submit" value="Voir la categorie" name="seeCat">
