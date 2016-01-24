@@ -394,6 +394,7 @@ class UserController extends Controller
     }
 
     public function ResetpasswordAction(Request $request){
+        $this->loadModel('UserModel');
         $this->usermodel->resetPassword($request->get('username'), $request->get('key'), $request->post('reset'));
     }
 }
