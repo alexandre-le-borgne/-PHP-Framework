@@ -28,6 +28,6 @@ echo $this->output('_content');
     if (isset($categories))
         $this->render('persists/categories', array('categories' => $categories));
     if (isset($streams))
-        $this->render('persists/streams', $streams);
+        $this->render('persists/streams', array('streams' => $streams));
     ?>
 </div>
