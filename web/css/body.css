@@ -122,6 +122,15 @@ table
     cursor: pointer;
 }
 
+#text_content #button_action:hover
+{
+    background: #db6f57;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    transition: 150ms background, 150ms border-radius, 150ms border, 150ms color;
+}
+
 
 #table_section_content table td
 {
