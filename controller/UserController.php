@@ -406,6 +406,7 @@ class UserController extends Controller
                 if ($key == $realKey)
                 {
                     /** @var UserEntity $userEntity */
+                    $this->loadModel('UserModel');
                     $userEntity = $this->usermodel->getByNameOrEmail($user);
                     $userEntity->setActive(1);
                     $userEntity->persist();
