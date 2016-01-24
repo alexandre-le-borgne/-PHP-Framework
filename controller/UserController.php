@@ -59,7 +59,7 @@ class UserController extends Controller
                         if ($userEntity->getAuthentification() == 0)
                         {
                             $passwordEntity = $this->passwordmodel->getByUser($userEntity);
-                            if (Security::equals($passwordEntity->getPassword(), $password))
+                            if ($passwordEntity && Security::equals($passwordEntity->getPassword(), $password))
                             {
                                 $request->getSession()->set("id", $userEntity->getId());
                                 $request->getSession()->set("password", $passwordEntity->getPassword());
