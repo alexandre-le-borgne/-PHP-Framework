@@ -74,7 +74,7 @@ function formTr($string, $streams, $streamType)
                 {
                     $cat = $category['categories'];
                     ?>
-                    <table border = 1>
+                    <table>
                     <tr bgcolor = #a77dc2>
                         <td>
                             <b><?= 'Categorie : ' . $category['title'] ?></b>
@@ -108,7 +108,7 @@ function formTr($string, $streams, $streamType)
         {
             echo '<div class="wrapper">';
             ?>
-            <table border = 1>
+            <table>
                 <tr bgcolor = #56bc8a>
                     <td>
                         <b>Utilisateur</b>
@@ -120,7 +120,7 @@ function formTr($string, $streams, $streamType)
             <?php
             foreach ($following as $follow)
             { ?>
-            <tr bgcolor = #EEE>
+            <tr>
                 <td>
                     <b><?= $follow->username ?></b>
                 </td>
