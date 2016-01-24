@@ -441,7 +441,10 @@ class UserController extends Controller
         $this->loadModel('UserModel');
 
         $this->usermodel->forgotPassword($email);
-        $this->redirectToRoute('index');
+        $errors = "Votre mot de passea bien été mis à jour";
+
+        $data = array('errors' => $errors);
+        $this->render('forms/registerForm', $data);
     }
 
     public function ForgotFormAction()
@@ -463,7 +466,11 @@ class UserController extends Controller
         $this->loadModel('UserModel');
 
         $this->usermodel->resetPassword($_SESSION['user'], $_SESSION['key'], $request->post('password'));
-        $this->redirectToRoute('index');
+
+        $errors = "Un mail vous a été envoyé, allez vérifier vos mails";
+
+        $data = array('errors' => $errors);
+        $this->render('forms/registerForm', $data);
 
     }
 
