@@ -114,7 +114,7 @@
             function ajax(data) {
                 $.ajax({
                     method: "POST",
-                    url: "<?= View::getUrlFromRoute('ajax') ?>,
+                    url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
                     if(msg)
