@@ -491,8 +491,6 @@ class UserController extends Controller
 
             foreach ($streamCategories as $streamCategory)
             {
-                var_dump($streamCategory);
-
                 if ($streamCategory->getStreamType() == ArticleModel::TWITTER)
                 {
                     $var = $this->twittermodel->getStreamById($streamCategory->getStream());
@@ -512,8 +510,6 @@ class UserController extends Controller
                         $rssStreams = $var;
                 }
             }
-
-//            exit(0);
 
             $categoryStreams = array(
                 'twitter' => $twitterStreams,
