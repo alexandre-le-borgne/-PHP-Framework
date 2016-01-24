@@ -75,16 +75,8 @@ if (isset($categories))
         ?>
         </table>
         <?php
-
-        /*
-        $cat = $category['categories'];
-        var_dump($cat['twitter']);
-        var_dump($cat['email']);
-        var_dump($cat['rss']);
-
-        echo '<br/>';
-        */
     }
+    echo '</div>';
 }
 
 /*
