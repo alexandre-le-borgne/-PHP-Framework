@@ -27,7 +27,7 @@ function formTr($string, $streams)
         ?>
         <tr bgcolor="#EEE">
             <td>
-                <b><?= $stream->getChannel ?></b>
+                <b><?= $stream->toString() ?></b>
             </td>
             <td>
                 <form action="<?= View::getUrlFromRoute('deletestream') ?>" method="post">
@@ -55,7 +55,7 @@ if (isset($categories))
         <table border = 1>
         <tr bgcolor = #DDD>
             <td>
-                <b><?= 'Categorie :' . $category['title'] ?></b>
+                <b><?= 'Categorie : ' . $category['title'] ?></b>
             </td>
             <td>
                 <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
