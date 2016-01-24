@@ -8,15 +8,19 @@
  */
 class UserController extends Controller
 {
-    public function ChannelAction(Request $request, $channel) {
-        if(!$channel) {
+    public function ChannelAction(Request $request, $channel)
+    {
+        if (!$channel)
+        {
             $this->redirectToRoute('index');
         }
-        else {
+        else
+        {
             $this->loadModel('UserModel');
             /** @var UserEntity $userEntity */
             $userEntity = $this->usermodel->getByNameOrEmail($channel);
-            if($userEntity) {
+            if ($userEntity)
+            {
                 $this->loadModel('CategoryModel');
                 $this->loadModel('ArticleModel');
                 $categories = $this->categorymodel->getByUserId($userEntity->getId());
@@ -24,7 +28,8 @@ class UserController extends Controller
                 $data = array('channel' => $userEntity->getUsername(), 'categories' => $categories, 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }
-            else {
+            else
+            {
                 $this->render('layouts/error', array('error' => 'La chaîne n\'existe pas'));
             }
         }
@@ -91,7 +96,8 @@ class UserController extends Controller
 
     public function GoogleAction(Request $request)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        {
             $this->redirectToRoute('index');
             return;
         }
@@ -112,29 +118,39 @@ class UserController extends Controller
 
         $google_oauthV2 = new Google_Service_Oauth2($gClient);
 
-        if (isset($_GET['code'])) {
+        if (isset($_GET['code']))
+        {
             $gClient->authenticate($_GET['code']);
         }
 
-        if ($gClient->getAccessToken()) {
+        if ($gClient->getAccessToken())
+        {
             $userData = $google_oauthV2->userinfo->get();
-            if ($userData->getVerifiedEmail()) {
+            if ($userData->getVerifiedEmail())
+            {
                 $this->loadModel('UserModel');
                 /** @var UserEntity $userEntity */
                 $userEntity = $this->usermodel->getByNameOrEmail($userData->getEmail());
-                if ($userEntity) {
-                    if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                if ($userEntity)
+                {
+                    if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL)
+                    {
                         $request->getSession()->set('id', $userEntity->getId());
                     }
-                    else {
+                    else
+                    {
                         $data['errors'] = 'Le compte existe déjà. Utilisez le mot de passe pour vous connecter.';
                     }
-                } else {
+                }
+                else
+                {
                     $id = $this->usermodel->addExternalUser($userData->getName(), $userData->getEmail());
                     $request->getSession()->set('id', $id);
                 }
             }
-        } else {
+        }
+        else
+        {
             $authUrl = $gClient->createAuthUrl();
             $data['authUrl'] = $authUrl;
         }
@@ -147,7 +163,8 @@ class UserController extends Controller
 
     public function FacebookAction(Request $request)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        {
             $this->redirectToRoute('index');
             return;
         }
@@ -155,8 +172,10 @@ class UserController extends Controller
         $appId = '1563533667270416';
         $appSecret = 'e8d11a4b6bef48629c71839c86de8b01';
 
-        foreach ($_COOKIE as $k => $v) {
-            if (strpos($k, "FBRLH_") !== FALSE) {
+        foreach ($_COOKIE as $k => $v)
+        {
+            if (strpos($k, "FBRLH_") !== FALSE)
+            {
                 $_SESSION[$k] = $v;
             }
         }
@@ -167,75 +186,101 @@ class UserController extends Controller
             'default_graph_version' => 'v2.5',
         ]);
 
-        foreach ($_COOKIE as $k => $v) {
-            if (strpos($k, "FBRLH_") !== FALSE) {
+        foreach ($_COOKIE as $k => $v)
+        {
+            if (strpos($k, "FBRLH_") !== FALSE)
+            {
                 $_SESSION[$k] = $v;
             }
         }
 
         $helper = $fb->getRedirectLoginHelper();
 
-        if (isset($_SESSION['facebook_access_token'])) {
+        if (isset($_SESSION['facebook_access_token']))
+        {
             $accessToken = $_SESSION['facebook_access_token'];
             $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
             $this->loadModel('UserModel');
             /** @var UserEntity $userEntity */
             $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
-            if ($userEntity) {
-                if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+            if ($userEntity)
+            {
+                if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL)
+                {
                     $request->getSession()->set('id', $userEntity->getId());
                 } // sinon c'est un compte du site, donc pas connectable avec google/facebook
-            } else {
+            }
+            else
+            {
                 $id = $this->usermodel->addExternalUser($userData['name'], $userData['email']);
                 $request->getSession()->set('id', $id);
             }
             if (!$request->isInternal())
                 $this->redirectToRoute('index');
-            else {
+            else
+            {
                 $helper = $fb->getRedirectLoginHelper();
                 $permissions = ['public_profile', 'email', 'user_likes']; // optional
                 $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
-                foreach ($_SESSION as $k => $v) {
-                    if (strpos($k, "FBRLH_") !== FALSE) {
-                        if (!setcookie($k, $v)) {
+                foreach ($_SESSION as $k => $v)
+                {
+                    if (strpos($k, "FBRLH_") !== FALSE)
+                    {
+                        if (!setcookie($k, $v))
+                        {
                             //what??
-                        } else {
+                        }
+                        else
+                        {
                             $_COOKIE[$k] = $v;
                         }
                     }
                 }
                 $this->render('forms/facebookForm', array('loginUrl' => $loginUrl, 'errors' => 'Le compte existe déjà. Utilisez le mot de passe pour vous connecter.'));
             }
-        } else {
+        }
+        else
+        {
             // We don't have the accessToken
             // But are we in the process of getting it ?
-            if (isset($_REQUEST['code'])) {
-                try {
+            if (isset($_REQUEST['code']))
+            {
+                try
+                {
                     $accessToken = $helper->getAccessToken();
-                } catch (Facebook\Exceptions\FacebookResponseException $e) {
+                } catch (Facebook\Exceptions\FacebookResponseException $e)
+                {
                     $this->redirectToRoute('index');
                     return;
-                } catch (Facebook\Exceptions\FacebookSDKException $e) {
+                } catch (Facebook\Exceptions\FacebookSDKException $e)
+                {
                     $this->redirectToRoute('index');
                     return;
                 }
                 $error = '';
-                if (isset($accessToken)) {
+                if (isset($accessToken))
+                {
                     $_SESSION['facebook_access_token'] = (string)$accessToken;
                     $userData = $fb->get('/me?fields=id,name,email', $accessToken)->getDecodedBody();
                     $this->loadModel('UserModel');
                     /** @var UserEntity $userEntity */
-                    if (isset($userData['email'])) {
+                    if (isset($userData['email']))
+                    {
                         $userEntity = $this->usermodel->getByNameOrEmail($userData['email']);
-                        if ($userEntity) {
-                            if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL) {
+                        if ($userEntity)
+                        {
+                            if ($userEntity->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL)
+                            {
                                 $request->getSession()->set('id', $userEntity->getId());
                             }
-                            else {
+                            else
+                            {
                                 $error = 'Le compte existe déjà. Utilisez le mot de passe pour vous connecter.';
                             }
 
-                        } else {
+                        }
+                        else
+                        {
                             $id = $this->usermodel->addExternalUser($userData['name'], $userData['email']);
                             $request->getSession()->set('id', $id);
                         }
@@ -245,32 +290,44 @@ class UserController extends Controller
                         $helper = $fb->getRedirectLoginHelper();
                         $permissions = ['public_profile', 'email', 'user_likes']; // optional
                         $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
-                        foreach ($_SESSION as $k => $v) {
-                            if (strpos($k, "FBRLH_") !== FALSE) {
-                                if (!setcookie($k, $v)) {
+                        foreach ($_SESSION as $k => $v)
+                        {
+                            if (strpos($k, "FBRLH_") !== FALSE)
+                            {
+                                if (!setcookie($k, $v))
+                                {
                                     //what??
-                                } else {
+                                }
+                                else
+                                {
                                     $_COOKIE[$k] = $v;
                                 }
                             }
                         }
                         $this->render("forms/facebookForm", array('loginUrl' => $loginUrl, 'errors' => $error));
                     }
-                    else {
+                    else
+                    {
                         $this->redirectToRoute('index');
                     }
                 }
             }
-            else {
+            else
+            {
                 // Well looks like we are a fresh dude, login to Facebook!
                 $helper = $fb->getRedirectLoginHelper();
                 $permissions = ['public_profile', 'email', 'user_likes']; // optional
                 $loginUrl = $helper->getLoginUrl('http://alex83690.alwaysdata.net/aaron/facebook', $permissions);
-                foreach ($_SESSION as $k => $v) {
-                    if (strpos($k, "FBRLH_") !== FALSE) {
-                        if (!setcookie($k, $v)) {
+                foreach ($_SESSION as $k => $v)
+                {
+                    if (strpos($k, "FBRLH_") !== FALSE)
+                    {
+                        if (!setcookie($k, $v))
+                        {
                             //what??
-                        } else {
+                        }
+                        else
+                        {
                             $_COOKIE[$k] = $v;
                         }
                     }
@@ -284,40 +341,52 @@ class UserController extends Controller
 
     public function RegisterAction(Request $request)
     {
-        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED)) {
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        {
             $this->redirectToRoute('index');
-        } else {
+        }
+        else
+        {
             $email = $request->post('email');
             $password = $request->post('password');
             $confirmPwd = $request->post('confirmPwd');
             $username = $request->post('username');
-            if ($username && $email && $password && $confirmPwd) {
+            if ($username && $email && $password && $confirmPwd)
+            {
                 $this->loadModel('UserModel');
 
                 $errors = '';
-                if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL) {
+                if ($this->usermodel->availableEmail($email) == UserModel::ALREADY_USED_EMAIL)
+                {
                     $errors = 'Email déjà utilisé';
                 }
-                else if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX) {
+                else if ($this->usermodel->availableEmail($email) == UserModel::BAD_EMAIL_REGEX)
+                {
                     $errors = 'Format d\'email incorrect';
                 }
-                else if ($password != $confirmPwd) {
+                else if ($password != $confirmPwd)
+                {
                     $errors = 'Mot de passe différent';
                 }
-                else if (!($this->usermodel->correctPwd($password))) {
+                else if (!($this->usermodel->correctPwd($password)))
+                {
                     $errors = 'La taille du mdp doit être entre 6 et 20';
                 }
-                else if (!($this->usermodel->availableUser($username))) {
+                else if (!($this->usermodel->availableUser($username)))
+                {
                     $errors = 'Pseudonyme déjà utilisé';
                 }
-                else {
+                else
+                {
                     $this->usermodel->addUser($username, $email, $password);
                     $this->redirectToRoute('index');
                     return;
                 }
                 $data = array('errors' => $errors);
                 $this->render('forms/registerForm', $data);
-            } else {
+            }
+            else
+            {
                 $this->render('forms/registerForm');
             }
         }
@@ -346,7 +415,8 @@ class UserController extends Controller
         $db = new Database();
         $req = "Select id, email, userKey, active From accounts Where username = ?";
         $result = $db->execute($req, array($user));
-        if ($result && ($data = $result->fetch())) {
+        if ($result && ($data = $result->fetch()))
+        {
             $email = $data['email'];
             $realKey = $data['userKey'];
             $active = $data['active'];
@@ -354,14 +424,16 @@ class UserController extends Controller
             {
                 $this->render("forms/loginForm", array("errors" => "Votre compte est déjà actif"));
             }
-            else {
-                if ($key == $realKey) {
+            else
+            {
+                if ($key == $realKey)
+                {
                     $req = "Update accounts Set active = 1 Where username = ?";
                     $db->execute($req, array($user));
                     Mail::sendWelcomingMail($email);
                     //$this->redirectToRoute('index', array('actif'));
                     $this->loadModel('UserModel');
-                    if($this->usermodel->getById($data['id']))
+                    if ($this->usermodel->getById($data['id']))
                         $this->render('layouts/home', array("mailValidationMessage" => "Votre compte a bien été activé"));
                     else
                         $this->render("forms/loginForm", array("errors" => "Votre compte a bien été activé"));
@@ -379,22 +451,65 @@ class UserController extends Controller
         }
     }
 
-    public function PwdforgotAction(Request $request){
+    public function PwdforgotAction(Request $request)
+    {
         $email = $request->post('email');
+
         $this->loadModel('UserModel');
+
         $this->usermodel->forgotPassword($email);
     }
 
-    public function ForgotFormAction(){
+    public function ForgotFormAction()
+    {
         $this->render('/forms/forgotForm');
     }
 
-    public function ResetFormAction(){
+    public function ResetFormAction()
+    {
         $this->render('/forms/resetForm');
     }
 
-    public function ResetpasswordAction(Request $request){
-        $this->loadModel('UserModel');
-        $this->usermodel->resetPassword($request->get('user'), $request->get('key'), $request->post('reset'));
+    public function ResetMailAction(Request $request)
+    {
+        $this->usermodel->resetPassword($request->get('username'), $request->get('key'), $request->post('reset'));
+    }
+
+    public function ProfileAction(Request $request)
+    {
+        $this->loadModel('CategoryModel');
+        $this->loadModel('EmailModel');
+        $this->loadModel('TwitterModel');
+        $this->loadModel('RssModel');
+
+        $data = array();
+
+        $categories = $this->categorymodel->getByUserId($request->get('id'));
+
+        foreach ($categories as $category)
+        {
+            $streamCategories = $this->categorymodel->getStreamCategoriesByCategoryId($category->getId());
+
+            $twitterStreams = array();
+            $emailStreams = array();
+            $rssStreams = array();
+
+            foreach ($streamCategories as $streamCategory)
+            {
+                if ($streamCategory->getStreamType() == ArticleModel::TWITTER)
+                {
+                    $twitterStreams = $this->twittermodel->
+                }
+                if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
+                {
+
+                }
+                if ($streamCategory->getStreamType() == ArticleModel::RSS)
+                {
+
+                }
+
+            }
+        }
     }
 }
