@@ -8,7 +8,7 @@
 $view->extend('layouts/layout');
 $this->render('persists/header');
 
-var_dump($categories);
+//var_dump($categories);
 
 
 foreach ($categories as $category)
