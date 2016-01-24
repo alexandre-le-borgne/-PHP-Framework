@@ -60,19 +60,20 @@ class RssModel extends Model implements StreamModel
         }
     }
 
+
     public function cron()
     {
-        /*
-         * DateTime $firstUpdate
-         * DateTime $lastUpdate
-         */
         $db = new Database();
-        $req = "SELECT * FROM stream_rss";
-        $result = $db->execute($req);
+        $result = $db->execute('SELECT * FROM stream_rss');
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
-        $rssEntityArray = $result->fetchAll();
-        foreach ($rssEntityArray as $rssEntity)
+        $rssStreams = $result->fetchAll();
+
+        /** @var EmailEntity $emailEntity */
+        foreach ($rssStreams as $rssEntity)
         {
+            $firstRss = $this->getFirstArticle($rssEntity);
+            $lastRss = $this->getLastArticle($rssEntity);
+
             /** @var RssEntity $fetch */
             $stream_id = $rssEntity->getId();
             $streamFirst = $rssEntity->getFirstUpdate();
@@ -123,72 +124,7 @@ class RssModel extends Model implements StreamModel
         }
     }
 
-    public function cron()
-    {
-        $db = new Database();
-        $result = $db->execute('SELECT * FROM stream_rss');
-        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
-        $rssStreams = $result->fetchAll();
 
-        /** @var EmailEntity $emailEntity */
-        foreach ($rssStreams as $rssEntity)
-        {
-            $firstRss = $this->getFirstArticle($rssEntity);
-            $lastRss = $this->getLastArticle($rssEntity);
-            $connection = $this->connect($emailEntity->getServer(), $emailEntity->getPort(), $emailEntity->getAccount(), $emailEntity->getPassword());
-            $stream = $connection['conn'];
-            $date = date("d M Y", strtotime($emailEntity->getFirstUpdate()));
-            $emails = imap_search($stream, 'SINCE "' . $date . '"');
-
-            $articles = array();
-            if (count($emails))
-            {
-                foreach ($emails as $email)
-                {
-                    $overview = imap_fetch_overview($stream, $email, 0);
-                    $structure = imap_fetchstructure($stream, $overview[0]->uid, FT_UID);
-                    switch ($structure->encoding)
-                    {
-                        case 4:
-                            $body = imap_qprint(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
-                            break;
-                        case 3:
-                            $body = base64_decode(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
-                            break;
-                        case 1:
-                            $body = imap_qprint(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
-                            break;
-                        case 0:
-                            $body = quoted_printable_decode(imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1));
-                            break;
-                        default:
-                            $body = imap_fetchbody($stream, imap_msgno($stream, $overview[0]->uid), 1);
-                    }
-                    $article = new ArticleEntity();
-                    $subject = isset($overview[0]->subject) ? $this->decode_imap_text($overview[0]->subject) : 'Sans object';
-                    $article->setTitle($structure->encoding . "$$$" . $subject . ' - ' . $this->decode_imap_text($overview[0]->from));
-                    $article->setContent($this->getBody($overview[0]->uid, $stream));
-                    $article->setArticleDate(date(Database::DATE_FORMAT, strtotime($overview[0]->date)));
-                    $article->setStreamType(ArticleModel::EMAIL);
-                    $article->setStreamId($emailEntity->getId());
-                    $article->setUrl('');
-                    $articles[] = $article;
-                }
-            }
-
-            /** @var ArticleEntity $article */
-            foreach ($articles as $article)
-            {
-                if (!$firstEmail || strtotime($article->getArticleDate()) < strtotime($firstEmail->getArticleDate())
-                    || !$lastEmail || strtotime($article->getArticleDate()) > strtotime($lastEmail->getArticleDate())
-                )
-                {
-                    $article->persist();
-                }
-            }
-        }
-        return $articles;
-    }
 
     private function getFirstArticle(RssEntity $rssEntity)
     {
