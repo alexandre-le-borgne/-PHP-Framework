@@ -11,11 +11,9 @@
     <h2><strong>Réinitialisez votre mot de passe !</h2>
 
     <!--RESET FORM-->
-    <form class="form-horizontal" method="post" name="reset" action="<?= View::getUrlFromRoute('passwordReset') ?>">
+    <form class="form-horizontal" method="post" name="reset" action="<?= View::getUrlFromRoute('resetpassword') ?>">
 
-        <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
-        $this->render('forms/resetForm', (isset($errors) ? $data = array("errors" => $errors) : null))
-        ?>
+        <input class="last" type="password" name="password" placeholder="Password" required>
 
         <!--SUBMIT ACTION-->
         <button type="submit" name="action" value="reset" class="btn">Changer le mot de passe</button>
