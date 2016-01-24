@@ -484,7 +484,7 @@ class UserController extends Controller
         foreach ($categories as $category)
         {
             $streamCategories = $this->categorymodel->getStreamCategoriesByCategoryId($category->getId());
-            //echo 'debug' . var_dump($streamCategories);
+
             $twitterStreams = array();
             $emailStreams = array();
             $rssStreams = array();
@@ -495,11 +495,11 @@ class UserController extends Controller
                 {
                     $twitterStreams = $this->twittermodel->getStreamById($streamCategory->getId());
                 }
-                if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
+                else if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
                 {
                     $emailStreams = $this->emailmodel->getStreamById($streamCategory->getId());
                 }
-                if ($streamCategory->getStreamType() == ArticleModel::RSS)
+                else if ($streamCategory->getStreamType() == ArticleModel::RSS)
                 {
                     $rssStreams = $this->rssmodel->getStreamById($streamCategory->getId());
                 }
