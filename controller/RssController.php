@@ -53,7 +53,7 @@ class RssController extends  Controller{
         }
         else
         {
-            $this->render('layouts/addStream', array('errors' => array('Une erreur est survenue dans la connexion au flux twitter. Veuillez réssayer ! ')));
+            $this->render('layouts/addStream', array('errors' => array('Une erreur est survenue dans la connexion au flux rss. Veuillez réssayer ! ')));
         }
 
     }
