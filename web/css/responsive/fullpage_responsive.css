@@ -36,10 +36,10 @@
 
 #title_section_news
 {
-    /* float: left; */
-    /* height: 100%; */
-    /* width: 100%; */
-    /* background-color: #36465d; */
+    float: left;
+    height: 100%;
+    width: 100%;
+    background-color: #36465d;
     display: block;
 }
 
