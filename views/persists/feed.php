@@ -115,6 +115,7 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
+                    console.log('ok' + msg);
                     $(".post_footer .nolike img").attr('src', '<?= View::getAsset('img/like.png') ?>');
                     $(".post_footer .nolike").removeClass('nolike').addClass('like');
                 });
