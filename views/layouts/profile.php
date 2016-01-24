@@ -10,7 +10,7 @@ $this->render('persists/header');
 
 //var_dump($categories);
 //Pour pas reecrire plein de fois
-function formTr($string, $streams)
+function formTr($string, $streams, $streamType)
 {
 ?>
     <tr bgcolor="#DDD">
@@ -32,6 +32,7 @@ function formTr($string, $streams)
             <td>
                 <form action="<?= View::getUrlFromRoute('deletestream') ?>" method="post">
                     <input type="hidden" name="id" value="<?= $stream->getId() ?>">
+                    <input type="hidden" name="streamType" value="<?= $streamType ?>">
                     <input type="submit" value="Supprimer" name="delStream">
                     <input type="submit" value="Enlever de la catégorie" name="removeFromCat">
                 </form>
@@ -73,11 +74,11 @@ if (isset($categories))
         </tr>
         <?php
         if (!(empty($cat['twitter'])))
-            formTr('Twitter', $cat['twitter']);
+            formTr('Twitter', $cat['twitter'], ArticleModel::TWITTER);
         if (!(empty($cat['email'])))
-            formTr('Email', $cat['email']);
+            formTr('Email', $cat['email'], ArticleModel::EMAIL);
         if (!(empty($cat['rss'])))
-            formTr('RSS', $cat['rss']);
+            formTr('RSS', $cat['rss'], ArticleModel::RSS);
         ?>
         </table>
         <?php
