@@ -81,9 +81,17 @@ if (isset($categories))
 
 if (isset($followers))
 {
+    $i = 0;
+    echo 'Les gens qui me suivent : ';
     foreach ($followers as $follower)
     {
-        var_dump($follower);
+        echo $follower->username . ', ';
+        ++$i;
+        if ($i == 8)
+        {
+            $i = 0;
+            echo '<br/>';
+        }
     }
 }
 
