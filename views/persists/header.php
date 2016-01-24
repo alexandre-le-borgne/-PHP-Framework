@@ -58,11 +58,6 @@ if (isset($mailValidationMessage))
                                 }
                             }
                         });
-                    }).autocomplete({
-                        messages: {
-                            noResults: '',
-                            results: function() {}
-                        }
                     });
                 });
             </script>
