@@ -119,6 +119,7 @@
                 $.ajax({
                     method: "POST",
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
+                    async: false,
                     data: data
                 }).done(function( msg ) {
                     console.log("ok");
