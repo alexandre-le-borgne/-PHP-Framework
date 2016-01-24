@@ -14,10 +14,10 @@ class CategoryModel extends Model
         $data = array($account, $title);
         $data = $db->execute("SELECT * FROM categories WHERE account = ? AND title = ?", $data);
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'CategoryEntity');
-        $emailEntity = $data->fetch();
-        if ($emailEntity)
+        $categoryEntity = $data->fetch();
+        if ($categoryEntity)
         {
-            return $emailEntity;
+            return $categoryEntity;
         }
         else
         {
