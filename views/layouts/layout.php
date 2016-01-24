@@ -12,6 +12,8 @@
         <?php $this->render('persists/head'); ?>
     </head>
     <body>
+        <div id = "entete"></div>
         <?= $_content; ?>
+        <a href="#entete">Remonter</a>
     </body>
 </html>

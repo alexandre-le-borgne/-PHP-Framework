@@ -62,7 +62,7 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    $("img", thispost).attr('src', '<?= View::getAsset('img/noblog.png') ?>');
+                    $("img", thispost).attr('src', '<?= View::getAsset('img/hide.png') ?>');
                     $(thispost).removeClass('blog').addClass('noblog');
                 });
             });
@@ -78,7 +78,7 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    $("img", thispost).attr('src', '<?= View::getAsset('img/blog.png') ?>');
+                    $("img", thispost).attr('src', '<?= View::getAsset('img/retweet.png') ?>');
                     $(thispost).removeClass('noblog').addClass('blog');
                 });
             });

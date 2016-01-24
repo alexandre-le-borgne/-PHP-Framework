@@ -69,8 +69,17 @@
 
     <div class="post_footer">
         <span class="follow" href="#">Suivre ce flux</span>
-        <span class="ignore" href="#"><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></span>
         <?php
+        if ($blog) {
+            ?>
+            <span class="ignore noblog" href="#"><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></span>
+            <?php
+        }
+        else {
+            ?>
+            <span class="repost blog" href="#"><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></span>
+            <?php
+        }
         if ($favoris)
         {
             ?>
@@ -84,7 +93,6 @@
             <?php
         }
         ?>
-        <span class="repost" href="#"><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></span>
         <a class="global_url" target="_blank" href="<?= View::getUrlFromRoute('article/' . $article->getId()) ?>">
             <img src="<?= View::getAsset('img/share.png') ?>" width="27">
         </a>
