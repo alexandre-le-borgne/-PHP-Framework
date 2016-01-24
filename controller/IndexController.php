@@ -16,9 +16,16 @@ class IndexController extends Controller
             {
                 $this->loadModel('CategoryModel');
                 $this->loadModel('ArticleModel');
+                $this->loadModel('EmailModel');
+                $this->loadModel('TwitterModel');
+                $this->loadModel('RssModel');
                 $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
-                $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 500);
-                $data = array('categories' => $categories, 'articles' => $articles);
+                $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 50);
+                $emailStreams = $this->emailmodel->getByUserId($request->getSession()->get('id'));
+                $twitterStreams = $this->twittermodel->getByUserId($request->getSession()->get('id'));
+                $rssStreams = $this->rssmodel->getByUserId($request->getSession()->get('id'));
+                $streams = array('emailStreams' => $emailStreams, 'twitterStreams' => $twitterStreams, 'rssStreams' => $rssStreams);
+                $data = array('categories' => $categories, 'articles' => $articles, 'streams' => $streams);
                 $this->render('layouts/home', $data);
             }
             else

@@ -24,7 +24,7 @@ class TwitterModel extends Model implements StreamModel
 
     public function getStreamById($id)
     {
-        if (intval($id))
+        if (is_numeric($id))
         {
             $db = new Database();
             $data = $db->execute("SELECT * FROM stream_twitter WHERE id = ?", array($id));

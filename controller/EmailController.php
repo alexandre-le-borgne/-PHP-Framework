@@ -10,7 +10,7 @@ class EmailController extends Controller
 {
     public function IndexAction($id = null) // Fonction de debug pour le dev
     {
-        if (intval($id)) {
+        if (is_numeric($id)) {
             $this->loadModel('ArticleModel');
             /** @var ArticleEntity $article */
             $article = $this->articlemodel->getById($id);

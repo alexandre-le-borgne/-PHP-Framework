@@ -31,7 +31,7 @@ class CategoryModel extends Model
 
     public function getStreamCategoriesByCategoryId($id)
     {
-        if (intval($id))
+        if (is_numeric($id))
         {
             $db = new Database();
             $req = 'SELECT * FROM stream_category WHERE category = ?';
@@ -44,7 +44,7 @@ class CategoryModel extends Model
 
     public function getById($id)
     {
-        if (intval($id))
+        if (is_numeric($id))
         {
             $db = new Database();
             $data = $db->execute("SELECT * FROM categories WHERE id = ?", array($id));
@@ -56,7 +56,7 @@ class CategoryModel extends Model
 
     public function getByUserId($id)
     {
-        if (intval($id))
+        if (is_numeric($id))
         {
             $db = new Database();
             $data = $db->execute("SELECT * FROM categories WHERE account = ?", array($id));
@@ -72,7 +72,7 @@ class CategoryModel extends Model
 
     public function getStreamsByCategoryId($id)
     {
-        if (intval($id))
+        if (is_numeric($id))
         {
             $return = array();
             $db = new Database();
