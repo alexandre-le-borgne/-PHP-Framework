@@ -21,12 +21,18 @@ if (isset($categories))
     foreach ($categories as $category)
     {
         ?>
-        <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
-            <b><?php $category['title'] ?></b>
-            <input type="hidden" name="id" value="<?= $category['id'] ?>">
-            <input type="submit" value="Supprimer" name="delCat">
-            <input type="submit" value="Voir la categorie" name="seeCat">
-        </form>
+        <table border = 1> <tr bgcolor = #DDD>
+            <td>
+                <b><?php $category['title'] ?></b>
+            </td>
+            <td>
+                <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $category['id'] ?>">
+                    <input type="submit" value="Supprimer" name="delCat">
+                    <input type="submit" value="Voir la categorie" name="seeCat">
+                </form>
+            </td>
+        </table>
         <?php
 
         $cat = $category['categories'];
