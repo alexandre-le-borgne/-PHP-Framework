@@ -11,7 +11,7 @@
 <div class="section section_social">
         <div id="title_section_social">
             <div id="text_content">
-                <h1>Vos personnalités favorites avec Twitter.</h1><br>
+                <h1>Ne ratez pas une news avec Twitter.</h1><br>
                 <h3>Retrouvez toutes vos personnalités préférées avec Twitter !</h3>
                 <img src="<?= View::getAsset('web/img/twitter.png') ?>">
             </div>
