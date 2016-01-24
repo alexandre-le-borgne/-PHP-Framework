@@ -73,7 +73,8 @@
                         }
                     }
                      */
-                    echo $article->getContent();
+
+                    echo "<iframe>".$article->getContent()."</iframe>";
                     ?>
                 </div>
 
