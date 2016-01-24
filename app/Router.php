@@ -20,6 +20,8 @@ class Router
 
         $this->table[] = new Route('cron',              'index',        'cron');
 
+        $this->table[] = new Route('ajax',              'ajax',         'index');
+
         $this->table[] = new Route('login',             'user',         'login');
         $this->table[] = new Route('logout',            'user',         'logout');
         $this->table[] = new Route('preregister',       'user',         'preRegister');

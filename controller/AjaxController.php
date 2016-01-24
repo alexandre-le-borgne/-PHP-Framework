@@ -41,7 +41,9 @@ class AjaxController extends Controller
     }
 
     private function NoLikeAction(Request $request) {
+        echo "bite";
         $post = ltrim(strstr($request->post('id'), '_'), '_');
+        echo $post;
         $this->loadModel('CategoryModel');
         $this->loadModel('ArticleModel');
         /** @var ArticleEntity $articleEntity */
