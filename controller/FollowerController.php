@@ -31,7 +31,7 @@ class FollowerController extends Controller
     public function UnFollowAction(Request $request)
     {
         $this->loadModel('FollowerModel');
-        $followed = $request->get('id');
+        $followed = $request->post('id');
         $user = $request->getSession()->get('id');
         var_dump($followed);
         var_dump($user);
