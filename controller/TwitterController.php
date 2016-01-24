@@ -27,19 +27,24 @@ class TwitterController extends Controller
             $this->render('layouts/addStream', $data);
             return;
         }
-
         $twitterEntity = $this->twittermodel->createStream($channel, $firstUpdate);
-        $categoryEntity = $this->categorymodel->createCategory($userId, $categoryTitle);
 
-        $streamCategoryEntity = new StreamCategoryEntity();
-        $streamCategoryEntity->setCategory($categoryEntity->getId());
-        $streamCategoryEntity->setStream($twitterEntity->getId());
-        $streamCategoryEntity->setStreamType(ArticleModel::TWITTER);
-        $streamCategoryEntity->persist();
+        if ($twitterEntity)
+        {
+            $categoryEntity = $this->categorymodel->createCategory($userId, $categoryTitle);
 
-        /** @var TwitterEntity $twitterEntity */
-        $this->twittermodel->streamCron($twitterEntity);
-        $this->render('index');
+            $streamCategoryEntity = new StreamCategoryEntity();
+            $streamCategoryEntity->setCategory($categoryEntity->getId());
+            $streamCategoryEntity->setStream($twitterEntity->getId());
+            $streamCategoryEntity->setStreamType(ArticleModel::TWITTER);
+            $streamCategoryEntity->persist();
+            $this->twittermodel->streamCron($twitterEntity);
+            $this->redirectToRoute('index');
+        }
+        else
+        {
+            $this->render('layouts/addStream', array('errors' => array('Une erreur est survenue dans la connexion au flux twitter. Veuillez réssayer ! ')));
+        }
     }
 
     //Test
