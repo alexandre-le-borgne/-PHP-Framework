@@ -112,6 +112,7 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
+                    console.log(msg);
                     $("img", thispost).attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     $(thispost).removeClass('like').addClass('nolike');
                 });
