@@ -26,6 +26,10 @@ class RssController extends  Controller{
         $firstUpdate = $request->post('firstUpdate');
         $url = $request->post('url_flux');
 
+        var_dump($categoryTitle);
+        var_dump($firstUpdate);
+        var_dump($url);
+
         $this->loadModel('CategoryModel');
         $this->loadModel('RssModel');
         $url = $this->rssmodel->resolveFile($url);
@@ -41,7 +45,7 @@ class RssController extends  Controller{
         $streamCategoryEntity->persist();
 
         $this->twittermodel->streamCron($rssEntity);
-        $this->redirectToRoute('index');
+        //$this->redirectToRoute('index');
     }
 
 }
