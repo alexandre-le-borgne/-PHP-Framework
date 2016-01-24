@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: julien
- * Date: 29/12/2015
- * Time: 12:00
- */
 class Mail
 {
     public static function sendVerificationMail($user, $email, $key)

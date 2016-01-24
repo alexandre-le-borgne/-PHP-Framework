@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 17/12/2015
- * Time: 13:13
- */
 class Session
 {
     const USER_IS_NOT_CONNECTED = 0;

@@ -57,22 +57,11 @@ class Router
         $this->table[] = new Route('unfollow',          'follower',     'unFollow');
 
 
-
         /** Ajouts de flux */
         $this->table[] = new Route('addtwitterstream',  'twitter',      'addTwitterStream');
         $this->table[] = new Route('addrssstream',      'rss',          'addRSSStream');
         $this->table[] = new Route('addemailstream',    'email',        'addEmailStream');
 
-
-
-        //
-
-
-        //Test
-        $this->table[] = new Route('twitter',           'twitter',      'testTwitter');
-        $this->table[] = new Route('rss',               'index',        'rss');
-        $this->table[] = new Route('ajouterflux',       'index',        'addStream');
-        $this->table[] = new Route('email',             'email',        'index');
     }
 
     public function getRoute($name)

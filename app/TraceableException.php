@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 18/12/2015
- * Time: 08:33
- */
-
 class TraceableException extends Exception
 {
     private $exception;

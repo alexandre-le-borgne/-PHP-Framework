@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 16/12/2015
- * Time: 14:37
- */
 class View
 {
     private static $instance;
@@ -29,17 +23,22 @@ class View
 
     public function render($view, $data = array())
     {
-        if (!empty($data)) {
-            if (!empty($this->data)) {
+        if (!empty($data))
+        {
+            if (!empty($this->data))
+            {
                 $this->data = array_merge($data, $this->data);
-            } else {
+            }
+            else
+            {
                 $this->data = $data;
             }
         }
         $viewspath = __DIR__ . DIRECTORY_SEPARATOR . '../views/';
         $path = $viewspath . $view . '.php';
 
-        if (file_exists($path)) {
+        if (file_exists($path))
+        {
             $data['view'] = new ViewPart();
             extract($data);
             ob_start();
@@ -47,13 +46,18 @@ class View
             require $path;
 
             $content_for_layout = ob_get_clean();
-            if ($data['view']->super()) {
+            if ($data['view']->super())
+            {
                 $this->data['_content'] = $content_for_layout;
                 $this->render($data['view']->super(), $this->data);
-            } else {
+            }
+            else
+            {
                 echo $content_for_layout;
             }
-        } else {
+        }
+        else
+        {
             throw new NotFoundException("VIEW NOT FOUND | " . $path . " |");
         }
     }

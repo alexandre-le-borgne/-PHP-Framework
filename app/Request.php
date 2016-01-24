@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 17/12/2015
- * Time: 13:11
- */
 class Request
 {
     private static $instance;
