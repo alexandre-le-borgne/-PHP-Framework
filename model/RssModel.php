@@ -32,7 +32,9 @@ class RssModel extends Model implements StreamModel
     }
     public function getStreamById($id){
         return new RssEntity($id);
+        //Todo recoder ça avec autre chose que tes fesses julien stp
     }
+
     public function createStream($url,DateTime $firstUpdate){
         $db = new Database();
         $req = "SELECT * FROM stream_rss WHERE url = ?";
