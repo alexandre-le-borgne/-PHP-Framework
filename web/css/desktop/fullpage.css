@@ -269,3 +269,36 @@
     background-color: #3d4543;
     height: 30%;
 }
+
+@media (max-width: 940px) {
+
+    #table_section_social
+    {
+        display: none;
+    }
+
+    #title_section_social
+    {
+        width: 100%;
+    }
+
+    #table_section_content
+    {
+        display: none;
+    }
+
+    #title_section_content
+    {
+        width: 100%;
+    }
+
+    #table_section_news
+    {
+        display: none;
+    }
+
+    #title_section_news
+    {
+        width: 100%;
+    }
+}
