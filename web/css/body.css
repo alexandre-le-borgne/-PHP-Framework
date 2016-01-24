@@ -168,7 +168,8 @@ table
 #barrack_content
 {
     /* #cf3630 */
-    background: url('../img/content/time.png') no-repeat center !important;
+    background: url('../img/content/time.png') no-repeat !important;
+    background-size: 10%;
 }
 
 #charlie_content
