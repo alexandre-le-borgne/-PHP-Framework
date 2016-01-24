@@ -19,7 +19,6 @@ $view->extend('layouts/fullpage');
 
         <a href="index"><img id="logo" src="web/img/aaron_text_logo.png"></a>
         <br><br>
-        <h4>Nouveau sur Aaron ? Inscrivez-vous ! </h4>
 
         <!--SIGN UP FORM-->
         <form method="post" action="<?= View::getUrlFromRoute('register') ?>">
