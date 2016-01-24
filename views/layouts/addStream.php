@@ -28,7 +28,7 @@ $this->render('persists/header');
             <input class="first" type="date" name="firstUpdate" placeholder="À partir de" required>
             <input type="text" name="url_flux" placeholder="URL du flux" required>
             <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
-            <input type="submit" name="category" value="Ajouter ce flux !">
+            <input type="submit" name="button" value="Ajouter ce flux !">
         </form>
 
         <form class="flux_imap" action="<?= View::getUrlFromRoute('addemailstream') ?>" method="post">
@@ -38,7 +38,7 @@ $this->render('persists/header');
             <input type="password" name="password" placeholder="Mot de passe" required>
             <input type="number" name="port" placeholder="Port du serveur" required>
             <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
-            <input type="submit" name="category" value="Ajouter ce flux !">
+            <input type="submit" name="button" value="Ajouter ce flux !">
         </form>
     </div>
 </div>
