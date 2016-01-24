@@ -19,7 +19,7 @@ class EmailModel
 
     public function createEmailStream($server, $account, $password, $port) {
         $db = new Database();
-        $data = array();
+        $data = array($server, $account, $password, $port);
         $data = $db->execute("SELECT * FROM stream_email WHERE server = ? AND account = ? AND password = ? AND port = ?", $data);
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
         $emailEntity = $data->fetch();

@@ -38,8 +38,18 @@ class AdminController extends Controller
     {
         $this->isAdmin($request);
         $id = $request->post('id');
+        $this->loadModel('UserModel');
+        /** @var UserEntity $user */
+        $user = $this->usermodel->getById($id);
+
+        if ($request->post('seeBlog'))
+        {
+            $this->redirectToRoute('channel/' . $user->getUsername());
+            return;
+        }
+
         $this->loadModel('AdminModel');
-        if ($id)
+        if ($user != null)
         {
             $this->adminmodel->deleteUser($id);
             $this->redirectToRoute('adminusers/' . self::DELETED_OK);

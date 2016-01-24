@@ -30,6 +30,12 @@ class ArticleController extends Controller
         //$id est rempli par l'url : aaron/publicarticle/54651346546132, l'id de l'article
         $this->loadModel('ArticleModel');
         $article = $this->articlemodel->getById($id);
-        $this->render('layouts/article', array('article' => $article));
+        if($article)
+        {
+            $this->render('layouts/article', array('article' => $article));
+        }
+        else {
+            $this->redirectToRoute('index');
+        }
     }
 }

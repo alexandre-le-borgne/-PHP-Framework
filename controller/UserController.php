@@ -380,8 +380,6 @@ class UserController extends Controller
     }
 
     public function PwdforgotAction(Request $request){
-        echo 'pd';
-
         $email = $request->post('email');
 
         $this->loadModel('UserModel');
@@ -391,6 +389,10 @@ class UserController extends Controller
 
     public function ForgotFormAction(){
         $this->render('/forms/forgotForm');
+    }
+
+    public function ResetFormAction(){
+        $this->render('/forms/resetForm');
     }
 
     public function ResetMailAction(Request $request){

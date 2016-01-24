@@ -49,7 +49,7 @@ class Mail
         mail($email, $subject, $message, $head);
     }
 
-    public static function sendForgottMail($email, $user, $key)
+    public static function sendForgotMail($email, $user, $key)
     {
         $subject = "Oubli de votre mot de passe Aaron";
         $head = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -60,7 +60,7 @@ class Mail
 
         Sinon, merci de cliquer sur le lien suivant ou de le copier/coller dans votre navigateur internet.
 
-        http://alex83690.alwaysdata.net/aaron/resetForm.php?user=$user&key=$key
+        http://alex83690.alwaysdata.net/aaron/resetform.php?user=$user&key=$key
 
 
         Ce message est automatique, merci de ne pas y repondre.
