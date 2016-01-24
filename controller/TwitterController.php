@@ -21,7 +21,7 @@ class TwitterController extends Controller
         $this->loadModel('CategoryModel');
         $this->loadModel('TwitterModel');
 
-        if (!$this->twittermodel->isValidChannel($channel))
+        if (!($this->twittermodel->isValidChannel($channel)))
         {
             throw new Exception('Chaine invalide');
             return;
