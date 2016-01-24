@@ -83,4 +83,9 @@ class CategoryModel extends Model
         }
     }
 
+    public function unsuscribeStream($userId, $streamId, $streamType)
+    {
+        $db = new Database();
+        $req = 'DELETE FROM stream_category WHERE stream = ? AND streamType = ? AND category IN (SELECT id FROM categories WHERE account = ?)';
+    }
 }
