@@ -47,12 +47,12 @@ if (isset($mailValidationMessage))
                         $.ajax({
                             method: "POST",
                             url: "<?= View::getUrlFromRoute('ajax') ?>",
+                            dataType: 'json',
                             data: {
                                 action: 'search',
                                 channel: channel
                             },
                             success: function(result) {
-                                console.log(result);
                                 if(Array.isArray(result)) {
                                     availableTags = result;
                                     $( ".search_bar" ).autocomplete('option', 'source', availableTags);
