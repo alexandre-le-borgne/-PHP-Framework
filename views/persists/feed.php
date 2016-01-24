@@ -100,8 +100,8 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    this.children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
-                    this.removeClass('like').addClass('nolike');
+                    $(this).children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
+                    $(this).removeClass('like').addClass('nolike');
                 });
             });
             $(".post_footer .nolike").click(function() {
