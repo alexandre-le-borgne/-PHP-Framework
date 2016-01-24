@@ -45,7 +45,7 @@ if (isset($mailValidationMessage))
                         var channel = $(this).val();
                         $.ajax({
                             method: "POST",
-                            url: "php/ajax.php",
+                            url: "<?= View::getUrlFromRoute('ajax') ?>",
                             dataType: 'json',
                             data: {
                                 action: 'search',
