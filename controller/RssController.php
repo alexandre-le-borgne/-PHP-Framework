@@ -27,6 +27,7 @@ class RssController extends  Controller{
         $url = $request->post('url_flux');
 
         if($categoryTitle && $firstUpdate && $url){
+            echo "lel";
             $this->loadModel('CategoryModel');
             $this->loadModel('RssModel');
 
