@@ -26,7 +26,10 @@ $view->extend('layouts/layout');
             $(element).css({position: 'absolute', top: haut, left: gauche});
         }
 
-        centrerElementAbsolu('.loginDiv');
-        centrerElementAbsolu('.registerDiv');
+        $(window).resize(function() {
+            centrerElementAbsolu('.loginDiv');
+            centrerElementAbsolu('.registerDiv');
+        });
+
     });
 </script>
