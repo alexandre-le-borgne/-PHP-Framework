@@ -506,9 +506,9 @@ class UserController extends Controller
             }
 
             $categoryStreams = array(
-                'Twitter' => $twitterStreams,
-                'Email' => $emailStreams,
-                'RSS' => $rssStreams);
+                'twitter' => $twitterStreams,
+                'email' => $emailStreams,
+                'rss' => $rssStreams);
 
             $data[] = array('title' => $category->getTitle(), 'categories' => $categoryStreams);
         }

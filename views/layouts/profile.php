@@ -18,7 +18,10 @@ foreach ($categories as $category)
 
     foreach($category['categories'] as $cat)
     {
-        var_dump($cat);
+        var_dump($cat['twitter']);
+        var_dump($cat['email']);
+        var_dump($cat['rss']);
+
         echo '<br/>';
     }
 }
