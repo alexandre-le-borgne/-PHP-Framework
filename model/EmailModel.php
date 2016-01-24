@@ -322,7 +322,7 @@ class EmailModel
 
     private function connect($server, $port, $user, $password)
     {
-        $conn = imap_open('{' . $server . ':' . $port . '/ssl}INBOX', $user, $password);
+        $conn = @imap_open('{' . $server . ':' . $port . '/ssl}INBOX', $user, $password);
         if (FALSE !== $conn)
         {
             $info = imap_check($conn);
