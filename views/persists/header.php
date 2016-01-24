@@ -58,6 +58,12 @@ if (isset($mailValidationMessage))
                                 }
                             }
                         });
+                    }).autocomplete({
+                        source: function() { return availableTags; },
+                        messages: {
+                            noResults: '',
+                            results: function() {}
+                        }
                     });
                 });
             </script>
