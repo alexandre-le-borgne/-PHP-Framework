@@ -59,21 +59,18 @@ if (isset($mailValidationMessage))
         }
         ?>
     </nav>
-    <div class="webui-popover-content">
-
-    </div>
 </header>
 
 <script>
     $(function() {
-        $('#add_flux').webuiPopover({
-        width:300,
-        height:200,
-        placement:'bottom',
-        trigger:'click',
-        animation:'pop',
-        arrow:true
-        });
+//        $('#add_flux').webuiPopover({
+//        width:300,
+//        height:200,
+//        placement:'bottom',
+//        trigger:'click',
+//        animation:'pop',
+//        arrow:true
+//        });
 
         $('.flux_twitter').show();
         $('.flux_rss').hide();
