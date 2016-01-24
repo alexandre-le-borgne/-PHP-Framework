@@ -488,7 +488,7 @@ class UserController extends Controller
         foreach ($categories as $category)
         {
             $streamCategories = $this->categorymodel->getStreamCategoriesByCategoryId($category->getId());
-            echo 'pdbite ' . var_dump($category);
+            echo 'pdbite ' . var_dump($streamCategories);
             $twitterStreams = array();
             $emailStreams = array();
             $rssStreams = array();
