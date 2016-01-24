@@ -34,10 +34,12 @@ class TwitterModel extends Model implements StreamModel
         return null;
     }
 
-    public function getByUserId($id){
-        if(is_numeric($id)) {
+    public function getByUserId($id)
+    {
+        if (is_numeric($id))
+        {
             $db = new Database();
-            $data = $db->execute("SELECT DISTINCT stream_twitter.* FROM stream_twitter JOIN stream_category ON stream_twitter.id = stream_category.stream AND stream_category.streamType = '".ArticleModel::TWITTER."' JOIN categories ON stream_category.category = categories.id WHERE categories.account = ?", array($id));
+            $data = $db->execute("SELECT DISTINCT stream_twitter.* FROM stream_twitter JOIN stream_category ON stream_twitter.id = stream_category.stream AND stream_category.streamType = '" . ArticleModel::TWITTER . "' JOIN categories ON stream_category.category = categories.id WHERE categories.account = ?", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
             return $data->fetchAll();
         }
@@ -61,7 +63,7 @@ class TwitterModel extends Model implements StreamModel
         if ($result)
         {   //Si existe deja, et nouvelle date plus ancienne, alors on modifie le firstUpdate a la nouvelle date donnee
             if (strtotime($firstUpdate) < strtotime($result->getFirstUpdate()))
-                $db->execute('UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?', array(date(Database::DATE_FORMAT, strtotime($firstUpdate))));
+                $db->execute('UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?', array(date(Database::DATE_FORMAT, strtotime($firstUpdate)), $channel));
             return $result;
         }
         else

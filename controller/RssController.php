@@ -29,7 +29,7 @@ class RssController extends  Controller{
         if($categoryTitle && $firstUpdate && $url){
             $this->loadModel('CategoryModel');
             $this->loadModel('RssModel');
-
+            echo "lel";
             $url = $this->rssmodel->resolveFile($url);
             $userId = $request->getSession()->get('id');
             $rssEntity = $this->rssmodel->createStream($url, $firstUpdate);
