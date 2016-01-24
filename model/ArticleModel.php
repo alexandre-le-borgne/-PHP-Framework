@@ -48,14 +48,11 @@ class ArticleModel extends Model
     }
 
     public function userHasStream($user, $stream, $type) {
-        var_dump($user);
-        echo $stream."ùù".$type;
+
         if (is_numeric($user) && is_numeric($stream) && is_numeric($type)) {
-            echo $stream.$type;
             $db = new Database();
             $req = "SELECT * FROM stream_category JOIN categories ON stream_category.category = categories.id WHERE categories.account = ? AND stream_category.stream = ? AND stream_category.streamType = ?";
             $data = $db->execute($req, array($user, $stream, $type));
-            var_dump($data->fetch());
             if($data->fetch())
                 return true;
         }
@@ -98,6 +95,7 @@ class ArticleModel extends Model
                     $data = $db->execute($req, array($id, ArticleModel::RSS));
                     break;
                 case ArticleModel::TWITTER:
+                    echo "bite2";
                     $req = "SELECT DISTINCT article.* FROM article WHERE article.streamType = ? AND article.streamType = ?  ORDER BY articleDate DESC LIMIT $start, $len";
                     $data = $db->execute($req, array($id, ArticleModel::TWITTER));
                     break;
@@ -110,6 +108,7 @@ class ArticleModel extends Model
                     return;
             }
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            var_dump($data->fetchAll());
             return $data->fetchAll();
         }
         return null;

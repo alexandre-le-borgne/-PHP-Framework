@@ -25,7 +25,7 @@ class UserController extends Controller
             }
             else
             {
-                $this->render('layouts/error', array('error' => 'La chaîne n\'existe pas'));
+                $this->render('layouts/home', array('errors' => 'La chaîne n\'existe pas'));
             }
         }
     }
@@ -546,21 +546,35 @@ class UserController extends Controller
         $streamId = $request->post('id');
         $streamType = $request->post('streamType');
 
-        if ($streamType && $streamId && ($delStream || $removeFromCat))
+
+        if ($streamType && $streamId)
         {
-            switch($streamType)
+            $this->loadModel('CategoryModel');
+            if ($delStream)
             {
-                case ArticleModel::TWITTER:
-                    $this->loadModel('TwitterModel');
-                    $this->twittermodel->deleteStream()
-                    break;
-                case ArticleModel::EMAIL:
+                $this->categorymodel->unsuscribeStream($request->getSession()->get('id'), $streamId, $streamType);
 
-                    break;
-                case ArticleModel::RSS:
+                switch($streamType)
+                {
+                    case ArticleModel::TWITTER:
+                        $this->loadModel('TwitterModel');
+                        break;
+                    case ArticleModel::EMAIL:
 
-                    break;
+                        break;
+                    case ArticleModel::RSS:
+
+                        break;
+                    default:
+
+                }
             }
+            else if ($removeFromCat)
+            {
+                $this->categorymodel->unsuscribeStream($request->getSession()->get('id'), $streamId, $streamType);
+
+            }
+
         }
     }
 }

@@ -16,7 +16,6 @@ header
     position: fixed;
     top: 0;
     background-color: #36465d;
-    z-index: 3;
 }
 
 header nav
