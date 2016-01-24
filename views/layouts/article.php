@@ -72,12 +72,12 @@
         <?php
         if ($blog) {
             ?>
-            <span class="ignore" href="#"><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></span>
+            <span class="ignore noblog" href="#"><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></span>
             <?php
         }
         else {
             ?>
-            <span class="repost" href="#"><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></span>
+            <span class="repost blog" href="#"><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></span>
             <?php
         }
         if ($favoris)
