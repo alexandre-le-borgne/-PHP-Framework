@@ -109,7 +109,7 @@ function formTr($string, $streams, $streamType)
             echo '<div class="wrapper">';
             ?>
             <table border = 1>
-                <tr bgcolor = #DDD>
+                <tr bgcolor = #56bc8a>
                     <td>
                         <b>Utilisateur</b>
                     </td>

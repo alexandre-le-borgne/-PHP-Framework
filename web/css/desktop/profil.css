@@ -16,6 +16,7 @@
     width: 100%;
 }
 
+.user_section table
 .user_section #categories, .user_section #followers, .user_section #following
 {
     width: 98%;
