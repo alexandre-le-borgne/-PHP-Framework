@@ -52,18 +52,6 @@ class UserModel extends Model
         return $availables;
     }
 
-    public function follow($followedName, $followerId)
-    {
-        $db = new Database();
-        $followedUser = $this->getByNameOrEmail($followedName);
-        if ($followedUser)
-        {
-            $db->execute('INSERT INTO follower (user, follower) VALUES (?, ?)', array($followedUser->getId(), $followerId));
-            return true;
-        }
-        return false;
-    }
-
     public function getPassword(UserEntity $user)
     {
         if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD)

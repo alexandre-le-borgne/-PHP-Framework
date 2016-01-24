@@ -167,7 +167,7 @@
     float: left;
     height: 100%;
     width: 40%;
-    background-color: #f8c433;
+    background-color: #f2992e;
 }
 
 #text_content
@@ -179,17 +179,30 @@
     margin: auto;
 }
 
-#text_content #button_action
+#text_content .button_action
 {
     text-align: center;
-    padding: 20px;
+    padding: 20px 40px 20px 40px;
+    position: relative;
     font-size: 15pt;
-    background: #2f3d51;
+    display: block;
     color: #ffffff;
-    border: solid 2px #2f3d51;
     font-weight: 600;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 40px;
+}
+
+.content_action
+{
+    background: #d95e40;
+    border: solid 2px #d95e40;
+}
+
+.news_action
+{
+    background: #2f3d51;
+    border: solid 2px #2f3d51;
 }
 
 #text_content #button_action:hover
@@ -200,9 +213,9 @@
     transition: 150ms background, 150ms border-radius, 150ms border, 150ms color;
 }
 
-#table_section_content table td
+#title_section_content h3
 {
-
+    color: #ffffff;
 }
 
 #table_section_content table
@@ -222,21 +235,65 @@
     float: left;
     height: 100%;
     width: 40%;
-    background-color: #f037a5;
+    color: #ffffff !important;
+    background-color: #529ecc;
+}
+
+#title_section_social h3
+{
+    color: #ffffff;
+}
+
+#table_section_social
+{
+    width: 60%;
+    float: right;
+    height: 100%;
+    background: url("../../img/twitter_illus.png") no-repeat center;
+    background-size: contain;
+    color: #36465d;
 }
 
 /*****************************************/
 /***************SECTION_CONTENT***********/
 /*****************************************/
 
-#contact
-{
-    background-color: #fafafa;
-    height: 70%;
-}
-
 #footer
 {
-    background-color: #3d4543;
-    height: 30%;
+    background: #2f3d51 url("../../img/aaron_text_logo.png") no-repeat center;
+    background-size: 30%;
+    height: 100%;
+}
+
+@media (max-width: 940px) {
+
+    #table_section_social
+    {
+        display: none;
+    }
+
+    #title_section_social
+    {
+        width: 100%;
+    }
+
+    #table_section_content
+    {
+        display: none;
+    }
+
+    #title_section_content
+    {
+        width: 100%;
+    }
+
+    #table_section_news
+    {
+        display: none;
+    }
+
+    #title_section_news
+    {
+        width: 100%;
+    }
 }

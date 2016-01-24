@@ -15,7 +15,7 @@ function formTr($string, $streams)
 ?>
     <tr bgcolor="#DDD">
         <td>
-            <?= 'Nom du flux ' . $string; ?>
+            <?= 'Nom du flux (' . $string . ')'; ?>
         </td>
         <td>
             Action
@@ -61,7 +61,6 @@ if (isset($categories))
                 <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
                     <input type="hidden" name="id" value="<?= $category['id'] ?>">
                     <input type="submit" value="Supprimer" name="delCat">
-                    <input type="submit" value="Voir la categorie" name="seeCat">
                 </form>
             </td>
         </tr>
@@ -78,6 +77,61 @@ if (isset($categories))
     }
     echo '</div>';
 }
+
+
+if (isset($following) && !empty($following))
+{
+    echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
+    ?>
+    <table border = 1>
+        <tr bgcolor = #DDD>
+            <td>
+                <b>Utilisateur</b>
+            </td>
+            <td>
+                <b>Action</b>
+            </td>
+        </tr>
+    <?php
+    foreach ($following as $follow)
+    { ?>
+    <tr bgcolor = #EEE>
+        <td>
+            <b><?= $follow->username ?></b>
+        </td>
+        <td>
+            <form action="<?= View::getUrlFromRoute('unfollow') ?>" method="post">
+                <input type="hidden" name="id" value="<?= $follow->getId() ?>">
+                <input type="submit" value="Arrêter de le suivre">
+            </form>
+        </td>
+    </tr>
+    <?php }
+
+    echo '</table></div>';
+}
+
+
+if (isset($followers) && !empty($followers))
+{
+    $i = 0;
+    echo '<div class="wrapper"><h1>Les gens qui me suivent</h1>';
+
+    foreach ($followers as $follower)
+    {
+        echo $follower->username . ', ';
+        ++$i;
+        if ($i == 8)
+        {
+            $i = 0;
+            echo '<br/>';
+        }
+    }
+    echo '</div>';
+}
+
+
+
 
 /*
 echo "<table border = 1> <tr bgcolor = #DDD>";

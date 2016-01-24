@@ -45,10 +45,11 @@ class IndexController extends Controller
             $this->loadModel('EmailModel');
             $this->loadModel('TwitterModel');
             $this->loadModel('RssModel');
-            $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
-            $emailStreams = $this->emailmodel->getByUserId($request->getSession()->get('id'));
-            $twitterStreams = $this->twittermodel->getByUserId($request->getSession()->get('id'));
-            $rssStreams = $this->rssmodel->getByUserId($request->getSession()->get('id'));
+            $id = $request->getSession()->get('id');
+            $categories = $this->categorymodel->getByUserId($id);
+            $emailStreams = $this->emailmodel->getByUserId($id);
+            $twitterStreams = $this->twittermodel->getByUserId($id);
+            $rssStreams = $this->rssmodel->getByUserId($id);
             $streams = array('emailStreams' => $emailStreams, 'twitterStreams' => $twitterStreams, 'rssStreams' => $rssStreams);
             $data = array('categories' => $categories, 'streams' => $streams);
             $this->render('layouts/aside', $data);

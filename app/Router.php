@@ -26,7 +26,6 @@ class Router
 
         $this->table[] = new Route('login',             'user',         'login');
         $this->table[] = new Route('logout',            'user',         'logout');
-//        $this->table[] = new Route('preregister',       'user',         'preRegister');
         $this->table[] = new Route('register',          'user',         'register');
         $this->table[] = new Route('mailvalidation',    'user',         'mailValidation');
         $this->table[] = new Route('facebook',          'user',         'facebook');
@@ -37,7 +36,9 @@ class Router
         $this->table[] = new Route('channel',           'user',         'channel');
         $this->table[] = new Route('profile',           'user',         'profile');
         $this->table[] = new Route('resetpassword',     'user',         'resetpassword');
-        $this->table[] = new Route('followchannel',     'user',         'followChannel');
+        $this->table[] = new Route('deletecategory',    'user',         'deleteCategory');
+
+
 
         $this->table[] = new Route('article',           'article',      'article');
         $this->table[] = new Route('category',          'article',      'category');
@@ -47,14 +48,24 @@ class Router
         $this->table[] = new Route('adminusers',        'admin',        'users');
         $this->table[] = new Route('deleteuser',        'admin',        'deleteUser');
 
-        $this->table[] = new Route('addstream',          'article',      'addStream');
+        $this->table[] = new Route('addstream',         'article',      'addStream');
+        $this->table[] = new Route('favoris',           'article',      'favoris');
+
+        $this->table[] = new Route('followchannel',     'follower',     'followChannel');
+        $this->table[] = new Route('followernumbers',   'follower',     'followerNumbers');
+        $this->table[] = new Route('unfollow',          'follower',     'unFollow');
+
+
 
         /** Ajouts de flux */
         $this->table[] = new Route('addtwitterstream',  'twitter',      'addTwitterStream');
         $this->table[] = new Route('addrssstream',      'rss',          'addRSSStream');
-        $this->table[] = new Route('addemailstream',     'email',        'addEmailStream');
+        $this->table[] = new Route('addemailstream',    'email',        'addEmailStream');
 
-        $this->table[] = new Route('favoris',           'article',      'favoris');
+
+
+        //
+
 
         //Test
         $this->table[] = new Route('twitter',           'twitter',      'testTwitter');

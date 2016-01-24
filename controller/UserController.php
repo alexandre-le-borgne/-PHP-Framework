@@ -477,9 +477,12 @@ class UserController extends Controller
         $this->loadModel('EmailModel');
         $this->loadModel('TwitterModel');
         $this->loadModel('RssModel');
+        $this->loadModel('FollowerModel');
+
+        $followers = $this->followermodel->getFollowersById($request->getSession()->get('id'));
+        $following = $this->followermodel->getFollowingById($request->getSession()->get('id'));
 
         $data = array();
-
         $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
         foreach ($categories as $category)
         {
@@ -519,19 +522,19 @@ class UserController extends Controller
             $data[] = array('title' => $category->getTitle(), 'id' => $category->getId(), 'categories' => $categoryStreams);
         }
 
-        $this->render('layouts/profile', array('categories' => $data));
+        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers, 'following' => $following));
     }
 
-    public function FollowChannelAction(Request $request, $channel)
+    public function DeleteCategoryAction(Request $request)
     {
-        if (!$channel)
+        $delCat = $request->post('delCat');
+        $id = $request->post('id');
+
+        if ($delCat && $id)
         {
-            $this->redirectToRoute('index');
-            return;
+            $this->loadModel('CategoryModel');
+            $this->categorymodel->deleteCategory($id);
         }
-        $this->loadModel('UserModel');
-        $id = $request->getSession()->get('id');
-        $this->usermodel->follow($channel, $id);
-        $this->redirectToRoute('index');
+        $this->redirectToRoute('profile');
     }
 }

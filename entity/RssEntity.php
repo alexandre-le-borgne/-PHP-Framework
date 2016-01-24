@@ -82,5 +82,26 @@ class RssEntity extends Entity{
         $this->firstUpdate = $firstUpdate;
     }
 
+    public function persist()
+    {
+        $db = new Database();
+
+        $firstUpdate = date(Database::DATE_FORMAT, strtotime($this->firstUpdate));
+        $lastUpdate = date(Database::DATE_FORMAT, strtotime($this->lastUpdate));
+
+        if ($this->id == null)
+        {
+            $req = 'INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES (?, ?, ?)';
+            $data = array($this->url, $firstUpdate, $lastUpdate);
+            $db->execute($req, $data);
+            $this->id = $db->lastInsertId();
+        }
+        else
+        {
+            $req = 'UPDATE stream_rss SET url = ?, firstUpdate = ?, lastUpdate = ? WHERE id = ?';
+            $data = array($this->url, $firstUpdate, $lastUpdate, $this->id);
+            $db->execute($req, $data);
+        }
+    }
 
 }

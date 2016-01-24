@@ -12,9 +12,9 @@
 
 #title_section_news h1, #title_section_social h1, #title_section_content h1
 {
-    font-size: 130pt;
+    font-size: 110pt;
     font-weight: bold;
-    /* line-height: 77px; */
+    line-height: normal;
 }
 
 /*****************************************/
@@ -36,10 +36,10 @@
 
 #title_section_news
 {
-    /* float: left; */
-    /* height: 100%; */
-    /* width: 100%; */
-    /* background-color: #36465d; */
+    float: left;
+    height: 100%;
+    width: 100%;
+    background-color: #36465d;
     display: block;
 }
 
@@ -152,6 +152,7 @@
 {
     background: url("../../img/content/section_content_background.png") no-repeat center;
     background-size: cover;
+    display: none !important;
 }
 
 /*****************************************/
@@ -160,17 +161,21 @@
 
 #table_section_content
 {
-    width: 60%;
-    float: right;
     height: 100%;
+    width: 100%;
+    background-color: #f2992e;
+}
+
+#table_section_content h3
+{
+    color: #000;
 }
 
 #title_section_content
 {
-    float: left;
     height: 100%;
-    width: 40%;
-    background-color: #f8c433;
+    width: 100%;
+    background-color: #f2992e;
 }
 
 #text_content
@@ -186,16 +191,38 @@
 #text_content #button_action
 {
     text-align: center;
-    padding: 8% 0% 8% 0%;
+    padding: 6%;
     width: 100%;
-    font-size: 61pt;
+    font-size: 50pt;
     background: #2f3d51;
     color: #ffffff;
     border: solid 2px #2f3d51;
     font-weight: 600;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
+    position: relative;
+    top: 50px;
 }
+
+#text_content #button_action
+{
+    text-align: center;
+    padding: 6%;
+    width: 100%;
+    font-size: 50pt;
+    background: #2f3d51;
+    color: #ffffff;
+    border: solid 2px #2f3d51;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    top: 50px;
+}
+
+
+
+
 
 #text_content #button_action:hover
 {
@@ -224,10 +251,9 @@
 
 #title_section_social
 {
-    float: left;
     height: 100%;
-    width: 40%;
-    background-color: #f037a5;
+    width: 100%;
+    background-color: #a77dc2;
 }
 
 /*****************************************/
