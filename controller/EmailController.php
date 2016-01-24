@@ -11,13 +11,10 @@ class EmailController extends Controller
     public function IndexAction($id = null) // Fonction de debug pour le dev
     {
         if (intval($id)) {
-
-        } else {
             $this->loadModel('ArticleModel');
             /** @var ArticleEntity $article */
-            $article = $this->articlemodel->getById(16);
-            echo "<h1>".$article->getTitle()."</h1>";
-            echo "<div>".html_entity_decode($article->getContent())."</div>";
+            $article = $this->articlemodel->getById($id);
+            echo $article->getContent();
         }
     }
 
