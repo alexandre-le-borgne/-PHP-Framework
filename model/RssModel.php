@@ -74,8 +74,11 @@ class RssModel extends Model implements StreamModel
             $firstRss = $this->getFirstArticle($rssEntity);
             $lastRss = $this->getLastArticle($rssEntity);
 
-            var_dump($firstRss->getArticleDate());
-            var_dump($lastRss->getArticleDate());
+            $firstDate = $firstRss->getArticleDate();
+            $lastDate = $lastRss->getArticleDate();
+
+            var_dump($firstDate);
+            var_dump($lastDate);
 
             /** @var RssEntity $fetch */
             $stream_id = $rssEntity->getId();
@@ -86,7 +89,7 @@ class RssModel extends Model implements StreamModel
             $fetch = $result->fetch();
             $minDate = $fetch['minDate']; //date du 1er article du stream
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
-            $result = $db->execute($req, array($stream_id, $minDate, $firstRss->getActicleDate()));
+            $result = $db->execute($req, array($stream_id, $minDate, $firstDate));
             foreach ($x->channel->item as $item)
             {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
@@ -105,7 +108,7 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id))->fetch();
             $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
             $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
-            $result = $db->execute($req, array($stream_id, $maxDate, $lastRss->getArticleDate()));
+            $result = $db->execute($req, array($stream_id, $maxDate, $lastDate));
             foreach ($x->channel->item as $item)
             {
                 //$req = "SELECT content FROM article WHERE stream_id = ?";
