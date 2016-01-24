@@ -68,7 +68,7 @@ class RssModel extends Model implements StreamModel
         return $result->fetch();
     }
 
-    public function createStream($url, DateTime $firstUpdate)
+    public function createStream($url, $firstUpdate)
     {
         $db = new Database();
 
@@ -111,7 +111,7 @@ class RssModel extends Model implements StreamModel
         if ($this->db == null)
             $this->db = new Database();
 
-        $firstRss = $this->getFirstArticle($rssEntity);
+        $firstRss = $this->getFirstRssArticle($rssEntity);
 
         $stream_id = $rssEntity->getId();
         $url = $rssEntity->getUrl();
@@ -131,7 +131,7 @@ class RssModel extends Model implements StreamModel
         $this->db->execute($update, array($stream_id));
     }
 
-    private function getFirstArticle(RssEntity $rssEntity)
+    private function getFirstRssArticle(RssEntity $rssEntity)
     {
         $db = new Database();
         $result = $db->execute('SELECT * FROM article WHERE stream_id = ? AND streamType = ? ORDER BY articleDate ASC LIMIT 1',
