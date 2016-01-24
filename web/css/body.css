@@ -185,34 +185,65 @@ table
 }
 
 /* Pictures Size Setting */
-#time_magazine img
+
+#time_magazine
 {
-    width: 200px;
+    background: url("../img/newspapers/time.png") no-repeat center;
 }
 
-#figaro_magazine img
+#time_magazine:hover
 {
-    width: 200px;
+    background: url("../img/newspapers/time_colored.png") no-repeat center;
 }
 
-#lemonde_magazine img
+#figaro_magazine
 {
-    width: 140px;
+    background: url("../img/newspapers/figaro.jpg") no-repeat center;
 }
 
-#courrierinter_magazine img
+#figaro_magazine:hover
 {
-    width: 250px;
+    background: url("../img/newspapers/figaro_colored.jpg") no-repeat center;
 }
 
-#usatoday_magazine img
+#lemonde_magazine
 {
-    width: 241px;
+    background: url("../img/newspapers/lemonde.png") no-repeat center;
 }
 
-#liberation_magazine img
+#lemonde_magazine:hover
 {
-    width: 200px;
+    background: url("../img/newspapers/lemonde_colored.png") no-repeat center;
+}
+
+#courrierinter_magazine
+{
+    background: url("../img/newspapers/courrierinter.png") no-repeat center;
+}
+
+#courrierinter_magazine:hover
+{
+    background: url("../img/newspapers/courrierinter_colored.png") no-repeat center;
+}
+
+#usatoday_magazine
+{
+    background: url("../img/newspapers/usatoday.png") no-repeat center;
+}
+
+#usatoday_magazine:hover
+{
+    background: url("../img/newspapers/usatoday_colored.png") no-repeat center;
+}
+
+#liberation_magazine
+{
+    background: url("../img/newspapers/liberation.png") no-repeat center;
+}
+
+#liberation_magazine:hover
+{
+    background: url("../img/newspapers/liberation_colored.png") no-repeat center;
 }
 
 #contact
