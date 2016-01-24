@@ -524,7 +524,8 @@ class UserController extends Controller
             $data[] = array('title' => $category->getTitle(), 'id' => $category->getId(), 'categories' => $categoryStreams);
         }
         $profileName = $this->usermodel->getById($request->getSession()->get('id'));
-        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers, 'following' => $following, 'profile' => $profileName->getUsername()));
+        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers,
+            'following' => $following, 'profile' => $profileName->getUsername()));
     }
 
     public function DeleteCategoryAction(Request $request)
@@ -543,10 +544,8 @@ class UserController extends Controller
     public function DeleteStreamAction(Request $request)
     {
         $delStream = $request->post('delStream');
-        $removeFromCat = $request->post('removeFromCat');
         $streamId = $request->post('id');
         $streamType = $request->post('streamType');
-
 
         if ($streamType && $streamId)
         {
@@ -554,28 +553,8 @@ class UserController extends Controller
             if ($delStream)
             {
                 $this->categorymodel->unsuscribeStream($request->getSession()->get('id'), $streamId, $streamType);
-
-                switch ($streamType)
-                {
-                    case ArticleModel::TWITTER:
-                        $this->loadModel('TwitterModel');
-                        break;
-                    case ArticleModel::EMAIL:
-
-                        break;
-                    case ArticleModel::RSS:
-
-                        break;
-                    default:
-
-                }
             }
-            else if ($removeFromCat)
-            {
-                $this->categorymodel->unsuscribeStream($request->getSession()->get('id'), $streamId, $streamType);
-
-            }
-
         }
+        $this->redirectToRoute('profile');
     }
 }
