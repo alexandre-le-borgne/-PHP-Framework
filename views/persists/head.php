@@ -28,9 +28,8 @@
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/footer_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/nav_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/header_responsive.css') ?>">
-<link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/post_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/home_responsive.css') ?>">
-
+<link rel="icon" type="image/png" href="../../web/img/logo-aaron.png" />
 
 
 

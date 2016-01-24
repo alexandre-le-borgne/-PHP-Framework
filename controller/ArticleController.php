@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 23/01/2016
- * Time: 21:19
- */
 class ArticleController extends Controller
 {
     public function AddStreamAction()

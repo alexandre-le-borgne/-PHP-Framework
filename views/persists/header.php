@@ -43,28 +43,21 @@ if (isset($mailValidationMessage))
                     var availableTags = [];
                     $(".search_bar").keyup(function() {
                         var channel = $(this).val();
-                        console.log(channel);
                         $.ajax({
                             method: "POST",
                             url: "<?= View::getUrlFromRoute('ajax') ?>",
+                            dataType: 'json',
                             data: {
                                 action: 'search',
                                 channel: channel
                             },
                             success: function(result) {
-                                console.log(result);
                                 if(Array.isArray(result)) {
                                     availableTags = result;
                                     $( ".search_bar" ).autocomplete('option', 'source', availableTags);
                                 }
                             }
                         });
-                    }).autocomplete({
-                        source: function() { return availableTags; },
-                        messages: {
-                            noResults: '',
-                            results: function() {}
-                        }
                     });
                 });
             </script>
