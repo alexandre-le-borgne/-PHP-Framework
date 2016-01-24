@@ -21,7 +21,7 @@ class EmailController extends Controller
         }
     }
 
-    function addEmailStreamAction(Request $request) {
+    function AddEmailStreamAction(Request $request) {
         $server = $request->post('server');
         $account = $request->post('user');
         $password = $request->post('password');

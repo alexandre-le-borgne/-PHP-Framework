@@ -48,7 +48,7 @@ class Router
         /** Ajouts de flux */
         $this->table[] = new Route('addtwitterstream',  'twitter',      'addTwitterStream');
         $this->table[] = new Route('addrssstream',      'rss',          'addRSSStream');
-        $this->table[] = new Route('addimapstream',     'email',        'addIMAPStream');
+        $this->table[] = new Route('addemailstream',     'email',        'addEmailStream');
 
         $this->table[] = new Route('favoris',           'article',      'favoris');
 

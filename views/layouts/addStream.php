@@ -31,7 +31,7 @@ $this->render('persists/header');
             <input type="submit" name="category" value="Ajouter ce flux !">
         </form>
 
-        <form class="flux_imap" action="" method="post">
+        <form class="flux_imap" action="<?= View::getUrlFromRoute('addemailstream') ?>" method="post">
             <input type="date" name="firstUpdate" placeholder="À partir de" required>
             <input class="first" type="text" name="server" placeholder="Serveur IMAP" required>
             <input type="text" name="user" placeholder="Nom d'utilisateur" required>
