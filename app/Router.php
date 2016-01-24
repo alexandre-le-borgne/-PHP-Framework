@@ -42,6 +42,8 @@ class Router
         $this->table[] = new Route('adminusers',        'admin',        'users');
         $this->table[] = new Route('deleteuser',        'admin',        'deleteUser');
 
+        $this->table[] = new Route('addstream',          'article',      'addStream');
+
         /** Ajouts de flux */
         $this->table[] = new Route('addtwitterstream',  'twitter',      'addTwitterStream');
         $this->table[] = new Route('addrssstream',      'rss',          'addRSSStream');
