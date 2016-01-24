@@ -22,7 +22,7 @@ class TwitterModel extends Model implements StreamModel
     private $twitter;
     private $db;
 
-    public function getStreamById($id)
+    public function getById($id)
     {
         if (is_numeric($id))
         {

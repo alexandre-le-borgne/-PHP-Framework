@@ -11,5 +11,5 @@ interface StreamModel
 {
     function cron();
 
-    function getStreamById($id);
+    function getById($id);
 }
