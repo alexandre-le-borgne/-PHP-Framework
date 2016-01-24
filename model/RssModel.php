@@ -38,7 +38,7 @@ class RssModel extends Model implements StreamModel
         return $this->posts;
     }
 
-    public function getById($id)
+    public function getStreamById($id)
     {
         if (is_numeric($id))
         {
