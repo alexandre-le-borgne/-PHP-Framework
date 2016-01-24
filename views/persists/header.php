@@ -43,7 +43,6 @@ if (isset($mailValidationMessage))
                     var availableTags = [];
                     $(".search_bar").keyup(function() {
                         var channel = $(this).val();
-                        console.log(channel);
                         $.ajax({
                             method: "POST",
                             url: "<?= View::getUrlFromRoute('ajax') ?>",
@@ -59,12 +58,6 @@ if (isset($mailValidationMessage))
                                 }
                             }
                         });
-                    }).autocomplete({
-                        source: function() { return availableTags; },
-                        messages: {
-                            noResults: '',
-                            results: function() {}
-                        }
                     });
                 });
             </script>
