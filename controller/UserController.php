@@ -547,25 +547,34 @@ class UserController extends Controller
         $streamType = $request->post('streamType');
 
 
-
-        if ($streamType && $streamId && ($delStream || $removeFromCat))
+        if ($streamType && $streamId)
         {
             $this->loadModel('CategoryModel');
-
-            switch($streamType)
+            if ($delStream)
             {
-                case ArticleModel::TWITTER:
-                    $this->loadModel('TwitterModel');
-                    break;
-                case ArticleModel::EMAIL:
+                $this->categorymodel->unsuscribeStream($request->getSession()->get('id'), $streamId, $streamType);
 
-                    break;
-                case ArticleModel::RSS:
+                switch($streamType)
+                {
+                    case ArticleModel::TWITTER:
+                        $this->loadModel('TwitterModel');
+                        break;
+                    case ArticleModel::EMAIL:
 
-                    break;
-                default:
+                        break;
+                    case ArticleModel::RSS:
+
+                        break;
+                    default:
+
+                }
+            }
+            else if ($removeFromCat)
+            {
+                $this->categorymodel->unsuscribeStream($request->getSession()->get('id'), $streamId, $streamType);
 
             }
+
         }
     }
 }
