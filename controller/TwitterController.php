@@ -23,7 +23,8 @@ class TwitterController extends Controller
 
         if (!($this->twittermodel->isValidChannel($channel)))
         {
-            throw new Exception('Chaine invalide');
+            $data = array('errors' => array('La chaine n\'existe pas, veuillez spécifier une chaine existante'));
+            $this->render('layouts/addStream', $data);
             return;
         }
 
