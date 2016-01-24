@@ -96,11 +96,13 @@
                     id: post.attr("id"),
                 };
                 if(ajax(data)) {
+                    console.log('tttt');
                     console.log($(this));
                     console.log($(this).children());
                     this.children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     this.removeClass('like').addClass('nolike');
                 }
+                console.log(ajax(data));
             });
             $(".post_footer .nolike").click(function() {
                 var post = $(this).parents(".post");
