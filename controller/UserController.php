@@ -441,10 +441,10 @@ class UserController extends Controller
         $this->loadModel('UserModel');
 
         $this->usermodel->forgotPassword($email);
-        $errors = "Votre mot de passea bien été mis à jour";
+        $errors = "Un mail vous a été envoyé, allez vérifier vos mails";
 
         $data = array('errors' => $errors);
-        $this->render('forms/registerForm', $data);
+        $this->render('forms/loginForm', $data);
     }
 
     public function ForgotFormAction()
@@ -467,10 +467,10 @@ class UserController extends Controller
 
         $this->usermodel->resetPassword($_SESSION['user'], $_SESSION['key'], $request->post('password'));
 
-        $errors = "Un mail vous a été envoyé, allez vérifier vos mails";
+        $errors = "Votre mot de passea bien été mis à jour";
 
         $data = array('errors' => $errors);
-        $this->render('forms/registerForm', $data);
+        $this->render('forms/loginForm', $data);
 
     }
 
