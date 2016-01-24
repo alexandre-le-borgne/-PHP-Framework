@@ -6,7 +6,6 @@
  * Date: 24/01/16
  * Time: 19:20
  */
-
 class FollowerController extends Controller
 {
     public function FollowChannelAction(Request $request, $channel)
@@ -21,5 +20,11 @@ class FollowerController extends Controller
         $id = $request->getSession()->get('id');
         $this->followermodel->follow($channel, $id);
         $this->redirectToRoute('index');
+    }
+
+    public function FollowerNumbersAction()
+    {
+        //Todo finir
+        return 12;
     }
 }

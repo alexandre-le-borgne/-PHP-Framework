@@ -79,6 +79,15 @@ if (isset($categories))
     echo '</div>';
 }
 
+if (isset($followers))
+{
+    foreach ($followers as $follower)
+    {
+        var_dump($follower);
+    }
+}
+
+
 /*
 echo "<table border = 1> <tr bgcolor = #DDD>";
 echo "<td>id</td><td>Pseudonyme</td><td>Action</td></tr>";

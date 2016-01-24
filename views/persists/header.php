@@ -68,6 +68,7 @@ if (isset($mailValidationMessage))
                 });
             </script>
             <?php
+            echo $this->renderControllerAction('followerNumbers');
             $this->render('forms/logoutForm');
             ?>
             <a id="add_flux" href="<?= View::getUrlFromRoute('addstream')?>"><img src="<?= View::getAsset('img/add_cat.png') ?>" width="30"></a>
