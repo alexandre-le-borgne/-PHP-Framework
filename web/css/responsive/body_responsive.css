@@ -1,0 +1,27 @@
+@media (max-width: 1120px) {
+    #time_magazine, #courrierinter_magazine, #figaro_magazine
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    /*#table_section_content*/
+    /*{*/
+    /*display: none;*/
+    /*}*/
+    /*#table_section_news*/
+    /*{*/
+    /*display: none;*/
+    /*}*/
+    #title_section_news {
+        float: none;
+        height: 100%;
+        width: 100%;
+        background-color: #36465d;
+    }
+    #usatoday_magazine, #liberation_magazine, #lemonde_magazine
+    {
+        display: none;
+    }
+}

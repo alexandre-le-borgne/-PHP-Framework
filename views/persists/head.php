@@ -10,11 +10,15 @@
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery-ui/jquery-ui.theme.min.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.webui-popover.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.mCustomScrollbar.min.css') ?>" />
-<link rel="stylesheet" href="<?= View::getAsset('css/body.css') ?>">
-<link rel="stylesheet" href="<?= View::getAsset('css/footer.css') ?>">
-<link rel="stylesheet" href="<?= View::getAsset('css/form.css') ?>">
-<link rel="stylesheet" href="<?= View::getAsset('css/nav.css') ?>">
-<link rel="stylesheet" href="<?= View::getAsset('css/header.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/desktop/body.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/desktop/footer.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/desktop/form.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/desktop/nav.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/desktop/header.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/desktop/post.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/desktop/fullpage.css') ?>">
+<link rel="stylesheet" href="<?= View::getAsset('css/desktop/home.css') ?>">
+
 
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>

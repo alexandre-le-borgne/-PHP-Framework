@@ -1,0 +1,280 @@
+/*****************************                                              *******************************************/
+/************************************                               ***************************************************/
+/********************************************               ***********************************************************/
+/*                                              FULL PAGE                                                             */
+/********************************************               ***********************************************************/
+/************************************                               ***************************************************/
+/*****************************                                              *******************************************/
+
+
+
+
+
+#title_section_news h1, #title_section_social h1, #title_section_content h1
+{
+    font-size: 55pt;
+    font-weight: bold;
+    line-height: 77px;
+}
+
+/*****************************************/
+/***************SECTION_HOME**************/
+/*****************************************/
+
+.section_home
+
+{
+    margin:0;
+    padding:0;
+    background: url('../../img/sanfr.jpeg') no-repeat center center fixed;
+}
+
+.section_home img
+{
+    width: 150px;
+}
+
+/*****************************************/
+/***************SECTION_NEWS**************/
+/*****************************************/
+
+#title_section_news
+{
+    float: left;
+    height: 100%;
+    width: 40%;
+    background-color: #36465d
+}
+
+#table_section_news
+{
+    width: 60%;
+    float: right;
+    height: 100%;
+}
+
+#title_section_news p
+{
+    font-size: 38.5pt !important;
+}
+
+#table_section_news table
+{
+    width: 100%;
+
+}
+
+#table_section_news table td
+{
+    height: 34%;
+    width: 50%;
+}
+#time_magazine
+{
+    background: url("../../img/newspapers/time.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#time_magazine:hover
+{
+    background: url("../../img/newspapers/time_colored.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#figaro_magazine
+{
+    background: url("../../img/newspapers/figaro.jpg") no-repeat center;
+    transition: 150ms background;
+}
+
+#figaro_magazine:hover
+{
+    background: url("../../img/newspapers/figaro_colored.jpg") no-repeat center;
+    transition: 150ms background;
+}
+
+#lemonde_magazine
+{
+    background: url("../../img/newspapers/lemonde.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#lemonde_magazine:hover
+{
+    background: url("../../img/newspapers/lemonde_colored.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#courrierinter_magazine
+{
+    background: url("../../img/newspapers/courrierinter.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#courrierinter_magazine:hover
+{
+    background: url("../../img/newspapers/courrierinter_colored.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#usatoday_magazine
+{
+    background: url("../../img/newspapers/usatoday.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#usatoday_magazine:hover
+{
+    background: url("../../img/newspapers/usatoday_colored.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#liberation_magazine
+{
+    background: url("../../img/newspapers/liberation.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#liberation_magazine:hover
+{
+    background: url("../../img/newspapers/liberation_colored.png") no-repeat center;
+    transition: 150ms background;
+}
+
+/* Background Settings News */
+#time_magazine, #liberation_magazine
+{
+    background-color: #fafafa !important;
+    background-size: 50% !important;
+}
+
+#usatoday_magazine, #figaro_magazine
+{
+    background-color: #f2f2f2 !important;
+    background-size: 50% !important;
+}
+
+#lemonde_magazine
+{
+    background-color: #f2f2f2 !important;
+    background-size: 30% !important;
+}
+
+#lemonde_magazine:hover
+{
+    background-size: 30% !important;
+}
+
+#courrierinter_magazine
+{
+    background-color: #fafafa !important;
+    background-size: 70% !important;
+}
+
+#courrierinter_magazine:hover
+{
+    background-color: #fafafa !important;
+    background-size: 70% !important;
+}
+
+#usatoday_magazine:hover, #figaro_magazine:hover, #time_magazine:hover, #liberation_magazine:hover
+{
+    background-size: 50% !important;
+}
+
+/* Background Settings Content */
+#table_section_content
+{
+    background: url("../../img/content/section_content_background.png") no-repeat center;
+    background-size: cover;
+}
+
+/*****************************************/
+/***************SECTION_CONTENT***********/
+/*****************************************/
+
+#table_section_content
+{
+    width: 60%;
+    float: right;
+    height: 100%;
+}
+
+#title_section_content
+{
+    float: left;
+    height: 100%;
+    width: 40%;
+    background-color: #f8c433;
+}
+
+#text_content
+{
+    display: block;
+    width: 350px;
+    position: relative;
+    top: 60px;
+    margin: auto;
+}
+
+#text_content #button_action
+{
+    text-align: center;
+    padding: 20px;
+    font-size: 15pt;
+    background: #2f3d51;
+    color: #ffffff;
+    border: solid 2px #2f3d51;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#text_content #button_action:hover
+{
+    background: #db6f57;
+    border-radius: 5px;
+    border: solid 2px #db6f57;
+    transition: 150ms background, 150ms border-radius, 150ms border, 150ms color;
+}
+
+#table_section_content table td
+{
+
+}
+
+#table_section_content table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+
+/*****************************************/
+/***************SECTION_SOCIAL************/
+/*****************************************/
+
+#title_section_social
+{
+    float: left;
+    height: 100%;
+    width: 40%;
+    background-color: #f037a5;
+}
+
+/*****************************************/
+/***************SECTION_CONTENT***********/
+/*****************************************/
+
+#contact
+{
+    background-color: #fafafa;
+    height: 70%;
+}
+
+#footer
+{
+    background-color: #3d4543;
+    height: 30%;
+}

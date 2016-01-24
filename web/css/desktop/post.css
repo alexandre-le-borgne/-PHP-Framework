@@ -1,0 +1,109 @@
+/*****************************                                              *******************************************/
+/************************************                               ***************************************************/
+/********************************************               ***********************************************************/
+/*                                           POST / ARTICLE                                                           */
+/********************************************               ***********************************************************/
+/************************************                               ***************************************************/
+/*****************************                                              *******************************************/
+
+.post
+{
+    background: #2f3d51 !important;
+    width: 100%;
+    color: white;
+    font-size: 10pt;
+    border-radius: 2px;
+    display: block;
+    margin-top: 10px;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+.author
+{
+    float: right;
+}
+
+.post_footer
+{
+    padding: 20px;
+}
+
+.post_footer span {
+    cursor: pointer;
+}
+
+.post_footer img
+{
+    width: 20px;
+    margin-right: 17px;
+    margin-top: -5px;
+}
+
+.post_footer .follow
+{
+    padding: 12px;
+    border-radius: 3px;
+    float: right;
+    border: solid 1px #748089;
+    margin-top: -19px;
+    color: #748089;
+    transition: 150ms background, 150ms color;
+}
+
+.post_footer .follow:hover
+{
+    background: #748089;
+    color: #ffffff;
+    transition: 150ms background, 150ms color;
+}
+
+
+
+.post_content
+{
+    padding: 22px 20px 20px 20px;
+    word-break: break-all;
+    font-size: 10pt;
+}
+
+.post_content img
+{
+    width: 25%;
+    display: block;
+}
+
+.post_header_rss
+{
+    line-height: 24px;
+    padding: 13px;
+    background: #56bc8a;
+    box-sizing: border-box;
+    border-radius: 3px 3px 0px 0px;
+    font-size: 12pt;
+    font-weight: 500;
+}
+
+.post_header_email
+{
+
+    line-height: 24px;
+    padding: 13px;
+    background: #d95e40;
+    box-sizing: border-box;
+    border-radius: 3px 3px 0px 0px;
+    font-size: 12pt;
+    font-weight: 500;
+}
+
+.post_header_twitter
+{
+
+    line-height: 24px;
+    padding: 13px;
+    background: #529ecc;
+    box-sizing: border-box;
+    border-radius: 3px 3px 0px 0px;
+    font-size: 12pt;
+    font-weight: 500;
+}
