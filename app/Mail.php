@@ -38,13 +38,17 @@ class Mail
         $head = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $head .= "From : welcome@aaron.fr";
 
-        $message = "Merci d'avoir validé votre inscription !
+        $message = "
+        <html>
+            <body><p>Merci d'avoir validé votre inscription !
 
-        Vous pouvez désormais suivre vos actualités à partir de votre page personnelle.
+                    Vous pouvez désormais suivre vos actualités à partir de votre page personnelle.
 
-        Ce message est automatique, merci de ne pas y repondre.
+                    Ce message est automatique, merci de ne pas y repondre.
 
-        L'equipe AaronProject";
+                    L'equipe AaronProject</p>
+            </body>
+        </html>";
 
         mail($email, $subject, $message, $head);
     }
