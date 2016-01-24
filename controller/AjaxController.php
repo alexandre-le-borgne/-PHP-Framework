@@ -29,10 +29,17 @@ class AjaxController extends Controller
         /** @var ArticleEntity $articleEntity */
         $articleEntity = $this->articlemodel->getById($post);
         if($articleEntity) {
-            $articlesFavorisEntity = new ArticlesFavorisEntity();
-            $articlesFavorisEntity->setAccount($request->getSession()->get('id'));
-            $articlesFavorisEntity->setArticle($articleEntity->getId());
-            $articlesFavorisEntity->persist();
+            $data = array($request->getSession()->get('id'), $articleEntity->getId());
+            $data = $db->execute("SELECT * FROM articlesfavoris WHERE account = ? AND article = ?", $data);
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
+            $emailEntity = $data->fetch();
+            if(!$emailEntity)
+            {
+                $articlesFavorisEntity = new ArticlesFavorisEntity();
+                $articlesFavorisEntity->setAccount($request->getSession()->get('id'));
+                $articlesFavorisEntity->setArticle($articleEntity->getId());
+                $articlesFavorisEntity->persist();
+            }
         }
     }
 
