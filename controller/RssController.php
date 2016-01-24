@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: j13000355
- * Date: 20/01/16
- * Time: 09:05
- */
 class RssController extends Controller
 {
 

@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Le Controlleur correspondant a l'utilisateur
- */
 class UserController extends Controller
 {
     public function ChannelAction($channel)
