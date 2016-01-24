@@ -32,7 +32,6 @@
 <link rel="icon" type="image/png" href="<?= View::getAsset('img/favicon.png') ?>" />
 
 
-
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
