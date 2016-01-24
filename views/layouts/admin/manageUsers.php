@@ -6,6 +6,8 @@
  * Time: 11:48
  */
 
+$view->extend('layouts/layout');
+$this->render('persists/header');
 
 if (isset($deleted))
 {?>
