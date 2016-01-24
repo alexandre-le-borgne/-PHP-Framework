@@ -414,7 +414,6 @@ body
     border-radius: 3px;
     display: inline-block;
     background-color: #2f3d51;
-    padding: 91px;
     margin: 1%;
     cursor: pointer;
 }
@@ -422,11 +421,15 @@ body
 #twitter_button img, #IMAP_button img
 {
     width: 50px;
+    display: block;
+    margin: auto;
 }
 
 #RSS_button img
 {
     width: 42px;
+    display: block;
+    margin: auto;
 }
 
 #add_flux_body input

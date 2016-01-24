@@ -484,8 +484,7 @@ class UserController extends Controller
 
         $data = array();
 
-        $categories = $this->categorymodel->getByUserId($request->get('id'));
-        var_dump($categories);
+        $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
         foreach ($categories as $category)
         {
             $streamCategories = $this->categorymodel->getStreamCategoriesByCategoryId($category->getId());
