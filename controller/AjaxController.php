@@ -13,10 +13,10 @@ class AjaxController extends Controller
             return;
         switch($request->post('action')) {
             case 'like':
-                $this->LikeAction();
+                $this->LikeAction($request);
                 break;
             case 'nolike':
-                $this->NoLikeAction();
+                $this->NoLikeAction($request);
                 break;
             default:
         }
