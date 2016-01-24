@@ -89,10 +89,9 @@ class ArticleController extends Controller
                     $this->redirectToRoute('index');
                     return;
             }
-            $this->articlemodel->userHasStream($request->getSession()->get('id'), $stream->getId(), $type);
 
             // L'utilisateur a acces a ce flux car fait parti d'une de ces categories
-            if($this->articlemodel->userHasStream($request->getSession()->get('id'), $stream, $type))
+            if($this->articlemodel->userHasStream($request->getSession()->get('id'), $stream->getId(), $type))
             {
                 $articles = $this->articlemodel->getArticlesByStreamTypeAndId($type, $id, 0, 10);
                 $data = array('title' => $title, 'articles' => $articles);
