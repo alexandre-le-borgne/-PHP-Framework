@@ -28,6 +28,11 @@ body
 
 }
 
+table
+{
+    border-collapse: collapse !important;
+}
+
 #profile
 {
 
