@@ -75,12 +75,9 @@ class TwitterModel extends Model implements StreamModel
         ]);
         if (isset($result->errors))
         {
-            echo $result->errors[0]->message;
+            false; // $result->errors[0]->message; affiche 'User not found.'
         }
-        else
-        {
-            var_dump($result);
-        }
+        return true;
     }
 
     /**

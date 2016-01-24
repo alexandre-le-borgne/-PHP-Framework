@@ -21,6 +21,10 @@ class TwitterController extends Controller
         $this->loadModel('CategoryModel');
         $this->loadModel('TwitterModel');
 
+        if (!$this->twittermodel->isValidChannel($channel))
+            throw new Exception('Chaine invalide');
+
+
         $twitterEntity = $this->twittermodel->createStream($channel, $firstUpdate);
         $categoryEntity = $this->categorymodel->createCategory($userId, $categoryTitle);
 
@@ -86,11 +90,6 @@ class TwitterController extends Controller
 //
 //        echo $imageLink;
 //        echo '<br/>#############################################################################<br/>';
-
-
-
-
-
 
 
 //        if (!($channel && $firstUpdate && $categoryTitle))
