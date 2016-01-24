@@ -13,76 +13,92 @@ class TwitterController extends Controller
 {
     function addTwitterStreamAction(Request $request)
     {
-        $channel = $request->post('channel');
-        $firstUpdate = $request->post('firstUpdate');
-        $userId = $request->getSession()->get('id');
         $categoryTitle = $request->post('category');
+        $firstUpdate = $request->post('firstUpdate');
+        $channel = $request->post('channel');
+        $userId = $request->getSession()->get('id');
 
-        if (!($channel && $firstUpdate && $categoryTitle))
-            throw new Exception('Pas tous les arguments inseres');
-
-        //Chargement des models
         $this->loadModel('CategoryModel');
-        /** @var CategoryModel $categoryModel */
-        $categoryModel = $this->categorymodel;
         $this->loadModel('TwitterModel');
-        /** @var TwitterModel $twitterModel */
-        $twitterModel = $this->twittermodel;
 
-        //Creation du flux
-        $dateTime = new DateTime();
-        $dateTime->setTimestamp(strtotime($firstUpdate));
-        $twitterModel->createStream($channel, $dateTime);
+        $firstUpdateDate = new DateTime();
+        $firstUpdateDate->setTimestamp(strtotime($firstUpdate));
+        $twitterEntity = $this->twittermodel->createStream($channel, $firstUpdateDate);
+        $categoryEntity = $this->categorymodel->createCategory($userId, $categoryTitle);
 
+        $streamCategoryEntity = new StreamCategoryEntity();
+        $streamCategoryEntity->setCategory($categoryEntity->getId());
+        $streamCategoryEntity->setStream($twitterEntity->getId());
+        $streamCategoryEntity->setStreamType(ArticleModel::TWITTER);
+        $streamCategoryEntity->persist();
 
-        $defaultCategory = null;
-        $category = null;
+        echo 'yolo c ajouté';
 
-        $categories = $categoryModel->getByUserId($userId);
-        foreach ($categories as $cat)
-        {
-            /** @var CategoryEntity $cat */
-            if ($cat->getTitle() == 'Twitter')
-                $defaultCategory = $cat;
-            if ($cat->getTitle() == $categoryTitle)
-                $category = $cat;
-        }
-
-        $streamCategory = new StreamCategoryEntity();
-        $streamCategory->setId($userId);
-        $streamCategory->setStreamType(ArticleModel::TWITTER);
-        $streamCategory->setStream($twitterModel->getStreamByChannel($channel)->getId());
-
-        if ($category)
-        {
-            //La categorie donnee en param existe, on ajoute donc le stream cree dans cette categorie.
-            //On insere alors une ligne dans stream_category
-            $streamCategory->setCategory($category->getId());
-            $streamCategory->persist();
-        }
-        else
-        {
-            if ($defaultCategory)
-            {
-                //On place le stream dans la categorie par defaut, qui s'appelle Twitter
-                $streamCategory->setCategory($defaultCategory->getId());
-                $streamCategory->persist();
-            }
-            else
-            {
-                //On cree la categorie par defaut, qui s'appelle Twitter, puis on place le stream dans celle la
-                $newDefaultCategory = new CategoryEntity();
-                $newDefaultCategory->setAccount($userId);
-                $newDefaultCategory->setTitle('Twitter');
-                $newDefaultCategory->persist();
-                $streamCategory->setCategory($newDefaultCategory->getId());
-                $streamCategory->persist();
-            }
-        }
-
-        $twitterEntity = new TwitterEntity();
-        $twitterEntity->setChannel($channel);
-        $twitterModel->streamCron($twitterEntity);
+//        if (!($channel && $firstUpdate && $categoryTitle))
+//            throw new Exception('Pas tous les arguments inseres');
+//
+//        //Chargement des models
+//        $this->loadModel('CategoryModel');
+//        /** @var CategoryModel $categoryModel */
+//        $categoryModel = $this->categorymodel;
+//        $this->loadModel('TwitterModel');
+//        /** @var TwitterModel $twitterModel */
+//        $twitterModel = $this->twittermodel;
+//
+//        //Creation du flux
+//        $dateTime = new DateTime();
+//        $dateTime->setTimestamp(strtotime($firstUpdate));
+//        $twitterModel->createStream($channel, $dateTime);
+//
+//
+//        $defaultCategory = null;
+//        $category = null;
+//
+//        $categories = $categoryModel->getByUserId($userId);
+//        foreach ($categories as $cat)
+//        {
+//            /** @var CategoryEntity $cat */
+//            if ($cat->getTitle() == 'Twitter')
+//                $defaultCategory = $cat;
+//            if ($cat->getTitle() == $categoryTitle)
+//                $category = $cat;
+//        }
+//
+//        $streamCategory = new StreamCategoryEntity();
+//        $streamCategory->setId($userId);
+//        $streamCategory->setStreamType(ArticleModel::TWITTER);
+//        $streamCategory->setStream($twitterModel->getStreamByChannel($channel)->getId());
+//
+//        if ($category)
+//        {
+//            //La categorie donnee en param existe, on ajoute donc le stream cree dans cette categorie.
+//            //On insere alors une ligne dans stream_category
+//            $streamCategory->setCategory($category->getId());
+//            $streamCategory->persist();
+//        }
+//        else
+//        {
+//            if ($defaultCategory)
+//            {
+//                //On place le stream dans la categorie par defaut, qui s'appelle Twitter
+//                $streamCategory->setCategory($defaultCategory->getId());
+//                $streamCategory->persist();
+//            }
+//            else
+//            {
+//                //On cree la categorie par defaut, qui s'appelle Twitter, puis on place le stream dans celle la
+//                $newDefaultCategory = new CategoryEntity();
+//                $newDefaultCategory->setAccount($userId);
+//                $newDefaultCategory->setTitle('Twitter');
+//                $newDefaultCategory->persist();
+//                $streamCategory->setCategory($newDefaultCategory->getId());
+//                $streamCategory->persist();
+//            }
+//        }
+//
+//        $twitterEntity = new TwitterEntity();
+//        $twitterEntity->setChannel($channel);
+//        $twitterModel->streamCron($twitterEntity);
 
         //
 

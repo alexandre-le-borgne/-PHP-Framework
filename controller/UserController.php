@@ -393,7 +393,7 @@ class UserController extends Controller
         }
     }
 
-    public function MailResetAction(Request $request)
+    /*public function MailResetAction(Request $request)
     {
 
         $email = Security::escape($request->post('email'));
@@ -409,7 +409,7 @@ class UserController extends Controller
         Mail::sendResetMail($email, $user, $key);
 
         echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
-    }
+    }*/
 
     public function MailValidationAction(Request $request, $user, $key)
     {
@@ -471,9 +471,14 @@ class UserController extends Controller
         $this->render('/forms/resetForm');
     }
 
-    public function ResetMailAction(Request $request)
+    public function ResetPasswordAction(Request $request)
     {
-        $this->usermodel->resetPassword($request->get('username'), $request->get('key'), $request->post('reset'));
+        $this->loadModel('UserModel');
+        var_dump($_SESSION['user']);
+        var_dump($_SESSION['key']);
+        var_dump($request->post('password'));
+
+        $this->usermodel->resetPassword($_SESSION['user'], $_SESSION['key'], $request->post('password'));
     }
 
     public function ProfileAction(Request $request)

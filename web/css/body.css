@@ -28,6 +28,11 @@ body
 
 }
 
+table
+{
+    border-collapse: collapse !important;
+}
+
 #profile
 {
 
@@ -44,7 +49,6 @@ body
     margin:0;
     padding:0;
     background: url('../img/sanfr.jpeg') no-repeat center center fixed;
-    background-size: cover;
 }
 
 .section_home img
@@ -57,7 +61,7 @@ body
     float: left;
     height: 100%;
     width: 40%;
-    background-color: white;
+    background-color: #36465d
 }
 
 /* CONTENT SECTION */
@@ -91,6 +95,8 @@ body
     line-height: 77px;
 }
 
+
+
 #text_content
 {
     display: block;
@@ -105,9 +111,20 @@ body
     text-align: center;
     padding: 20px;
     font-size: 15pt;
-    border: solid 2px #3d4543;
+    background: #2f3d51;
+    color: #ffffff;
+    border: solid 2px #2f3d51;
     font-weight: 600;
     border-radius: 4px;
+    cursor: pointer;
+}
+
+#text_content #button_action:hover
+{
+    background: #db6f57;
+    border-radius: 5px;
+    border: solid 2px #db6f57;
+    transition: 150ms background, 150ms border-radius, 150ms border, 150ms color;
 }
 
 
@@ -140,6 +157,7 @@ body
 #table_section_news table
 {
     width: 100%;
+
 }
 
 #table_section_news table td
@@ -149,71 +167,161 @@ body
 }
 
 /* Background Settings News */
-#time_magazine, #courrierinter_magazine, #liberation_magazine
+#time_magazine, #liberation_magazine
 {
-    background-color: #fafafa;
+    background-color: #fafafa !important;
+    background-size: 50% !important;
 }
 
-#usatoday_magazine, #figaro_magazine, #lemonde_magazine
+#usatoday_magazine, #figaro_magazine
 {
-    background-color: #f2f2f2;
+    background-color: #f2f2f2 !important;
+    background-size: 50% !important;
+}
+
+#lemonde_magazine
+{
+    background-color: #f2f2f2 !important;
+    background-size: 30% !important;
+}
+
+#lemonde_magazine:hover
+{
+    background-size: 30% !important;
+}
+
+#courrierinter_magazine
+{
+    background-color: #fafafa !important;
+    background-size: 70% !important;
+}
+
+#courrierinter_magazine:hover
+{
+    background-color: #fafafa !important;
+    background-size: 70% !important;
+}
+
+#usatoday_magazine:hover, #figaro_magazine:hover, #time_magazine:hover, #liberation_magazine:hover
+{
+    background-size: 50% !important;
 }
 
 /* Background Settings Content */
-#barrack_content
+#table_section_content
 {
-    background-color: #cf3630;
+    background: url("../img/content/section_content_background.png") no-repeat center;
+    background-size: cover;
 }
 
-#charlie_content
-{
-    background-color: #1ba848;
+@media (max-width: 1120px) {
+    /*#table_section_content*/
+    /*{*/
+        /*display: none;*/
+    /*}*/
+    /*#table_section_news*/
+    /*{*/
+        /*display: none;*/
+    /*}*/
+    #time_magazine, #courrierinter_magazine, #figaro_magazine
+    {
+        display: none;
+    }
 }
 
-#robin_content
-{
-    background-color: #f8f7e5;
-}
-
-#gims_content
-{
-    background-color: #0b0509;
-}
-
-#david_guetta_content
-{
-    background-color: #1a181d;
+@media (max-width: 1000px) {
+    /*#table_section_content*/
+    /*{*/
+    /*display: none;*/
+    /*}*/
+    /*#table_section_news*/
+    /*{*/
+    /*display: none;*/
+    /*}*/
+    #title_section_news {
+        float: none;
+        height: 100%;
+        width: 100%;
+        background-color: #36465d;
+    }
+    #usatoday_magazine, #liberation_magazine, #lemonde_magazine
+    {
+        display: none;
+    }
 }
 
 /* Pictures Size Setting */
-#time_magazine img
+
+#time_magazine
 {
-    width: 200px;
+    background: url("../img/newspapers/time.png") no-repeat center;
+    transition: 150ms background;
 }
 
-#figaro_magazine img
+#time_magazine:hover
 {
-    width: 200px;
+    background: url("../img/newspapers/time_colored.png") no-repeat center;
+    transition: 150ms background;
 }
 
-#lemonde_magazine img
+#figaro_magazine
 {
-    width: 140px;
+    background: url("../img/newspapers/figaro.jpg") no-repeat center;
+    transition: 150ms background;
 }
 
-#courrierinter_magazine img
+#figaro_magazine:hover
 {
-    width: 250px;
+    background: url("../img/newspapers/figaro_colored.jpg") no-repeat center;
+    transition: 150ms background;
 }
 
-#usatoday_magazine img
+#lemonde_magazine
 {
-    width: 241px;
+    background: url("../img/newspapers/lemonde.png") no-repeat center;
+    transition: 150ms background;
 }
 
-#liberation_magazine img
+#lemonde_magazine:hover
 {
-    width: 200px;
+    background: url("../img/newspapers/lemonde_colored.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#courrierinter_magazine
+{
+    background: url("../img/newspapers/courrierinter.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#courrierinter_magazine:hover
+{
+    background: url("../img/newspapers/courrierinter_colored.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#usatoday_magazine
+{
+    background: url("../img/newspapers/usatoday.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#usatoday_magazine:hover
+{
+    background: url("../img/newspapers/usatoday_colored.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#liberation_magazine
+{
+    background: url("../img/newspapers/liberation.png") no-repeat center;
+    transition: 150ms background;
+}
+
+#liberation_magazine:hover
+{
+    background: url("../img/newspapers/liberation_colored.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #contact
@@ -246,9 +354,7 @@ body
     position: fixed;
     height: 100%;
     float: left;
-    -moz-column-count: 2;
     column-count: 2;
-    -moz-column-gap: 10px;
     column-gap: 10px;
     width: 350px;
     word-wrap: break-word;
@@ -303,21 +409,14 @@ body
      border: solid 1px #748089;
      margin-top: -19px;
      color: #748089;
-     transition: 150ms background;
-     transition: 150ms color;
+     transition: 150ms background, 150ms color;
  }
 
 .post_footer .follow:hover
 {
-    padding: 12px;
-    border-radius: 3px;
-    float: right;
-    border: solid 1px #748089;
-    margin-top: -19px;
-    color: white;
     background: #748089;
-    transition: 150ms background;
-    transition: 150ms color;
+    color: #ffffff;
+    transition: 150ms background, 150ms color;
 }
 
 
@@ -473,26 +572,4 @@ body
     margin: 7px auto;
     width: 633px;
 }
-
-div#RSS_button::selection {
-    background: #a77dc2;
-}
-
-div#IMAP_button::selection {
-    background: #56bc8a;
-}
-
-div#twitter_button::selection {
-    background: #529ecc;
-}
-
-
-/*#RSS_button, #IMAP_button, #twitter_button*/
-/*{*/
-    /*background: black;*/
-    /*color: #ffffff;*/
-    /*width: 100px;*/
-    /*height: 100px;*/
-    /*cursor: pointer;*/
-/*}*/
 

@@ -21,16 +21,16 @@
         <div id="table_section_news">
             <table width=345px height=100%>
                 <tr>
-                    <td align="center" id="time_magazine"><img src="web/img/newspapers/time.png"></td>
-                    <td align="center" id="usatoday_magazine"><img src="web/img/newspapers/usatoday.png"></td>
+                    <td align="center" id="time_magazine"></td>
+                    <td align="center" id="usatoday_magazine"></td>
                 </tr>
                 <tr>
-                    <td align="center" id="lemonde_magazine"><img src="web/img/newspapers/lemonde.png"></td>
-                    <td align="center" id="courrierinter_magazine"> <img src="web/img/newspapers/courrierinter.png"></td>
+                    <td align="center" id="lemonde_magazine"></td>
+                    <td align="center" id="courrierinter_magazine"> </td>
                 </tr>
                 <tr>
-                    <td align="center" id="liberation_magazine"><img src="web/img/newspapers/liberation.png"></td>
-                    <td align="center" id="figaro_magazine"><img src="web/img/newspapers/figaro.jpg"></td>
+                    <td align="center" id="liberation_magazine"></td>
+                    <td align="center" id="figaro_magazine"></td>
                 </tr>
             </table>
         </div>

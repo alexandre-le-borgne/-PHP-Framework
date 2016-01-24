@@ -131,25 +131,33 @@ class UserModel extends Model
 
     public function resetPassword($user, $key, $password){
         $db = new Database();
-
+        var_dump($user);
+        var_dump($key);
         $user = Security::escape($user);
+        var_dump($user);
         $oldKey = Security::escape($key);
+        var_dump($oldKey);
         $password = Security::escape($password);
 
         $key = Security::generateKey();
         $password = Security::encode($password);
 
+        $req = "SELECT * FROM accounts WHERE username = ? AND userKey = ?";
+        $result = $db->execute($req, array($user, $oldKey));
 
-        $data = $this->getByNameOrEmail($user);
+        while(!$stmt = $result->fetch())
+        {
+            var_dump($stmt);
+            var_dump($stmt['id']);
+            $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
+            echo '1';
+            $db->execute($req, array($key, $stmt['id']));
+            echo '2';
 
-        $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
-        echo '1';
-        $db->execute($req, array($key, $data['id']));
-        echo '2';
-
-        $req = "UPDATE passwords SET password = ? WHERE account = ?";
-        echo '3';
-        $db->execute($req, array($password, $data['id']));
-        echo '4';
+            $req = "UPDATE passwords SET password = ? WHERE account = ?";
+            echo '3';
+            $db->execute($req, array($password, $stmt['id']));
+            echo '4';
+        }
     }
 }

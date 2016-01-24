@@ -16,13 +16,13 @@ class CategoryEntity extends Entity
         if ($this->id == null)
         {
             $req = 'INSERT INTO categories (account, title) VALUES (?, ?)';
-            $db->execute($req, array($this->account, $this->name));
+            $db->execute($req, array($this->account, $this->title));
             $this->id = $db->lastInsertId();
         }
         else
         {
             $req = 'UPDATE categories SET account = ?, title = ? WHERE id = ?';
-            $db->execute($req, array($this->account, $this->name, $this->id));
+            $db->execute($req, array($this->account, $this->title, $this->id));
         }
     }
 
