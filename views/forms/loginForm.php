@@ -54,20 +54,20 @@ $view->extend('layouts/fullpage');
     </div>
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        // $(window).resize() est appelée chaque fois que la fenêtre est redimensionnée par l'utilisateur.
-        $(window).resize(function() {
-            $("#loginDiv").css({
-                position:'absolute',
-                left:($(window).width() - $("#loginDiv").outerWidth()) / 2,
-                top:($(window).height() - $("#loginDiv").outerHeight()) / 2
-            });
-        });
-    });
-
-    $(window).load(function() {
-        // au chargement complet de la page, la fonction resize() est appelée une fois pour initialiser le centrage.
-        $(window).resize();
-    });
-</script>
+<!--<script type="text/javascript">-->
+<!--    $(document).ready(function() {-->
+<!--        // $(window).resize() est appelée chaque fois que la fenêtre est redimensionnée par l'utilisateur.-->
+<!--        $(window).resize(function() {-->
+<!--            $("#loginDiv").css({-->
+<!--                position:'absolute',-->
+<!--                left:($(window).width() - $("#loginDiv").outerWidth()) / 2,-->
+<!--                top:($(window).height() - $("#loginDiv").outerHeight()) / 2-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!---->
+<!--    $(window).load(function() {-->
+<!--        // au chargement complet de la page, la fonction resize() est appelée une fois pour initialiser le centrage.-->
+<!--        $(window).resize();-->
+<!--    });-->
+<!--</script>-->
