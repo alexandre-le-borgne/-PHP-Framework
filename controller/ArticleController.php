@@ -72,6 +72,7 @@ class ArticleController extends Controller
                 case ArticleModel::TWITTER:
                     /** @var TwitterEntity $stream */
                     $stream = $this->twittermodel->getStreamById($id);
+                    var_dump($stream);
                     $title = $stream->getChannel();
                     break;
                 case ArticleModel::EMAIL:
