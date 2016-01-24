@@ -16,11 +16,11 @@ $this->render('persists/header');
         <div id="IMAP_button"><img src="<?= View::getAsset('img/email.png') ?>" width="27"></div>
     </div>
     <div id="add_flux_body">
-        <form class="flux_twitter" action="" method="post">
+        <form class="flux_twitter" action="<?= View::getUrlFromRoute('addtwitterstream')?>" method="post">
             <input class="first" type="date" name="firstUpdate" placeholder="À partir de" required>
             <input type="text" name="channel" placeholder="Nom du compte @" required>
             <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
-            <input type="submit" name="category" value="Ajouter ce flux!">
+            <input type="submit" name="button" value="Ajouter ce flux!">
         </form>
 
         <form class="flux_rss" action="" method="post">
