@@ -19,3 +19,13 @@
 {
     border: solid 1px blue;
 }
+
+#stream_button, #followers_button, #following_button {
+    border-radius: 3px;
+    display: inline-block;
+    background-color: #2f3d51;
+    margin: 1%;
+    cursor: pointer;
+    width: 211px;
+    height: 211px;
+}

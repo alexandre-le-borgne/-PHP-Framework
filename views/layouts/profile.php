@@ -48,7 +48,7 @@ function formTr($string, $streams, $streamType)
         <h1><?= $profile ?></h1>
     </div>
     <nav>
-        <div id="stream">Mes Flux</div>
+        <div id="stream_button">Mes Flux</div>
         <div id="followers_button">Mes Abonnés</div>
         <div id="following_botton">Mes Abonnements</div>
     </nav>
@@ -161,6 +161,46 @@ function formTr($string, $streams, $streamType)
     </div>
 </div> <!-- USER_CONTENT-->
 
+<script>
+    $(function() {
+        $('#categories').show();
+        $('#following').hide();
+        $('#followers').hide();
+
+        $('#followers_button').css('background', '#529ecc');
+
+        $('#followers_button').click(function()
+        {
+            $('#followers_button').css('background', '#529ecc');
+            $('#following_button').css('background', '#2f3d51');
+            $('#stream_button').css('background', '#2f3d51');
+
+            $('#categories').show();
+            $('#following').hide();
+            $('#followers').hide();
+        });
+        $('#following_button').click(function()
+        {
+            $('#following_button').css('background', '#56bc8a');
+            $('#followers_button').css('background', '#2f3d51');
+            $('#stream_button').css('background', '#2f3d51');
+
+            $('#categories').hide();
+            $('#following').show();
+            $('#followers').hide();
+        });
+        $('#stream_button').click(function()
+        {
+            $('#stream_button').css('background', '#a77dc2');
+            $('#followers_button').css('background', '#2f3d51');
+            $('#following_button').css('background', '#2f3d51');
+
+            $('#categories').hide();
+            $('#following').hide();
+            $('#followers').show();
+        });
+    });
+</script>
 <?php
 
 
