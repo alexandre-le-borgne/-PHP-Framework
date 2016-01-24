@@ -45,14 +45,14 @@ class TwitterModel extends Model implements StreamModel
         return $result->fetch();
     }
 
-    public function createStream($channel, DateTime $firstUpdate)
+    public function createStream($channel, $firstUpdate)
     {
         $db = new Database();
         /** @var TwitterEntity $result */
         $result = $this->getStreamByChannel($channel);
         if ($result)
         {   //Si existe deja, et nouvelle date plus ancienne, alors on modifie le firstUpdate a la nouvelle date donnee
-            if ($firstUpdate->getTimestamp() < strtotime($result->getFirstUpdate()))
+            if (strtotime($firstUpdate) < strtotime($result->getFirstUpdate()))
                 $db->execute('UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?', array(date(Database::DATE_FORMAT, strtotime($firstUpdate))));
             return $result;
         }
@@ -61,7 +61,7 @@ class TwitterModel extends Model implements StreamModel
             $twitterEntity = new TwitterEntity();
             $twitterEntity->setChannel($channel);
             $twitterEntity->setFirstUpdate($firstUpdate);
-            $twitterEntity->setLastUpdate(new DateTime());
+            $twitterEntity->setLastUpdate(date());
             $twitterEntity->persist();
             return $twitterEntity;
         }
@@ -103,6 +103,9 @@ class TwitterModel extends Model implements StreamModel
      */
     public function streamCron(TwitterEntity $twitterEntity)
     {
+        if ($this->twitter == null)
+            $this->initTwitterOAuth();
+
         if ($this->db == null)
             $this->db = new Database();
 
