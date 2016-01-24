@@ -179,7 +179,7 @@
     margin: auto;
 }
 
-#text_content #button_action
+#text_content .button_action
 {
     text-align: center;
     padding: 20px 40px 20px 40px;
