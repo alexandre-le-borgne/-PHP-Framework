@@ -57,15 +57,28 @@ class ArticleController extends Controller
 
     public function ArticleAction(Request $request, $id)
     {
-        $this->loadModel('ArticleModel');
-        $article = $this->articlemodel->getById($id);
-        if($article)
-        {
-            $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
-            $this->render('layouts/article', array('article' => $article, 'favoris' => $favoris));
+        if($request->isInternal()) {
+            $this->loadModel('ArticleModel');
+            $article = $this->articlemodel->getById($id);
+            if($article)
+            {
+                $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
+                //Renvoyer des boolean Est dans les favoris,est dans les stream, est dansl e blog perso ou pas, etc
+                $this->render('layouts/article', array('article' => $article, 'favoris' => $favoris));
+            }
         }
         else {
-            $this->redirectToRoute('index');
+            $this->loadModel('ArticleModel');
+            /** @var ArticleEntity $article */
+            $article = $this->articlemodel->getById($id);
+            if($article)
+            {
+                $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
+                $this->render('layouts/home', array('title' => $article->getTitle(), 'categories' => $categories, 'articles' => array($article)));
+            }
+            else {
+                $this->redirectToRoute('index');
+            }
         }
     }
 }
