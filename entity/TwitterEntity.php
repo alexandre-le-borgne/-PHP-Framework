@@ -16,11 +16,16 @@ class TwitterEntity
     public function persist()
     {
         $db = new Database();
+
+        $firstUpdate = ($this->firstUpdate instanceof DateTime) ? $this->firstUpdate->getTimestamp() :
+            date(Database::DATE_FORMAT, strtotime($this->firstUpdate));
+        $lastUpdate = ($this->lastUpdate instanceof DateTime) ? $this->lastUpdate->getTimestamp() :
+            date(Database::DATE_FORMAT, strtotime($this->lastUpdate));
+
         if ($this->id == null)
         {
             $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (?, ?, ?)';
-            $data = array($this->channel, date(Database::DATE_FORMAT, strtotime($this->firstUpdate)),
-                date(Database::DATE_FORMAT, strtotime($this->lastUpdate)));
+            $data = array($this->channel, $firstUpdate, $lastUpdate);
             $db->execute($req, $data);
             $this->id = $db->lastInsertId();
         }
