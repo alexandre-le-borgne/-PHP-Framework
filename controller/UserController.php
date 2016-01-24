@@ -494,16 +494,20 @@ class UserController extends Controller
                 if ($streamCategory->getStreamType() == ArticleModel::TWITTER)
                 {
                     $twitterStreams = $this->twittermodel->getStreamById($streamCategory->getId());
+                    var_dump($twitterStreams);
                 }
                 else if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
                 {
                     $emailStreams = $this->emailmodel->getStreamById($streamCategory->getId());
+                    var_dump($emailStreams);
                 }
                 else if ($streamCategory->getStreamType() == ArticleModel::RSS)
                 {
                     $rssStreams = $this->rssmodel->getStreamById($streamCategory->getId());
                 }
             }
+
+            exit(0);
 
             $categoryStreams = array(
                 'twitter' => $twitterStreams,
