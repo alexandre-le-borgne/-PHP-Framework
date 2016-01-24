@@ -28,12 +28,11 @@ echo $this->output('_content');
     ?>
     <div id="aside">
         <?php
-    if (isset($categories))
-        $this->render('persists/categories', array('categories' => $categories));
-    echo '<br><br>';
-    if (isset($streams))
-        $this->render('persists/streams', array('streams' => $streams));
-    ?>
+        if (isset($categories))
+            $this->render('persists/categories', array('categories' => $categories));
+        if (isset($streams))
+            $this->render('persists/streams', array('streams' => $streams));
+        ?>
     </div>
     <script>
         (function ($) {

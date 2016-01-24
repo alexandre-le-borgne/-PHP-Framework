@@ -10,6 +10,11 @@ class EmailEntity extends Entity
 {
     private $id, $server, $account, $password, $port, $firstUpdate;
 
+    public function toString()
+    {
+        return $this->server . ' : ' . $this->account;
+    }
+
     public function persist()
     {
         $db = new Database();
