@@ -368,6 +368,7 @@ class EmailModel
         $result = $db->execute('SELECT * FROM stream_email');
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
         $emailStreams = $result->fetchAll();
+        $articles = array();
 
         /** @var EmailEntity $emailEntity */
         foreach ($emailStreams as $emailEntity)
@@ -379,7 +380,6 @@ class EmailModel
             $date = date("d M Y", strtotime($emailEntity->getFirstUpdate()));
             $emails = imap_search($stream, 'SINCE "' . $date . '"');
 
-            $articles = array();
             if (count($emails))
             {
                 foreach ($emails as $email)
