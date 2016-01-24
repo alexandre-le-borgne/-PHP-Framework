@@ -189,61 +189,73 @@ table
 #time_magazine
 {
     background: url("../img/newspapers/time.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #time_magazine:hover
 {
     background: url("../img/newspapers/time_colored.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #figaro_magazine
 {
     background: url("../img/newspapers/figaro.jpg") no-repeat center;
+    transition: 150ms background;
 }
 
 #figaro_magazine:hover
 {
     background: url("../img/newspapers/figaro_colored.jpg") no-repeat center;
+    transition: 150ms background;
 }
 
 #lemonde_magazine
 {
     background: url("../img/newspapers/lemonde.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #lemonde_magazine:hover
 {
     background: url("../img/newspapers/lemonde_colored.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #courrierinter_magazine
 {
     background: url("../img/newspapers/courrierinter.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #courrierinter_magazine:hover
 {
     background: url("../img/newspapers/courrierinter_colored.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #usatoday_magazine
 {
     background: url("../img/newspapers/usatoday.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #usatoday_magazine:hover
 {
     background: url("../img/newspapers/usatoday_colored.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #liberation_magazine
 {
     background: url("../img/newspapers/liberation.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #liberation_magazine:hover
 {
     background: url("../img/newspapers/liberation_colored.png") no-repeat center;
+    transition: 150ms background;
 }
 
 #contact
