@@ -10,7 +10,6 @@
         <?php
         if (isset($categories))
             $this->render('persists/categories', array('categories' => $categories));
-        var_dump($streams);
         if (isset($streams))
             $this->render('persists/streams', $streams);
         ?>
