@@ -453,6 +453,16 @@ body
     box-sizing: border-box;
 }
 
+#add_flux_body input[type="submit"] {
+    margin-top: 10px !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    border: none !important;
+    background: #559fca;
+    transition: 150ms background-color;
+    color: #ffffff;
+}
+
 #add_flux_body
 {
     border-radius: 3px;
