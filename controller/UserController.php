@@ -479,6 +479,7 @@ class UserController extends Controller
         $this->loadModel('TwitterModel');
         $this->loadModel('RssModel');
         $this->loadModel('FollowerModel');
+        $this->loadModel('UserModel');
 
         $followers = $this->followermodel->getFollowersById($request->getSession()->get('id'));
         $following = $this->followermodel->getFollowingById($request->getSession()->get('id'));
@@ -522,8 +523,8 @@ class UserController extends Controller
 
             $data[] = array('title' => $category->getTitle(), 'id' => $category->getId(), 'categories' => $categoryStreams);
         }
-
-        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers, 'following' => $following));
+        $profileName = $this->usermodel->getById($request->getSession()->get('id'));
+        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers, 'following' => $following, 'profile' => $profileName->getUsername()));
     }
 
     public function DeleteCategoryAction(Request $request)
@@ -554,7 +555,7 @@ class UserController extends Controller
             {
                 $this->categorymodel->unsuscribeStream($request->getSession()->get('id'), $streamId, $streamType);
 
-                switch($streamType)
+                switch ($streamType)
                 {
                     case ArticleModel::TWITTER:
                         $this->loadModel('TwitterModel');
