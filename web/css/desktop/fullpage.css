@@ -258,16 +258,10 @@
 /***************SECTION_CONTENT***********/
 /*****************************************/
 
-#contact
-{
-    background-color: #fafafa;
-    height: 70%;
-}
-
 #footer
 {
-    background-color: #3d4543;
-    height: 30%;
+    background-color: #2f3d51;
+    height: 100%;
 }
 
 @media (max-width: 940px) {
