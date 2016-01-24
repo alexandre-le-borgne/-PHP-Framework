@@ -53,11 +53,11 @@
 {
     cursor: pointer;
     background: #2f3d51 !important;
-    width: 120px;
+    width: 140px;
     color: white;
     font-size: 10pt;
     border-radius: 2px;
-    height: 120px;
+    height: 140px;
     padding: 11px;
     display: block;
     margin-top: 10px;
@@ -68,15 +68,15 @@
     box-sizing: border-box;
 }
 
-.item_streams .email {
+.item_streams.email {
     border: 3px solid #d95e40;
 }
 
-.item_streams .twitter {
+.item_streams.twitter {
     border: 3px solid #529ECC;
 }
 
-.item_streams .rss {
+.item_streams.rss {
     border: 3px solid #56bc8a;
 }
 
