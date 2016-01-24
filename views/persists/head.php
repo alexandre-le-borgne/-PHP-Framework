@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.webui-popover.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.mCustomScrollbar.min.css') ?>" />
 
-eet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/form_responsive.css') ?>">
+<link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/form_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/body_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/fullpage_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/footer_responsive.css') ?>">
@@ -29,8 +29,6 @@ eet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/header.css') ?>">
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/post.css') ?>">
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/home.css') ?>">
-
-<link rel="stylesh
 
 
 
