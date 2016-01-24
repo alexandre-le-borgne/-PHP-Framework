@@ -523,7 +523,7 @@ class UserController extends Controller
             $data[] = array('title' => $category->getTitle(), 'id' => $category->getId(), 'categories' => $categoryStreams);
         }
 
-        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers, 'following' => $following));
+        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers, 'following' => $following, 'profile' => 'coucou en cours de dev'));
     }
 
     public function DeleteCategoryAction(Request $request)
