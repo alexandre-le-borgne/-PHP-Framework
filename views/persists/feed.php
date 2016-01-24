@@ -101,8 +101,8 @@
                     data: data
                 }).done(function( msg ) {
                     console.log("ok");
-                    $(this).children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
-                    $(this).removeClass('like').addClass('nolike');
+                    $(".post_footer .like").attr('src', '<?= View::getAsset('img/nolike.png') ?>');
+                    $(".post_footer .like").removeClass('like').addClass('nolike');
                 });
             });
             $(".post_footer .nolike").click(function() {
