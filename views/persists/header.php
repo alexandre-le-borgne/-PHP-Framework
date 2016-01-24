@@ -38,9 +38,35 @@ if (isset($mailValidationMessage))
                 <input class="search_bar" type="textarea" name="search" placeholder="Recherchez sur Aaron">
                 <input type="submit" style="display: none">
             </form>
-            <scipt>
-
-            </scipt>
+            <script>
+                $(function() {
+                    var availableTags = [];
+                    $(".search_bar").keyup(function() {
+                        var channel = $(this).val();
+                        $.ajax({
+                            method: "POST",
+                            url: "<?= View::getUrlFromRoute('ajax') ?>",
+                            dataType: 'json',
+                            data: {
+                                action: 'search',
+                                channel: channel
+                            },
+                            success: function(result) {
+                                if(Array.isArray(result)) {
+                                    availableTags = result;
+                                    $( ".search_bar" ).autocomplete('option', 'source', availableTags);
+                                }
+                            }
+                        });
+                    }).autocomplete({
+                        source: function() { return availableTags; },
+                        messages: {
+                            noResults: '',
+                            results: function() {}
+                        }
+                    });
+                });
+            </script>
             <?php
             $this->render('forms/logoutForm');
             ?>

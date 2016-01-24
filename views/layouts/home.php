@@ -27,5 +27,7 @@ echo $this->output('_content');
         $this->render('persists/feed', array('articles' => $articles));
     if (isset($categories))
         $this->render('persists/categories', array('categories' => $categories));
+    if (isset($streams))
+        $this->render('persists/streams', $streams);
     ?>
 </div>

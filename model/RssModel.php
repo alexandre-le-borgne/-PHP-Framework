@@ -73,10 +73,10 @@ class RssModel extends Model implements StreamModel
         {
             $firstRss = $this->getFirstArticle($rssEntity);
             $lastRss = $this->getLastArticle($rssEntity);
-
+            var_dump($firstRss);
+            var_dump($lastRss);
             $firstDate = $firstRss->getArticleDate();
             $lastDate = $lastRss->getArticleDate();
-
             var_dump($firstDate);
             var_dump($lastDate);
 
@@ -84,44 +84,27 @@ class RssModel extends Model implements StreamModel
             $stream_id = $rssEntity->getId();
             $url = $rssEntity->getUrl();
             $x = simplexml_load_file($url);
-            $req = "SELECT Min(articleDate) as minDate FROM article WHERE stream_id = ?";
-            $result = $db->execute($req, array($stream_id));
-            $fetch = $result->fetch();
-            $minDate = $fetch['minDate']; //date du 1er article du stream
-            $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
-            $result = $db->execute($req, array($stream_id, $minDate, $firstDate));
+
             foreach ($x->channel->item as $item)
             {
-                //$req = "SELECT content FROM article WHERE stream_id = ?";
-                if ($verif = $result->fetch())
+                if ($item->articleDate < $firstDate)
                 {
-                    $cont = $verif['articleDate'];
-                    if ($item->articleDate != $cont)
-                    {
-                        $base = $item->pubDate;
-                        $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
-                    }
+                    $base = $item->articleDate;
+                    $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                    $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                 }
+
             }//while
-            $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
-            $result = $db->execute($req, array($stream_id))->fetch();
-            $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
-            $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
-            $result = $db->execute($req, array($stream_id, $maxDate, $lastDate));
+
             foreach ($x->channel->item as $item)
             {
-                //$req = "SELECT content FROM article WHERE stream_id = ?";
-                if (!$verif = $result->fetch())
+                if ($item->articleDate > $lastDate)
                 {
-                    $cont = $verif['articleDate'];
-                    if ($item->articleDate != $cont)
-                    {
-                        $base = $item->pubDate;
-                        $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
-                    }
+                    $base = $item->articleDate;
+                    $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                    $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                 }
+
             }//while
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
             $db->execute($update, array($stream_id));

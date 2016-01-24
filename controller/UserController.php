@@ -484,7 +484,7 @@ class UserController extends Controller
         foreach ($categories as $category)
         {
             $streamCategories = $this->categorymodel->getStreamCategoriesByCategoryId($category->getId());
-            //echo 'debug' . var_dump($streamCategories);
+
             $twitterStreams = array();
             $emailStreams = array();
             $rssStreams = array();
@@ -493,22 +493,28 @@ class UserController extends Controller
             {
                 if ($streamCategory->getStreamType() == ArticleModel::TWITTER)
                 {
-                    $twitterStreams = $this->twittermodel->getStreamById($streamCategory->getId());
+                    $var = $this->twittermodel->getStreamById($streamCategory->getStream());
+                    if ($var)
+                        $twitterStreams = $var;
                 }
-                if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
+                else if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
                 {
-                    $emailStreams = $this->emailmodel->getStreamById($streamCategory->getId());
+                    $var = $this->emailmodel->getStreamById($streamCategory->getStream());
+                    if ($var)
+                        $emailStreams = $var;
                 }
-                if ($streamCategory->getStreamType() == ArticleModel::RSS)
+                else if ($streamCategory->getStreamType() == ArticleModel::RSS)
                 {
-                    $rssStreams = $this->rssmodel->getStreamById($streamCategory->getId());
+                    $var = $this->rssmodel->getStreamById($streamCategory->getStream());
+                    if ($var)
+                        $rssStreams = $var;
                 }
             }
 
             $categoryStreams = array(
-                'Twitter' => $twitterStreams,
-                'Email' => $emailStreams,
-                'RSS' => $rssStreams);
+                'twitter' => $twitterStreams,
+                'email' => $emailStreams,
+                'rss' => $rssStreams);
 
             $data[] = array('title' => $category->getTitle(), 'categories' => $categoryStreams);
         }
