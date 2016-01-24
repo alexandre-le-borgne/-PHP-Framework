@@ -52,6 +52,7 @@ if (isset($mailValidationMessage))
                                 channel: channel
                             },
                             success: function(result) {
+                                console.log(result);
                                 if(Array.isArray(result)) {
                                     availableTags = result;
                                     $( ".search_bar" ).autocomplete('option', 'source', availableTags);
