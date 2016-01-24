@@ -11,7 +11,7 @@
     <h2><strong>Réinitialisez votre mot de passe !</h2>
 
     <!--RESET FORM-->
-    <form class="form-horizontal" method="post" name="reset" action="<?= View::getUrlFromRoute('passwordReset') ?>">
+    <form class="form-horizontal" method="post" name="reset" action="<?= View::getUrlFromRoute('resetpassword') ?>">
 
         <input class="last" type="password" name="password" placeholder="Password" required>
 
