@@ -525,4 +525,17 @@ class UserController extends Controller
 
         $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers, 'following' => $following));
     }
+
+    public function DeleteCategoryAction(Request $request)
+    {
+        $delCat = $request->post('delCat');
+        $id = $request->post('id');
+
+        if ($delCat && $id)
+        {
+            $this->loadModel('CategoryModel');
+            $this->categorymodel->deleteCategory($id);
+        }
+        $this->redirectToRoute('profile');
+    }
 }

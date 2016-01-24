@@ -30,6 +30,8 @@ class AdminModel extends Model
         $db->execute('DELETE FROM passwords WHERE account = ?', array($id));
         $db->execute('DELETE FROM articlesfavoris WHERE account = ?', array($id));
         $db->execute('DELETE FROM categories WHERE account = ?', array($id));
+        $categoryModel = new CategoryModel();
+        $categoryModel->deleteAllCategoriesByAccount($id);
     }
 
     private function getAllId(Database $database)

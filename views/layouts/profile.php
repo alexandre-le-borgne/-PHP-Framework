@@ -61,7 +61,6 @@ if (isset($categories))
                 <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
                     <input type="hidden" name="id" value="<?= $category['id'] ?>">
                     <input type="submit" value="Supprimer" name="delCat">
-                    <input type="submit" value="Voir la categorie" name="seeCat">
                 </form>
             </td>
         </tr>
