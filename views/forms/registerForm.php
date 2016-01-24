@@ -8,9 +8,6 @@
  */
 
 $view->extend('layouts/fullpage');
-
-if (isset($validate))
-    echo '<div class="errors_fields">' . $va . '</div>';
 ?>
 
 <a id="register_button" href="<?= View::getUrlFromRoute('login') ?>">Connectez-vous !</a>
