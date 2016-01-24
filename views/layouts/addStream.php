@@ -11,9 +11,9 @@ $this->render('persists/header');
 ?>
 <div id="add_stream_section"
     <div id="flux_choice">
-        <div id="twitter_button">Twitter</div>
-        <div id="RSS_button" >RSS</div>
-        <div id="IMAP_button">IMAP</div>
+        <div id="twitter_button"><img src="<?= View::getAsset('img/twitter.png') ?>" width="27"></div>
+        <div id="RSS_button" ><img src="<?= View::getAsset('img/rss.png') ?>" width="27"></div>
+        <div id="IMAP_button"><img src="<?= View::getAsset('img/email.png') ?>" width="27"></div>
     </div>
     <div id="add_flux_body">
         <form class="flux_twitter" action="" method="post">
