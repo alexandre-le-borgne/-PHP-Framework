@@ -42,9 +42,8 @@ if (isset($mailValidationMessage))
             $this->render('forms/logoutForm');
             ?>
             <div id="add_flux"><img src="<?= View::getAsset('img/add_cat.png') ?>" width="30"><p id="text_cat">Ajouter un flux !</p></div>
-            <a id="home" href="<?= View::getUrlFromRoute('profil')?>"><img src="<?= View::getAsset('img/home.png') ?>" width=""></a>
             <a id="profile" href="<?= View::getUrlFromRoute('profil')?>"><img src="<?= View::getAsset('img/profil.png') ?>" width=""></a>
-            <?php
+            <a id="home" href="<?= View::getUrlFromRoute('profil')?>"><img src="<?= View::getAsset('img/home.png') ?>" width=""></a><?php
         } else {
             ?>
             <form method="post" action="<?= View::getUrlFromRoute('search') ?>">
