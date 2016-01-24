@@ -90,7 +90,7 @@ class ArticleController extends Controller
                     $this->redirectToRoute('index');
                     return;
             }
-            $this->articlemodel->userHasStream($request->getSession()->get('id'), $stream, $type);
+            $this->articlemodel->userHasStream($request->getSession()->get('id'), $stream->getId(), $type);
             die();
 
             // L'utilisateur a acces a ce flux car fait parti d'une de ces categories
