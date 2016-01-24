@@ -393,24 +393,6 @@ class UserController extends Controller
         }
     }
 
-    /*public function MailResetAction(Request $request)
-    {
-
-        $email = Security::escape($request->post('email'));
-
-        $req = "Select username, userKey From accounts Where email = ?";
-
-        $db = new Database();
-
-        $data = $db->execute($req, array($email))->fetch();
-        $user = $data['username'];
-        $key = $data['userKey'];
-
-        Mail::sendResetMail($email, $user, $key);
-
-        echo "Un mail vous a été envoyé à votre adresse d'inscription, merci de suivre les instructions qu'il renferme";
-    }*/
-
     public function MailValidationAction(Request $request, $user, $key)
     {
         $db = new Database();
@@ -459,6 +441,7 @@ class UserController extends Controller
         $this->loadModel('UserModel');
 
         $this->usermodel->forgotPassword($email);
+        $this->redirectToRoute('index');
     }
 
     public function ForgotFormAction()
@@ -480,6 +463,8 @@ class UserController extends Controller
         $this->loadModel('UserModel');
 
         $this->usermodel->resetPassword($_SESSION['user'], $_SESSION['key'], $request->post('password'));
+        $this->redirectToRoute('index');
+
     }
 
     public function ProfileAction(Request $request)
