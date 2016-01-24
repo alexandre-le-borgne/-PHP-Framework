@@ -131,9 +131,12 @@ class UserModel extends Model
 
     public function resetPassword($user, $key, $password){
         $db = new Database();
-
+        var_dump($user);
+        var_dump($key);
         $user = Security::escape($user);
+        var_dump($user);
         $oldKey = Security::escape($key);
+        var_dump($oldKey);
         $password = Security::escape($password);
 
         $key = Security::generateKey();
