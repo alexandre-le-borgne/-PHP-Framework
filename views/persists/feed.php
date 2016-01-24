@@ -74,7 +74,7 @@
                     }
                      */
                     if($article->getStreamType() == ArticleModel::EMAIL) {
-                        echo '<iframe src="'.View::getUrlFromRoute('email/'.$article->getId()).'"></iframe>';
+                        echo '<iframe style="width: 100%; height: 500px;" src="'.View::getUrlFromRoute('email/'.$article->getId()).'"></iframe>';
                     }
                     else {
                         echo $article->getContent();
