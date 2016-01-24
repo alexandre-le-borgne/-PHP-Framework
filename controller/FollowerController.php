@@ -34,5 +34,6 @@ class FollowerController extends Controller
         $followed = $request->get('id');
         $user = $request->getSession()->get('id');
         $this->followermodel->unfollow($followed, $user);
+        $this->redirectToRoute('profile');
     }
 }
