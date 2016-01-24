@@ -87,5 +87,13 @@ class CategoryModel extends Model
     {
         $db = new Database();
         $req = 'DELETE FROM stream_category WHERE stream = ? AND streamType = ? AND category IN (SELECT id FROM categories WHERE account = ?)';
+        $db->execute($req, array($streamId, $streamType, $userId));
+    }
+
+    public function removeStreamFromCategory($stream, $category, $streamType)
+    {
+        $db = new Database();
+        $req = 'DELETE FROM stream_category WHERE stream = ? AND category = ? AND streamType = ?';
+        $db->execute($req, array($stream, $category, $streamType));
     }
 }
