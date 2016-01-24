@@ -77,7 +77,7 @@ class AjaxController extends Controller
             if(!$articleEntity) {
                 $blogEntity = new BlogEntity();
                 $blogEntity->setAccount($request->getSession()->get('id'));
-                $blogEntity->setArticle($articleEntity->getId());
+                $blogEntity->setArticle($post);
                 $blogEntity->persist();
             }
         }
