@@ -27,11 +27,12 @@ class EmailController extends Controller
         $password = $request->post('password');
         $port = $request->post('port');
         $category = $request->post('category');
+        $firstUpdate = $request->post('firstUpdate');
         $user = $request->getSession()->get('id');
         $this->loadModel('EmailModel');
         $this->loadModel('CategoryModel');
         /** @var EmailEntity $emailEntity */
-        $emailEntity = $this->emailmodel->createEmailStream($server, $account, $password, $port);
+        $emailEntity = $this->emailmodel->createEmailStream($server, $account, $password, $port, $firstUpdate);
         /** @var CategoryEntity $categoryEntity */
         $categoryEntity = $this->categorymodel->createCategory($user, $category);
         $streamCategoryEntity = new StreamCategoryEntity();

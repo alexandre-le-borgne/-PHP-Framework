@@ -24,16 +24,18 @@ $this->render('persists/header');
         </form>
 
         <form class="flux_rss" action="" method="post">
-            <input class="first"type="text" name="url_flux" placeholder="URL du flux" required>
+            <input class="first" type="date" name="firstUpdate" placeholder="À partir de" required>
+            <input type="text" name="url_flux" placeholder="URL du flux" required>
             <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
             <input type="submit" name="category" value="Ajouter ce flux !">
         </form>
 
         <form class="flux_imap" action="" method="post">
-            <input class="first" type="text" name="host_name" placeholder="Serveur IMAP" required>
-            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="date" name="firstUpdate" placeholder="À partir de" required>
+            <input class="first" type="text" name="server" placeholder="Serveur IMAP" required>
+            <input type="text" name="user" placeholder="Nom d'utilisateur" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
-            <input type="date" name="since_date" placeholder="À partir de" required>
+            <input type="number" name="port" placeholder="Port du serveur" required>
             <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
             <input type="submit" name="category" value="Ajouter ce flux !">
         </form>
@@ -42,15 +44,6 @@ $this->render('persists/header');
 
 <script>
     $(function() {
-//        $('#add_flux').webuiPopover({
-//        width:300,
-//        height:200,
-//        placement:'bottom',
-//        trigger:'click',
-//        animation:'pop',
-//        arrow:true
-//        });
-
         $('.flux_twitter').show();
         $('.flux_rss').hide();
         $('.flux_imap').hide();
