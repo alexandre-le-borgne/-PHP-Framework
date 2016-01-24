@@ -37,7 +37,7 @@ class EmailModel
         }
         else
         {
-            if (connect($server, $port, $account, $password))
+            if ($this->connect($server, $port, $account, $password))
             {
                 $emailEntity = new EmailEntity();
                 $emailEntity->setServer($server);
