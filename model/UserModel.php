@@ -138,20 +138,16 @@ class UserModel extends Model
         $oldKey = Security::escape($key);
         $password = Security::escape($password);
 
-        $req = "Select * From accounts WHERE username = ? AND userKey = ?";
-        $result = $db->execute($req, array($user, $oldKey));
+        $key = Security::generateKey();
+        $password = Security::encode($password);
 
-        while(!$data = $result->fetch()){
-            $key = Security::generateKey();
-            $password = Security::encode($password);
+        $data = $this->getByNameOrEmail($user);
 
-            $data = $this->getByNameOrEmail($user);
+        $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
+        $db->execute($req, array($key, $data['id']));
 
-            $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
-            $db->execute($req, array($key, $data['id']));
+        $req = "UPDATE passwords SET password = ? WHERE account = ?";
+        $db->execute($req, array($password, $data['id']));
 
-            $req = "UPDATE passwords SET password = ? WHERE account = ?";
-            $db->execute($req, array($password, $data['id']));
-        }
     }
 }

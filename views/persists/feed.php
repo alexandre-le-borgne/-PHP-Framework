@@ -37,16 +37,16 @@
 
                         switch($article->getStreamType()) {
                             case ArticleModel::EMAIL:
-                                echo '<img src="' . View::getAsset('img/email.png') . '" ' . 'width="60" ' . '"';
+                                echo '<img src="'.View::getAsset('img/email.png').'" width="60">';
                                 break;
                             case ArticleModel::RSS:
-                                echo '<img src="' . View::getAsset('img/rss.png') . '" ' . 'width="25" ' . '"';
+                                echo '<img src="'.View::getAsset('img/rss.png').'" width="25">';
                                 break;
                             case ArticleModel::TWITTER:
-                                echo '<img src="' . View::getAsset('img/twitter.png') . '" ' . 'width="33" ' . '"';
+                                echo '<img src="'.View::getAsset('img/twitter.png').'" width="33">';
                                 break;
                             default:
-                                echo '<img src="' . View::getAsset('img/default.png') . '" ' . 'width="42" ' . '"';
+                                echo '<img src="'.View::getAsset('img/default.png').'" width="42">';
                         }
                         ?>
                     </span>
@@ -100,7 +100,7 @@
                     $(this).removeClass('like').addClass('nolike');
                 }
             }
-            $(".post_footer .nolike") {
+            $(".post_footer .nolike").click(function() {
                 var post = $(this).parents(".post");
                 var data = {
                     action: 'nolike',
@@ -110,7 +110,7 @@
                     $(this).children().attr('src', <?= View::getAsset('img/like.png') ?>);
                     $(this).removeClass('like').addClass('like');
                 }
-            }
+            });
             function ajax(data) {
                 $.ajax({
                     method: "POST",
