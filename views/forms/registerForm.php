@@ -62,8 +62,8 @@ $view->extend('layouts/fullpage');
             $(window).resize(function() {
                 $(".registerDiv").css({
                     position:'absolute',
-                    left:($(window).width() - $("#monbloc").outerWidth()) / 2,
-                    top:($(window).height() - $("#monbloc").outerHeight()) / 2
+                    left:($(window).width() - $(".registerDiv").outerWidth()) / 2,
+                    top:($(window).height() - $(".registerDiv").outerHeight()) / 2
                 });
             });
         });

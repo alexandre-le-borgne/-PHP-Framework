@@ -60,8 +60,8 @@ $view->extend('layouts/fullpage');
         $(window).resize(function() {
             $(".loginDiv").css({
                 position:'absolute',
-                left:($(window).width() - $("#monbloc").outerWidth()) / 2,
-                top:($(window).height() - $("#monbloc").outerHeight()) / 2
+                left:($(window).width() - $(".loginDiv").outerWidth()) / 2,
+                top:($(window).height() - $(".loginDiv").outerHeight()) / 2
             });
         });
     });
