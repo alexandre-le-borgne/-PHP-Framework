@@ -42,7 +42,7 @@
         {
             ?>
             <a class="item_streams rss" href="<?= View::getUrlFromRoute('stream/' . ArticleModel::RSS . '/' . $rssStream->getId()) ?>">
-                <?= $rssStreams->getUrl() ?>
+                <?= $rssStream->getUrl() ?>
             </a>
             <?php
         }
