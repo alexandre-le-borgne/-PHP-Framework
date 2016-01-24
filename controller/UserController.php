@@ -466,7 +466,8 @@ class UserController extends Controller
         $this->loadModel('UserModel');
 
         $this->usermodel->resetPassword($_SESSION['user'], $_SESSION['key'], $request->post('password'));
-
+        $_SESSION = array();
+        session_destroy();
         $errors = "Votre mot de passea bien été mis à jour";
 
         $data = array('errors' => $errors);
