@@ -43,7 +43,6 @@ if (isset($mailValidationMessage))
                     var availableTags = [];
                     $(".search_bar").keyup(function() {
                         var channel = $(this).val();
-                        console.log('t');
                         $.ajax({
                             method: "POST",
                             url: "<?= View::getUrlFromRoute('ajax') ?>",
@@ -53,16 +52,13 @@ if (isset($mailValidationMessage))
                                 channel: channel
                             },
                             success: function(result) {
-                            console.log(result);
                                 if(Array.isArray(result)) {
-                                    console.log(result);
                                     availableTags = result;
                                     $( ".search_bar" ).autocomplete(availableTags);
                                 }
                             }
                         });
                     }).autocomplete({
-                        source: function() { return availableTags; },
                         messages: {
                             noResults: '',
                             results: function() {}
