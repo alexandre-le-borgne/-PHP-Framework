@@ -73,7 +73,14 @@ class TwitterModel extends Model implements StreamModel
         $result = $this->twitter->get('users/show', [
             'screen_name' => $channel,
         ]);
-        var_dump($result);
+        if (isset($result->errors))
+        {
+            echo $result->errors[0]->message;
+        }
+        else
+        {
+            var_dump($result);
+        }
     }
 
     /**
