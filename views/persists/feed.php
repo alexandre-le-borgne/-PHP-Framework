@@ -78,22 +78,24 @@
                 </div>
 
                 <div class="post_footer">
-                    <a class="follow" href="#" >Suivre ce flux</a>
-                    <a class="ignore" href="#" ><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></a>
+                    <span class="follow" href="#" >Suivre ce flux</span>
+                    <span class="ignore" href="#" ><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></span>
                     <?php
                     if(in_array($article->getId(), $favoris)) {
                         ?>
-                        <a class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
+                        <span class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></span>
                         <?php
                     }
                     else {
                         ?>
-                        <a class="nolike" href="#" ><img src="<?= View::getAsset('img/nolike.png') ?>" width="27"></a>
+                        <span class="nolike" href="#" ><img src="<?= View::getAsset('img/nolike.png') ?>" width="27"></span>
                         <?php
                     }
                     ?>
-                    <a class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></a>
-                    <a class="global_url" href="#" ><img src="<?= View::getAsset('img/share.png') ?>" width="27"></a>
+                    <span class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></span>
+                    <a class="global_url" target="_blank" href="<?= View::getUrlFromRoute('article', $article->getId()) ?>" >
+                        <img src="<?= View::getAsset('img/share.png') ?>" width="27">
+                    </a>
                 </div>
             </div>
             <?php
@@ -112,7 +114,6 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    console.log(msg);
                     $("img", thispost).attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     $(thispost).removeClass('like').addClass('nolike');
                 });
@@ -130,7 +131,6 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    console.log('ok' + msg);
                     $("img", thispost).attr('src', '<?= View::getAsset('img/like.png') ?>');
                     $(thispost).removeClass('nolike').addClass('like');
                 });
