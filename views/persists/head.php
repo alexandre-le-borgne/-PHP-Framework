@@ -7,7 +7,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500italic,500,700,700italic,900,900italic,300italic,300' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,100italic,100' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?= View::getAsset('inc/fullPage/jquery.fullPage.css') ?>" />
-<link rel="stylesheet" href="<?= View::getAsset('inc/jquery-ui/jquery-ui.theme.min.css') ?>" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.webui-popover.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('inc/jquery.mCustomScrollbar.min.css') ?>" />
 <link rel="stylesheet" href="<?= View::getAsset('css/desktop/form.css') ?>">
