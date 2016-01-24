@@ -15,13 +15,11 @@
 .loginDiv input, .registerDiv input {
     background: white;
     width: 100%;
-    /* height: 18%; */
     padding: 6% 5% 6% 5%;
     display: block;
     margin: 0px !important;
     border: 0px;
     border-bottom: solid 1px #d8d8d8;
-    /* font: 16px/1.4 "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; */
     box-sizing: border-box;
     font-size: 35pt;
 }
