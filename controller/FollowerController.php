@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: theo
- * Date: 24/01/16
- * Time: 19:20
- */
 class FollowerController extends Controller
 {
     public function FollowChannelAction(Request $request, $channel)

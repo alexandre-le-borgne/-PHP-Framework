@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Le Controlleur correspondant a l'index
- */
-
 class IndexController extends Controller
 {
     public function IndexAction(Request $request, $channel = null)

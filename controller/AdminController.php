@@ -1,8 +1,5 @@
 <?php
 
-/**
- *
- */
 class AdminController extends Controller
 {
     const DELETED_OK = 'deleted';
