@@ -16,12 +16,10 @@ foreach ($categories as $category)
     echo $category['title'];
     echo '<br/>';
 
-    foreach($category['categories'] as $cat)
-    {
-        var_dump($cat['twitter']);
-        var_dump($cat['email']);
-        var_dump($cat['rss']);
+    $cat = $category['categories'];
+    var_dump($cat['twitter']);
+    var_dump($cat['email']);
+    var_dump($cat['rss']);
 
-        echo '<br/>';
-    }
+    echo '<br/>';
 }
