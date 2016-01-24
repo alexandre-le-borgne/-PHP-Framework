@@ -48,17 +48,22 @@ class TwitterModel extends Model implements StreamModel
     public function createStream($channel, DateTime $firstUpdate)
     {
         $db = new Database();
-        $fetch = $this->getStreamByChannel($channel);
-        if (!($fetch))
-        {
-            $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($channel, date(Database::DATE_FORMAT, $firstUpdate->getTimestamp())));
+        /** @var TwitterEntity $result */
+        $result = $this->getStreamByChannel($channel);
+        if ($result)
+        {   //Si existe deja, et nouvelle date plus ancienne, alors on modifie le firstUpdate a la nouvelle date donnee
+            if (strtotime($firstUpdate) < strtotime($result->getFirstUpdate()))
+                $db->execute('UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?', array(date(Database::DATE_FORMAT, strtotime($firstUpdate))));
+            return $result;
         }
-        else if ($firstUpdate->getTimestamp() < strtotime($fetch->getFirstUpdate()))
-        {
-            //On modifie le stream pour qu'il prenne en compte le debut plus tot
-            $req = "UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?";
-            $db->execute($req, array(date(Database::DATE_FORMAT, $firstUpdate->getTimestamp()), $channel));
+        else
+        {   //Sinon, on cree le flux
+            $twitterEntity = new TwitterEntity();
+            $twitterEntity->setChannel($channel);
+            $twitterEntity->setFirstUpdate($firstUpdate);
+            $twitterEntity->setLastUpdate(new DateTime());
+            $twitterEntity->persist();
+            return $twitterEntity;
         }
     }
 

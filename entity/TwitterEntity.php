@@ -13,6 +13,26 @@ class TwitterEntity
     private $lastUpdate;
     private $firstUpdate;
 
+    public function persist()
+    {
+        $db = new Database();
+        if ($this->id == null)
+        {
+            $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (?, ?, ?)';
+            $data = array($this->channel, date(Database::DATE_FORMAT, strtotime($this->firstUpdate)),
+                date(Database::DATE_FORMAT, strtotime($this->lastUpdate)));
+            $db->execute($req, $data);
+            $this->id = $db->lastInsertId();
+        }
+        else
+        {
+            $req = 'UPDATE stream_twitter SET channel = ?, firstUpdate = ?, lastUpdate = ? WHERE id = ?';
+            $data = array($this->channel, date(Database::DATE_FORMAT, strtotime($this->firstUpdate)),
+                date(Database::DATE_FORMAT, strtotime($this->lastUpdate)), $this->id);
+            $db->execute($req, $data);
+        }
+    }
+
 
     //Getters
     public function getId()
