@@ -5,10 +5,9 @@
  */
 class UserController extends Controller
 {
-    public function ChannelAction(Request $request, $channel)
+    public function ChannelAction($channel)
     {
-        if (!$channel)
-        {
+        if (!$channel) {
             $this->redirectToRoute('index');
         }
         else

@@ -35,7 +35,6 @@
                 });
             });
             $(document).on("click", ".post_footer .nolike", function() {
-                console.log("t");
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
@@ -49,6 +48,38 @@
                 }).done(function( msg ) {
                     $("img", thispost).attr('src', '<?= View::getAsset('img/like.png') ?>');
                     $(thispost).removeClass('nolike').addClass('like');
+                });
+            });
+            $(document).on("click", ".post_footer .blog", function() {
+                var thispost = this;
+                var post = $(this).parents(".post");
+                var data = {
+                    action: 'noblog',
+                    id: post.attr("id"),
+                };
+                $.ajax({
+                    method: "POST",
+                    url: "<?= View::getUrlFromRoute('ajax') ?>",
+                    data: data
+                }).done(function( msg ) {
+                    $("img", thispost).attr('src', '<?= View::getAsset('img/noblog.png') ?>');
+                    $(thispost).removeClass('blog').addClass('noblog');
+                });
+            });
+            $(document).on("click", ".post_footer .noblog", function() {
+                var thispost = this;
+                var post = $(this).parents(".post");
+                var data = {
+                    action: 'blog',
+                    id: post.attr("id"),
+                };
+                $.ajax({
+                    method: "POST",
+                    url: "<?= View::getUrlFromRoute('ajax') ?>",
+                    data: data
+                }).done(function( msg ) {
+                    $("img", thispost).attr('src', '<?= View::getAsset('img/blog.png') ?>');
+                    $(thispost).removeClass('noblog').addClass('blog');
                 });
             });
         </script>

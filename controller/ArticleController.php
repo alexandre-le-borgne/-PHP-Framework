@@ -50,16 +50,66 @@ class ArticleController extends Controller
         }
     }
 
+    public function StreamAction(Request $request, $type, $id) {
+        if (!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        {
+            $this->redirectToRoute('index');
+        }
+        else
+        {
+            $this->loadModel('CategoryModel');
+            $this->loadModel('ArticleModel');
+            $this->loadModel('EmailModel');
+            $this->loadModel('TwitterModel');
+            $this->loadModel('RssModel');
+            switch ($type)
+            {
+                case ArticleModel::RSS:
+                    /** @var RssEntity $stream */
+                    $stream = $this->rssmodel->getById($id);
+                    $title = $stream->getUrl();
+                    break;
+                case ArticleModel::TWITTER:
+                    /** @var TwitterEntity $stream */
+                    $stream = $this->twittermodel->getById($id);
+                    $title = $stream->getChannel();
+                    break;
+                case ArticleModel::EMAIL:
+                    /** @var EmailEntity $stream */
+                    $stream = $this->emailmodel->getById($id);
+                    $title = $stream->getAccount();
+                    break;
+                default:
+                    $this->redirectToRoute('index');
+                    return;
+            }
+            // L'utilisateur a acces a ce flux car fait parti d'une de ces categories
+            if($this->articlemodel->userHasStream($request->getSession()->get('id'), $stream, $type))
+            {
+                $articles = $this->articlemodel->getArticlesByStreamTypeAndId($type, $id, 0, 10);
+                $data = array('title' => $title, 'articles' => $articles);
+                $this->render('layouts/home', $data);
+            }
+            else {
+                $this->redirectToRoute('index');
+            }
+        }
+    }
+
     public function ArticleAction(Request $request, $id)
     {
         if($request->isInternal()) {
             $this->loadModel('ArticleModel');
+            /** @var ArticleEntity $article */
             $article = $this->articlemodel->getById($id);
             if($article)
             {
-                $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
-                //Renvoyer des boolean Est dans les favoris,est dans les stream, est dansl e blog perso ou pas, etc
-                $this->render('layouts/article', array('article' => $article, 'favoris' => $favoris));
+                $user = $request->getSession()->get('id');
+                //$favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
+                //Renvoyer des boolean Est dans les favoris,est dans les stream des followers, est dans le blog perso ou pas, etc
+                $favoris = $this->articlemodel->getArticleFromBlog($user, $article->getId());
+                $blog = $this->articlemodel->getArticleFromBlog($user, $article->getId());
+                $this->render('layouts/article', array('article' => $article, 'favoris' => $favoris, 'blog' => $blog));
             }
         }
         else {

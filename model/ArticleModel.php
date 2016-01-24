@@ -47,6 +47,17 @@ class ArticleModel extends Model
         return null;
     }
 
+    public function userHasStream($user, $stream, $type) {
+        if (is_numeric($user) && is_numeric($stream) && is_numeric($type)) {
+            $db = new Database();
+            $req = "SELECT * FROM stream_category JOIN categories ON stream_category.category = categories.id WHERE categories.account = ? AND stream_category.stream = ? AND stream_category.streamType = ?";
+            $data = $db->execute($req, array($user, $stream, $type));
+            if($data->fetch())
+                return true;
+        }
+        return false;
+    }
+
     public function getArticlesFavorisByUserId($user, $start = 0, $len = 0)
     {
         if (is_numeric($user) && is_numeric($start) && is_numeric($len)) {
@@ -65,6 +76,35 @@ class ArticleModel extends Model
             $db = new Database();
             $req = "SELECT DISTINCT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category = ? ORDER BY articleDate DESC LIMIT $start, $len";
             $data = $db->execute($req, array($category));
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            return $data->fetchAll();
+        }
+        return null;
+    }
+
+    public function getArticlesByStreamTypeAndId($type, $id, $start = 0, $len = 0)
+    {
+        if (is_numeric($type) && is_numeric($id) && is_numeric($start) && is_numeric($len))
+        {
+            $db = new Database();
+            switch ($type)
+            {
+                case ArticleModel::RSS:
+                    $req = "SELECT DISTINCT article.* FROM article WHERE article.stream_id = ? AND article.streamType = ? ORDER BY articleDate DESC LIMIT $start, $len";
+                    $data = $db->execute($req, array($id, ArticleModel::RSS));
+                    break;
+                case ArticleModel::TWITTER:
+                    $req = "SELECT DISTINCT article.* FROM article WHERE article.streamType = ? AND article.streamType = ?  ORDER BY articleDate DESC LIMIT $start, $len";
+                    $data = $db->execute($req, array($id, ArticleModel::TWITTER));
+                    break;
+                case ArticleModel::EMAIL:
+                    $req = "SELECT DISTINCT article.* FROM article WHERE article.streamType = ? AND article.streamType = ? ORDER BY articleDate DESC LIMIT $start, $len";
+                    $data = $db->execute($req, array($id, ArticleModel::EMAIL));
+                    break;
+                default:
+                    $this->redirectToRoute('index');
+                    return;
+            }
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
         }
@@ -94,9 +134,24 @@ class ArticleModel extends Model
     public function getArticleFromFavoris($account, $article) {
         $db = new Database();
         $data = array($account, $article);
-        $data = $db->execute("SELECT DISTINCT * FROM articlesfavoris WHERE account = ? AND article = ?", $data);
-        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
+        $data = $db->execute("SELECT * FROM articlesfavoris WHERE account = ? AND article = ?", $data);
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
         return $data->fetch();
+    }
+
+    public function getArticleFromBlog($account, $article) {
+        $db = new Database();
+        $data = array($account, $article);
+        $data = $db->execute("SELECT * FROM blog WHERE account = ? AND article = ?", $data);
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+        return $data->fetch();
+    }
+
+    public function removeArticleFromBlog($account, $article) {
+        if(is_numeric($article)) {
+            $db = new Database();
+            $db->execute("DELETE FROM blog WHERE account = ? AND article = ?", array($account, $article));
+        }
     }
 
     /*public function addArticle($title, $content, $date, $type, $url){

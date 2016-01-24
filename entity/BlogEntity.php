@@ -6,7 +6,7 @@
  * Time: 01:50
  */
 
-class ArticlesFavorisEntity extends Entity
+class BlogEntity extends Entity
 {
     private $id, $account, $article;
 
@@ -15,13 +15,13 @@ class ArticlesFavorisEntity extends Entity
         $db = new Database();
         if ($this->id == null)
         {
-            $req = 'INSERT INTO articlesfavoris (account, article) VALUES (?, ?)';
+            $req = 'INSERT INTO blog (account, article) VALUES (?, ?)';
             $db->execute($req, array($this->account, $this->article));
             $this->id = $db->lastInsertId();
         }
         else
         {
-            $req = 'UPDATE articlesfavoris SET account = ?, article = ? WHERE id = ?';
+            $req = 'UPDATE blog SET account = ?, article = ? WHERE id = ?';
             $db->execute($req, array($this->account, $this->article, $this->id));
         }
     }
