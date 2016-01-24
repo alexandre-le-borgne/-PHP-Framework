@@ -36,7 +36,8 @@ foreach($streams as $stream)
             </form>
         </td>
     </tr>
-<?php}
+<?php
+}
 }
 
 if (isset($categories))
