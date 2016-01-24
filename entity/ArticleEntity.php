@@ -6,7 +6,7 @@
  * Date: 14/01/16
  * Time: 10:31
  */
-class ArticleEntity
+class ArticleEntity extends Entity
 {
     private $id, $title, $content, $articleDate, $streamType, $url, $stream_id;
 

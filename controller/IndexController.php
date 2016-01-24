@@ -26,6 +26,18 @@ class IndexController extends Controller
         }
     }
 
+    public function SearchAction(Request $request) {
+        $search = $request->post('search');
+        $this->loadModel('UserModel');
+        if($search) {
+            /** @var UserEntity $userEntity */
+            $userEntity = $this->usermodel->getByNameOrEmail($search);
+            if($userEntity) {
+                $this->redirectToRoute('channel', array($userEntity->getUsername()));
+            }
+        }
+    }
+
     public function AsideAction(Request $request) {
         if($request->isInternal())
         {

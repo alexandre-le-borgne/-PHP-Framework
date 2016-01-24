@@ -19,6 +19,12 @@ class AjaxController extends Controller
             case 'nolike':
                 $this->NoLikeAction($request);
                 break;
+            case 'blog':
+                $this->BlogAction($request);
+                break;
+            case 'noblog':
+                $this->NoBlogAction($request);
+                break;
             case 'search':
                 $this->SearchAction($request);
                 break;
@@ -51,12 +57,35 @@ class AjaxController extends Controller
     }
 
     private function NoLikeAction(Request $request) {
-        echo "bite";
         $post = ltrim(strstr($request->post('id'), '_'), '_');
-        echo $post;
         $this->loadModel('CategoryModel');
         $this->loadModel('ArticleModel');
         /** @var ArticleEntity $articleEntity */
         $this->articlemodel->removeArticleFromFavoris($request->getSession()->get('id'), $post);
+    }
+
+    private function BlogAction(Request $request) {
+        $post = ltrim(strstr($request->post('id'), '_'), '_');
+        $this->loadModel('CategoryModel');
+        $this->loadModel('ArticleModel');
+        /** @var ArticleEntity $articleEntity */
+        $articleEntity = $this->articlemodel->getById($post);
+        if($articleEntity) {
+            $articleEntity = $this->articlemodel->getArticleFromBlog($request->getSession()->get('id'), $articleEntity->getId());
+            if(!$articleEntity) {
+                $blogEntity = new BlogEntity();
+                $blogEntity->setAccount($request->getSession()->get('id'));
+                $blogEntity->setArticle($articleEntity->getId());
+                $blogEntity->persist();
+            }
+        }
+    }
+
+    private function NoBlogAction(Request $request) {
+        $post = ltrim(strstr($request->post('id'), '_'), '_');
+        $this->loadModel('CategoryModel');
+        $this->loadModel('ArticleModel');
+        /** @var ArticleEntity $articleEntity */
+        $this->articlemodel->removeArticleFromBlog($request->getSession()->get('id'), $post);
     }
 }

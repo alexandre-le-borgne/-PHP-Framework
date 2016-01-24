@@ -20,6 +20,7 @@ class Router
 
         $this->table[] = new Route('cron',              'index',        'cron');
         $this->table[] = new Route('aside',             'index',        'aside');
+        $this->table[] = new Route('search',            'index',        'search');
 
         $this->table[] = new Route('ajax',              'ajax',         'index');
 
@@ -40,6 +41,7 @@ class Router
 
         $this->table[] = new Route('article',           'article',      'article');
         $this->table[] = new Route('category',          'article',      'category');
+        $this->table[] = new Route('stream',            'article',      'stream');
 
         $this->table[] = new Route('admin',             'admin',        'index');
         $this->table[] = new Route('adminusers',        'admin',        'users');

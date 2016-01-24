@@ -17,7 +17,7 @@
         foreach ($emailStreams as $emailStream)
         {
             ?>
-            <a class="item_streams email" href="<?= View::getUrlFromRoute('category/' . $emailStream->getId()) ?>">
+            <a class="item_streams email" href="<?= View::getUrlFromRoute('stream/' . ArticleModel::TWITTER. '/' . $emailStream->getId()) ?>">
                 <?= $emailStream->getAccount() ?>
             </a>
             <?php
@@ -29,7 +29,7 @@
         foreach ($twitterStreams as $twitterStream)
         {
             ?>
-            <a class="item_streams twitter" href="<?= View::getUrlFromRoute('category/' . $twitterStream->getId()) ?>">
+            <a class="item_streams twitter" href="<?= View::getUrlFromRoute('stream/' . ArticleModel::TWITTER.'/' . $twitterStream->getId()) ?>">
                 <?= $twitterStream->getChannel() ?>
             </a>
             <?php
@@ -41,7 +41,7 @@
         foreach ($rssStreams as $rssStream)
         {
             ?>
-            <a class="item_streams rss" href="<?= View::getUrlFromRoute('category/' . $rssStream->getId()) ?>">
+            <a class="item_streams rss" href="<?= View::getUrlFromRoute('stream/' . ArticleModel::RSS . '/' . $rssStream->getId()) ?>">
                 <?= $rssStreams->getUrl() ?>
             </a>
             <?php
