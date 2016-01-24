@@ -2,9 +2,6 @@
 
 /**
  * Le Controlleur correspondant a l'utilisateur
- * - PreregisterAction est appele a la suite du preregisterForm, lors du submit
- *   et fais quelques pretraitements
- * - RegisterAction est appele a la suite du registerForm, lors du submit
  */
 class UserController extends Controller
 {
@@ -380,7 +377,8 @@ class UserController extends Controller
                 else
                 {
                     $this->usermodel->addUser($username, $email, $password);
-                    $this->redirectToRoute('index');
+                    $this->render('forms/loginForm',
+                        array('validate' => 'Veuillez valider votre compte via le mail que nous vous avons envoyé'));
                     return;
                 }
                 $data = array('errors' => $errors);
