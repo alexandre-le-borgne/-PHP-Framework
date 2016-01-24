@@ -17,6 +17,6 @@
         </div>
 
         <div id="table_section_social">
-            riohgoewirbhgiwer
+            Section Social
         </div>
     </div>
