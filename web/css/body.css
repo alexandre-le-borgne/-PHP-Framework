@@ -403,6 +403,35 @@ body
     vertical-align: center;
 }
 
+#flux_choice
+{
+    margin: 10px auto auto auto;
+    width: 681px;
+    padding-top: 50px;
+}
+
+#twitter_button, #RSS_button, #IMAP_button {
+    border-radius: 3px;
+    display: inline-block;
+    background-color: #2f3d51;
+    padding: 91px;
+    margin: 1%;
+    cursor: pointer;
+}
+
+div#RSS_button:active, div#RSS_button:visited {
+    background: #a77dc2;
+}
+
+div#IMAP_button:active, div#IMAP_button:visited {
+    background: #56bc8a;
+}
+
+div#twitter_button:active, div#twitter_button:visited {
+    background: #529ecc;
+}
+
+
 /*#RSS_button, #IMAP_button, #twitter_button*/
 /*{*/
     /*background: black;*/
