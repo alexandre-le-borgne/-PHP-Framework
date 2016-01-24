@@ -23,8 +23,8 @@ echo $this->output('_content');
 </h1>
 <div id="layout_connected">
     <?php
-    if (isset($articles, $favoris))
-        $this->render('persists/feed', array('articles' => $articles, 'favoris' => $favoris));
+    if (isset($articles))
+        $this->render('persists/feed', array('articles' => $articles));
     if (isset($categories))
         $this->render('persists/categories', array('categories' => $categories));
     ?>
