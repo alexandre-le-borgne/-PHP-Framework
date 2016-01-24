@@ -7,7 +7,8 @@ class UserController extends Controller
 {
     public function ChannelAction($channel)
     {
-        if (!$channel) {
+        if (!$channel)
+        {
             $this->redirectToRoute('index');
         }
         else
@@ -536,5 +537,30 @@ class UserController extends Controller
             $this->categorymodel->deleteCategory($id);
         }
         $this->redirectToRoute('profile');
+    }
+
+    public function DeleteStreamAction(Request $request)
+    {
+        $delStream = $request->post('delStream');
+        $removeFromCat = $request->post('removeFromCat');
+        $streamId = $request->post('id');
+        $streamType = $request->post('streamType');
+
+        if ($streamType && $streamId && ($delStream || $removeFromCat))
+        {
+            switch($streamType)
+            {
+                case ArticleModel::TWITTER:
+                    $this->loadModel('TwitterModel');
+                    $this->twittermodel->deleteStream()
+                    break;
+                case ArticleModel::EMAIL:
+
+                    break;
+                case ArticleModel::RSS:
+
+                    break;
+            }
+        }
     }
 }
