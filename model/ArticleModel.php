@@ -108,6 +108,7 @@ class ArticleModel extends Model
                     return;
             }
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            var_dump($data->fetchAll());
             return $data->fetchAll();
         }
         return null;
