@@ -54,9 +54,15 @@ class EmailModel
         }
     }
 
+    public function getByUserId($id){
+        if(is_numeric($id)) {
+
+        }
+    }
+
     public function getStreamById($id)
     {
-        if (intval($id))
+        if (is_numeric($id))
         {
             $db = new Database();
             $data = $db->execute("SELECT * FROM stream_email WHERE id = ?", array($id));

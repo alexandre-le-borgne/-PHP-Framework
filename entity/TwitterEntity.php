@@ -87,7 +87,7 @@ class TwitterEntity
  * function __construct($id)
  * {
  * $this->id = $id;
- * if (intval($id))
+ * if (is_numeric($id))
  * {
  * $db = new Database();
  * $req = "Select * From stream_twitter Where Id = ?";

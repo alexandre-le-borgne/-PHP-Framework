@@ -16,7 +16,7 @@ class ArticleModel extends Model
 
     public function getById($id)
     {
-        if (intval($id)) {
+        if (is_numeric($id)) {
             $db = new Database();
             $data = $db->execute("SELECT DISTINCT * FROM article WHERE id = ?", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
@@ -26,7 +26,7 @@ class ArticleModel extends Model
     }
 
     public function getByCategoryId($id) {
-        if (intval($id)) {
+        if (is_numeric($id)) {
             $db = new Database();
             $data = $db->execute("SELECT DISTINCT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category = ?)", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');

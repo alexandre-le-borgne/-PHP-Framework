@@ -30,7 +30,7 @@ class UserModel extends Model
 
     public function getById($id)
     {
-        if (intval($id))
+        if (is_numeric($id))
         {
             $db = new Database();
             $result = $db->execute("SELECT * FROM accounts WHERE id = ?", array($id));

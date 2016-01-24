@@ -43,6 +43,12 @@ class RssModel extends Model implements StreamModel
         //Todo recoder ça avec autre chose que tes fesses julien stp
     }
 
+    public function getByUserId($id){
+        if(is_numeric($id)) {
+
+        }
+    }
+
     public function createStream($url, DateTime $firstUpdate)
     {
         $db = new Database();
