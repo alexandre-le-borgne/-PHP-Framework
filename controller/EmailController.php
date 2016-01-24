@@ -37,5 +37,6 @@ class EmailController extends Controller
         $streamCategoryEntity->setStream($emailEntity->getId());
         $streamCategoryEntity->setStreamType(ArticleModel::EMAIL);
         $streamCategoryEntity->persist();
+        $this->redirectToRoute('index');
     }
 }

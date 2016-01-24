@@ -18,7 +18,7 @@ class ArticleModel extends Model
     {
         if (intval($id)) {
             $db = new Database();
-            $data = $db->execute("SELECT * FROM article WHERE id = ?", array($id));
+            $data = $db->execute("SELECT DISTINCT * FROM article WHERE id = ?", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetch();
         }
@@ -28,7 +28,7 @@ class ArticleModel extends Model
     public function getByCategoryId($id) {
         if (intval($id)) {
             $db = new Database();
-            $data = $db->execute("SELECT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category = ?)", array($id));
+            $data = $db->execute("SELECT DISTINCT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category = ?)", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
         }
@@ -39,7 +39,7 @@ class ArticleModel extends Model
     {
         if (is_numeric($user) && is_numeric($start) && is_numeric($len)) {
             $db = new Database();
-            $req = "SELECT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category IN (SELECT id FROM categories WHERE account = ?) ORDER BY articleDate DESC LIMIT $start, $len";
+            $req = "SELECT DISTINCT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category IN (SELECT id FROM categories WHERE account = ?) ORDER BY articleDate DESC LIMIT $start, $len";
             $data = $db->execute($req, array($user));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
@@ -51,7 +51,7 @@ class ArticleModel extends Model
     {
         if (is_numeric($user) && is_numeric($start) && is_numeric($len)) {
             $db = new Database();
-            $req = "SELECT article.* FROM article JOIN articlesfavoris ON article.id = articlesfavoris.article WHERE articlesfavoris.account = ? ORDER BY articleDate DESC LIMIT $start, $len";
+            $req = "SELECT DISTINCT article.* FROM article JOIN articlesfavoris ON article.id = articlesfavoris.article WHERE articlesfavoris.account = ? ORDER BY articleDate DESC LIMIT $start, $len";
             $data = $db->execute($req, array($user));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
@@ -63,7 +63,7 @@ class ArticleModel extends Model
     {
         if (is_numeric($category) && is_numeric($start) && is_numeric($len)) {
             $db = new Database();
-            $req = "SELECT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category = ? ORDER BY articleDate DESC LIMIT $start, $len";
+            $req = "SELECT DISTINCT article.* FROM article JOIN stream_category ON article.stream_id = stream_category.stream AND article.streamType = stream_category.streamType WHERE stream_category.category = ? ORDER BY articleDate DESC LIMIT $start, $len";
             $data = $db->execute($req, array($category));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
             return $data->fetchAll();
@@ -75,7 +75,7 @@ class ArticleModel extends Model
         $favoris = array();
         if (is_numeric($id)) {
             $db = new Database();
-            $req = "SELECT article.id FROM article JOIN articlesfavoris ON article.id = articlesfavoris.article WHERE articlesfavoris.account = ?";
+            $req = "SELECT DISTINCT article.id FROM article JOIN articlesfavoris ON article.id = articlesfavoris.article WHERE articlesfavoris.account = ?";
             $data = $db->execute($req, array($id));
             while($result = $data->fetch()) {
                 $favoris[] = $result['id'];
@@ -94,7 +94,7 @@ class ArticleModel extends Model
     public function getArticleFromFavoris($account, $article) {
         $db = new Database();
         $data = array($account, $article);
-        $data = $db->execute("SELECT * FROM articlesfavoris WHERE account = ? AND article = ?", $data);
+        $data = $db->execute("SELECT DISTINCT * FROM articlesfavoris WHERE account = ? AND article = ?", $data);
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
         return $data->fetch();
     }
