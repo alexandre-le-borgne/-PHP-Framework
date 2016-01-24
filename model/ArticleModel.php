@@ -95,6 +95,7 @@ class ArticleModel extends Model
                     $data = $db->execute($req, array($id, ArticleModel::RSS));
                     break;
                 case ArticleModel::TWITTER:
+                    echo "bite2";
                     $req = "SELECT DISTINCT article.* FROM article WHERE article.streamType = ? AND article.streamType = ?  ORDER BY articleDate DESC LIMIT $start, $len";
                     $data = $db->execute($req, array($id, ArticleModel::TWITTER));
                     break;
