@@ -17,7 +17,8 @@ $this->render('persists/header');
     </div>
     <div id="add_flux_body">
         <form class="flux_twitter" action="<?= View::getUrlFromRoute('addtwitterstream')?>" method="post">
-            <input class="first" type="date" name="firstUpdate" placeholder="À partir de" required>
+            <!--<input class="first" type="date" name="firstUpdate" placeholder="À partir de" required>-->
+            <input placeholder="À partir de" class="first" type="text" onfocus="(this.type='date')" name="firstUpdate">
             <input type="text" name="channel" placeholder="Nom du compte @" required>
             <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
             <input type="submit" name="button" value="Ajouter ce flux!">
