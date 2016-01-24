@@ -9,10 +9,7 @@ $view->extend('layouts/layout');
 $this->render('persists/header');
 
 if(isset($errors)) {
-    foreach ($errors as $error)
-    {
-        echo '<div class="errors_fields">'.$error.'</div>';
-    }
+    echo '<div class="errors_fields">'.$errors.'</div>';
 }
 
 echo $this->output('_content');
