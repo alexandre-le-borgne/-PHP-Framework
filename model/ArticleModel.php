@@ -71,6 +71,19 @@ class ArticleModel extends Model
         return null;
     }
 
+    public function getIdOfFavoris($id) {
+        $favoris = array();
+        if (is_numeric($id)) {
+            $db = new Database();
+            $req = "SELECT article.id FROM article JOIN articlesfavoris ON article.id = articlesfavoris.article WHERE articlesfavoris.account = ?";
+            $data = $db->execute($req, array($id));
+            while($result = $data->fetch()) {
+                $favoris[] = $result['id'];
+            }
+        }
+        return $favoris;
+    }
+
     public function removeArticleFromFavoris($account, $article) {
         if(is_numeric($article)) {
             $db = new Database();

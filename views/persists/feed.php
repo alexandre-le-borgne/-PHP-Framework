@@ -80,7 +80,18 @@
                 <div class="post_footer">
                     <a class="follow" href="#" >Suivre ce flux</a>
                     <a class="ignore" href="#" ><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></a>
-                    <a class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
+                    <?php
+                    if(in_array($article->getId(), $favoris)) {
+                        ?>
+                        <a class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
+                        <?php
+                    }
+                    else {
+                        ?>
+                        <a class="nolike" href="#" ><img src="<?= View::getAsset('img/nolike.png') ?>" width="27"></a>
+                        <?php
+                    }
+                    ?>
                     <a class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></a>
                     <a class="global_url" href="#" ><img src="<?= View::getAsset('img/share.png') ?>" width="27"></a>
                 </div>
@@ -93,7 +104,7 @@
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
-                    action: 'like',
+                    action: 'nolike',
                     id: post.attr("id"),
                 };
                 $.ajax({
@@ -110,7 +121,7 @@
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
-                    action: 'nolike',
+                    action: 'like',
                     id: post.attr("id"),
                 };
                 $.ajax({
