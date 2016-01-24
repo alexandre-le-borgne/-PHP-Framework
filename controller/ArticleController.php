@@ -25,8 +25,7 @@ class ArticleController extends Controller
             $this->loadModel('ArticleModel');
             $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
             $articles = $this->articlemodel->getArticlesFavorisByUserId($request->getSession()->get('id'), 0, 50);
-            $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
-            $data = array('title' => 'Mes favoris', 'categories' => $categories, 'articles' => $articles, 'favoris' => $favoris);
+            $data = array('title' => 'Mes favoris', 'categories' => $categories, 'articles' => $articles);
             $this->render('layouts/home', $data);
         }
     }
@@ -45,8 +44,7 @@ class ArticleController extends Controller
             if($categoryEntity && $categoryEntity->getAccount() == $request->getSession()->get('id')) {
                 $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
                 $articles = $this->articlemodel->getArticlesByCategoryId($categoryEntity->getId(), 0, 50);
-                $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
-                $data = array('title' => $categoryEntity->getTitle(), 'categories' => $categories, 'articles' => $articles, 'favoris' => $favoris);
+                $data = array('title' => $categoryEntity->getTitle(), 'categories' => $categories, 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }
             else {
