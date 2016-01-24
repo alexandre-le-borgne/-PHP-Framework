@@ -498,18 +498,24 @@ class UserController extends Controller
             {
                 if ($streamCategory->getStreamType() == ArticleModel::TWITTER)
                 {
-                    $twitterStreams = $this->twittermodel->
+                    $twitterStreams = $this->twittermodel->getStreamById($streamCategory->getId());
                 }
                 if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
                 {
-
+                    $emailStreams = $this->emailmodel->getStreamById($streamCategory->getId());
                 }
                 if ($streamCategory->getStreamType() == ArticleModel::RSS)
                 {
-
+                    $rssStreams = $this->rssmodel->getStreamById($streamCategory->getId());
                 }
-
             }
+
+            $categoryStreams = array(
+                'Twitter' => $twitterStreams,
+                'Email' => $emailStreams,
+                'RSS' => $rssStreams);
+
+            $data[] = array('title' => $category->getTitle(), 'categories' => $categoryStreams);
         }
     }
 }
