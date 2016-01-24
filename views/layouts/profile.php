@@ -79,7 +79,7 @@ if (isset($categories))
     echo '</div>';
 }
 
-if (isset($following))
+if (isset($following) && !empty($following))
 {
     echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
     ?>
@@ -111,7 +111,7 @@ if (isset($following))
     echo '</table></div>';
 }
 
-if (isset($followers))
+if (isset($followers) && !empty($followers))
 {
     $i = 0;
     echo '<div class="wrapper"><h1>Les gens qui me suivent</h1>';
