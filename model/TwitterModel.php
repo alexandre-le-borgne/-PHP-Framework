@@ -103,6 +103,9 @@ class TwitterModel extends Model implements StreamModel
      */
     public function streamCron(TwitterEntity $twitterEntity)
     {
+        if ($this->twitter == null)
+            $this->initTwitterOAuth();
+
         if ($this->db == null)
             $this->db = new Database();
 
