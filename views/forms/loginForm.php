@@ -40,7 +40,7 @@ $view->extend('layouts/fullpage');
         <a class="forgot" href="<?= View::getUrlFromRoute('forgotForm') ?>">Mot de passe oublié ?</a>
 
         <br>
-        <h4><img id="logo_explorer" src="<?= View::getAsset('img/logo_explorer.png') ?>"></h4>
+        <img id="logo_explorer" src="<?= View::getAsset('img/logo_explorer.png') ?>">
         <br>
         <!--SOCIAL CONNECT-->
         <div class="socialConnect">
