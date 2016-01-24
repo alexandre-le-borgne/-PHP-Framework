@@ -152,6 +152,7 @@
 {
     background: url("../../img/content/section_content_background.png") no-repeat center;
     background-size: cover;
+    display: none !important;
 }
 
 /*****************************************/
@@ -160,9 +161,14 @@
 
 #table_section_content
 {
-    width: 60%;
-    float: right;
     height: 100%;
+    width: 100%;
+    background-color: #f8c433;
+}
+
+#table_section_content h3
+{
+    color: #000;
 }
 
 #title_section_content
