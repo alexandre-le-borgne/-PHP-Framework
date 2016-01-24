@@ -8,6 +8,7 @@
 ?>
 
 <div id="streams">
+    <h2>Mes flux</h2>
     <div class="item_streams"><img id="add_stream" src="<?= View::getAsset('img/add_cat.png') ?>"></div>
     <?php
     if (!empty($emailStreams))
