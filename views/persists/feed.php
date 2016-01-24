@@ -14,7 +14,7 @@
         /** @var ArticleEntity $article */
         foreach ($articles as $article)
         {
-            $this->renderControllerAction('article', array($article->getId()));
+            echo $this->renderControllerAction('article', array($article->getId()));
         }
         ?>
         <script>
