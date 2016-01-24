@@ -16,6 +16,7 @@ class UserController extends Controller
             $this->loadModel('UserModel');
             /** @var UserEntity $userEntity */
             $userEntity = $this->usermodel->getByNameOrEmail($channel);
+            var_dump($userEntity);
             if ($userEntity)
             {
                 $this->loadModel('ArticleModel');
