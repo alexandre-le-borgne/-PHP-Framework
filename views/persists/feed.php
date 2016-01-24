@@ -93,7 +93,7 @@
                     }
                     ?>
                     <span class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></span>
-                    <a class="global_url" target="_blank" href="<?= View::getUrlFromRoute('article/'.$article->getId()) ?>" >
+                    <a class="global_url" target="_blank" href="<?= View::getUrlFromRoute('article', array($article->getId())) ?>" >
                         <img src="<?= View::getAsset('img/share.png') ?>" width="27">
                     </a>
                 </div>
