@@ -89,7 +89,7 @@
         }
         ?>
         <script>
-            $(".post_footer .like") {
+            $(".post_footer .like").click(function() {
                 var post = $(this).parents(".post");
                 var data = {
                     action: 'like',
@@ -99,7 +99,7 @@
                     $(this).children().attr('src', <?= View::getAsset('img/nolike.png') ?>);
                     $(this).removeClass('like').addClass('nolike');
                 }
-            }
+            });
             $(".post_footer .nolike").click(function() {
                 var post = $(this).parents(".post");
                 var data = {
