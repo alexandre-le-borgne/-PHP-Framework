@@ -11,6 +11,11 @@
     padding-top: 50px;
 }
 
+.user_section table
+{
+    width: 100%;
+}
+
 .user_section #categories, .user_section #followers, .user_section #following
 {
     width: 98%;
