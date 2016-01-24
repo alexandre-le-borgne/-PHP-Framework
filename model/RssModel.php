@@ -74,11 +74,6 @@ class RssModel extends Model implements StreamModel
             $firstRss = $this->getFirstArticle($rssEntity);
             $lastRss = $this->getLastArticle($rssEntity);
 
-            $firstDate = $firstRss->getArticleDate();
-            $lastDate = $lastRss->getArticleDate();
-
-            var_dump($firstDate);
-            var_dump($lastDate);
 
             /** @var RssEntity $fetch */
             $stream_id = $rssEntity->getId();
@@ -88,21 +83,17 @@ class RssModel extends Model implements StreamModel
             $result = $db->execute($req, array($stream_id));
             $fetch = $result->fetch();
             $minDate = $fetch['minDate']; //date du 1er article du stream
-            $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
-            $result = $db->execute($req, array($stream_id, $minDate, $firstDate));
             foreach ($x->channel->item as $item)
             {
-                //$req = "SELECT content FROM article WHERE stream_id = ?";
-                if ($verif = $result->fetch())
+                $firstDate = $firstRss->getArticleDate();
+                $lastDate = $lastRss->getArticleDate();
+                if ($item->articleDate != $firstDate)
                 {
-                    $cont = $verif['articleDate'];
-                    if ($item->articleDate != $cont)
-                    {
-                        $base = $item->pubDate;
-                        $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
-                    }
+                    $base = $item->pubDate;
+                    $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                    $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                 }
+
             }//while
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
