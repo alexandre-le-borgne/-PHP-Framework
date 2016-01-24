@@ -13,7 +13,7 @@ $this->render('persists/header');
 function formTr($string, $streams, $streamType)
 {
 ?>
-    <tr bgcolor="#DDD">
+    <tr>
         <td>
             <?= 'Nom du flux (' . $string . ')'; ?>
         </td>
@@ -25,7 +25,7 @@ function formTr($string, $streams, $streamType)
     foreach($streams as $stream)
     {
         ?>
-        <tr bgcolor="#EEE">
+        <tr>
             <td>
                 <b><?= $stream->toString() ?></b>
             </td>
@@ -40,105 +40,121 @@ function formTr($string, $streams, $streamType)
         </tr>
     <?php
     }
+
 }
 
-if (isset($categories))
-{
-    if (empty($categories))
-    {
-        echo 'Pas de flux';
-    }
-    else
-    {
-    ?>
-        <div class="wrapper">
-        <h1>Gestion des flux</h1>
-    <?php
-    }
-
-    foreach ($categories as $category)
-    {
-        $cat = $category['categories'];
-        ?>
-        <table border = 1>
-        <tr bgcolor = #DDD>
-            <td>
-                <b><?= 'Categorie : ' . $category['title'] ?></b>
-            </td>
-            <td>
-                <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
-                    <input type="hidden" name="id" value="<?= $category['id'] ?>">
-                    <input type="submit" value="Supprimer" name="delCat">
-                </form>
-            </td>
-        </tr>
+?>
+<div class="user_section">
+    <div id="categories">
         <?php
-        if (!(empty($cat['twitter'])))
-            formTr('Twitter', $cat['twitter'], ArticleModel::TWITTER);
-        if (!(empty($cat['email'])))
-            formTr('Email', $cat['email'], ArticleModel::EMAIL);
-        if (!(empty($cat['rss'])))
-            formTr('RSS', $cat['rss'], ArticleModel::RSS);
+            if (isset($categories))
+            {
+                if (empty($categories))
+                { ?>
+                <div>
+
+                </div>
+                <?php
+                }
+                else
+                {
+                ?>
+                    <div class="wrapper">
+                    <h1>Gestion des flux</h1>
+                <?php
+                }
+
+                foreach ($categories as $category)
+                {
+                    $cat = $category['categories'];
+                    ?>
+                    <table border = 1>
+                    <tr bgcolor = #DDD>
+                        <td>
+                            <b><?= 'Categorie : ' . $category['title'] ?></b>
+                        </td>
+                        <td>
+                            <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
+                                <input type="hidden" name="id" value="<?= $category['id'] ?>">
+                                <input type="submit" value="Supprimer" name="delCat">
+                            </form>
+                        </td>
+                    </tr>
+                    <?php
+                    if (!(empty($cat['twitter'])))
+                        formTr('Twitter', $cat['twitter'], ArticleModel::TWITTER);
+                    if (!(empty($cat['email'])))
+                        formTr('Email', $cat['email'], ArticleModel::EMAIL);
+                    if (!(empty($cat['rss'])))
+                        formTr('RSS', $cat['rss'], ArticleModel::RSS);
+                    ?>
+                    </table>
+                    <?php
+                }
+                echo '</div>';
+            }
         ?>
-        </table>
+    </div>
+
+    <div id="following">
         <?php
-    }
-    echo '</div>';
-}
-
-
-if (isset($following) && !empty($following))
-{
-    echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
-    ?>
-    <table border = 1>
-        <tr bgcolor = #DDD>
-            <td>
-                <b>Utilisateur</b>
-            </td>
-            <td>
-                <b>Action</b>
-            </td>
-        </tr>
-    <?php
-    foreach ($following as $follow)
-    { ?>
-    <tr bgcolor = #EEE>
-        <td>
-            <b><?= $follow->username ?></b>
-        </td>
-        <td>
-            <form action="<?= View::getUrlFromRoute('unfollow') ?>" method="post">
-                <input type="hidden" name="id" value="<?= $follow->getId() ?>">
-                <input type="submit" value="Arrêter de le suivre">
-            </form>
-        </td>
-    </tr>
-    <?php }
-
-    echo '</table></div>';
-}
-
-
-if (isset($followers) && !empty($followers))
-{
-    $i = 0;
-    echo '<div class="wrapper"><h1>Les gens qui me suivent</h1>';
-
-    foreach ($followers as $follower)
-    {
-        echo $follower->username . ', ';
-        ++$i;
-        if ($i == 8)
+        if (isset($following) && !empty($following))
         {
+            echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
+            ?>
+            <table border = 1>
+                <tr bgcolor = #DDD>
+                    <td>
+                        <b>Utilisateur</b>
+                    </td>
+                    <td>
+                        <b>Action</b>
+                    </td>
+                </tr>
+            <?php
+            foreach ($following as $follow)
+            { ?>
+            <tr bgcolor = #EEE>
+                <td>
+                    <b><?= $follow->username ?></b>
+                </td>
+                <td>
+                    <form action="<?= View::getUrlFromRoute('unfollow') ?>" method="post">
+                        <input type="hidden" name="id" value="<?= $follow->getId() ?>">
+                        <input type="submit" value="Arrêter de le suivre">
+                    </form>
+                </td>
+            </tr>
+            <?php }
+
+            echo '</table></div>';
+        } ?>
+    </div>
+
+    <div id="followers">
+        <?php
+        if (isset($followers) && !empty($followers))
+            {
             $i = 0;
-            echo '<br/>';
-        }
-    }
-    echo '</div>';
-}
+            echo '<div class="wrapper"><h1>Les gens qui me suivent</h1>';
 
+                foreach ($followers as $follower)
+                {
+                echo $follower->username . ', ';
+                ++$i;
+                if ($i == 8)
+                {
+                $i = 0;
+                echo '<br/>';
+                }
+                }
+                echo '</div>';
+            }
+        ?>
+    </div>
+</div> <!-- USER_CONTENT-->
 
+<?php
 
 
 /*
