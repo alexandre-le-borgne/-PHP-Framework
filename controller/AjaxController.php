@@ -12,6 +12,7 @@ class AjaxController extends Controller
     public function IndexAction(Request $request) {
         if(!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
             return;
+        echo $request->post('action');
         switch($request->post('action')) {
             case 'like':
                 $this->LikeAction($request);
