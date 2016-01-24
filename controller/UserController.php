@@ -478,9 +478,10 @@ class UserController extends Controller
         $this->loadModel('EmailModel');
         $this->loadModel('TwitterModel');
         $this->loadModel('RssModel');
+        $this->loadModel('FollowerModel');
 
+        $followers = $this->followermodel->getFollowersById($request->getSession()->get('id'));
         $data = array();
-
         $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
         foreach ($categories as $category)
         {
@@ -520,6 +521,6 @@ class UserController extends Controller
             $data[] = array('title' => $category->getTitle(), 'id' => $category->getId(), 'categories' => $categoryStreams);
         }
 
-        $this->render('layouts/profile', array('categories' => $data));
+        $this->render('layouts/profile', array('categories' => $data, 'followers' => $followers));
     }
 }

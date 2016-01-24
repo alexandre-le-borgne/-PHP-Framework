@@ -29,4 +29,12 @@ class FollowerModel extends Model
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FollowerEntity');
         return $data->fetch();
     }
+
+    public function getFollowersById($userId)
+    {
+        $db = new Database();
+        $data = $db->execute("SELECT * FROM followers WHERE user = ?", array($userId));
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FollowerEntity');
+        return $data->fetchAll();
+    }
 }
