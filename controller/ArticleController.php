@@ -21,11 +21,9 @@ class ArticleController extends Controller
         }
         else
         {
-            $this->loadModel('CategoryModel');
             $this->loadModel('ArticleModel');
-            $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
             $articles = $this->articlemodel->getArticlesFavorisByUserId($request->getSession()->get('id'), 0, 50);
-            $data = array('title' => 'Mes favoris', 'categories' => $categories, 'articles' => $articles);
+            $data = array('title' => 'Mes favoris', 'articles' => $articles);
             $this->render('layouts/home', $data);
         }
     }
@@ -42,9 +40,8 @@ class ArticleController extends Controller
             /** @var CategoryEntity $categoryEntity */
             $categoryEntity = $this->categorymodel->getById($id);
             if($categoryEntity && $categoryEntity->getAccount() == $request->getSession()->get('id')) {
-                $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
                 $articles = $this->articlemodel->getArticlesByCategoryId($categoryEntity->getId(), 0, 50);
-                $data = array('title' => $categoryEntity->getTitle(), 'categories' => $categories, 'articles' => $articles);
+                $data = array('title' => $categoryEntity->getTitle(), 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }
             else {
@@ -71,9 +68,7 @@ class ArticleController extends Controller
             $article = $this->articlemodel->getById($id);
             if($article)
             {
-                $this->loadModel('CategoryModel');
-                $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
-                $this->render('layouts/home', array('title' => $article->getTitle(), 'categories' => $categories, 'articles' => array($article)));
+                $this->render('layouts/home', array('title' => $article->getTitle(), 'articles' => array($article)));
             }
             else {
                 $this->redirectToRoute('index');
