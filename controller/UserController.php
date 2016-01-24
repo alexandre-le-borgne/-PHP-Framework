@@ -517,5 +517,7 @@ class UserController extends Controller
 
             $data[] = array('title' => $category->getTitle(), 'categories' => $categoryStreams);
         }
+
+        $this->render('layouts/profile', array('data' => $data));
     }
 }
