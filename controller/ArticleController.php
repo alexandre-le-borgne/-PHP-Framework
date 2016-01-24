@@ -41,7 +41,6 @@ class ArticleController extends Controller
                 $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
                 $articles = $this->articlemodel->getArticlesByCategoryId($categoryEntity->getId(), 0, 50);
                 $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
-                var_dump($favoris);
                 $data = array('title' => $categoryEntity->getTitle(), 'categories' => $categories, 'articles' => $articles, 'favoris' => $favoris);
                 $this->render('layouts/home', $data);
             }
@@ -58,7 +57,8 @@ class ArticleController extends Controller
         $article = $this->articlemodel->getById($id);
         if($article)
         {
-            $this->render('layouts/article', array('article' => $article));
+            $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
+            $this->render('layouts/article', array('article' => $article, 'favoris' => $favoris));
         }
         else {
             $this->redirectToRoute('index');
