@@ -96,7 +96,7 @@ class ArticleModel extends Model
                     break;
                 case ArticleModel::TWITTER:
                     echo "bite2";
-                    $req = "SELECT DISTINCT article.* FROM article WHERE article.streamType = ? AND article.streamType = ?  ORDER BY articleDate DESC LIMIT $start, $len";
+                    $req = "SELECT DISTINCT article.* FROM article WHERE article.streamType = ? AND article.streamType = ? ORDER BY articleDate DESC LIMIT $start, $len";
                     $data = $db->execute($req, array($id, ArticleModel::TWITTER));
                     break;
                 case ArticleModel::EMAIL:
@@ -108,6 +108,7 @@ class ArticleModel extends Model
                     return;
             }
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ArticleEntity');
+            echo $data->queryString;
             var_dump($data->fetchAll());
             return $data->fetchAll();
         }
