@@ -14,8 +14,9 @@ h1, h2, h4, h5, h6
 
 h3
 {
-    font-weight: 200;
+    font-weight: 700;
     color: #9aa2ad;
+    font-size: 15pt;
 }
 
 #logo
