@@ -52,7 +52,7 @@ class TwitterModel extends Model implements StreamModel
         $result = $this->getStreamByChannel($channel);
         if ($result)
         {   //Si existe deja, et nouvelle date plus ancienne, alors on modifie le firstUpdate a la nouvelle date donnee
-            if ($firstUpdate->getTimestamp() < strtotime($result->getFirstUpdate()))
+            if (strtotime($firstUpdate) < strtotime($result->getFirstUpdate()))
                 $db->execute('UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?', array(date(Database::DATE_FORMAT, strtotime($firstUpdate))));
             return $result;
         }
