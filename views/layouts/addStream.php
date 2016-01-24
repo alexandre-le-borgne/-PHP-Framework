@@ -9,6 +9,7 @@
 $view->extend('layouts/layout');
 $this->render('persists/header');
 ?>
+<div id="add_stream_section"
     <div id="flux_choice">
         <div id="twitter_button">Twitter</div>
         <div id="RSS_button" >RSS</div>
@@ -32,6 +33,7 @@ $this->render('persists/header');
             <input type="date" name="since_date" placeholder="À partir de" required>
         </form>
     </div>
+</div>
 
 <script>
     $(function() {
