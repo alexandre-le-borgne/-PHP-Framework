@@ -16,12 +16,10 @@ class UserController extends Controller
             $this->loadModel('UserModel');
             /** @var UserEntity $userEntity */
             $userEntity = $this->usermodel->getByNameOrEmail($channel);
-            var_dump($userEntity);
             if ($userEntity)
             {
                 $this->loadModel('ArticleModel');
                 $articles = $this->articlemodel->getArticlesByUserId($userEntity->getId(), 0, 10);
-                var_dump($articles);
                 $data = array('channel' => $userEntity->getUsername(), 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }
