@@ -18,7 +18,7 @@ class FollowerController extends Controller
         }
         $this->loadModel('FollowerModel');
         $id = $request->getSession()->get('id');
-        $this->followmodel->follow($channel, $id);
+        $this->followermodel->follow($channel, $id);
         $this->redirectToRoute('index');
     }
 }
