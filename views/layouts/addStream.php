@@ -19,7 +19,7 @@ $this->render('persists/header');
     if(isset($errors)) {
         foreach ($errors as $error)
         {
-            echo '<div class="add_flux_body">'.$error.'</div>';
+            echo '<div class="errors_fields">'.$error.'</div>';
         }
     }
     ?>
