@@ -30,7 +30,7 @@ if(isset($errors)) {
             <input placeholder="À partir de" class="first" type="text" onfocus="(this.type='date')" name="firstUpdate">
             <input type="text" name="channel" placeholder="Nom du compte @" required>
             <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
-            <input type="submit" name="button" value="Ajouter ce flux!">
+            <input type="submit" name="button" value="Ajouter ce flux !">
         </form>
 
         <form class="flux_rss" action="" method="post">
