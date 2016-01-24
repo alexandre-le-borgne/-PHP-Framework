@@ -83,6 +83,10 @@ if (isset($following))
 {
         echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
 
+        foreach ($following as $follow)
+        {
+        var_dump($follow);
+        }
 
 
         echo '</div>';
@@ -95,7 +99,6 @@ if (isset($followers))
 
     foreach ($followers as $follower)
     {
-        var_dump($follower);
         echo $follower->username . ', ';
         ++$i;
         if ($i == 8)
