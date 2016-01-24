@@ -50,6 +50,7 @@ class Router
 
         $this->table[] = new Route('addstream',         'article',      'addStream');
         $this->table[] = new Route('favoris',           'article',      'favoris');
+        $this->table[] = new Route('blog',              'article',      'blog');
 
         $this->table[] = new Route('followchannel',     'follower',     'followChannel');
         $this->table[] = new Route('followernumbers',   'follower',     'followerNumbers');
