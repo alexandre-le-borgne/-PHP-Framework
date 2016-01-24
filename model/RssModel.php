@@ -39,8 +39,14 @@ class RssModel extends Model implements StreamModel
 
     public function getStreamById($id)
     {
-        return new RssEntity($id);
-        //Todo recoder ça avec autre chose que tes fesses julien stp
+        if (is_numeric($id))
+        {
+            $db = new Database();
+            $data = $db->execute("SELECT * FROM stream_rss WHERE id = ?", array($id));
+            $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
+            return $data->fetch();
+        }
+        return null;
     }
 
     public function getByUserId($id){

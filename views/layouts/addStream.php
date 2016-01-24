@@ -33,7 +33,7 @@ if(isset($errors)) {
             <input type="submit" name="button" value="Ajouter ce flux !">
         </form>
 
-        <form class="flux_rss" action="" method="post">
+        <form class="flux_rss" action="<?= View::getUrlFromRoute('adrssstream')?>" method="post">
             <input class="first" type="date" name="firstUpdate" placeholder="À partir de" required>
             <input type="text" name="url_flux" placeholder="URL du flux" required>
             <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
