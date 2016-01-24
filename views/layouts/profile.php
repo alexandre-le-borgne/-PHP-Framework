@@ -95,7 +95,7 @@ if (isset($followers))
 
     foreach ($followers as $follower)
     {
-    var_dump($follower);
+        var_dump($follower);
         echo $follower->username . ', ';
         ++$i;
         if ($i == 8)
