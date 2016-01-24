@@ -61,6 +61,7 @@ class EmailModel
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
             return $data->fetchAll();
         }
+        return null;
     }
 
     public function getStreamById($id)
