@@ -381,9 +381,7 @@ class UserController extends Controller
 
     public function PwdforgotAction(Request $request){
         $email = $request->post('email');
-
         $this->loadModel('UserModel');
-
         $this->usermodel->forgotPassword($email);
     }
 
