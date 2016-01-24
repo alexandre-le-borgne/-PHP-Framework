@@ -12,7 +12,7 @@
             $this->render('persists/categories', array('categories' => $categories));
         var_dump($streams);
         if (isset($streams))
-            $this->render('persists/streams', array('streams' => $streams));
+            $this->render('persists/streams', $streams);
         ?>
 </div>
 <script>
