@@ -20,7 +20,10 @@ class TwitterController extends Controller
 
         $this->loadModel('CategoryModel');
         $this->loadModel('TwitterModel');
-        $twitterEntity = $this->twittermodel->createStream($channel, $firstUpdate);
+
+        $firstUpdateDate = new DateTime();
+        $firstUpdateDate->setTimestamp(strtotime($firstUpdate));
+        $twitterEntity = $this->twittermodel->createStream($channel, $firstUpdateDate);
         $categoryEntity = $this->categorymodel->createCategory($userId, $categoryTitle);
 
         $streamCategoryEntity = new StreamCategoryEntity();
