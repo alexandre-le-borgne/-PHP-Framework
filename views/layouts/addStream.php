@@ -15,6 +15,14 @@ $this->render('persists/header');
         <div id="RSS_button" ><img src="<?= View::getAsset('img/rss.png') ?>" width="27"></div>
         <div id="IMAP_button"><img src="<?= View::getAsset('img/email.png') ?>" width="27"></div>
     </div>
+    <?php
+    if(isset($errors)) {
+        foreach ($errors as $error)
+        {
+            echo '<div class="error">'.$error.'</div>';
+        }
+    }
+    ?>
     <div id="add_flux_body">
         <form class="flux_twitter" action="<?= View::getUrlFromRoute('addtwitterstream')?>" method="post">
             <!--<input class="first" type="date" name="firstUpdate" placeholder="À partir de" required>-->
