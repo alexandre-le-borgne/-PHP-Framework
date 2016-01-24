@@ -95,14 +95,14 @@
                     action: 'like',
                     id: post.attr("id"),
                 };
-                if(ajax(data)) {
-                    console.log('tttt');
-                    console.log($(this));
-                    console.log($(this).children());
+                $.ajax({
+                    method: "POST",
+                    url: "<?= View::getUrlFromRoute('ajax') ?>",
+                    data: data
+                }).done(function( msg ) {
                     this.children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     this.removeClass('like').addClass('nolike');
-                }
-                console.log(ajax(data));
+                });
             });
             $(".post_footer .nolike").click(function() {
                 var post = $(this).parents(".post");
@@ -110,24 +110,15 @@
                     action: 'nolike',
                     id: post.attr("id"),
                 };
-                if(ajax(data)) {
-                    $(this).children().attr('src', '<?= View::getAsset('img/like.png') ?>');
-                    $(this).removeClass('nolike').addClass('like');
-                }
-            });
-            function ajax(data) {
                 $.ajax({
                     method: "POST",
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
-                    async: false,
                     data: data
                 }).done(function( msg ) {
-                    console.log("ok");
-                    return true;
+                    $(this).children().attr('src', '<?= View::getAsset('img/like.png') ?>');
+                    $(this).removeClass('nolike').addClass('like');
                 });
-                return false;
-            }
-
+            });
         </script>
         <?php
     }
