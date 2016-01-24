@@ -6,7 +6,6 @@
  * Time: 16:20
  */
 ?>
-<div class="webui-popover-content">
     <div id="flux_choice">
         <div id="twitter_button">Twitter</div>
         <div id="RSS_button" >RSS</div>
@@ -30,7 +29,6 @@
             <input type="date" name="since_date" placeholder="À partir de" required>
         </form>
     </div>
-</div>
 
 <script>
     $(function() {
