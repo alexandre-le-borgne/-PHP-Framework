@@ -287,7 +287,8 @@ body
 .post_footer img
 {
     width: 20px;
-    margin-right: 5px;
+    margin-right: 17px;
+    margin-top: -5px;
 }
 
 .post_footer .follow
