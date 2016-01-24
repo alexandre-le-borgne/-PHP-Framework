@@ -405,8 +405,10 @@ class UserController extends Controller
             {
                 if ($key == $realKey)
                 {
-                    $req = "Update accounts Set active = 1 Where username = ?";
-                    $db->execute($req, array($user));
+                    /** @var UserEntity $userEntity */
+                    $userEntity = $this->usermodel->getByNameOrEmail($user);
+                    $userEntity->setActive(1);
+                    $userEntity->persist();
                     Mail::sendWelcomingMail($email);
                     //$this->redirectToRoute('index', array('actif'));
                     $this->loadModel('UserModel');

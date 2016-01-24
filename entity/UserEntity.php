@@ -18,6 +18,21 @@ class UserEntity extends Entity
     private $active;
     private $accountLevel;
 
+    public function persist()
+    {
+        $db = new Database();
+        if ($this->id == null)
+        {
+            $req = 'INSERT INTO accounts (authentification, username, email, userKey, active, accountLevel, picture) VALUES (?, ?, ?, ?, ?, ?, ?)';
+            $db->execute($req, array($this->authentification, $this->username, $this->email, $this->userKey, $this->active, $this->accountLevel, $this->picture));
+            $this->id = $db->lastInsertId();
+        }
+        else
+        {
+            $req = 'UPDATE accounts SET authentification = ?, username = ?, email = ?, userKey = ?, active = ?, accountLevel = ?, picture = ? WHERE id = ?';
+            $db->execute($req, array($this->authentification, $this->username, $this->email, $this->userKey, $this->active, $this->accountLevel, $this->picture, $this->id));
+        }
+    }
 
     // GETTERS
 
