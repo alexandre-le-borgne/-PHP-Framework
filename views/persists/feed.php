@@ -108,7 +108,7 @@
                 };
                 if(ajax(data)) {
                     $(this).children().attr('src', '<?= View::getAsset('img/like.png') ?>');
-                    $(this).removeClass('like').addClass('like');
+                    $(this).removeClass('nolike').addClass('like');
                 }
             });
             function ajax(data) {
@@ -117,10 +117,7 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    if(msg) {
-                        console.log(msg);
-                        return msg;
-                    }
+                    console.log("ok");
                     return true;
                 });
                 return false;
