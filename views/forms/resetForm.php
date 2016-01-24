@@ -14,7 +14,7 @@
     <form class="form-horizontal" method="post" name="reset" action="<?= View::getUrlFromRoute('passwordReset') ?>">
 
         <?php //Les div de confirmation de password, on lui redonne les erreurs si presentes
-        $this->render('forms/passwordConfirmForm', (isset($errors) ? $data = array("errors" => $errors) : null))
+        $this->render('forms/resetForm', (isset($errors) ? $data = array("errors" => $errors) : null))
         ?>
 
         <!--SUBMIT ACTION-->
