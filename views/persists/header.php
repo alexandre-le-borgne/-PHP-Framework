@@ -41,7 +41,7 @@ if (isset($mailValidationMessage))
             <script>
                 $(function() {
                     var availableTags = [];
-                    $(".search_barsearch").keyup(function() {
+                    $(".search_bar").keyup(function() {
                         var channel = $(this).val();
                         $.ajax({
                             method: "POST",
