@@ -57,10 +57,3 @@
     }
     ?>
 </div>
-<script>
-    (function ($) {
-        $(window).load(function () {
-            $("#streams").mCustomScrollbar();
-        });
-    })(jQuery);
-</script>

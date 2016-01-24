@@ -26,10 +26,3 @@
     }
     ?>
 </div>
-<script>
-    (function ($) {
-        $(window).load(function () {
-            $("#categories").mCustomScrollbar();
-        });
-    })(jQuery);
-</script>
