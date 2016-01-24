@@ -101,7 +101,7 @@ if (isset($following))
         </td>
         <td>
             <form action="<?= View::getUrlFromRoute('unfollow') ?>" method="post">
-                <input type="hidden" name="id" value="<?= $follow->user ?>">
+                <input type="hidden" name="id" value="<?= $follow->getId() ?>">
                 <input type="submit" value="Arrêter de le suivre">
             </form>
         </td>

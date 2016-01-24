@@ -48,6 +48,8 @@ class Router
 
         $this->table[] = new Route('followchannel',     'follower',     'followChannel');
         $this->table[] = new Route('followernumbers',   'follower',     'followerNumbers');
+        $this->table[] = new Route('unfollow',          'follower',     'unFollow');
+
 
 
         /** Ajouts de flux */

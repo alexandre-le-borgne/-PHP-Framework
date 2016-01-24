@@ -27,4 +27,9 @@ class FollowerController extends Controller
         //Todo finir
         return 12;
     }
+
+    public function UnFollowAction()
+    {
+
+    }
 }
