@@ -522,17 +522,4 @@ class UserController extends Controller
 
         $this->render('layouts/profile', array('categories' => $data));
     }
-
-    public function FollowChannelAction(Request $request, $channel)
-    {
-        if (!$channel)
-        {
-            $this->redirectToRoute('index');
-            return;
-        }
-        $this->loadModel('UserModel');
-        $id = $request->getSession()->get('id');
-        $this->usermodel->follow($channel, $id);
-        $this->redirectToRoute('index');
-    }
 }
