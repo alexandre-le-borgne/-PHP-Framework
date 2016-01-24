@@ -33,10 +33,6 @@ class FollowerController extends Controller
         $this->loadModel('FollowerModel');
         $followed = $request->post('id');
         $user = $request->getSession()->get('id');
-        var_dump($followed);
-        var_dump($user);
-        exit();
-
         $this->followermodel->unfollow($followed, $user);
         $this->redirectToRoute('profile');
     }
