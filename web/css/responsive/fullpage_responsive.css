@@ -12,9 +12,9 @@
 
 #title_section_news h1, #title_section_social h1, #title_section_content h1
 {
-    font-size: 130pt;
+    font-size: 110pt;
     font-weight: bold;
-    /* line-height: 77px; */
+    line-height: normal;
 }
 
 /*****************************************/
