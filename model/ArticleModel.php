@@ -49,6 +49,7 @@ class ArticleModel extends Model
 
     public function userHasStream($user, $stream, $type) {
         var_dump($user);
+        echo $stream."ùù".$type;
         if (is_numeric($user) && is_numeric($stream) && is_numeric($type)) {
             echo $stream.$type;
             $db = new Database();
