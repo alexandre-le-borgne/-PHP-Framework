@@ -419,6 +419,12 @@ body
     cursor: pointer;
 }
 
+#add_flux_body
+{
+    margin: auto;
+    width: 681px;
+}
+
 div#RSS_button:active, div#RSS_button:visited {
     background: #a77dc2;
 }
