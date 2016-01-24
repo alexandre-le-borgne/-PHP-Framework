@@ -11,7 +11,7 @@ class RssModel extends Model implements StreamModel
     private $posts = array();
     private $db;
 
-    private function resolveFile($url)
+    public function resolveFile($url)
     {
         if (!preg_match('|^https?:|', $url))
             $feed_uri = $_SERVER['DOCUMENT_ROOT'] . 'shared/xml/' . $url;
