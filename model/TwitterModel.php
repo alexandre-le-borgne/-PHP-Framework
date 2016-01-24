@@ -29,9 +29,7 @@ class TwitterModel extends Model implements StreamModel
             $db = new Database();
             $result = $db->execute('SELECT * FROM stream_twitter WHERE id = ?', array($id));
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
-            $fetch = $result->fetch();
-            if ($fetch)
-                return $fetch;
+            return $result->fetch();
         }
         return null;
     }
