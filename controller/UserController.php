@@ -466,8 +466,11 @@ class UserController extends Controller
         $this->render('/forms/forgotForm');
     }
 
-    public function ResetFormAction()
+    public function ResetFormAction($user, $key)
     {
+        session_start();
+        $_SESSION['user'] = $user;
+        $_SESSION['key'] = $key;
         $this->render('/forms/resetForm');
     }
 
