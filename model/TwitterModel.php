@@ -29,7 +29,9 @@ class TwitterModel extends Model implements StreamModel
             $db = new Database();
             $result = $db->execute("SELECT * FROM stream_twitter WHERE id = ?", array($id));
             $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
-            return $result->fetch();
+            $fetch = $result->fetch();
+            if ($fetch)
+                return $fetch;
         }
         return null;
     }
@@ -145,7 +147,7 @@ class TwitterModel extends Model implements StreamModel
     private function loadTweets($channel, $firstUpdate, $firstDate, $lastDate)
     {
         /**
-         * Comme indique dans l'api Twitter, quand on exclut les reponses, il faut en recuperer plus que prevu, car
+         * Comme indique dans l'api Twitter, quand on exclut les reponses, il aut en recuperer plus que prevu, car
          * il va d'abord recuperer $count tweets, puis enlever les reponses.
          * De plus, je vais devoir recupere un nombre de tweets arbitraires
          */

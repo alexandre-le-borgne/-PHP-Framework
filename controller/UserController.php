@@ -488,7 +488,7 @@ class UserController extends Controller
         foreach ($categories as $category)
         {
             $streamCategories = $this->categorymodel->getStreamCategoriesByCategoryId($category->getId());
-            echo 'pdbite ' . var_dump($streamCategories);
+            //echo 'debug' . var_dump($streamCategories);
             $twitterStreams = array();
             $emailStreams = array();
             $rssStreams = array();
@@ -517,6 +517,6 @@ class UserController extends Controller
             $data[] = array('title' => $category->getTitle(), 'categories' => $categoryStreams);
         }
 
-        $this->render('layouts/profile', array('data' => $data));
+        $this->render('layouts/profile', array('categories' => $data));
     }
 }
