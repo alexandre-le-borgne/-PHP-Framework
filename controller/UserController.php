@@ -476,6 +476,7 @@ class UserController extends Controller
 
     public function ResetPasswordAction(Request $request)
     {
+        session_start();
         $this->loadModel('UserModel');
         var_dump($_SESSION['user']);
         var_dump($_SESSION['key']);
