@@ -90,6 +90,7 @@
         ?>
         <script>
             $(".post_footer .like").click(function() {
+                var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
                     action: 'like',
@@ -100,11 +101,12 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    this.children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
-                    this.removeClass('like').addClass('nolike');
+                    $("img", thispost).attr('src', '<?= View::getAsset('img/nolike.png') ?>');
+                    $(thispost).removeClass('like').addClass('nolike');
                 });
             });
             $(".post_footer .nolike").click(function() {
+                var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
                     action: 'nolike',
@@ -115,8 +117,9 @@
                     url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    $(this).children().attr('src', '<?= View::getAsset('img/like.png') ?>');
-                    $(this).removeClass('nolike').addClass('like');
+                    console.log('ok' + msg);
+                    $("img", thispost).attr('src', '<?= View::getAsset('img/like.png') ?>');
+                    $(thispost).removeClass('nolike').addClass('like');
                 });
             });
         </script>
