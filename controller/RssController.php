@@ -21,7 +21,7 @@ class RssController extends  Controller{
         }
     }
 
-    public function addRSSStreamAction(Request $request){
+    public function AddRSSStreamAction(Request $request){
         $categoryTitle = $request->post('category');
         $firstUpdate = $request->post('firstUpdate');
         $url = $request->post('url_flux');
