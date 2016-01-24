@@ -21,9 +21,9 @@ if (isset($categories))
     foreach ($categories as $category)
     {
         ?>
-        <table border = 1> <tr bgcolor = #DDD>
+        <table border = 1><tr bgcolor="#6495ed">
             <td>
-                <b><?php $category['title'] ?></b>
+                <b><?= $category['title'] ?></b>
             </td>
             <td>
                 <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
@@ -32,7 +32,7 @@ if (isset($categories))
                     <input type="submit" value="Voir la categorie" name="seeCat">
                 </form>
             </td>
-        </table>
+         </tr></table>
         <?php
 
         $cat = $category['categories'];
