@@ -21,7 +21,6 @@ class UserController extends Controller
                 $this->loadModel('ArticleModel');
                 $articles = $this->articlemodel->getArticlesByUserId($userEntity->getId(), 0, 10);
                 $data = array('channel' => $userEntity->getUsername(), 'articles' => $articles);
-                print_r($data);
                 $this->render('layouts/home', $data);
             }
             else
