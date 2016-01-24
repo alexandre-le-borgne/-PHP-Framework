@@ -1,19 +1,21 @@
 .user_section
 {
-    
+    margin: 10px auto auto auto;
+    width: 680px;
+    padding-top: 50px;
 }
 
 .user_section #categories
 {
-
+    border: solid 1px blue;
 }
 
 .user_section #followers
 {
-
+    border: solid 1px blue;
 }
 
 .user_section #following
 {
-
+    border: solid 1px blue;
 }
