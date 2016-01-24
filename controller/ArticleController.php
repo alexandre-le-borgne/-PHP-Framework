@@ -41,6 +41,7 @@ class ArticleController extends Controller
                 $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
                 $articles = $this->articlemodel->getArticlesByCategoryId($categoryEntity->getId(), 0, 50);
                 $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
+                var_dump($favoris);
                 $data = array('title' => $categoryEntity->getTitle(), 'categories' => $categories, 'articles' => $articles, 'favoris' => $favoris);
                 $this->render('layouts/home', $data);
             }
