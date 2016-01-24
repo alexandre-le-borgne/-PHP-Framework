@@ -11,8 +11,9 @@
 <div class="section section_social">
         <div id="title_section_social">
             <div id="text_content">
-                <h1>Vos réseaux sociaux enfin réunis.</h1><br>
-                <h3>Retrouvez tout vos réseaux sociaux préférés comme Facebook, Twitter ou Pinterest</h3>
+                <h1>Vos personnalités favorites avec Twitter.</h1><br>
+                <h3>Retrouvez toutes vos personnalités préférées avec Twitter !</h3>
+                <img src="<?= View::getAsset('web/img/twitter.png') ?>">
             </div>
         </div>
 
