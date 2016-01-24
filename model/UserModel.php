@@ -58,7 +58,7 @@ class UserModel extends Model
         $followedUser = $this->getByNameOrEmail($followedName);
         if ($followedUser)
         {
-            $db->execute('INSERT INTO follower (user, follower) VALUES (?, ?)', array($followedUser->getId(), $followerId));
+            $db->execute('INSERT INTO followers (user, follower) VALUES (?, ?)', array($followedUser->getId(), $followerId));
             return true;
         }
         return false;

@@ -77,11 +77,11 @@ class TwitterEntity
     {
         $this->firstUpdate = $firstUpdate;
     }
-
+/**
     public function toString()
     {
         return $this->channel;
-    }
+    }*/
 }
 
 

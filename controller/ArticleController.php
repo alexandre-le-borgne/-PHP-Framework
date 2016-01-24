@@ -22,7 +22,7 @@ class ArticleController extends Controller
         else
         {
             $this->loadModel('ArticleModel');
-            $articles = $this->articlemodel->getArticlesFavorisByUserId($request->getSession()->get('id'), 0, 50);
+            $articles = $this->articlemodel->getArticlesFavorisByUserId($request->getSession()->get('id'), 0, 10);
             $data = array('title' => 'Mes favoris', 'articles' => $articles);
             $this->render('layouts/home', $data);
         }
@@ -40,7 +40,7 @@ class ArticleController extends Controller
             /** @var CategoryEntity $categoryEntity */
             $categoryEntity = $this->categorymodel->getById($id);
             if($categoryEntity && $categoryEntity->getAccount() == $request->getSession()->get('id')) {
-                $articles = $this->articlemodel->getArticlesByCategoryId($categoryEntity->getId(), 0, 50);
+                $articles = $this->articlemodel->getArticlesByCategoryId($categoryEntity->getId(), 0, 10);
                 $data = array('title' => $categoryEntity->getTitle(), 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }

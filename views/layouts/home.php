@@ -14,7 +14,7 @@ echo $this->output('_content');
     if (isset($channel))
     {
         echo '<a href="' . View::getUrlFromRoute('channel/' . $channel) . '">Blog de  ' . $this->escape($channel) . '</a>';
-        echo '<a href="' . View::getUrlFromRoute('followchannel/' . $channel) . '">Suivre</a>';
+        echo '<a href="' . View::getUrlFromRoute('followchannel/' . $channel) . '"> Suivre</a>';
     }
     else
     {
