@@ -11,20 +11,15 @@
     padding-top: 50px;
 }
 
-.user_section #categories
+.user_section #categories, .user_section #followers, .user_section #following
 {
-    border: solid 1px blue;
+    width: 98%;
+    margin: 1%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #A2A8B1;
+    display: table;
 }
 
-.user_section #followers
-{
-    border: solid 1px blue;
-}
-
-.user_section #following
-{
-    border: solid 1px blue;
-}
 
 #stream_button, #followers_button, #following_button {
     border-radius: 3px;
