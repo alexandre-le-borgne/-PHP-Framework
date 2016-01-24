@@ -18,7 +18,8 @@ class IndexController extends Controller
                 $this->loadModel('ArticleModel');
                 $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
                 $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 500);
-                $data = array('categories' => $categories, 'articles' => $articles);
+                $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
+                $data = array('categories' => $categories, 'articles' => $articles, 'favoris' => $favoris);
                 $this->render('layouts/home', $data);
             }
             else

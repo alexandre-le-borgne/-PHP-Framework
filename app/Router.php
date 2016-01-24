@@ -20,8 +20,6 @@ class Router
 
         $this->table[] = new Route('cron',              'index',        'cron');
 
-        $this->table[] = new Route('ajax',              'ajax',        'index');
-
         $this->table[] = new Route('login',             'user',         'login');
         $this->table[] = new Route('logout',            'user',         'logout');
         $this->table[] = new Route('preregister',       'user',         'preRegister');
@@ -31,9 +29,9 @@ class Router
         $this->table[] = new Route('google',            'user',         'google');
         $this->table[] = new Route('forgotform',        'user',         'forgotform');
         $this->table[] = new Route('pwdforgot',         'user',         'pwdforgot');
-        $this->table[] = new Route('resetform',         'user',         'resetForm');
-        $this->table[] = new Route('resetpassword',     'user',         'resetpassword');
-        $this->table[] = new Route('channel',           'user',        'channel');
+        $this->table[] = new Route('resetForm',         'user',         'resetForm');
+        $this->table[] = new Route('channel',           'user',         'channel');
+        $this->table[] = new Route('profile',           'user',         'profile');
 
         $this->table[] = new Route('article',           'article',      'article');
         $this->table[] = new Route('category',          'article',      'category');
@@ -46,12 +44,13 @@ class Router
         $this->table[] = new Route('addtwitterstream',  'twitter',      'addTwitterStream');
         $this->table[] = new Route('addrssstream',      'rss',          'addRSSStream');
         $this->table[] = new Route('addimapstream',     'email',        'addIMAPStream');
+
         $this->table[] = new Route('favoris',           'article',      'favoris');
 
         //Test
         $this->table[] = new Route('twitter',           'twitter',      'testTwitter');
         $this->table[] = new Route('rss',               'index',        'rss');
-        $this->table[] = new Route('addstream',         'index',        'addStream');
+        $this->table[] = new Route('ajouterflux',       'index',        'addStream');
         $this->table[] = new Route('email',             'email',        'index');
     }
 
