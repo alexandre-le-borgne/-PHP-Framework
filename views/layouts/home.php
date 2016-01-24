@@ -25,9 +25,20 @@ echo $this->output('_content');
     <?php
     if (isset($articles))
         $this->render('persists/feed', array('articles' => $articles));
+    ?>
+    <div id="aside">
+        <?php
     if (isset($categories))
         $this->render('persists/categories', array('categories' => $categories));
     if (isset($streams))
         $this->render('persists/streams', array('streams' => $streams));
     ?>
+    </div>
+    <script>
+        (function ($) {
+            $(window).load(function () {
+                $("#aside").mCustomScrollbar();
+            });
+        })(jQuery);
+    </script>
 </div>

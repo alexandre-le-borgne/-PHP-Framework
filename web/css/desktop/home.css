@@ -19,7 +19,7 @@
     width: 700px;
 }
 
-#categories, #streams
+#aside
 {
     height: calc(50% - 100px);
     min-height: 200px;
