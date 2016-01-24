@@ -9,6 +9,7 @@
 
 <div id="feed">
     <?php
+    var_dump($articles);
     if(!empty($articles))
     {
         /** @var ArticleEntity $article */
