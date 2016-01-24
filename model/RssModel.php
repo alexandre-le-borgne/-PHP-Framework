@@ -52,7 +52,7 @@ class RssModel extends Model implements StreamModel
     public function getByUserId($id){
         if(is_numeric($id)) {
             $db = new Database();
-            $data = $db->execute("SELECT DISTINCT stream_rss.* FROM stream_email JOIN stream_category ON stream_email.id = stream_category.stream AND stream_category.streamType = '".ArticleModel::EMAIL."' JOIN categories ON stream_category.category = categories.id WHERE categories.account = ?", array($id));
+            $data = $db->execute("SELECT DISTINCT stream_rss.* FROM stream_rss JOIN stream_category ON stream_rss.id = stream_category.stream AND stream_category.streamType = '".ArticleModel::RSS."' JOIN categories ON stream_category.category = categories.id WHERE categories.account = ?", array($id));
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'RssEntity');
             return $data->fetchAll();
         }

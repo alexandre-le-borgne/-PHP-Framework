@@ -19,7 +19,7 @@ class UserController extends Controller
             if ($userEntity)
             {
                 $this->loadModel('ArticleModel');
-                $articles = $this->articlemodel->getArticlesByUserId($userEntity->getId(), 0, 500);
+                $articles = $this->articlemodel->getArticlesByUserId($userEntity->getId(), 0, 10);
                 $data = array('channel' => $userEntity->getUsername(), 'articles' => $articles);
                 $this->render('layouts/home', $data);
             }
