@@ -55,11 +55,11 @@ class RssController extends Controller
             $streamCategoryEntity->persist();
 
             $this->rssmodel->streamCron($rssEntity);
-            $this->redirectToRoute('index');
+            //$this->redirectToRoute('index');
         }
         else
         {
-            $this->render('layouts/addStream', array('errors' => array('Une erreur est survenue dans la connexion au flux rss. Veuillez réssayer ! ')));
+            //$this->render('layouts/addStream', array('errors' => array('Une erreur est survenue dans la connexion au flux rss. Veuillez réssayer ! ')));
         }
 
     }
