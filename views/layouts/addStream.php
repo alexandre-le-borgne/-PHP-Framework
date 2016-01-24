@@ -33,9 +33,9 @@ $this->render('persists/header');
             <input class="first" type="text" name="host_name" placeholder="Serveur IMAP" required>
             <input type="text" name="username" placeholder="Nom d'utilisateur" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
-            <input class="last" type="date" name="since_date" placeholder="À partir de" required>
+            <input type="date" name="since_date" placeholder="À partir de" required>
             <input type="text" name="category" placeholder="La catégorie pour le ranger" required>
-            <input class="last" type="submit" name="category" value="Ajouter ce flux! ">
+            <input class="last" type="submit" name="category" value="Ajouter ce flux !">
         </form>
     </div>
 </div>
