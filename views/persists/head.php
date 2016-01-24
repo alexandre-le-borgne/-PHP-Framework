@@ -21,7 +21,7 @@
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/post_responsive.css') ?>">
 <link rel="stylesheet" media="only screen and (max-device-width:480px)" href="<?= View::getAsset('css/responsive/home_responsive.css') ?>">
 
-<link rel="stylesheet" media="all not (max-device-width:480px)" href="<?= View::getAsset('css/desktop/form.css') ?>">
+<link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/form.css') ?>">
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/body.css') ?>">
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/fullpage.css') ?>">
 <link rel="stylesheet" media="screen" href="<?= View::getAsset('css/desktop/footer.css') ?>">
