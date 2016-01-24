@@ -71,11 +71,19 @@ class ArticleModel extends Model
         return null;
     }
 
-    public function removeFromFavoris($account, $article) {
+    public function removeArticleFromFavoris($account, $article) {
         if(is_numeric($article)) {
             $db = new Database();
             $db->execute("DELETE FROM articlesfavoris WHERE account = ? AND article = ?", array($account, $article));
         }
+    }
+
+    public function getArticleFromFavoris($account, $article) {
+        $db = new Database();
+        $data = array($account, $article);
+        $data = $db->execute("SELECT * FROM articlesfavoris WHERE account = ? AND article = ?", $data);
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
+        return $data->fetch();
     }
 
     /*public function addArticle($title, $content, $date, $type, $url){
