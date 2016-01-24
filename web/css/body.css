@@ -95,6 +95,13 @@ table
     line-height: 77px;
 }
 
+#title_section_news h1
+{
+    color: #3d4543 !important;
+}
+
+
+
 #text_content
 {
     display: block;
