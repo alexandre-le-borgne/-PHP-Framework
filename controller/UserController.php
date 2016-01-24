@@ -516,7 +516,7 @@ class UserController extends Controller
                 'email' => $emailStreams,
                 'rss' => $rssStreams);
 
-            $data[] = array('title' => $category->getTitle(), 'categories' => $categoryStreams);
+            $data[] = array('title' => $category->getTitle(), 'id' => $category->getId(), 'categories' => $categoryStreams);
         }
 
         $this->render('layouts/profile', array('categories' => $data));
