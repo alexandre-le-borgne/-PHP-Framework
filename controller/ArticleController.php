@@ -57,7 +57,6 @@ class ArticleController extends Controller
 
     public function ArticleAction(Request $request, $id)
     {
-        //$id est rempli par l'url : aaron/publicarticle/54651346546132, l'id de l'article
         $this->loadModel('ArticleModel');
         $article = $this->articlemodel->getById($id);
         if($article)

@@ -30,13 +30,19 @@ class EmailController extends Controller
         $this->loadModel('CategoryModel');
         /** @var EmailEntity $emailEntity */
         $emailEntity = $this->emailmodel->createEmailStream($server, $account, $password, $port, $firstUpdate);
-        /** @var CategoryEntity $categoryEntity */
-        $categoryEntity = $this->categorymodel->createCategory($user, $category);
-        $streamCategoryEntity = new StreamCategoryEntity();
-        $streamCategoryEntity->setCategory($categoryEntity->getId());
-        $streamCategoryEntity->setStream($emailEntity->getId());
-        $streamCategoryEntity->setStreamType(ArticleModel::EMAIL);
-        $streamCategoryEntity->persist();
-        $this->redirectToRoute('index');
+        if($emailEntity)
+        {
+            /** @var CategoryEntity $categoryEntity */
+            $categoryEntity = $this->categorymodel->createCategory($user, $category);
+            $streamCategoryEntity = new StreamCategoryEntity();
+            $streamCategoryEntity->setCategory($categoryEntity->getId());
+            $streamCategoryEntity->setStream($emailEntity->getId());
+            $streamCategoryEntity->setStreamType(ArticleModel::EMAIL);
+            $streamCategoryEntity->persist();
+            $this->redirectToRoute('index');
+        }
+        else {
+            $this->render('layouts/addStream', array('errors' => array('La connexion avec ce flux n\'a pas pu être établi. Vérifier vos informations.')));
+        }
     }
 }
