@@ -5,8 +5,10 @@
  * Date: 23/01/16
  * Time: 16:20
  */
+
+$view->extend('layouts/layout');
+$this->render('persists/header');
 ?>
-<div class="webui-popover-content">
     <div id="flux_choice">
         <div id="twitter_button">Twitter</div>
         <div id="RSS_button" >RSS</div>
@@ -30,6 +32,41 @@
             <input type="date" name="since_date" placeholder="À partir de" required>
         </form>
     </div>
-</div>
+
+<script>
+    $(function() {
+//        $('#add_flux').webuiPopover({
+//        width:300,
+//        height:200,
+//        placement:'bottom',
+//        trigger:'click',
+//        animation:'pop',
+//        arrow:true
+//        });
+
+        $('.flux_twitter').show();
+        $('.flux_rss').hide();
+        $('.flux_imap').hide();
+
+        $('#twitter_button').click(function()
+        {
+            $('.flux_twitter').show();
+            $('.flux_rss').hide();
+            $('.flux_imap').hide();
+        });
+        $('#RSS_button').click(function()
+        {
+            $('.flux_twitter').hide();
+            $('.flux_rss').show();
+            $('.flux_imap').hide();
+        });
+        $('#IMAP_button').click(function()
+        {
+            $('.flux_twitter').hide();
+            $('.flux_rss').hide();
+            $('.flux_imap').show();
+        });
+    });
+</script>
 
 
