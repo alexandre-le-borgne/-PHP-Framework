@@ -32,6 +32,9 @@ class IndexController extends Controller
                 $this->redirectToRoute('channel', array($userEntity->getUsername()));
             }
         }
+        else {
+            $this->redirectToRoute('index');
+        }
     }
 
     public function AsideAction(Request $request) {
