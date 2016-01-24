@@ -167,16 +167,26 @@ table
 }
 
 /* Background Settings News */
-#time_magazine, #courrierinter_magazine, #liberation_magazine
+#time_magazine, #liberation_magazine
 {
     background-color: #fafafa !important;
     background-size: 50% !important;
 }
 
-#usatoday_magazine, #figaro_magazine, #lemonde_magazine
+#usatoday_magazine, #lemonde_magazine
 {
     background-color: #f2f2f2 !important;
     background-size: 50% !important;
+}
+
+#lemonde_magazine
+{
+    background-size: 40% !important;
+}
+
+#courrierinter_magazine
+{
+    background-size: 70% !important;
 }
 
 #usatoday_magazine:hover, #figaro_magazine:hover, #lemonde_magazine:hover, #time_magazine:hover,
