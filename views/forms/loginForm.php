@@ -7,6 +7,7 @@ $view->extend('layouts/fullpage');
 ?>
 
 <a id="register_button" href="<?= View::getUrlFromRoute('register') ?>">Inscrivez-vous !</a>
+<a id="upside_button" href="<?= View::getUrlFromRoute('register') ?>"><img src=""></a>
 
 
 <div class="section section_home">
@@ -53,3 +54,4 @@ $view->extend('layouts/fullpage');
         </div>
     </div>
 </div>
+
