@@ -67,6 +67,6 @@ $view->extend('layouts/fullpage');
         }
 
         centrerElementAbsolu('.loginDiv');
-    }
+    });
 
 </script>
