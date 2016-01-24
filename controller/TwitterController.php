@@ -60,7 +60,7 @@ class TwitterController extends Controller
         /** @var TwitterModel $twitterModel */
         $twitterModel = $this->twittermodel;
 
-        $twitterModel->isValidChannel('Spacesuit2');
+        $twitterModel->isValidChannel('Spacssssssesuit2');
 
 
     }
