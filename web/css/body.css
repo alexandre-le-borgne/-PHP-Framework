@@ -214,6 +214,17 @@ table
     background-size: cover;
 }
 
+@media (max-width: 410px) {
+    #table_section_content
+    {
+        display: none;
+    }
+    #table_section_news
+    {
+        display: none;
+    }
+}
+
 /* Pictures Size Setting */
 
 #time_magazine
