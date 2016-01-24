@@ -61,7 +61,7 @@ class TwitterModel extends Model implements StreamModel
             $twitterEntity = new TwitterEntity();
             $twitterEntity->setChannel($channel);
             $twitterEntity->setFirstUpdate($firstUpdate);
-            $twitterEntity->setLastUpdate(date());
+            $twitterEntity->setLastUpdate(date(Database::DATE_FORMAT));
             $twitterEntity->persist();
             return $twitterEntity;
         }
