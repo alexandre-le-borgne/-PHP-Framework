@@ -54,7 +54,7 @@ $view->extend('layouts/fullpage');
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     $(document).ready(function() {
         // $(window).resize() est appelée chaque fois que la fenêtre est redimensionnée par l'utilisateur.
         $(window).resize(function() {
