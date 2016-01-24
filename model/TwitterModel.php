@@ -67,6 +67,15 @@ class TwitterModel extends Model implements StreamModel
         }
     }
 
+    public function isValidChannel($channel)
+    {
+        $this->initTwitterOAuth();
+        $result = $this->twitter->get('users/show', [
+            'screen_name' => $channel,
+        ]);
+        var_dump($result);
+    }
+
     /**
      * Fonction de suppression d'un flux, verifie d'abord que plus personne ne suit ce flux
      */
@@ -103,8 +112,7 @@ class TwitterModel extends Model implements StreamModel
      */
     public function streamCron(TwitterEntity $twitterEntity)
     {
-        if ($this->twitter == null)
-            $this->initTwitterOAuth();
+        $this->initTwitterOAuth();
 
         if ($this->db == null)
             $this->db = new Database();
@@ -177,7 +185,7 @@ class TwitterModel extends Model implements StreamModel
                 'count' => $count * $multiplicator
             ]);
 
-            if (!($tooMuchTweets)) //si l'on a rien, on a rien a recuperer
+            if (empty($tooMuchTweets)) //si l'on a rien, on a rien a recuperer
                 return null;
 
             /** On verifie que la date du denrier tweet coincide avec la date $firstUpdate */
@@ -238,6 +246,7 @@ class TwitterModel extends Model implements StreamModel
 
     private function initTwitterOAuth()
     {
+        if ($this->twitter != null) return;
         /** Creation de l'objet TwitterOAuth qui me permet de recuperer les tweets */
         $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
         $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);

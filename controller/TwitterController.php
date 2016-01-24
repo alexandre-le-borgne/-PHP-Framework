@@ -38,45 +38,54 @@ class TwitterController extends Controller
     //Test
     function TestTwitterAction()
     {
-        $CONSUMER_KEY = "rC3gP2pji5zoKoGf4FlUYdvaa";
-        $CONSUMER_SECRET = "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j";
+//
+//        $CONSUMER_KEY = "rC3gP2pji5zoKoGf4FlUYdvaa";
+//        $CONSUMER_SECRET = "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j";
+//        $this->loadModel('TwitterModel');
+//        /** @var TwitterModel $twitterModel */
+//        $twitterModel = $this->twittermodel;
+//
+//        $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
+//        $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
+//        $twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa",
+//            "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
+//
+//        $tweets = $twitter->get('statuses/user_timeline', [
+//            'screen_name' => 'MonsieurDream',
+//            'exclude_replies' => true,
+//            'count' => 1
+//        ]);
+
         $this->loadModel('TwitterModel');
         /** @var TwitterModel $twitterModel */
         $twitterModel = $this->twittermodel;
 
-        $oauth = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa", "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j");
-        $accesstoken = $oauth->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
-        $twitter = new TwitterOAuth("rC3gP2pji5zoKoGf4FlUYdvaa",
-            "TYIpFvcb9wR6SrpdxmMCPruiyJSPSDfJdLz6cAlNgqoyMcMq2j", null, $accesstoken->access_token);
+        $twitterModel->isValidChannel('Spacssssssesuit2');
 
-        $tweets = $twitter->get('statuses/user_timeline', [
-            'screen_name' => 'MonsieurDream',
-            'exclude_replies' => true,
-            'count' => 1
-        ]);
-
-
-        $tweet = $tweets[0];
-
-        // $tweet->extended_entities->media->media_url; = la si elle est presente
-        // $tweet->extended_entities->media->type; = le type 'photo si photo'
-        // $tweet->extended_entities->media->url; = l'url du tweet, du statut
-
-        $imageLink = '';
-
-        if (isset($tweet->extended_entities->media[0]->url, $tweet->extended_entities->media[0]->media_url))
-            $imageLink = '<a href="' . $tweet->extended_entities->media[0]->url . '" target="_blank"><img src="' . $tweet->extended_entities->media[0]->media_url . '"></a>';
-
-
-        var_dump($tweet->extended_entities);
-        $href = $tweet->extended_entities->media[0]->url;
-        $src = $tweet->extended_entities->media[0]->media_url;
-
-        echo $imageLink;
-        echo '<br/>#############################################################################<br/>';
 
     }
 }
+
+
+//
+//        $tweet = $tweets[0];
+//
+//        // $tweet->extended_entities->media->media_url; = la si elle est presente
+//        // $tweet->extended_entities->media->type; = le type 'photo si photo'
+//        // $tweet->extended_entities->media->url; = l'url du tweet, du statut
+//
+//        $imageLink = '';
+//
+//        if (isset($tweet->extended_entities->media[0]->url, $tweet->extended_entities->media[0]->media_url))
+//            $imageLink = '<a href="' . $tweet->extended_entities->media[0]->url . '" target="_blank"><img src="' . $tweet->extended_entities->media[0]->media_url . '"></a>';
+//
+//
+//        var_dump($tweet->extended_entities);
+//        $href = $tweet->extended_entities->media[0]->url;
+//        $src = $tweet->extended_entities->media[0]->media_url;
+//
+//        echo $imageLink;
+//        echo '<br/>#############################################################################<br/>';
 
 
 
