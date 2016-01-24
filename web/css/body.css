@@ -151,7 +151,7 @@ table
 {
     height: 34%;
     width: 50%;
-    background: url('../img/content/time.png') no-repeat center center fixed !important;
+    background: url('../img/content/time.png') !important;
 }
 
 /* Background Settings News */
