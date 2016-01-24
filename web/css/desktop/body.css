@@ -36,6 +36,10 @@ td
     cursor: pointer !important;
 }
 
+h1 a {
+    color: #FFF;
+}
+
 h1, h2, h5, h6
 {
     text-align: left;
