@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 16/12/2015
- * Time: 14:36
- *
- */
-
 class Database
 {
     private $bdd;
@@ -20,15 +12,20 @@ class Database
         /*echo "<br><hr><br>".$sql."<br>";
         var_dump($params);*/
 
-        if ($params == null) {
+        if ($params == null)
+        {
             $resultat = $this->getBdd()->query($sql);    // exécution directe
-        } else {
-            if(!is_array($params)) throw new Exception("Paramètres innatendus : " . var_dump($params));
-            try {
+        }
+        else
+        {
+            if (!is_array($params)) throw new Exception("Paramètres innatendus : " . var_dump($params));
+            try
+            {
                 $resultat = $this->getBdd()->prepare($sql);  // requête préparée
 
                 $resultat->execute($params);
-            } catch (PDOException $e) {
+            } catch (PDOException $e)
+            {
                 //var_dump($resultat->debugDumpParams());
                 throw new Exception($e->getMessage());
             }
@@ -45,7 +42,8 @@ class Database
     // Renvoie un objet de connexion à la BD en initialisant la connexion au besoin
     private function getBdd()
     {
-        if ($this->bdd == null) {
+        if ($this->bdd == null)
+        {
 
             // Création de la connexion
             $this->bdd = new PDO('mysql:host=mysql-alex83690.alwaysdata.net;dbname=alex83690_aaron;charset=utf8',
