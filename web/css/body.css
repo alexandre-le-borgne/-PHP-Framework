@@ -144,12 +144,14 @@ table
 #table_section_news table
 {
     width: 100%;
+
 }
 
 #table_section_news table td
 {
     height: 34%;
     width: 50%;
+    background: url('../img/content/time.png') no-repeat center center fixed !important;
 }
 
 /* Background Settings News */
