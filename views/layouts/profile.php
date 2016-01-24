@@ -11,33 +11,34 @@ $this->render('persists/header');
 //var_dump($categories);
 //Pour pas reecrire plein de fois
 function formTr($string, $streams)
-{?>
-<tr bgcolor="#DDD">
-    <td>
-        <?= 'Nom du flux ' . $string; ?>
-    </td>
-    <td>
-        Action
-    </td>
-</tr>
-<?php
-foreach($streams as $stream)
 {
-    ?>
-    <tr bgcolor="#EEE">
+?>
+    <tr bgcolor="#DDD">
         <td>
-            <b><?= $stream->getChannel ?></b>
+            <?= 'Nom du flux ' . $string; ?>
         </td>
         <td>
-            <form action="<?= View::getUrlFromRoute('deletestream') ?>" method="post">
-                <input type="hidden" name="id" value="<?= $stream->getId() ?>">
-                <input type="submit" value="Supprimer" name="delStream">
-                <input type="submit" value="Enlever de la catégorie" name="removeFromCat">
-            </form>
+            Action
         </td>
     </tr>
-<?php
-}
+    <?php
+    foreach($streams as $stream)
+    {
+        ?>
+        <tr bgcolor="#EEE">
+            <td>
+                <b><?= $stream->getChannel ?></b>
+            </td>
+            <td>
+                <form action="<?= View::getUrlFromRoute('deletestream') ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $stream->getId() ?>">
+                    <input type="submit" value="Supprimer" name="delStream">
+                    <input type="submit" value="Enlever de la catégorie" name="removeFromCat">
+                </form>
+            </td>
+        </tr>
+    <?php
+    }
 }
 
 if (isset($categories))
@@ -54,7 +55,7 @@ if (isset($categories))
         <table border = 1>
         <tr bgcolor = #DDD>
             <td>
-                <b><?= $category['title'] ?></b>
+                <b><?= 'Categorie :' . $category['title'] ?></b>
             </td>
             <td>
                 <form action="<?= View::getUrlFromRoute('deletecategory') ?>" method="post">
@@ -67,10 +68,10 @@ if (isset($categories))
         <?php
         if (!(empty($cat['twitter'])))
             formTr('Twitter', $cat['twitter']);
-        if ($cat['email'])
-            formTr('Email', $cat['email']->getId());
-        if ($cat['rss'])
-            formTr('RSS', $cat['rss']->getId());
+        if (!(empty($cat['email'])))
+            formTr('Email', $cat['email']);
+        if (!(empty($cat['rss'])))
+            formTr('RSS', $cat['rss']);
         ?>
         </table>
         <?php
