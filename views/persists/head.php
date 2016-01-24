@@ -20,9 +20,9 @@
 <link rel="stylesheet" href="<?= View::getAsset('css/desktop/post.css') ?>">
 <link rel="stylesheet" href="<?= View::getAsset('css/desktop/home.css') ?>">
 
-<link rel="stylesheet" media="handheld and (max-width: 400px)" href="<?= View::getAsset('css/desktop/form_responsive.css') ?>">
-<link rel="stylesheet" media="handheld and (max-width: 400px)" href="<?= View::getAsset('css/desktop/body_responsive.css') ?>">
-<link rel="stylesheet" media="handheld and (max-width: 400px)" href="<?= View::getAsset('css/desktop/fullpage_responsive.css') ?>">
+<link rel="stylesheet" media="handheld and (max-width: 400px)" href="<?= View::getAsset('css/responsive/form_responsive.css') ?>">
+<link rel="stylesheet" media="handheld and (max-width: 400px)" href="<?= View::getAsset('css/responsive/body_responsive.css') ?>">
+<link rel="stylesheet" media="handheld and (max-width: 400px)" href="<?= View::getAsset('css/responsive/fullpage_responsive.css') ?>">
 
 
 
