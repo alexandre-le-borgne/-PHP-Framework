@@ -19,6 +19,7 @@ class Router
         $this->table[] = new Route('exemple',           'exemple',      'index');
 
         $this->table[] = new Route('cron',              'index',        'cron');
+        $this->table[] = new Route('aside',             'index',        'aside');
 
         $this->table[] = new Route('ajax',              'ajax',         'index');
 
