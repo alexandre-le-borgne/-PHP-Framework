@@ -48,7 +48,7 @@ class RssController extends  Controller{
                 $streamCategoryEntity->setStreamType(ArticleModel::RSS);
                 $streamCategoryEntity->persist();
 
-                $this->twittermodel->streamCron($rssEntity);
+                $this->rssmodel->streamCron($rssEntity);
                 $this->redirectToRoute('index');
             }
             else
