@@ -73,9 +73,6 @@ class IndexController extends Controller
     {
         $test = new DateTime();
         $test->setTimestamp(time() - 608400);
-
-
-        //var_dump($feed->getPosts());
         $this->loadModel('RssModel');
         $this->rssmodel->createStream("http://www.journaldunet.com/rss/", $test);
         $this->rssmodel->cron();
