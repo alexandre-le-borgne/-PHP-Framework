@@ -25,7 +25,7 @@ class UserController extends Controller
             }
             else
             {
-                $this->render('layouts/error', array('error' => 'La chaîne n\'existe pas'));
+                $this->render('layouts/home', array('errors' => 'La chaîne n\'existe pas'));
             }
         }
     }
