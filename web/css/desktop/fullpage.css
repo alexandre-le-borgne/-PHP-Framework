@@ -260,7 +260,8 @@
 
 #footer
 {
-    background-color: #2f3d51;
+    background: #2f3d51 url("../../img/aaron_text_logo.png") no-repeat center;
+    background-size: 50%;
     height: 100%;
 }
 
