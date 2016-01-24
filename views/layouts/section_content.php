@@ -19,7 +19,7 @@
     </div>
 
     <div id="table_section_content">
-       ewq
+
     </div>
 </div>
 

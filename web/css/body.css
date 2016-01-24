@@ -165,7 +165,11 @@ table
 }
 
 /* Background Settings Content */
-
+#table_section_content
+{
+    background: url("../img/content/section_content_background.png") no-repeat center;
+    background-size: cover;
+}
 
 /* Pictures Size Setting */
 #time_magazine img
