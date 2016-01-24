@@ -8,6 +8,11 @@
  */
 class ArticleController extends Controller
 {
+    public function AddStreamAction()
+    {
+        $this->render('layouts/addStream');
+    }
+
     public function FavorisAction(Request $request)
     {
         if (!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
