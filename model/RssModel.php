@@ -86,7 +86,6 @@ class RssModel extends Model implements StreamModel
             foreach ($x->channel->item as $item)
             {
                 $firstDate = $firstRss->getArticleDate();
-                $lastDate = $lastRss->getArticleDate();
                 if ($item->articleDate != $firstDate)
                 {
                     $base = $item->pubDate;
@@ -98,21 +97,16 @@ class RssModel extends Model implements StreamModel
             $req = "SELECT Max(articleDate) as maxDate FROM article WHERE stream_id = ?";
             $result = $db->execute($req, array($stream_id))->fetch();
             $maxDate = DateTime::createFromFormat('j-m-y', $result['maxDate']); //derniere date
-            $req = "SELECT * FROM article WHERE stream_id = ? AND articleDate BETWEEN ? and ?";
-            $result = $db->execute($req, array($stream_id, $maxDate, $lastDate));
             foreach ($x->channel->item as $item)
             {
-                //$req = "SELECT content FROM article WHERE stream_id = ?";
-                if (!$verif = $result->fetch())
+                $lastDate = $lastRss->getArticleDate();
+                if ($item->articleDate != $lastDate)
                 {
-                    $cont = $verif['articleDate'];
-                    if ($item->articleDate != $cont)
-                    {
-                        $base = $item->pubDate;
-                        $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
-                        $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
-                    }
+                    $base = $item->pubDate;
+                    $req = "INSERT INTO article (title, content, articleDate, streamType, url, stream_id) VALUES (?, ?, ?," . ArticleModel::RSS . ",  ?, ?)";
+                    $db->execute($req, array($item->title, $item->description, date(Database::DATE_FORMAT, strtotime($base)), $item->link, $stream_id));
                 }
+
             }//while
             $update = "UPDATE stream_rss SET lastUpdate = now() WHERE Id = ?";
             $db->execute($update, array($stream_id));
