@@ -54,7 +54,7 @@ class TwitterModel extends Model implements StreamModel
             $req = 'INSERT INTO stream_twitter (channel, firstUpdate, lastUpdate) VALUES (? , ?, now())';
             $db->execute($req, array($channel, date(Database::DATE_FORMAT, $firstUpdate->getTimestamp())));
         }
-        else if ($firstUpdate->getTimestamp() < strtotime($fetch['firstUpdate']))
+        else if ($firstUpdate->getTimestamp() < strtotime($fetch->getFirstUpdate()))
         {
             //On modifie le stream pour qu'il prenne en compte le debut plus tot
             $req = "UPDATE stream_twitter SET firstUpdate = ? WHERE channel = ?";
