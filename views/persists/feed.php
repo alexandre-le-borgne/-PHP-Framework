@@ -16,7 +16,7 @@
         {
             ?>
 
-            <div class="post">
+            <div class="post" id="post_<?= $article->getId() ?>">
                 <?php
                 switch($article->getStreamType()) {
                     case ArticleModel::EMAIL:
@@ -80,14 +80,32 @@
                 <div class="post_footer">
                     <a class="follow" href="#" >Suivre ce flux</a>
                     <a class="ignore" href="#" ><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></a>
-                    <a class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
+                    <a class="like" href="#like" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
                     <a class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></a>
                     <a class="global_url" href="#" ><img src="<?= View::getAsset('img/share.png') ?>" width="27"></a>
                 </div>
-
             </div>
             <?php
         }
+        ?>
+        <script>
+            $(".post_footer .like") {
+                var data = {
+                    id: $(this).parents(".post").attr("id"),
+                    password: $("fieldset #block_password").html(),
+                    title: $('header h1 input').val(),
+                    posts: posts
+                };
+            }
+            $.ajax({
+                method: "POST",
+                url: "<?= View::getUrlFromRoute('ajax', array('like')) ?>/" + id,
+                data: data
+            }).done(function( msg ) {
+                console.log(msg);
+            });
+        </script>
+        <?php
     }
     ?>
 </div>
