@@ -33,6 +33,10 @@ class TwitterController extends Controller
         $streamCategoryEntity->persist();
 
         echo 'yolo c ajouté';
+        /** @var TwitterEntity $twitterEntity */
+        $this->twittermodel->streamCron($twitterEntity);
+
+
 
 //        if (!($channel && $firstUpdate && $categoryTitle))
 //            throw new Exception('Pas tous les arguments inseres');
