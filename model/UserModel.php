@@ -124,6 +124,7 @@ class UserModel extends Model
         $stmt = $result->fetch();
 
         $user = $stmt['username'];
+        echo 'pd de ftploy';
         var_dump($user);
         $key = $stmt['userKey'];
         var_dump($key);
