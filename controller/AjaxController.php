@@ -70,6 +70,7 @@ class AjaxController extends Controller
         $this->loadModel('ArticleModel');
         /** @var ArticleEntity $articleEntity */
         $articleEntity = $this->articlemodel->getById($post);
+        echo "bite";
         if($articleEntity) {
             $articleEntity = $this->articlemodel->getArticleFromBlog($request->getSession()->get('id'), $articleEntity->getId());
             if(!$articleEntity) {
