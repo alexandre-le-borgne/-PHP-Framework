@@ -49,4 +49,10 @@ class FollowerModel extends Model
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FollowerEntity');
         return $data->fetchAll();
     }
+
+    public function unfollow($user, $follower)
+    {
+        $db = new Database();
+        $db->execute('DELETE FROM followers where user = ? AND follower = ?', array($user, $follower));
+    }
 }

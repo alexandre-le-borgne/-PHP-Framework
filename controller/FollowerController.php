@@ -28,8 +28,11 @@ class FollowerController extends Controller
         return 12;
     }
 
-    public function UnFollowAction()
+    public function UnFollowAction(Request $request)
     {
-
+        $this->loadModel('FollowerModel');
+        $followed = $request->get('id');
+        $user = $request->getSession()->get('id');
+        $this->followermodel->unfollow($followed, $user);
     }
 }
