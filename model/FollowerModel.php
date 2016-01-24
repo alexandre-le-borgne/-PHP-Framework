@@ -33,7 +33,9 @@ class FollowerModel extends Model
     public function getFollowersById($userId)
     {
         $db = new Database();
-        $data = $db->execute("SELECT * FROM followers WHERE user = ?", array($userId));
+        $data = $db->execute(
+            "SELECT * FROM followers JOIN accounts ON followers.follower = accounts.id  WHERE followers.user = ?",
+            array($userId));
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FollowerEntity');
         return $data->fetchAll();
     }
