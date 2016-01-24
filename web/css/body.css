@@ -454,7 +454,7 @@ body
 }
 
 #add_flux_body input[type="submit"] {
-    margin-top: 10px !important;
+    margin-top: 16px !important;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     border: none !important;
