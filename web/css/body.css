@@ -168,26 +168,29 @@ table
 #barrack_content
 {
     /* #cf3630 */
-    background: url('../img/content/time.png') no-repeat !important;
-    background-size: 10%;
+    background: url('../img/content/time.png') no-repeat center;
+    background-size: cover;
 }
 
 #charlie_content
 {
     /* #1ba848 */
-    background: url('../img/content/charlie.png') no-repeat center !important;;
+    background: url('../img/content/charlie.png') no-repeat center;
+    background-size: cover;
 }
 
 #robin_content
 {
     /* #f8f7e5 */
-    background: url('../img/content/robin.png') no-repeat center !important;;
+    background: url('../img/content/robin.png') no-repeat center;
+    background-size: cover;
 }
 
 #gims_content
 {
     /* #0b0509 */
-    background: url('../img/content/acdc.png') no-repeat center !important;;
+    background: url('../img/content/acdc.png') no-repeat center;
+    background-size: cover;
 }
 
 #david_guetta_content
