@@ -96,7 +96,7 @@
                     id: post.attr("id"),
                 };
                 if(ajax(data)) {
-                    $(this).children().attr('src', <?= View::getAsset('img/nolike.png') ?>);
+                    $(this).children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     $(this).removeClass('like').addClass('nolike');
                 }
             });
@@ -107,7 +107,7 @@
                     id: post.attr("id"),
                 };
                 if(ajax(data)) {
-                    $(this).children().attr('src', <?= View::getAsset('img/like.png') ?>);
+                    $(this).children().attr('src', '<?= View::getAsset('img/like.png') ?>');
                     $(this).removeClass('like').addClass('like');
                 }
             });
