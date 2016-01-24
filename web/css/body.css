@@ -166,27 +166,27 @@ table
 /* Background Settings Content */
 #barrack_content
 {
-    background-color: #cf3630;
+    background: #cf3630 url('../img/content/time.png') no-repeat center center fixed;
 }
 
 #charlie_content
 {
-    background-color: #1ba848;
+    background: #1ba848 url('../img/content/charlie.png') no-repeat center center fixed;
 }
 
 #robin_content
 {
-    background-color: #f8f7e5;
+    background: #f8f7e5 url('../img/content/robin.png') no-repeat center center fixed;
 }
 
 #gims_content
 {
-    background-color: #0b0509;
+    background: #0b0509 url('../img/content/acdc.png') no-repeat center center fixed;
 }
 
 #david_guetta_content
 {
-    background-color: #1a181d;
+    background: #1a181d url('../img/content/david.png') no-repeat center center fixed;
 }
 
 /* Pictures Size Setting */
