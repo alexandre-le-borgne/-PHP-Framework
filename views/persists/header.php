@@ -53,6 +53,7 @@ if (isset($mailValidationMessage))
                                 channel: channel
                             },
                             success: function(result) {
+                            console.log(result);
                                 if(Array.isArray(result)) {
                                     console.log(result);
                                     availableTags = result;
