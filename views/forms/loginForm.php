@@ -4,6 +4,9 @@
  * et avec compte Google, Facebook ou Twitter
  */
 $view->extend('layouts/fullpage');
+
+if (isset($validate))
+    echo '<div class="errors_fields">' . $validate . '</div>';
 ?>
 
 <a id="register_button" href="<?= View::getUrlFromRoute('register') ?>">Inscrivez-vous !</a>
