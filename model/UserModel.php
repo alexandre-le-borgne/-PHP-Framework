@@ -40,14 +40,28 @@ class UserModel extends Model
         return null;
     }
 
-    public function getLike($channel) {
+    public function getLike($channel)
+    {
         $availables = array();
         $db = new Database();
-        $data = $db->execute("SELECT username FROM accounts WHERE username LIKE ? LIMIT 10", array($channel.'%'));
-        while($fetch = $data->fetch()) {
+        $data = $db->execute("SELECT username FROM accounts WHERE username LIKE ? LIMIT 10", array($channel . '%'));
+        while ($fetch = $data->fetch())
+        {
             $availables[] = $fetch['username'];
         }
         return $availables;
+    }
+
+    public function follow($followedName, $followerId)
+    {
+        $db = new Database();
+        $followedUser = $this->getByNameOrEmail($followedName);
+        if ($followedUser)
+        {
+            $db->execute('INSERT INTO follower (user, follower) VALUES (?, ?)', array($followedUser->getId(), $followerId));
+            return true;
+        }
+        return false;
     }
 
     public function getPassword(UserEntity $user)
@@ -139,7 +153,8 @@ class UserModel extends Model
         Mail::sendForgotMail($email, $user, $key);
     }
 
-    public function resetPassword($user, $key, $password){
+    public function resetPassword($user, $key, $password)
+    {
         $db = new Database();
 
         $user = Security::escape($user);

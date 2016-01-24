@@ -36,6 +36,7 @@ class Router
         $this->table[] = new Route('channel',           'user',         'channel');
         $this->table[] = new Route('profile',           'user',         'profile');
         $this->table[] = new Route('resetpassword',     'user',         'resetpassword');
+        $this->table[] = new Route('followchannel',     'user',         'followChannel');
 
         $this->table[] = new Route('article',           'article',      'article');
         $this->table[] = new Route('category',          'article',      'category');
