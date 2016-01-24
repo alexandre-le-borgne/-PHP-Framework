@@ -79,7 +79,7 @@
 
                 <div class="post_footer">
                     <a class="follow" href="#" >Suivre ce flux</a>
-                    <a class="ignore" href="#" ><img src="<?= View::getAsset('img/show.png') ?>" width="27"></a>
+                    <a class="ignore" href="#" ><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></a>
                     <a class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
                     <a class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></a>
                     <a class="global_url" href="#" ><img src="<?= View::getAsset('img/share.png') ?>" width="27"></a>
