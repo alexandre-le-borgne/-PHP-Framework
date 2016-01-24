@@ -40,6 +40,16 @@ class UserModel extends Model
         return null;
     }
 
+    public function getLike($channel) {
+        $availables = array();
+        $db = new Database();
+        $data = $db->execute("SELECT username FROM accounts WHERE username LIKE ? LIMIT 10", array($channel.'%'));
+        while($fetch = $data->fetch()) {
+            $availables[] = $fetch['username'];
+        }
+        return $availables;
+    }
+
     public function getPassword(UserEntity $user)
     {
         if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD)

@@ -8,6 +8,7 @@
  */
 class AjaxController extends Controller
 {
+    // Action frontale des reqûetes Ajax.
     public function IndexAction(Request $request) {
         if(!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
             return;
@@ -18,8 +19,17 @@ class AjaxController extends Controller
             case 'nolike':
                 $this->NoLikeAction($request);
                 break;
+            case 'search':
+                $this->SearchAction($request);
+                break;
             default:
         }
+    }
+
+    private function SearchAction(Request $request) {
+        $channel = $request->post('channel');
+        $this->loadModel('UserModel');
+        return json_encode($this->usermodel->getLike($channel));
     }
 
     private function LikeAction(Request $request) {
