@@ -19,7 +19,7 @@ class FollowerController extends Controller
     public function FollowerNumbersAction()
     {
         //Todo finir
-        return 12;
+        return 42;
     }
 
     public function UnFollowAction(Request $request)
