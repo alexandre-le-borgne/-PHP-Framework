@@ -19,18 +19,23 @@ $this->render('persists/header');
         <form class="flux_twitter" action="" method="post">
             <input class="first" type="date" name="firstUpdate" placeholder="À partir de" required>
             <input type="text" name="channel" placeholder="Nom du compte @" required>
-            <input class="last" type="text" name="category" placeholder="La catégorie pour le ranger" required>
+            <input type="text" name="category" placeholder="La catégorie pour le ranger" required>
+            <input class="last" type="submit" name="category" value="Ajouter ce flux!">
         </form>
 
         <form class="flux_rss" action="" method="post">
             <input class="first last"type="text" name="url_flux" placeholder="URL du flux" required>
+            <input type="text" name="category" placeholder="La catégorie pour le ranger" required>
+            <input class="last" type="submit" name="category" value="Ajouter ce flux !">
         </form>
 
         <form class="flux_imap" action="" method="post">
             <input class="first" type="text" name="host_name" placeholder="Serveur IMAP" required>
             <input type="text" name="username" placeholder="Nom d'utilisateur" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
-            <input class="last" type="date" name="since_date" placeholder="À partir de" required>
+            <input type="date" name="since_date" placeholder="À partir de" required>
+            <input type="text" name="category" placeholder="La catégorie pour le ranger" required>
+            <input class="last" type="submit" name="category" value="Ajouter ce flux !">
         </form>
     </div>
 </div>
@@ -49,6 +54,7 @@ $this->render('persists/header');
         $('.flux_twitter').show();
         $('.flux_rss').hide();
         $('.flux_imap').hide();
+        $('#twitter_button').css('background', '#529ecc');
 
         $('#twitter_button').click(function()
         {
@@ -74,7 +80,7 @@ $this->render('persists/header');
         {
             $('#IMAP_button').css('background', '#a77dc2');
             $('#twitter_button').css('background', '#2f3d51');
-            $('#IMAP_button').css('background', '#2f3d51');
+            $('#RSS_button').css('background', '#2f3d51');
 
             $('.flux_twitter').hide();
             $('.flux_rss').hide();

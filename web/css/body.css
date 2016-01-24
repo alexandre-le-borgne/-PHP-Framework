@@ -464,15 +464,15 @@ body
     width: 633px;
 }
 
-div#RSS_button:active, div#RSS_button:visited {
+div#RSS_button::selection {
     background: #a77dc2;
 }
 
-div#IMAP_button:active, div#IMAP_button:visited {
+div#IMAP_button::selection {
     background: #56bc8a;
 }
 
-div#twitter_button:active, div#twitter_button:visited {
+div#twitter_button::selection {
     background: #529ecc;
 }
 
