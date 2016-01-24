@@ -15,7 +15,7 @@ class IndexController extends Controller
             if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
             {
                 $this->loadModel('ArticleModel');
-                $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 50);
+                $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 10);
                 $data = array('articles' => $articles);
                 $this->render('layouts/home', $data);
             }
