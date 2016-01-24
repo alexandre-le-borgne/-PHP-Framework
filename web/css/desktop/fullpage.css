@@ -246,11 +246,13 @@
 
 #table_section_social
 {
+    padding: 40px;
     width: 60%;
     float: right;
     height: 100%;
     background: url("../../img/twitter_illus.png") no-repeat center;
     background-size: cover;
+    color: #36465d;
 }
 
 /*****************************************/
