@@ -24,7 +24,7 @@ $this->render('persists/header');
         </form>
 
         <form class="flux_rss" action="" method="post">
-            <input class="first last"type="text" name="url_flux" placeholder="URL du flux" required>
+            <input class="first"type="text" name="url_flux" placeholder="URL du flux" required>
             <input type="text" name="category" placeholder="La catégorie pour le ranger" required>
             <input class="last" type="submit" name="category" value="Ajouter ce flux !">
         </form>
