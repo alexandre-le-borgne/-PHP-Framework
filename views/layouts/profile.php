@@ -48,6 +48,11 @@ function formTr($string, $streams, $streamType)
     <div id="header">
         <h1><?= $profile ?></h1>
     </div>
+    <nav>
+        <div id="stream">Mes Flux</div>
+        <div id="followers_button">Mes Abonnés</div>
+        <div id="following_botton">Mes Abonnements</div>
+    </nav>
     <div id="categories">
         <?php
             if (isset($categories))
