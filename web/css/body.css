@@ -182,12 +182,12 @@ table
 #lemonde_magazine
 {
     background-color: #f2f2f2 !important;
-    background-size: 40% !important;
+    background-size: 30% !important;
 }
 
 #lemonde_magazine:hover
 {
-    background-size: 40% !important;
+    background-size: 30% !important;
 }
 
 #courrierinter_magazine
