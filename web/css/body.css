@@ -246,9 +246,7 @@ body
     position: fixed;
     height: 100%;
     float: left;
-    -moz-column-count: 2;
     column-count: 2;
-    -moz-column-gap: 10px;
     column-gap: 10px;
     width: 350px;
     word-wrap: break-word;
@@ -303,21 +301,14 @@ body
      border: solid 1px #748089;
      margin-top: -19px;
      color: #748089;
-     transition: 150ms background;
-     transition: 150ms color;
+     transition: 150ms background, 150ms color;
  }
 
 .post_footer .follow:hover
 {
-    padding: 12px;
-    border-radius: 3px;
-    float: right;
-    border: solid 1px #748089;
-    margin-top: -19px;
-    color: white;
     background: #748089;
-    transition: 150ms background;
-    transition: 150ms color;
+    color: #ffffff;
+    transition: 150ms background, 150ms color;
 }
 
 
@@ -473,26 +464,4 @@ body
     margin: 7px auto;
     width: 633px;
 }
-
-div#RSS_button::selection {
-    background: #a77dc2;
-}
-
-div#IMAP_button::selection {
-    background: #56bc8a;
-}
-
-div#twitter_button::selection {
-    background: #529ecc;
-}
-
-
-/*#RSS_button, #IMAP_button, #twitter_button*/
-/*{*/
-    /*background: black;*/
-    /*color: #ffffff;*/
-    /*width: 100px;*/
-    /*height: 100px;*/
-    /*cursor: pointer;*/
-/*}*/
 

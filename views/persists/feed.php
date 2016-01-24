@@ -16,7 +16,7 @@
         {
             ?>
 
-            <div class="post" id="post_<?= $article->getId() ?>">
+            <div class="post">
                 <?php
                 switch($article->getStreamType()) {
                     case ArticleModel::EMAIL:
@@ -37,16 +37,16 @@
 
                         switch($article->getStreamType()) {
                             case ArticleModel::EMAIL:
-                                echo '<img src="'.View::getAsset('img/email.png').'" width="60">';
+                                echo '<img src="' . View::getAsset('img/email.png') . '" ' . 'width="60" ' . '"';
                                 break;
                             case ArticleModel::RSS:
-                                echo '<img src="'.View::getAsset('img/rss.png').'" width="25">';
+                                echo '<img src="' . View::getAsset('img/rss.png') . '" ' . 'width="25" ' . '"';
                                 break;
                             case ArticleModel::TWITTER:
-                                echo '<img src="'.View::getAsset('img/twitter.png').'" width="33">';
+                                echo '<img src="' . View::getAsset('img/twitter.png') . '" ' . 'width="33" ' . '"';
                                 break;
                             default:
-                                echo '<img src="'.View::getAsset('img/default.png').'" width="42">';
+                                echo '<img src="' . View::getAsset('img/default.png') . '" ' . 'width="42" ' . '"';
                         }
                         ?>
                     </span>
@@ -78,65 +78,16 @@
                 </div>
 
                 <div class="post_footer">
-                    <span class="follow" href="#" >Suivre ce flux</span>
-                    <span class="ignore" href="#" ><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></span>
-                    <?php
-                    if(in_array($article->getId(), $favoris)) {
-                        ?>
-                        <span class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></span>
-                        <?php
-                    }
-                    else {
-                        ?>
-                        <span class="nolike" href="#" ><img src="<?= View::getAsset('img/nolike.png') ?>" width="27"></span>
-                        <?php
-                    }
-                    ?>
-                    <span class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></span>
-                    <a class="global_url" target="_blank" href="<?= View::getUrlFromRoute('article', $article->getId()) ?>" >
-                        <img src="<?= View::getAsset('img/share.png') ?>" width="27">
-                    </a>
+                    <a class="follow" href="#" >Suivre ce flux</a>
+                    <a class="ignore" href="#" ><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></a>
+                    <a class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
+                    <a class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></a>
+                    <a class="global_url" href="#" ><img src="<?= View::getAsset('img/share.png') ?>" width="27"></a>
                 </div>
+
             </div>
             <?php
         }
-        ?>
-        <script>
-            $(document).on("click", ".post_footer .like", function() {
-                var thispost = this;
-                var post = $(this).parents(".post");
-                var data = {
-                    action: 'nolike',
-                    id: post.attr("id"),
-                };
-                $.ajax({
-                    method: "POST",
-                    url: "<?= View::getUrlFromRoute('ajax') ?>",
-                    data: data
-                }).done(function( msg ) {
-                    $("img", thispost).attr('src', '<?= View::getAsset('img/nolike.png') ?>');
-                    $(thispost).removeClass('like').addClass('nolike');
-                });
-            });
-            $(document).on("click", ".post_footer .nolike", function() {
-                console.log("t");
-                var thispost = this;
-                var post = $(this).parents(".post");
-                var data = {
-                    action: 'like',
-                    id: post.attr("id"),
-                };
-                $.ajax({
-                    method: "POST",
-                    url: "<?= View::getUrlFromRoute('ajax') ?>",
-                    data: data
-                }).done(function( msg ) {
-                    $("img", thispost).attr('src', '<?= View::getAsset('img/like.png') ?>');
-                    $(thispost).removeClass('nolike').addClass('like');
-                });
-            });
-        </script>
-        <?php
     }
     ?>
 </div>
