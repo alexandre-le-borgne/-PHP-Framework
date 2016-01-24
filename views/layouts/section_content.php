@@ -19,19 +19,7 @@
     </div>
 
     <div id="table_section_content">
-        <table width=345px height=66%>
-            <tr>
-                <td width=50% align="center" id="barrack_content"></td>
-                <td width=50% align="center" id="charlie_content"></td>
-            </tr>
-        </table>
-        <table width=345px height=34% >
-            <tr>
-                <td width="33%" align="center" id="robin_content"></td>
-                <td width="33%" align="center" id="gims_content"></td>
-                <td width="33%" align="center" id="david_guetta_content"></td>
-            </tr>
-        </table>
+       ewq
     </div>
 </div>
 
