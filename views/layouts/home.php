@@ -8,9 +8,10 @@
 $view->extend('layouts/layout');
 $this->render('persists/header');
 
-if(isset($errors)) {
+if (isset($errors))
+{
     var_dump($errors);
-    echo '<div class="errors_fields">'.$errors.'</div>';
+    echo '<div class="errors_fields">' . $errors . '</div>';
 }
 
 echo $this->output('_content');
@@ -20,7 +21,8 @@ echo $this->output('_content');
     if (isset($channel))
     {
         echo '<a href="' . View::getUrlFromRoute('channel/' . $channel) . '">Blog de  ' . $this->escape($channel) . '</a>';
-        echo '<a href="' . View::getUrlFromRoute('followchannel/' . $channel) . '"> Suivre</a>';
+        echo '<span class="follow" href="' . View::getUrlFromRoute('followchannel/' . $channel) . '">Suivre</span>';
+
     }
     else
     {
