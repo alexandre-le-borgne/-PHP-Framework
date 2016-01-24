@@ -39,7 +39,7 @@ class IndexController extends Controller
             $twitterStreams = $this->twittermodel->getByUserId($id);
             $rssStreams = $this->rssmodel->getByUserId($id);
             $streams = array('emailStreams' => $emailStreams, 'twitterStreams' => $twitterStreams, 'rssStreams' => $rssStreams);
-            $data = array('categories' => $categories, 'streams' => $streams, 'followers' => $followers);
+            $data = array('categories' => $categories, 'streams' => $streams);
             $this->render('layouts/aside', $data);
         }
     }

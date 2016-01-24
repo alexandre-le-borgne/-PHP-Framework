@@ -21,27 +21,41 @@ class RssController extends  Controller{
         }
     }
 
-    public function AddRSSStreamAction(Request $request){
+    public function addRSSStreamAction(Request $request){
         $categoryTitle = $request->post('category');
         $firstUpdate = $request->post('firstUpdate');
         $url = $request->post('url_flux');
 
-        $this->loadModel('CategoryModel');
-        $this->loadModel('RssModel');
-        $url = $this->rssmodel->resolveFile($url);
-        $userId = $request->getSession()->get('id');
-        $rssEntity = $this->rssmodel->createStream($url, $firstUpdate);
+        if($categoryTitle && $firstUpdate && $url){
 
-        $categoryEntity = $this->categorymodel->createCategory($userId, $categoryTitle);
+            var_dump($categoryTitle);
+            var_dump($firstUpdate);
+            var_dump($url);
 
-        $streamCategoryEntity = new StreamCategoryEntity();
-        $streamCategoryEntity->setCategory($categoryEntity->getId());
-        $streamCategoryEntity->setStream($rssEntity->getId());
-        $streamCategoryEntity->setStreamType(ArticleModel::RSS);
-        $streamCategoryEntity->persist();
+            $this->loadModel('CategoryModel');
+            $this->loadModel('RssModel');
+            $url = $this->rssmodel->resolveFile($url);
+            $userId = $request->getSession()->get('id');
+            $rssEntity = $this->rssmodel->createStream($url, $firstUpdate);
 
-        $this->twittermodel->streamCron($rssEntity);
-        $this->redirectToRoute('index');
+            if($rssEntity)
+            {
+                $categoryEntity = $this->categorymodel->createCategory($userId, $categoryTitle);
+
+                $streamCategoryEntity = new StreamCategoryEntity();
+                $streamCategoryEntity->setCategory($categoryEntity->getId());
+                $streamCategoryEntity->setStream($rssEntity->getId());
+                $streamCategoryEntity->setStreamType(ArticleModel::RSS);
+                $streamCategoryEntity->persist();
+
+                $this->twittermodel->streamCron($rssEntity);
+                $this->redirectToRoute('index');
+            }
+            else
+            {
+                $this->render('layouts/addStream', array('errors' => array('Une erreur est survenue dans la connexion au flux twitter. Veuillez réssayer ! ')));
+            }
+        }
     }
 
 }

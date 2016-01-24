@@ -66,28 +66,21 @@ class CategoryModel extends Model
         return null;
     }
 
-    /**
-     * Renvoit un tableau de streamCategory entity avec le titre de la category, et l'url du stream associé, qui est
-     * plus exploitable que des ID
-
-    public function getStreamsByCategoryId($id)
+    public function deleteCategory($id)
     {
-        if (is_numeric($id))
+        $db = new Database();
+        $db->execute('DELETE FROM categories WHERE id = ?', array($id));
+        $db->execute('DELETE FROM stream_category WHERE category = ?', array($id));
+    }
+
+    public function deleteAllCategoriesByAccount($userId)
+    {
+        $db = new Database();
+        $result = $db->execute('SELECT * FROM categories WHERE account = ?', array($userId));
+        while ($fetch = $result->fetch())
         {
-            $return = array();
-            $db = new Database();
-            $req =
-                'SELECT c1.id,  FROM categories c1 JOIN stream_categories sc1 ON c1.id = sc1.category JOIN stream_email s1'
-            $result = $db->execute("SELECT * FROM categories JOIN stream_category ON categories.id = stream_category.category WHERE categories.id = ?", array($id));
-            while ($fetch = $result->fetch())
-            {
-                $streamCategory = new StreamCategoryEntity();
-                $streamCategory->setId($fetch['stream_category.id']);
-                $streamCategory->setStream($fetch['']);//l'url du stream
-                $streamCategory->setCategory($fetch['categories.title']);
-                $streamCategory->setStreamType($fetch['streamType']);
-            }
-            return $data->fetch();
+            $this->deleteCategory($fetch['id']);
         }
-    }*/
+    }
+
 }

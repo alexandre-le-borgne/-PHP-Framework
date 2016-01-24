@@ -33,8 +33,26 @@ class FollowerModel extends Model
     public function getFollowersById($userId)
     {
         $db = new Database();
-        $data = $db->execute("SELECT * FROM followers WHERE user = ?", array($userId));
+        $data = $db->execute(
+            "SELECT * FROM followers JOIN accounts ON followers.follower = accounts.id  WHERE followers.user = ?",
+            array($userId));
         $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FollowerEntity');
         return $data->fetchAll();
+    }
+
+    public function getFollowingById($userId)
+    {
+        $db = new Database();
+        $data = $db->execute(
+            "SELECT * FROM followers JOIN accounts ON followers.user = accounts.id  WHERE followers.follower = ?",
+            array($userId));
+        $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'FollowerEntity');
+        return $data->fetchAll();
+    }
+
+    public function unfollow($user, $follower)
+    {
+        $db = new Database();
+        $db->execute('DELETE FROM followers where user = ? AND follower = ?', array($user, $follower));
     }
 }

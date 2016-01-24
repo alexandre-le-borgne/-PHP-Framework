@@ -59,20 +59,34 @@ class RssModel extends Model implements StreamModel
         return null;
     }
 
+    public function getStreamByUrl($url){
+        $db = new Database();
+        $req = 'SELECT * FROM stream_rss WHERE url = ?';
+        $result = $db->execute($req, array($url));
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'TwitterEntity');
+        return $result->fetch();
+    }
+
     public function createStream($url, DateTime $firstUpdate)
     {
         $db = new Database();
-        $req = "SELECT * FROM stream_rss WHERE url = ?";
-        $result = $db->execute($req, array($url));
-        if (!($fetch = $result->fetch()))
-        {
-            $req = 'INSERT INTO stream_rss (url, firstUpdate, lastUpdate) VALUES (? , ?, now())';
-            $db->execute($req, array($url, $firstUpdate->format(Database::DATE_FORMAT)));
+
+        $result = $this->getStreamByUrl($url);
+
+        if ($result)
+        {   //Si existe deja, et nouvelle date plus ancienne, alors on modifie le firstUpdate a la nouvelle date donnee
+            if (strtotime($firstUpdate) < strtotime($result->getFirstUpdate()))
+                $db->execute('UPDATE stream_rss SET firstUpdate = ? WHERE url = ?', array(date(Database::DATE_FORMAT, strtotime($firstUpdate)), $url));
+            return $result;
         }
-        if ($fetch['firstUpdate'] < $firstUpdate)
-        {
-            $req = 'UPDATE stream_rss SET firstUpdate = ? WHERE url = ?';
-            $db->execute($req, array($firstUpdate->format(Database::DATE_FORMAT), $url));
+        else
+        {   //Sinon, on cree le flux
+            $twitterEntity = new RssEntity();
+            $twitterEntity->setUrl($url);
+            $twitterEntity->setFirstUpdate($firstUpdate);
+            $twitterEntity->setLastUpdate(date(Database::DATE_FORMAT));
+            $twitterEntity->persist();
+            return $twitterEntity;
         }
     }
 

@@ -35,6 +35,9 @@ class Router
         $this->table[] = new Route('channel',           'user',         'channel');
         $this->table[] = new Route('profile',           'user',         'profile');
         $this->table[] = new Route('resetpassword',     'user',         'resetpassword');
+        $this->table[] = new Route('deletecategory',    'user',         'deleteCategory');
+
+
 
         $this->table[] = new Route('article',           'article',      'article');
         $this->table[] = new Route('category',          'article',      'category');
@@ -47,6 +50,10 @@ class Router
         $this->table[] = new Route('favoris',           'article',      'favoris');
 
         $this->table[] = new Route('followchannel',     'follower',     'followChannel');
+        $this->table[] = new Route('followernumbers',   'follower',     'followerNumbers');
+        $this->table[] = new Route('unfollow',          'follower',     'unFollow');
+
+
 
         /** Ajouts de flux */
         $this->table[] = new Route('addtwitterstream',  'twitter',      'addTwitterStream');
