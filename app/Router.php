@@ -21,7 +21,6 @@ class Router
 
         $this->table[] = new Route('cron',              'index',        'cron');
 
-
         $this->table[] = new Route('login',             'user',         'login');
         $this->table[] = new Route('logout',            'user',         'logout');
         $this->table[] = new Route('preregister',       'user',         'preRegister');
@@ -35,6 +34,7 @@ class Router
         $this->table[] = new Route('channel',           'user',        'channel');
 
         $this->table[] = new Route('article',           'article',      'article');
+        $this->table[] = new Route('category',          'article',      'category');
 
         $this->table[] = new Route('admin',             'admin',        'index');
         $this->table[] = new Route('adminusers',        'admin',        'users');

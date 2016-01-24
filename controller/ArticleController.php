@@ -25,6 +25,29 @@ class ArticleController extends Controller
         }
     }
 
+    public function CategoryAction(Request $request, $id) {
+        if (!$request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        {
+            $this->redirectToRoute('index');
+        }
+        else
+        {
+            $this->loadModel('CategoryModel');
+            $this->loadModel('ArticleModel');
+            /** @var CategoryEntity $categoryEntity */
+            $categoryEntity = $this->categorymodel->getById($id);
+            if($categoryEntity->getAccount() == $request->getSession()->get('id')) {
+                $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
+                $articles = $this->articlemodel->getArticlesByCategoryId($categoryEntity->getId(), 0, 50);
+                $data = array('title' => $categoryEntity->getTitle(), 'categories' => $categories, 'articles' => $articles);
+                $this->render('layouts/home', $data);
+            }
+            else {
+                $this->redirectToRoute('index');
+            }
+        }
+    }
+
     public function ArticleAction(Request $request, $id)
     {
         //$id est rempli par l'url : aaron/publicarticle/54651346546132, l'id de l'article

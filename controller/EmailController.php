@@ -8,7 +8,7 @@
  */
 class EmailController extends Controller
 {
-    public function IndexAction($id = null)
+    public function IndexAction($id = null) // Fonction de debug pour le dev
     {
         if (intval($id)) {
 

@@ -15,7 +15,7 @@ echo $this->output('_content');
             echo '<a href="'.View::getUrlFromRoute('channel/'.$channel).'">Blog de  '.$this->escape($channel).'</a>';
         }
         else {
-            echo $this->output('title', 'Mes actualités');
+            echo $this->escape($this->output('title', 'Mes actualités'));
         }
         ?>
     </h1>
