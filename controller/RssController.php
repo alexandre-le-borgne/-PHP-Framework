@@ -26,6 +26,10 @@ class RssController extends  Controller{
         $firstUpdate = $request->post('firstUpdate');
         $url = $request->post('url_flux');
 
+        var_dump($categoryTitle);
+        var_dump($firstUpdate);
+        var_dump($url);
+
         if($categoryTitle && $firstUpdate && $url){
 
             var_dump($categoryTitle);
