@@ -1,14 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: l14011190
- * Date: 14/12/15
- * Time: 14:17
- *
- *
- */
-
 abstract class Controller
 {
     protected $models;
@@ -33,8 +24,8 @@ abstract class Controller
 
     public function redirectToRoute($route, $data = array())
     {
-        $path = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . '://' . $_SERVER['SERVER_NAME'] . '/aaron/'.$route;
-        foreach($data as $v)
+        $path = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . '://' . $_SERVER['SERVER_NAME'] . '/aaron/' . $route;
+        foreach ($data as $v)
             $path .= "/$v";
         $this->redirect($path);
     }

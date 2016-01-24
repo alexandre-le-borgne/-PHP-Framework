@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 16/12/2015
- * Time: 14:36
- */
 class Kernel
 {
     private static $instance = null;
