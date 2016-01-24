@@ -163,7 +163,7 @@
 {
     height: 100%;
     width: 100%;
-    background-color: #f8c433;
+    background-color: #f2992e;
 }
 
 #table_section_content h3
@@ -173,10 +173,9 @@
 
 #title_section_content
 {
-    float: left;
     height: 100%;
-    width: 40%;
-    background-color: #f8c433;
+    width: 100%;
+    background-color: #f2992e;
 }
 
 #text_content
@@ -230,10 +229,9 @@
 
 #title_section_social
 {
-    float: left;
     height: 100%;
-    width: 40%;
-    background-color: #f037a5;
+    width: 100%;
+    background-color: #a77dc2;
 }
 
 /*****************************************/
