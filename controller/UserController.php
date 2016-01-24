@@ -491,19 +491,29 @@ class UserController extends Controller
 
             foreach ($streamCategories as $streamCategory)
             {
+//                var_dump($streamCategory);
+
                 if ($streamCategory->getStreamType() == ArticleModel::TWITTER)
                 {
-                    $twitterStreams = $this->twittermodel->getStreamById($streamCategory->getId());
+                    $var = $this->twittermodel->getStreamById($streamCategory->getId());
+                    if ($var)
+                        $twitterStreams = $var;
                 }
                 else if ($streamCategory->getStreamType() == ArticleModel::EMAIL)
                 {
-                    $emailStreams = $this->emailmodel->getStreamById($streamCategory->getId());
+                    $var = $this->emailmodel->getStreamById($streamCategory->getId());
+                    if ($var)
+                        $emailStreams = $var;
                 }
                 else if ($streamCategory->getStreamType() == ArticleModel::RSS)
                 {
-                    $rssStreams = $this->rssmodel->getStreamById($streamCategory->getId());
+                    $var = $this->rssmodel->getStreamById($streamCategory->getId());
+                    if ($var)
+                        $rssStreams = $var;
                 }
             }
+
+//            exit(0);
 
             $categoryStreams = array(
                 'twitter' => $twitterStreams,

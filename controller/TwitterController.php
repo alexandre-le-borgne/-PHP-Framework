@@ -17,6 +17,7 @@ class TwitterController extends Controller
         $firstUpdate = $request->post('firstUpdate');
         $channel = $request->post('channel');
         $userId = $request->getSession()->get('id');
+        $channel = str_replace('@', '', $channel);
 
         $this->loadModel('CategoryModel');
         $this->loadModel('TwitterModel');
