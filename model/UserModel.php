@@ -141,7 +141,7 @@ class UserModel extends Model
         $req = "Select * From accounts WHERE username = ? AND userKey = ?";
         $result = $db->execute($req, array($user, $oldKey));
 
-        while(!$stmt = $result->fetch()){
+        while(!$data = $result->fetch()){
             $key = Security::generateKey();
             $password = Security::encode($password);
 

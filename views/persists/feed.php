@@ -80,7 +80,7 @@
                 <div class="post_footer">
                     <a class="follow" href="#" >Suivre ce flux</a>
                     <a class="ignore" href="#" ><img src="<?= View::getAsset('img/hide.png') ?>" width="27"></a>
-                    <a class="like" href="#like" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
+                    <a class="like" href="#" ><img src="<?= View::getAsset('img/like.png') ?>" width="27"></a>
                     <a class="repost" href="#" ><img src="<?= View::getAsset('img/retweet.png') ?>" width="27"></a>
                     <a class="global_url" href="#" ><img src="<?= View::getAsset('img/share.png') ?>" width="27"></a>
                 </div>
@@ -90,20 +90,40 @@
         ?>
         <script>
             $(".post_footer .like") {
+                var post = $(this).parents(".post");
                 var data = {
-                    id: $(this).parents(".post").attr("id"),
-                    password: $("fieldset #block_password").html(),
-                    title: $('header h1 input').val(),
-                    posts: posts
+                    action: 'like',
+                    id: post.attr("id"),
                 };
+                if(ajax(data)) {
+                    $(this).children().attr('src', <?= View::getAsset('img/nolike.png') ?>);
+                    $(this).removeClass('like').addClass('nolike');
+                }
             }
-            $.ajax({
-                method: "POST",
-                url: "<?= View::getUrlFromRoute('ajax', array('like')) ?>/" + id,
-                data: data
-            }).done(function( msg ) {
-                console.log(msg);
-            });
+            $(".post_footer .nolike") {
+                var post = $(this).parents(".post");
+                var data = {
+                    action: 'nolike',
+                    id: post.attr("id"),
+                };
+                if(ajax(data)) {
+                    $(this).children().attr('src', <?= View::getAsset('img/like.png') ?>);
+                    $(this).removeClass('like').addClass('like');
+                }
+            }
+            function ajax(data) {
+                $.ajax({
+                    method: "POST",
+                    url: "<?= View::getUrlFromRoute('ajax') ?>,
+                    data: data
+                }).done(function( msg ) {
+                    if(msg)
+                        return msg;
+                    return true;
+                });
+                return false;
+            }
+
         </script>
         <?php
     }

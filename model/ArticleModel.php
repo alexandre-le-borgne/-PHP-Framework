@@ -71,6 +71,12 @@ class ArticleModel extends Model
         return null;
     }
 
+    public function removeFromFavoris($account, $article) {
+        if(is_numeric($article)) {
+            $db = new Database();
+            $db->execute("DELETE FROM articlesfavoris WHERE account = ? AND article = ?", array($account, $article));
+        }
+    }
 
     /*public function addArticle($title, $content, $date, $type, $url){
         $db = new Database();
