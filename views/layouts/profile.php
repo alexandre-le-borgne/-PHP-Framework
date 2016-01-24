@@ -34,7 +34,6 @@ function formTr($string, $streams, $streamType)
                     <input type="hidden" name="id" value="<?= $stream->getId() ?>">
                     <input type="hidden" name="streamType" value="<?= $streamType ?>">
                     <input type="submit" value="Supprimer" name="delStream">
-                    <input type="submit" value="Enlever de la catégorie" name="removeFromCat">
                 </form>
             </td>
         </tr>
