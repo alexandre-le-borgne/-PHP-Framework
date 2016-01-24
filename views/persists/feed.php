@@ -100,7 +100,7 @@
                     $(this).removeClass('like').addClass('nolike');
                 }
             }
-            $(".post_footer .nolike") {
+            $(".post_footer .nolike").click(function() {
                 var post = $(this).parents(".post");
                 var data = {
                     action: 'nolike',
@@ -110,7 +110,7 @@
                     $(this).children().attr('src', <?= View::getAsset('img/like.png') ?>);
                     $(this).removeClass('like').addClass('like');
                 }
-            }
+            });
             function ajax(data) {
                 $.ajax({
                     method: "POST",
