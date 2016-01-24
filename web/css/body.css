@@ -223,7 +223,22 @@ table
     /*{*/
         /*display: none;*/
     /*}*/
-    #usatoday_magazine, #courrierinter_magazine, #figaro_magazine
+    #time_magazine, #courrierinter_magazine, #figaro_magazine
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    /*#table_section_content*/
+    /*{*/
+    /*display: none;*/
+    /*}*/
+    /*#table_section_news*/
+    /*{*/
+    /*display: none;*/
+    /*}*/
+    #usatoday_magazine, #liberation_magazine, #lemonde_magazine
     {
         display: none;
     }
