@@ -89,7 +89,7 @@
         }
         ?>
         <script>
-            $(".post_footer .like").click(function() {
+            $(".post_footer .like").on("click", function() {
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
@@ -105,7 +105,7 @@
                     $(thispost).removeClass('like').addClass('nolike');
                 });
             });
-            $(".post_footer .nolike").click(function() {
+            $(".post_footer .nolike").on("click", function() {
                 var thispost = this;
                 var post = $(this).parents(".post");
                 var data = {
