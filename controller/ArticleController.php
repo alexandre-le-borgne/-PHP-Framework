@@ -66,17 +66,23 @@ class ArticleController extends Controller
             {
                 case ArticleModel::RSS:
                     /** @var RssEntity $stream */
-                    $stream = $this->rssmodel->getById($id);
+                    $stream = $this->rssmodel->getStreamById($id);
+                    if(!$stream)
+                        $this->redirectToRoute('index');
                     $title = $stream->getUrl();
                     break;
                 case ArticleModel::TWITTER:
                     /** @var TwitterEntity $stream */
-                    $stream = $this->twittermodel->getById($id);
+                    $stream = $this->twittermodel->getStreamById($id);
+                    if(!$stream)
+                        $this->redirectToRoute('index');
                     $title = $stream->getChannel();
                     break;
                 case ArticleModel::EMAIL:
                     /** @var EmailEntity $stream */
-                    $stream = $this->emailmodel->getById($id);
+                    $stream = $this->emailmodel->getStreamById($id);
+                    if(!$stream)
+                        $this->redirectToRoute('index');
                     $title = $stream->getAccount();
                     break;
                 default:

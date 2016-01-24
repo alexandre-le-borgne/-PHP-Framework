@@ -43,10 +43,17 @@ function formTr($string, $streams)
 
 if (isset($categories))
 {
+    if (empty($categories))
+    {
+        echo 'Pas de flux';
+    }
+    else
+    {
     ?>
         <div class="wrapper">
         <h1>Gestion des flux</h1>
     <?php
+    }
 
     foreach ($categories as $category)
     {
