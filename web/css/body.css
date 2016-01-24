@@ -419,6 +419,16 @@ body
     cursor: pointer;
 }
 
+#twitter_button img, #IMAP_button img
+{
+    width: 50px;
+}
+
+#RSS_button img
+{
+    width: 42px;
+}
+
 #add_flux_body input
 {
     background: white;
