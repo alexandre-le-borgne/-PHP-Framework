@@ -74,8 +74,8 @@ class RssModel extends Model implements StreamModel
             $firstRss = $this->getFirstArticle($rssEntity);
             $lastRss = $this->getLastArticle($rssEntity);
 
-            var_dump($firstRss);
-            var_dump($lastRss);
+            var_dump($firstRss['articleDate']);
+            var_dump($lastRss['articleDate']);
             /** @var RssEntity $fetch */
             $stream_id = $rssEntity->getId();
             $url = $rssEntity->getUrl();
