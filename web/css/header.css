@@ -62,22 +62,31 @@ header .search_bar:active, header .search_bar:focus {
     float: right;
 }
 
+@media (max-width: 875px)
+{
+    header .search_bar
+    {
+        width: 50%;
+        min-width: 50px;
+    }
+}
+
 #profile, #home
 {
     float: right;
-    margin-top: 10px;
-    margin-right: 10px;
+    margin-top: 14px;
+    margin-right: 20px;
     vertical-align: middle;
 }
 
 #profile img
 {
-    width: 32px;
+    width: 28px;
 }
 
 #home img
 {
-    width: 35px;
+    width: 30px;
 }
 
 #add_flux
