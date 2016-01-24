@@ -213,9 +213,9 @@
     transition: 150ms background, 150ms border-radius, 150ms border, 150ms color;
 }
 
-#table_section_content table td
+#title_section_content h3
 {
-
+    color: #ffffff;
 }
 
 #table_section_content table
@@ -237,6 +237,17 @@
     width: 40%;
     color: #ffffff !important;
     background-color: #a77dc2;
+}
+
+#title_section_social h3
+{
+    color: #ffffff;
+}
+
+#table_section_social
+{
+    background: url("../../img/twitter_illus.png") no-repeat center;
+    background-size: cover;
 }
 
 /*****************************************/
