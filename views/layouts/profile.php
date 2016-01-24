@@ -67,7 +67,6 @@ function formTr($string, $streams, $streamType)
                 {
                 ?>
                     <div class="wrapper">
-                    <h1>Gestion des flux</h1>
                 <?php
                 }
 
@@ -107,7 +106,7 @@ function formTr($string, $streams, $streamType)
         <?php
         if (isset($following) && !empty($following))
         {
-            echo '<div class="wrapper"><h1>Les gens que je suit</h1>';
+            echo '<div class="wrapper">';
             ?>
             <table border = 1>
                 <tr bgcolor = #DDD>
@@ -143,7 +142,7 @@ function formTr($string, $streams, $streamType)
         if (isset($followers) && !empty($followers))
             {
             $i = 0;
-            echo '<div class="wrapper"><h1>Les gens qui me suivent</h1>';
+            echo '<div class="wrapper">';
 
                 foreach ($followers as $follower)
                 {
@@ -175,9 +174,9 @@ function formTr($string, $streams, $streamType)
             $('#following_button').css('background', '#2f3d51');
             $('#stream_button').css('background', '#2f3d51');
 
-            $('#categories').show();
+            $('#categories').hide();
             $('#following').hide();
-            $('#followers').hide();
+            $('#followers').show();
         });
         $('#following_button').click(function()
         {
@@ -195,9 +194,9 @@ function formTr($string, $streams, $streamType)
             $('#followers_button').css('background', '#2f3d51');
             $('#following_button').css('background', '#2f3d51');
 
-            $('#categories').hide();
+            $('#categories').show();
             $('#following').hide();
-            $('#followers').show();
+            $('#followers').hide();
         });
     });
 </script>
