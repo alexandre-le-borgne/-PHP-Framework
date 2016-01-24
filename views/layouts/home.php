@@ -18,7 +18,7 @@ echo $this->output('_content');
     }
     else
     {
-        echo $this->escape($this->output('title', 'Mes actualités'));
+        echo $this->output('title', 'Mes actualités');
     }
     ?>
 </h1>
