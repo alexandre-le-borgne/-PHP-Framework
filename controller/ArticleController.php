@@ -82,7 +82,6 @@ class ArticleController extends Controller
                     /** @var EmailEntity $stream */
                     $stream = $this->emailmodel->getStreamById($id);
                     var_dump($stream);
-                    die();
                     if(!$stream)
                         $this->redirectToRoute('index');
                     $title = $stream->getAccount();
@@ -91,6 +90,9 @@ class ArticleController extends Controller
                     $this->redirectToRoute('index');
                     return;
             }
+            $this->articlemodel->userHasStream($request->getSession()->get('id'), $stream, $type);
+            die();
+
             // L'utilisateur a acces a ce flux car fait parti d'une de ces categories
             if($this->articlemodel->userHasStream($request->getSession()->get('id'), $stream, $type))
             {
