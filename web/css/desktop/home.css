@@ -68,15 +68,15 @@
     box-sizing: border-box;
 }
 
-.item_streams .email {
+.item_streams.email {
     border: 3px solid #d95e40;
 }
 
-.item_streams .twitter {
+.item_streams.twitter {
     border: 3px solid #529ECC;
 }
 
-.item_streams .rss {
+.item_streams.rss {
     border: 3px solid #56bc8a;
 }
 
