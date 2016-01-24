@@ -49,6 +49,7 @@ $this->render('persists/header');
         $('.flux_twitter').show();
         $('.flux_rss').hide();
         $('.flux_imap').hide();
+        $('#twitter_button').css('background', '#529ecc');
 
         $('#twitter_button').click(function()
         {
