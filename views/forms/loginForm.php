@@ -63,7 +63,7 @@ $view->extend('layouts/fullpage');
 
             var haut = (hauteur_fenetre - element.height()) / 2 + $(window).scrollTop();
             var gauche = (largeur_fenetre - element.width()) / 2 + $(window).scrollLeft();
-            element.css({position: 'absolute', top: haut, left: gauche});
+            element.css({position: 'relative', top: haut, left: gauche});
         }
 
         centrerElementAbsolu('.loginDiv');
