@@ -79,10 +79,10 @@
 
                 <div class="post_footer">
                     <a class="follow" href="#" >Suivre ce flux</a>
-                    <a class="ignore" href="#" >Ignorer</a>
-                    <a class="like" href="#" >Favoris</a>
-                    <a class="like" href="#" >Retweeter</a>
-                    <a class="global_url" href="#" >Partager</a>
+                    <a class="ignore" href="#" ><img src="show.png" width=""></a>
+                    <a class="like" href="#" ><img src="like.png" width=""></a>
+                    <a class="repost" href="#" ><img src="retweet.png" width=""></a>
+                    <a class="global_url" href="#" ><img src="share.png" width=""></a>
                 </div>
 
             </div>

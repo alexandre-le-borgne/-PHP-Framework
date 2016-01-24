@@ -285,11 +285,28 @@ body
 }
 
 .post_footer .follow
+ {
+     padding: 12px;
+     border-radius: 3px;
+     float: right;
+     border: solid 1px #748089;
+     margin-top: -19px;
+     color: #748089;
+     transition: 150ms background;
+     transition: 150ms color;
+ }
+
+.post_footer .follow:hover
 {
     padding: 12px;
     border-radius: 3px;
     float: right;
-    background-color: #3b3b3b;
+    border: solid 1px #748089;
+    margin-top: -19px;
+    color: white;
+    background: #748089;
+    transition: 150ms background;
+    transition: 150ms color;
 }
 
 
