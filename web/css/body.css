@@ -123,8 +123,7 @@ table
 {
     background: #db6f57;
     border-radius: 5px;
-    border: none;
-    color: #ffffff;
+    border: solid 2px #db6f57;
     transition: 150ms background, 150ms border-radius, 150ms border, 150ms color;
 }
 
