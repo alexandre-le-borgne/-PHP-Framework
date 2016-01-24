@@ -37,10 +37,11 @@ class ArticleController extends Controller
             $this->loadModel('ArticleModel');
             /** @var CategoryEntity $categoryEntity */
             $categoryEntity = $this->categorymodel->getById($id);
-            if($categoryEntity->getAccount() == $request->getSession()->get('id')) {
+            if($categoryEntity && $categoryEntity->getAccount() == $request->getSession()->get('id')) {
                 $categories = $this->categorymodel->getByUserId($request->getSession()->get('id'));
                 $articles = $this->articlemodel->getArticlesByCategoryId($categoryEntity->getId(), 0, 50);
-                $data = array('title' => $categoryEntity->getTitle(), 'categories' => $categories, 'articles' => $articles);
+                $favoris = $this->articlemodel->getIdOfFavoris($request->getSession()->get('id'));
+                $data = array('title' => $categoryEntity->getTitle(), 'categories' => $categories, 'articles' => $articles, 'favoris' => $favoris);
                 $this->render('layouts/home', $data);
             }
             else {

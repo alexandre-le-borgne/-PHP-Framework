@@ -33,7 +33,7 @@ abstract class Controller
 
     public function redirectToRoute($route, $data = array())
     {
-        $path = "$route";
+        $path = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . '://' . $_SERVER['SERVER_NAME'] . '/aaron/'.$route;
         foreach($data as $v)
             $path .= "/$v";
         $this->redirect($path);
