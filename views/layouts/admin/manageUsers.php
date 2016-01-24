@@ -40,10 +40,10 @@ if (isset($users))
 echo "<table border = 1> <tr bgcolor = #DDD>";
 echo "<td>id</td><td>Pseudonyme</td><td>Action</td></tr>";
 
-foreach ($users as $user):
+foreach ($users as $user)
 {
     if (!($user instanceof UserEntity)) continue;
-    echo '<tr bgcolor=' . '#EEE' . '>';
+    echo '<tr bgcolor = #EEE>';
     echo "<td>" . $user->getId() . "</td>";
     echo "<td>" . $user->getUsername() . "</td>";
     ?>
@@ -58,7 +58,6 @@ foreach ($users as $user):
     <?php
     echo '</tr>';
 }
-endforeach;
 
 echo '</table></div></div>';
 }

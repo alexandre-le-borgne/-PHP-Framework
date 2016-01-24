@@ -9,7 +9,23 @@ $view->extend('layouts/layout');
 $this->render('persists/header');
 
 //var_dump($categories);
-
+//Pour pas reecrire plein de fois
+function formTr($string, $id)
+{?>
+<tr bgcolor="#EEE">
+    <td>
+        <b><?= $string ?></b>
+    </td>
+    <td>
+        <form action="<?= View::getUrlFromRoute('deleteStream') ?>" method="post">
+            <input type="hidden" name="id" value="<?= $id ?>">
+            <input type="submit" value="Supprimer" name="delStream">
+            <input type="submit" value="Enlever de la catégorie" name="removeFromCat">
+        </form>
+    </td>
+</tr>
+<?php
+}
 
 if (isset($categories))
 {
@@ -20,8 +36,10 @@ if (isset($categories))
 
     foreach ($categories as $category)
     {
+        $cat = $category['categories'];
         ?>
-        <table border = 1><tr bgcolor="#6495ed">
+        <table border = 1>
+        <tr bgcolor = #DDD>
             <td>
                 <b><?= $category['title'] ?></b>
             </td>
@@ -32,7 +50,13 @@ if (isset($categories))
                     <input type="submit" value="Voir la categorie" name="seeCat">
                 </form>
             </td>
-         </tr></table>
+        </tr>
+        <?php
+        formTr('Twitter', $cat['twitter']->getId());
+        formTr('Email', $cat['email']->getId());
+        formTr('RSS', $cat['rss']->getId());
+        ?>
+        </table>
         <?php
 
         $cat = $category['categories'];
