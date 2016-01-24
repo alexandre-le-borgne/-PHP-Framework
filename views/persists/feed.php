@@ -96,7 +96,7 @@
                     id: post.attr("id"),
                 };
                 if(ajax(data)) {
-                    $(this).children().attr('src', <?= View::getAsset('img/nolike.png') ?>);
+                    $(this).children().attr('src', '<?= View::getAsset('img/nolike.png') ?>');
                     $(this).removeClass('like').addClass('nolike');
                 }
             });
@@ -107,18 +107,20 @@
                     id: post.attr("id"),
                 };
                 if(ajax(data)) {
-                    $(this).children().attr('src', <?= View::getAsset('img/like.png') ?>);
+                    $(this).children().attr('src', '<?= View::getAsset('img/like.png') ?>');
                     $(this).removeClass('like').addClass('like');
                 }
             });
             function ajax(data) {
                 $.ajax({
                     method: "POST",
-                    url: "<?= View::getUrlFromRoute('ajax') ?>,
+                    url: "<?= View::getUrlFromRoute('ajax') ?>",
                     data: data
                 }).done(function( msg ) {
-                    if(msg)
+                    if(msg) {
+                        console.log(msg);
                         return msg;
+                    }
                     return true;
                 });
                 return false;

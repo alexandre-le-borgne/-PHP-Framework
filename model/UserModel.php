@@ -124,9 +124,7 @@ class UserModel extends Model
         $stmt = $result->fetch();
 
         $user = $stmt['username'];
-        var_dump($user);
         $key = $stmt['userKey'];
-        var_dump($key);
 
         Mail::sendForgotMail($email, $user, $key);
     }
@@ -141,13 +139,17 @@ class UserModel extends Model
         $key = Security::generateKey();
         $password = Security::encode($password);
 
+
         $data = $this->getByNameOrEmail($user);
 
         $req = "UPDATE accounts SET userKey = ? WHERE id = ?";
+        echo '1';
         $db->execute($req, array($key, $data['id']));
+        echo '2';
 
         $req = "UPDATE passwords SET password = ? WHERE account = ?";
+        echo '3';
         $db->execute($req, array($password, $data['id']));
-
+        echo '4';
     }
 }
