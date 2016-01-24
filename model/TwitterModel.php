@@ -34,6 +34,12 @@ class TwitterModel extends Model implements StreamModel
         return null;
     }
 
+    public function getByUserId($id){
+        if(is_numeric($id)) {
+
+        }
+    }
+
     public function getStreamByChannel($channel)
     {
         $db = new Database();
