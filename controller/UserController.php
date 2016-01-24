@@ -393,7 +393,8 @@ class UserController extends Controller
         $this->render('/forms/resetForm');
     }
 
-    public function ResetMailAction(Request $request){
-        $this->usermodel->resetPassword($request->get('username'), $request->get('key'), $request->post('reset'));
+    public function ResetpasswordAction(Request $request){
+        $this->loadModel('UserModel');
+        $this->usermodel->resetPassword($request->get('user'), $request->get('key'), $request->post('reset'));
     }
 }

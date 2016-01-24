@@ -284,6 +284,13 @@ body
     padding: 20px;
 }
 
+.post_footer img
+{
+    width: 20px;
+    margin-right: 17px;
+    margin-top: -5px;
+}
+
 .post_footer .follow
  {
      padding: 12px;
