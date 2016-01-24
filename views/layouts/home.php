@@ -9,6 +9,7 @@ $view->extend('layouts/layout');
 $this->render('persists/header');
 
 if(isset($errors)) {
+    var_dump($errors);
     echo '<div class="errors_fields">'.$errors.'</div>';
 }
 
