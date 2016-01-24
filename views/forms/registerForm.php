@@ -44,10 +44,6 @@ $view->extend('layouts/fullpage');
     </div>
 
     <script type="text/javascript">
-
-    </script>
-
-    <script type="text/javascript">
         /*
          $(function() {
          var s = new Slider("captchafield",{
