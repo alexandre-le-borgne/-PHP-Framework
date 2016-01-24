@@ -50,7 +50,7 @@ function formTr($string, $streams, $streamType)
     <nav>
         <div id="stream_button">Mes Flux</div>
         <div id="followers_button">Mes Abonnés</div>
-        <div id="following_botton">Mes Abonnements</div>
+        <div id="following_button">Mes Abonnements</div>
     </nav>
     <div id="categories">
         <?php
