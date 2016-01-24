@@ -284,6 +284,10 @@ body
     padding: 20px;
 }
 
+.post_footer span {
+    cursor: pointer;
+}
+
 .post_footer img
 {
     width: 20px;
