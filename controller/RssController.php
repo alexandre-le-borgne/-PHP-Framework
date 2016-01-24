@@ -27,10 +27,9 @@ class RssController extends  Controller{
         $url = $request->post('url_flux');
 
         if($categoryTitle && $firstUpdate && $url){
-            echo "lel";
             $this->loadModel('CategoryModel');
             $this->loadModel('RssModel');
-
+            echo "lel";
             $url = $this->rssmodel->resolveFile($url);
             $userId = $request->getSession()->get('id');
             $rssEntity = $this->rssmodel->createStream($url, $firstUpdate);
