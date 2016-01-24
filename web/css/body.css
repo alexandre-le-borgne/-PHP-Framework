@@ -410,7 +410,7 @@ body
 #add_stream_section
 {
     margin: 10px auto auto auto;
-    width: 681px;
+    width: 680px;
     padding-top: 50px;
 }
 
@@ -420,20 +420,23 @@ body
     background-color: #2f3d51;
     margin: 1%;
     cursor: pointer;
+    width: 211px;
+    height: 211px;
 }
 
 #twitter_button img, #IMAP_button img
 {
     width: 50px;
     display: block;
-    margin: auto;
+    margin: 42% auto;
+
 }
 
 #RSS_button img
 {
     width: 42px;
     display: block;
-    margin: auto;
+    margin: 39% auto;
 }
 
 #add_flux_body input

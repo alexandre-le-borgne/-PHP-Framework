@@ -52,18 +52,30 @@ $this->render('persists/header');
 
         $('#twitter_button').click(function()
         {
+            $('#twitter_button').css('background', '#529ecc');
+            $('#RSS_button').css('background', '#2f3d51');
+            $('#IMAP_button').css('background', '#2f3d51');
+
             $('.flux_twitter').show();
             $('.flux_rss').hide();
             $('.flux_imap').hide();
         });
         $('#RSS_button').click(function()
         {
+            $('#RSS_button').css('background', '#56bc8a');
+            $('#twitter_button').css('background', '#2f3d51');
+            $('#IMAP_button').css('background', '#2f3d51');
+
             $('.flux_twitter').hide();
             $('.flux_rss').show();
             $('.flux_imap').hide();
         });
         $('#IMAP_button').click(function()
         {
+            $('#IMAP_button').css('background', '#a77dc2');
+            $('#twitter_button').css('background', '#2f3d51');
+            $('#IMAP_button').css('background', '#2f3d51');
+
             $('.flux_twitter').hide();
             $('.flux_rss').hide();
             $('.flux_imap').show();
