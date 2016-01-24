@@ -45,6 +45,7 @@ class EmailModel
             $data->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'EmailEntity');
             return $data->fetch();
         }
+        return null;
     }
 
     function decode_body($str)
