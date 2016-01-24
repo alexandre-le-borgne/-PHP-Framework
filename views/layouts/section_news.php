@@ -14,7 +14,7 @@
             <div id="text_content">
                 <h1>Profitez de vos journaux preferés.</h1><br>
                 <h3>Restez toujours informés et profitez de point de vue différent.</h3>
-                <br><div id="button_action">Découvrez Aaron !</div>
+                <a href="http://alex83690.alwaysdata.net/aaron/" id="button_action">Découvrez Aaron !</a>
             </div>
         </div>
 
