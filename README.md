@@ -68,7 +68,7 @@ La mission de ce singleton est d'appeler le controleur et l'action correspondant
     }
  ```   
     
-* generateResponse($route = null, $params = array(), $internal = false) : Génère la réponse à renvoyer au navigateur en fonction de la route et des données passées en paramètre.Internal vaut true si la réponse est demandée par une vue (voir plus bas).
+* generateResponse($route = null, $params = array(), $internal = false) : Génère la réponse à renvoyer au navigateur en fonction de la route et des données passées en paramètre. Le paramètre $internal vaut vraie si la réponse est demandée par une vue (voir plus bas).
 
 ```php
     public function generateResponse($route = null, $params = array(), $internal = false) {
@@ -111,7 +111,7 @@ C'est une classe abstraite, mère de tous les models.
 
 #### I.1.g. NotFoundException
 
-C'est une exception lévé lorsqu'un élément recherché n'a pas été trouvé (une vue par exemple).
+C'est une exception levée lorsqu'un élément recherché n'a pas été trouvé (une vue par exemple).
 
 #### I.1.e. Request
 
@@ -176,7 +176,7 @@ Commence une session et fournit un moyen unique d'y accéder.
 * clear() : Réinitialise et détruit la session.
 * isConnected() : Renvoie vraie si l'utilisateur courant est connecté.
 * isGranted($role) : Renvoie vraie si l'utilisateur courant à un rôle supérieur ou égale à celui passé en paramètre.
-* [static] getInstance() : Rneovie l'instance unique de l'objet Session.
+* [static] getInstance() : Renvoie l'instance unique de l'objet Session.
 
 #### I.1.j. TraceableException
 
@@ -202,14 +202,14 @@ public function getData()
 
 #### I.1.k. View
 
-* [static] getView($view, $data = array()) : Créer un object Vue avec $view comme paramètre et appele la fonction render() sur cet objet.
+* [static] getView($view, $data = array()) : Créer un object Vue avec $view comme paramètre et appèle la fonction render() sur cet objet.
 * [static] getAsset($asset) : Retourne un lien absolu vers un fichier présent dans le dossier web/.
 * [static] getUrlFromRoute($route) : Retourne un lien absolu vers une route.
 * isGranted($role) : Raccourci vers la fonction isGranted de la Session.
 * renderControllerAction($route, $data = array()) : Retourne la réponse d'une action d'un controleur correspondant à la route.
-* escape($string) : Echape une châine des entités HTML.
-* output($var, $default = '') : Affiche la variable {$var} si défini ou $default sinon.
-* render($data = array()) : Inclue la vue en lui passant les variables contenues dans le tableau $data
+* escape($string) : Echape les entités HTML d'une chaîne.
+* output($var, $default = '') : Affiche la variable $this->{$var} si défini ou $default sinon.
+* render($view, $data = array()) : Inclue la vue $view en lui passant les variables contenues dans le tableau $data
  
 ```php
  public function render($view, $data = array()) {
@@ -261,17 +261,17 @@ Le dossier /views/exemple présente une utilisation concrète du moteur de templ
 
 ### I.1 layout.php
 
+La fonction 'render' permet d'inclure une nouvelle vue avec les variables dont elle à besoin.
+On peut aussi utiliser la fonction 'output' au lieu de la variable si on est pas sûr qu'elle existe :
+$view->render('exemple/head', array('title' => $view->output('title')));
+On peut vérifier si l'utilisateur à un certain rang avec la fonction 'isGranted' et avec les constantes de Session.
+La variable '$_content' contient le code html de la vue remplissant cette template.
+
+
 ```php
 <!DOCTYPE html>
 <html>
     <?php
-    /*
-     * La fonction 'render' permet d'inclure une nouvelle vue avec les variables dont elle à besoin.
-     * On peut aussi utiliser la fonction 'output' au lieu de la variable si on est pas sûr qu'elle existe :
-     * $view->render('exemple/head', array('title' => $view->output('title')));
-     * On peut vérifier si l'utilisateur à un certain rang avec la fonction 'isGranted' et avec les constantes de Session.
-     * La variable '$_content' contient le code html de la vue remplissant cette template.
-     */
     $this->render('exemple/head', array('title' => $title));
     ?>
     <body>
@@ -286,7 +286,6 @@ Le dossier /views/exemple présente une utilisation concrète du moteur de templ
 <head>
     <meta charset="utf-8">
     <title><?= $title ?></title>
-
     <link rel="stylesheet" href="<?= View::getAsset('inc/...') ?>" />
 </head>
 ```
@@ -294,6 +293,7 @@ Le dossier /views/exemple présente une utilisation concrète du moteur de templ
 ### I.3 body.php
 
 ```php
+<?php
 $view->extend('exemple/layout');
 ?>
 <body>
@@ -311,12 +311,11 @@ $view->extend('exemple/layout');
 
 ### I.1 content.php
 
+La fonction 'extend' permet de signaler que cette vue ira remplir un morceau manquant de la template qui lui est passé en paramètre. 
+La variable $content est envoyé par un controlleur à la vue. Il ne faut pas la confondre avec $_content, $this et $view qui sont respectivement le contenu de la vue fille dans une vue mère, une référence vers la vue et une référence vers le morceau de vue dans lequel on se trouve.
+
 ```php
-/*
- * La fonction 'extend' permet de signaler que cette vue ira remplir un morceau manquant de la template qui lui est
- * passé en paramètre. 
- * La variable *content est envoyé par un controlleur à la vue.
- */
+<?php
 $view->extend("exemple/body");
 ?>
 <h3>Contenu</h3>
