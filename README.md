@@ -192,42 +192,133 @@ public function getData()
 
 #### I.1.k. View
 
-* __construct($view) : Construit un objet Vue avec $view comme chemin relatif à la vue.
 * [static] getView($view, $data = array()) : Créer un object Vue avec $view comme paramètre et appele la fonction render() sur cet objet.
+* [static] getAsset($asset) : Retourne un lien absolu vers un fichier présent dans le dossier web/.
+* [static] getUrlFromRoute($route) : Retourne un lien absolu vers une route.
+* isGranted($role) : Raccourci vers la fonction isGranted de la Session.
+* renderControllerAction($route, $data = array()) : Retourne la réponse d'une action d'un controleur correspondant à la route.
+* escape($string) : Echape une châine des entités HTML.
+* output($var, $default = '') : Affiche la variable {$var} si défini ou $default sinon.
 * render($data = array()) : Inclue la vue en lui passant les variables contenues dans le tableau $data
  
 ```php
-public function render($data = array()) {
-        $viewspath = __DIR__.DIRECTORY_SEPARATOR.'../views/';
-        $path = $viewspath.$this->view.'.php';
-        if(file_exists($path)) {
-            if(!empty($data))
-                extract($data);
+ public function render($view, $data = array()) {
+        if (!empty($data)) {
+            if (!empty($this->data)) {
+                $this->data = array_merge($data, $this->data);
+            }
+            else {
+                $this->data = $data;
+            }
+        }
+        $viewspath = __DIR__ . DIRECTORY_SEPARATOR . '../views/';
+        $path = $viewspath . $view . '.php';
+        if (file_exists($path)) {
+            $data['view'] = new ViewPart();
+            extract($data);
             ob_start();
             require $path;
             $content_for_layout = ob_get_clean();
-            if($this->layout == false)
+            if ($data['view']->super()) {
+                $this->data['_content'] = $content_for_layout;
+                $this->render($data['view']->super(), $this->data);
+            }
+            else {
                 echo $content_for_layout;
-            else
-                require ($viewspath.$this->layout.'.php');
+            }
         }
         else {
-            throw new TraceableException("VIEW NOT FOUND | ".$path." |");
+            throw new NotFoundException("VIEW NOT FOUND | " . $path . " |");
         }
     }
 ```
 
-### I.2 controller
+#### I.1.l. ViewPart
 
-### I.3 model
+Représente un morceau de vue qui peut hériter d'une autre vue ou en inclure d'autre.
 
-### I.4 vendor
+* extend($extend) : Choisir le père de la vue.
+* super() : Retourne le père de la vue.
 
-### I.5 views
-
-### I.6 web
-
-### I.7 index.php
+### I.2 index.php
 
 Tout les accès au nom de domaine http://cuscom.fr/aaron/\* ne contenant pas le caractère '.', signe d'un accès direct à une image ou à un fichier précis, sont redirigés sur le fichier index.php.
 Son rôle est d'inclure les différentes classes du dossier app, les controlleurs et les models puis de demander au Kernel de générer la réponse au navigateur où d'afficher la traçe d'une exception si nécéssaire.
+
+## I. Moteur de template
+
+Le dossier /views/exemple présente une utilisation concrète du moteur de template crée pour le projet.
+
+### I.1 layout.php
+
+```php
+<!DOCTYPE html>
+<html>
+    <?php
+    /*
+     * La fonction 'render' permet d'inclure une nouvelle vue avec les variables dont elle à besoin.
+     * On peut aussi utiliser la fonction 'output' au lieu de la variable si on est pas sûr qu'elle existe :
+     * $view->render('exemple/head', array('title' => $view->output('title')));
+     * On peut vérifier si l'utilisateur à un certain rang avec la fonction 'isGranted' et avec les constantes de Session.
+     * La variable '$_content' contient le code html de la vue remplissant cette template.
+     */
+    $this->render('exemple/head', array('title' => $title));
+    ?>
+    <body>
+        <?= $this->output('_content'); ?>
+    </body>
+</html>
+```
+
+### I.2 head.php
+
+```php
+<head>
+    <meta charset="utf-8">
+    <title><?= $title ?></title>
+
+    <link rel="stylesheet" href="<?= View::getAsset('inc/...') ?>" />
+</head>
+```
+
+### I.3 body.php
+
+```php
+$view->extend('exemple/layout');
+?>
+<body>
+    <h1><?= $this->output('title', 'Titre par défaut') ?></h1>
+    <h2><?= $this->output('title2', 'Sous-Titre par défaut') ?></h2>
+    <?php if($this->isGranted(Session::USER_IS_CONNECTED)): ?>
+        L'utilisateur est connecté !
+    <?php endif; ?>
+    <?= $_content ?>
+    <hr>
+    <?= $this->render('exemple/content'); ?>
+    <hr>
+</body>
+```
+
+### I.1 content.php
+
+```php
+/*
+ * La fonction 'extend' permet de signaler que cette vue ira remplir un morceau manquant de la template qui lui est
+ * passé en paramètre. 
+ * La variable *content est envoyé par un controlleur à la vue.
+ */
+$view->extend("exemple/body");
+?>
+<h3>Contenu</h3>
+<pre>
+    <?= $content ?>
+</pre>
+<h3>Contenu pouvant ne pas avoir été précisé avec une valeur par défaut</h3>
+<pre>
+    <?= $this->output('content', 'Mon contenu par défaut') ?>
+</pre>
+<h3>Contenu protégé</h3>
+<pre>
+    <?= $this->escape($content) ?>
+</pre>
+```
