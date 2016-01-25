@@ -262,9 +262,13 @@ Le dossier /views/exemple présente une utilisation concrète du moteur de templ
 ### I.1 layout.php
 
 La fonction 'render' permet d'inclure une nouvelle vue avec les variables dont elle à besoin.
+
 On peut aussi utiliser la fonction 'output' au lieu de la variable si on est pas sûr qu'elle existe :
-* $view->render('exemple/head', array('title' => $view->output('title')));
+
+$view->render('exemple/head', array('title' => $view->output('title')));
+
 On peut vérifier si l'utilisateur à un certain rang avec la fonction 'isGranted' et avec les constantes de Session.
+
 La variable '$_content' contient le code html de la vue remplissant cette template.
 
 
@@ -311,8 +315,11 @@ $view->extend('exemple/layout');
 
 ### I.1 content.php
 
-La fonction 'extend' permet de signaler que cette vue ira remplir un morceau manquant de la template qui lui est passé en paramètre. 
-La variable $content est envoyé par un controlleur à la vue. Il ne faut pas la confondre avec $_content, $this et $view qui sont respectivement le contenu de la vue fille dans une vue mère, une référence vers la vue et une référence vers le morceau de vue dans lequel on se trouve.
+La fonction 'extend' permet de signaler que cette vue ira remplir un morceau manquant de la template qui lui est passé en paramètre.
+
+La variable $content est envoyé par un controlleur à la vue. 
+
+Il ne faut pas la confondre avec $_content, $this et $view qui sont respectivement le contenu de la vue fille dans une vue mère, une référence vers la vue et une référence vers le morceau de vue dans lequel on se trouve.
 
 ```php
 <?php
