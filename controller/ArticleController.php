@@ -134,7 +134,7 @@ class ArticleController extends Controller
             $article = $this->articlemodel->getById($id);
             if($article)
             {
-                $this->render('layouts/home', array('title' => substr($article->getTitle(), 0, 30).'...', 'articles' => array($article)));
+                $this->render('layouts/home', array('title' => substr($article->getTitle(), 0, 50).'...', 'articles' => array($article)));
             }
             else {
                 $this->redirectToRoute('index');
