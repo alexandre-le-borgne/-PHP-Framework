@@ -2,23 +2,18 @@
 
 class IndexController extends Controller
 {
-    public function IndexAction(Request $request, $channel = null)
+    public function IndexAction(Request $request)
     {
-        if($channel) {
-            echo "Chargement de la chaine de $channel";
+        if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
+        {
+            $this->loadModel('ArticleModel');
+            $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 10);
+            $data = array('articles' => $articles);
+            $this->render('layouts/home', $data);
         }
-        else {
-            if ($request->getSession()->isGranted(Session::USER_IS_CONNECTED))
-            {
-                $this->loadModel('ArticleModel');
-                $articles = $this->articlemodel->getArticlesByUserId($request->getSession()->get('id'), 0, 10);
-                $data = array('articles' => $articles);
-                $this->render('layouts/home', $data);
-            }
-            else
-            {
-                $this->render('forms/loginForm');
-            }
+        else
+        {
+            $this->render('forms/loginForm');
         }
     }
 

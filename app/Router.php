@@ -44,6 +44,8 @@ class Router
         $this->table[] = new Route('category',          'article',      'category');
         $this->table[] = new Route('stream',            'article',      'stream');
 
+        $this->table[] = new Route('email',             'email',        'index');
+
         $this->table[] = new Route('admin',             'admin',        'index');
         $this->table[] = new Route('adminusers',        'admin',        'users');
         $this->table[] = new Route('deleteuser',        'admin',        'deleteUser');
