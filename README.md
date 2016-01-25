@@ -57,6 +57,17 @@ C'est une classe abstraite, mère de toutes les entities.
 La mission de ce singleton est d'appeler le controleur et l'action correspondant à l'url de la page demandée en la passant au routeur et de fournir un objet Request à l'action si celui ci est présent dans ses paramètres.
 
 * response() : Génère la réponse à renvoyer au navigateur en fonction de l'url demandée.
+
+```php
+    public function response()
+    {
+        $request = Request::getInstance();
+        $params = explode('/', $request->get('url'));
+        $route = array_shift($params);
+        return $this->generateResponse($route, $params);
+    }
+ ```   
+    
 * generateResponse($route = null, $params = array(), $internal = false) : Génère la réponse à renvoyer au navigateur en fonction de la route et des données passées en paramètre.Internal vaut true si la réponse est demandée par une vue (voir plus bas).
 
 ```php
