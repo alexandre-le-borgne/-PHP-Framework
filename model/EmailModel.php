@@ -44,6 +44,7 @@ class EmailModel
                 $emailEntity->setAccount($account);
                 $emailEntity->setPassword($password);
                 $emailEntity->setPort($port);
+                $emailEntity->setFirstUpdate(date(Database::DATE_FORMAT, $firstUpdate));
                 $emailEntity->persist();
                 return $emailEntity;
             }
