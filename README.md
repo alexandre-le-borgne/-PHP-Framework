@@ -1,4 +1,4 @@
-# ProjectPHP
+# PHP-DUT-S3-Projet
 
 * Julien Jandot
 * Theo Jeanjean
@@ -255,7 +255,7 @@ Représente un morceau de vue qui peut hériter d'une autre vue ou en inclure d'
 Tout les accès au nom de domaine http://mon-domaine.fr/aaron/\* ne contenant pas le caractère '.', signe d'un accès direct à une image ou à un fichier précis, sont redirigés sur le fichier index.php.
 Son rôle est d'inclure les différentes classes du dossier app, les controlleurs et les models puis de demander au Kernel de générer la réponse au navigateur où d'afficher la traçe d'une exception si nécéssaire.
 
-## I. Moteur de template
+## II. Moteur de template
 
 Le dossier /views/exemple présente une utilisation concrète du moteur de template crée pour le projet.
 
