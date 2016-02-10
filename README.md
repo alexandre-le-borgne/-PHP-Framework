@@ -157,7 +157,7 @@ public function __construct() {
 Fournit des fonctions concernant la protection globale du site. 
 
 * [static] escape($string) : Echape la chaîne de caractères $string.
-* [static generateKey() : Renvoie une chaine de caractère utilisable comme token ou clé.
+* [static] generateKey() : Renvoie une chaine de caractère utilisable comme token ou clé.
 * [static] encode($str) : Crypte la chaîne $str.
 * [static] equals($hashedPassword, $userPassword) : Retourne vraie si un mot de passe utilisateur correspond à un mot de passe hashé.
 
