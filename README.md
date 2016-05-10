@@ -45,12 +45,12 @@ $this->render('dossier/fichier', $data);
 Fournit un accès simple à la base de donnée.
 
 * execute($sql, $params = null) : Execute la requête (paramétrée si nécéssaire) passée en 1er paramètre avec les paramètres passés en 2nd paramètre.
-* lastInsertId() : Rebvoie l'id généré par la dernière requête exécuté.
+* lastInsertId() : Renvoie l'id généré par la dernière requête exécutée.
 * [private] getBdd() : Fournit un accès la base de données.
 
 #### I.1.c. Entity
 
-C'est une classe abstraite, mère de toutes les entities. 
+C'est une classe abstraite, mère de toutes les entités. 
 
 #### I.1.d. Kernel
  
@@ -103,15 +103,15 @@ La mission de ce singleton est d'appeler le controleur et l'action correspondant
 
 #### I.1.e. Mail
 
-Cette classe contient les fonctions d'envoie de mail.
+Cette classe contient les fonctions d'envoie de mails.
 
 #### I.1.f. Model
 
-C'est une classe abstraite, mère de tous les models. 
+C'est une classe abstraite, mère de tous les modèles. 
 
 #### I.1.g. NotFoundException
 
-C'est une exception levée lorsqu'un élément recherché n'a pas été trouvé (une vue par exemple).
+C'est une exception traçable levée lorsqu'un élément recherché n'a pas été trouvé (une vue par exemple).
 
 #### I.1.e. Request
 
@@ -119,14 +119,14 @@ Fournit un moyen unique d'accéder aux variables $_POST, $_GET et à l'objet Ses
 * isAjaxRequest() : Renvoie vraie si la requête HTTP est une requête faîte par Ajax.
 * isInternal() : Renvoie vraie si la requête est interne, c'est à dire demandée par une vue.
 * setInternal($internal) : Modifie la donnée membre privée $this->internal.
-* get($name) : Renvoie la variable $_GET[$name] ou null si elle n'est pas définie.
-* post($name) : Renvoie la variable $_POST[$name] ou null si elle n'est pas définie.
+* get($name) : Renvoie la variable $_GET[$name] ou Null si elle n'est pas définie.
+* post($name) : Renvoie la variable $_POST[$name] ou Null si elle n'est pas définie.
 * getSession() : Retourne l'instance unique de l'objet Session.
 * [static] getInstance() : Retourne l'instance unique de l'objet Request.
 
 #### I.1.f. Route
  
-Représente une route associant une url à un controlleur et à une action de celui ci.
+Représente une route associant une url à un controlleur et à une action de celui-ci.
 
 * __construct($name, $controller, $action)
 * getName()
@@ -156,10 +156,10 @@ public function __construct() {
 
 Fournit des fonctions concernant la protection globale du site. 
 
-* [static] escape($string) : Echape la chaîne de caractères $string.
-* [static] generateKey() : Renvoie une chaine de caractère utilisable comme token ou clé.
+* [static] escape($string) : Echappe la chaîne de caractères $string.
+* [static] generateKey() : Renvoie une chaine de caractère utilisable comme token ou comme clé.
 * [static] encode($str) : Crypte la chaîne $str.
-* [static] equals($hashedPassword, $userPassword) : Retourne vraie si un mot de passe utilisateur correspond à un mot de passe hashé.
+* [static] equals($hashedPassword, $userPassword) : Retourne vraie si un mot de passe utilisateur correspond à un mot de passe crypté.
 
 #### I.1.i. Session
 
@@ -207,7 +207,7 @@ public function getData()
 * [static] getUrlFromRoute($route) : Retourne un lien absolu vers une route.
 * isGranted($role) : Raccourci vers la fonction isGranted de la Session.
 * renderControllerAction($route, $data = array()) : Retourne la réponse d'une action d'un controleur correspondant à la route.
-* escape($string) : Echape les entités HTML d'une chaîne.
+* escape($string) : Echappe les entités HTML d'une chaîne.
 * output($var, $default = '') : Affiche la variable $this->{$var} si défini ou $default sinon.
 * render($view, $data = array()) : Inclue la vue $view en lui passant les variables contenues dans le tableau $data
  
