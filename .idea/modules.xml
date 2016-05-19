@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ProjectPHP.iml" filepath="$PROJECT_DIR$/.idea/ProjectPHP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Framework/.idea/ProjectPHP.iml" filepath="$PROJECT_DIR$/../Framework/.idea/ProjectPHP.iml" />
     </modules>
   </component>
 </project>
