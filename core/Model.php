@@ -3,18 +3,20 @@
 abstract class Model
 {
     /**
-     * @var $database Database
-     */
-    protected $database;
-
-    /**
      * @var $entityManager EntityManager
      */
-    protected  $entityManager;
+    private $entityManager;
 
-    public function __construct(EntityManager $entityManager, Database $database)
+    public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
-        $this->database = $database;
+    }
+
+    /**
+     * @return EntityManager
+     */
+    public function getEntityManager()
+    {
+        return $this->entityManager;
     }
 }

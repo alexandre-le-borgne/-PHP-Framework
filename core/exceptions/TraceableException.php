@@ -12,13 +12,11 @@ class TraceableException extends Exception
     public function generateCallTrace()
     {
         $trace = explode("\n", $this->exception->getTraceAsString());
-        // reverse array to make steps line up chronologically
         $trace = array_reverse($trace);
-        array_shift($trace); // remove {main}
-        array_pop($trace); // remove call to this method
+        array_shift($trace);
+        array_pop($trace);
         $length = count($trace);
         $result = array();
-        // replace '#someNum' with '$i)', set the right ordering
         for ($i = 0; $i < $length; $i++)
         {
             $result[$i] = substr($trace[$i], strpos($trace[$i], ' '));
@@ -36,10 +34,5 @@ class TraceableException extends Exception
             'line' => $this->exception->getLine(),
             'trace' => $this->generateCallTrace()
         );
-    }
-
-    public function show()
-    {
-        View::getView('layouts/exception', $this->getData());
     }
 }

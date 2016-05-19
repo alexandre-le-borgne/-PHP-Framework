@@ -13,9 +13,9 @@ class SqlDatabase implements Database
      */
     private $pdo;
 
-    public function connect($host, $database, $username, $password = '')
+    public function __construct($host, $database, $username, $password = '')
     {
-        $this->pdo = new PDO('mysql:host=' . $host . ';dbname' . $database . ';charset=utf8', $username, $password,
+        $this->pdo = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password,
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         $this->pdo->query("SET NAMES 'utf8'");
     }
@@ -27,7 +27,7 @@ class SqlDatabase implements Database
             if ($params)
             {
                 if (!is_array($params))
-                    throw new Exception("Parameters should be an array");
+                    throw new InvalidArgumentException("Parameters should be an array");
 
                 $result = $this->pdo->prepare($query);
                 $result->execute($params);
@@ -47,8 +47,30 @@ class SqlDatabase implements Database
         return $result;
     }
 
+    public function insert($table, $fields)
+    {
+        $keys = array_keys($fields);
+        $values = '';
+        for ($i = 0; $i < count($keys); ++$i)
+            $values .= '?, ';
+        $values = substr($values, 0, -2);
+        $query = 'INSERT INTO ' . $table . ' (' . implode(', ', $keys) . ') VALUES (' . $values . ')';
+        $this->execute($query, array_values($fields));
+    }
+
+    public function update($table, $fields)
+    {
+        $query = 'UPDATE ' . $table . ' SET ' . implode(' = ?, ', array_keys($fields)) . ' = ? WHERE id = ?';
+        $this->execute($query, array_values($fields));
+    }
+
     public function lastInsertId()
     {
         return $this->pdo->lastInsertId();
+    }
+
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s';
     }
 }

@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
-
 header ('Content-type:text/html; charset=utf-8');
 
 require 'vendor/autoload.php';
@@ -13,6 +12,7 @@ spl_autoload_register(function ($class_name)
         'app/',
         'controller/',
         'core/',
+        'core/exceptions/',
         'entity/',
         'model/',
         'services/',
@@ -38,5 +38,5 @@ try
 catch (Exception $e)
 {
     $e = new TraceableException($e);
-    echo $e->show();
+    Kernel::getInstance()->showException($e);
 }

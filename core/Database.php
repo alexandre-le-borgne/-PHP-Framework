@@ -2,7 +2,9 @@
 
 interface Database
 {
-    function connect($host, $database, $username, $password = '');
     function execute($query, $params = null, $entity = null);
+    function insert($table, $fields);
+    function update($table, $fields);
     function lastInsertId();
+    function getDateFormat();
 }
