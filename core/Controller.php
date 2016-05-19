@@ -6,10 +6,7 @@ abstract class Controller
 
     public function loadModel($model)
     {
-        $modelsPath = __DIR__ . DIRECTORY_SEPARATOR . '../model/';
-        require_once($modelsPath . $model . '.php');
-        $model = strtolower($model);
-        $this->$model = new $model;
+        return Kernel::getInstance()->getModel($model);
     }
 
     public function render($view, $data = array())

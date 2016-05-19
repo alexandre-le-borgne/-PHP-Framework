@@ -1,11 +1,18 @@
 <?php
 
-class Kernel
+class Kernel extends App
 {
     private static $instance = null;
-
+    
+    private $models;
+    private $entityManager;
+    private $database;
+    
     private function __construct()
     {
+        $this->models = array();
+        $this->database = $this->getDatabase();
+        $this->entityManager = new EntityManager($this->database);
     }
 
     public static function getInstance()
@@ -13,6 +20,16 @@ class Kernel
         if (!(self::$instance))
             self::$instance = new Kernel();
         return self::$instance;
+    }
+    
+    public function getModel($model) {
+        if(!isset($this->models[$model])) {
+            $class = ucfirst($model.'Model');
+            if(!class_exists($class))
+                throw new Exception('Class '.$class.' does not exist');
+            $this->models[$model] = new $class($this->entityManager, $this->database);
+        }
+        return $this->models[$model];
     }
 
     public function response()
@@ -24,7 +41,7 @@ class Kernel
     }
 
     public function generateResponse($route = null, $params = array(), $internal = false) {
-        $router = new Router();
+        $router = new Router($this->getRoutes());
         $request = Request::getInstance();
         $request->setInternal($internal);
         if($route)

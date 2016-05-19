@@ -1,8 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
-ini_set('include_path', '/www/aaron');
-set_include_path( '/www/aaron' );
+
 header ('Content-type:text/html; charset=utf-8');
 
 require 'vendor/autoload.php';
@@ -13,9 +12,11 @@ spl_autoload_register(function ($class_name)
     $dirs = array(
         'app/',
         'controller/',
-        'model/',
+        'core/',
         'entity/',
-        'app/util/'
+        'model/',
+        'services/',
+        'services/databases/'
     );
 
     // Looping through each directory to load all the class files. It will only require a file once.

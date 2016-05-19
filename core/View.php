@@ -34,7 +34,7 @@ class View
                 $this->data = $data;
             }
         }
-        $viewspath = __DIR__ . DIRECTORY_SEPARATOR . '../views/';
+        $viewspath = __DIR__ . DIRECTORY_SEPARATOR;
         $path = $viewspath . $view . '.php';
 
         if (file_exists($path))
