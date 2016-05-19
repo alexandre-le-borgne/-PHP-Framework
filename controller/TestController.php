@@ -9,10 +9,6 @@
 class TestController extends Controller
 {
     public function IndexAction() {
-//        /**
-//         * @var UserModel $userModel
-//         */
-//        $userModel = $this->loadModel('user');
         $em = $this->getEntityManager();
         $user = new UserEntity();
         $user->setUsername('test');
@@ -21,5 +17,13 @@ class TestController extends Controller
         $em->persist($user);
         $em->flush();
         $this->render('app/test', array('user' => $user));
+    }
+
+    public function GetAction(Request $request, $id) {
+        /**
+         * @var UserModel $userModel
+         */
+        $userModel = $this->loadModel('user');
+        $this->render('app/test', array('user' => $userModel->find($id)));
     }
 }
