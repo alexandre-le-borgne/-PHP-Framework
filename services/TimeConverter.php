@@ -3,17 +3,17 @@
 class TimeConverter
 {
     public $defaultDateFormat = 'Y-m-d H:i:s';
-    
+
     public function dateToTime($date, $format = null)
     {
-        if(!$format)
+        if (!$format)
             $format = $this->defaultDateFormat;
         return @date_format(date_create_from_format($format, $date), 'U');
     }
 
     public function timeToDate($time, $debut = "", $fin = "", $format = null)
     {
-        if(!$format)
+        if (!$format)
             $format = $this->defaultDateFormat;
         return $debut . date($format, $time) . $fin;
     }

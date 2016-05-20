@@ -9,6 +9,11 @@ abstract class Controller
         return Kernel::getInstance()->getModel($model);
     }
 
+    public function getEntityManager()
+    {
+        return Kernel::getInstance()->getEntityManager();
+    }
+
     public function render($view, $data = array())
     {
         View::getView($view, $data);

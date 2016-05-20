@@ -5,14 +5,16 @@ class Kernel extends App
     private static $instance = null;
     
     private $models;
+
+    /**
+     * @var EntityManager $entityManager
+     */
     private $entityManager;
-    private $database;
-    
+
     private function __construct()
     {
         $this->models = array();
-        $this->database = $this->getDatabase();
-        $this->entityManager = new EntityManager($this->database);
+        $this->entityManager = new EntityManager($this->getDatabase());
     }
 
     public static function getInstance()
@@ -27,9 +29,17 @@ class Kernel extends App
             $class = ucfirst($model.'Model');
             if(!class_exists($class))
                 throw new Exception('Class '.$class.' does not exist');
-            $this->models[$model] = new $class($this->entityManager, $this->database);
+            $this->models[$model] = new $class($this->entityManager);
         }
         return $this->models[$model];
+    }
+
+    public function getEntityManager() {
+        return $this->entityManager;
+    }
+
+    public function showException(TraceableException $e) {
+        View::getView('core/exception', $e->getData());
     }
 
     public function response()

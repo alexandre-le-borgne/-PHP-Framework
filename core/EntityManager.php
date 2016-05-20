@@ -1,12 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: GCC-MED
- * Date: 19/05/2016
- * Time: 13:50
- */
-class EntityManager
+class EntityManager implements Database
 {
     /**
      * @var $database Database
@@ -22,50 +16,72 @@ class EntityManager
         $this->persistedEntities = array();
     }
 
-    private function addPersistedEntity($entity, $values, $query, $insert)
-    {
-        $persistedEntityValues = array('entity' => $entity, 'values' => $values, 'query' => $query, 'insert' => $insert);
-        $key = array_search($entity, $this->persistedEntities, true);
-        if ($key === false)
-        {
-            $this->persistedEntities = $entity;
-            $key = end($this->persistedEntities);
-        }
-        $this->persistedEntitiesValues[$key] = $persistedEntityValues;
-    }
-    
     public function persist(PersistableEntity $entity) {
-        // TODO Sérialiser la class
-        $fields = array('a' => 1, 'b' => 2, 'c' => 3);
+        $fields = $entity->getFields();
         if(count($fields))
         {
-            if ($entity->getId() == null)
+            $persistedEntityValues = array('fields' => $fields, 'insert' => ($entity->getId() == null));
+            $key = array_search($entity, $this->persistedEntities, true);
+            if ($key === false)
             {
-                $keys = array_keys($fields);
-                $values = '';
-                for ($i = 0; $i < count($keys); ++$i)
-                    $values .= '?, ';
-                $values = substr($values, 0, -2);
-                $query = 'INSERT INTO ' . $entity->getTableName() . ' (' . implode(', ', $keys) . ') VALUES (' . $values . ')';
-                $this->addPersistedEntity($entity, $values, $query, true);
+                $this->persistedEntities[] = $entity;
+                $key = key($this->persistedEntities);
             }
-            else
-            {
-                $keys = array_keys($fields);
-                $values = '';
-                for ($i = 0; $i < count($keys); ++$i)
-                    $values .= '?, ';
-                $query = 'UPDATE ' . $entity->getTableName() . ' SET ' . implode(' = ?, ', $keys) . ' = ? WHERE id = ?';
-                $this->addPersistedEntity($entity, array_values($fields), $query, false);
-            }
+            $this->persistedEntitiesValues[$key] = $persistedEntityValues;
         }
     }
     
     public function flush() {
-        foreach ($this->persistedEntitiesValues as $persistedEntitiesValue) {
-            $this->database->execute($persistedEntitiesValue['query'], $persistedEntitiesValue['values']);
-            if($persistedEntitiesValue['insert'])
-                $persistedEntitiesValue['entity']->setId($this->database->lastInsertId());
+        foreach ($this->persistedEntitiesValues as $key => $persistedEntitiesValue) {
+            /**
+             * @var $entity PersistableEntity
+             */
+            $entity = $this->persistedEntities[$key];
+            if($persistedEntitiesValue['insert']) {
+                $this->insert($entity->getTableName(), $persistedEntitiesValue['fields']);
+                $entity->setCreatedAt(new DateTime());
+                $entity->setId($this->lastInsertId());
+            }
+            else {
+                $this->update($entity->getTableName(), $persistedEntitiesValue['fields']);
+            }
+            $entity->setModifiedAt(new DateTime());
         }
+    }
+
+    function execute($query, $params = null, $entity = null)
+    {
+        return $this->database->execute($query, $params, $entity);
+    }
+
+    function insert($table, $fields)
+    {
+        $now = new DateTime();
+        $now = $now->format($this->getDateFormat());
+        $fields['created_at'] = $fields['modified_at'] = $now;
+        $this->database->insert($table, $fields);
+    }
+
+    function update($table, $fields)
+    {
+        $now = new DateTime();
+        $fields['modified_at'] = $now->format($this->getDateFormat());
+        $this->database->update($table, $fields);
+    }
+
+    /**
+     * @return int
+     */
+    function lastInsertId()
+    {
+        return $this->database->lastInsertId();
+    }
+
+    /**
+     * @return string
+     */
+    function getDateFormat()
+    {
+        return $this->database->getDateFormat();
     }
 }

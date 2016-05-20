@@ -35,8 +35,7 @@ class View
             }
         }
         $viewspath = __DIR__ . DIRECTORY_SEPARATOR;
-        $path = $viewspath . $view . '.php';
-
+        $path = $viewspath . '../views/' . $view . '.php';
         if (file_exists($path))
         {
             $data['view'] = new ViewPart();

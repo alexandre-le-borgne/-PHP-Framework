@@ -2,7 +2,7 @@
 
 abstract class Entity
 {
-    protected $id;
+    protected $id = null;
 
     /**
      * @return mixed
