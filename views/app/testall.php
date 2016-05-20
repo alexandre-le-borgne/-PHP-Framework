@@ -6,5 +6,9 @@
  * Time: 23:47
  */
 
-
+/**
+ * @var View $this
+ * @var ViewPart $wiew
+ */
+//$this->renderControllerAction('test');
 var_dump($user);

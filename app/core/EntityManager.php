@@ -32,20 +32,27 @@ class EntityManager implements Database
     }
     
     public function flush() {
+        $now = new DateTime();
+        $now = $now->format($this->getDateFormat());
         foreach ($this->persistedEntitiesValues as $key => $persistedEntitiesValue) {
+            $fields = $persistedEntitiesValue['fields'];
+            $fields['modified_at'] = $now;
+
             /**
              * @var $entity PersistableEntity
              */
             $entity = $this->persistedEntities[$key];
             if($persistedEntitiesValue['insert']) {
-                $this->insert($entity::getModel()->getTableName(), $persistedEntitiesValue['fields']);
-                $entity->setCreatedAt(new DateTime());
+                $fields['created_at'] = $now;
+                $entity->setCreatedAt($now);
+
+                $this->insert($entity::getModel()->getTableName(), $fields);
                 $entity->setId($this->lastInsertId());
             }
             else {
                 $this->update($entity::getModel()->getTableName(), $persistedEntitiesValue['fields']);
             }
-            $entity->setModifiedAt(new DateTime());
+            $entity->setModifiedAt($now);
         }
     }
 
@@ -56,16 +63,11 @@ class EntityManager implements Database
 
     function insert($table, $fields)
     {
-        $now = new DateTime();
-        $now = $now->format($this->getDateFormat());
-        $fields['created_at'] = $fields['modified_at'] = $now;
         $this->database->insert($table, $fields);
     }
 
     function update($table, $fields)
     {
-        $now = new DateTime();
-        $fields['modified_at'] = $now->format($this->getDateFormat());
         $this->database->update($table, $fields);
     }
 

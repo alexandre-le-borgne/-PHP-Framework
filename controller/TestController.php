@@ -16,7 +16,7 @@ class TestController extends Controller
 
         $em->persist($user);
         $em->flush();
-        $this->render('app/test', array('user' => $user));
+        return $this->render('app/test', array('user' => $user));
     }
 
     public function GetAction(Request $request, $id) {

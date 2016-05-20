@@ -44,7 +44,7 @@ class SqlDatabase implements Database
         {
             throw new Exception($e->getMessage());
         }
-        return $result->fetchAll();
+        return $result;
     }
 
 
@@ -52,11 +52,11 @@ class SqlDatabase implements Database
     {
         if(count($fields)) {
             $query = 'SELECT * FROM ' . $table . ' WHERE ' . implode(' = ?, ', array_keys($fields)) . ' = ?';
-            return $this->execute($query, array_values($fields), $entity);
+            return $this->execute($query, array_values($fields), $entity)->fetchAll();
         }
         else {
             $query = 'SELECT * FROM ' . $table;
-            return $this->execute($query, [], $entity);
+            return $this->execute($query, [], $entity)->fetchAll();
         }
     }
 

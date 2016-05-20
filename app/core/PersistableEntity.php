@@ -8,40 +8,40 @@
  */
 abstract class PersistableEntity extends Entity implements IPersistableEntity
 {
-    protected $createdAt = null;
-    protected $modifiedAt = null;
+    protected $created_at = null;
+    protected $modified_at = null;
     
     abstract function getFields();
     
     /**
-     * @return DateTime
+     * @return string
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     /**
-     * @param DateTime $createdAt
+     * @param string $created_at
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($created_at)
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
     public function getModifiedAt()
     {
-        return $this->modifiedAt;
+        return $this->modified_at;
     }
 
     /**
-     * @param DateTime $modifiedAt
+     * @param string $modified_at
      */
-    public function setModifiedAt($modifiedAt)
+    public function setModifiedAt($modified_at)
     {
-        $this->modifiedAt = $modifiedAt;
+        $this->modified_at = $modified_at;
     }
 }
