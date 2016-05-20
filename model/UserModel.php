@@ -8,7 +8,6 @@
  */
 class UserModel extends PersistableModel
 {
-// TODO eviter la duplication en la basculant dans une classe mere de persistableentity et de persistablemodel "linkToDataBase"
     function getTableName()
     {
         return 'users';

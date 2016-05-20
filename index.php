@@ -10,9 +10,9 @@ spl_autoload_register(function ($class_name)
     // Define an array of directories in the order of their priority to iterate through.
     $dirs = array(
         'app/',
+        'app/core/',
+        'app/core/exceptions/',
         'controller/',
-        'core/',
-        'core/exceptions/',
         'entity/',
         'model/',
         'services/',

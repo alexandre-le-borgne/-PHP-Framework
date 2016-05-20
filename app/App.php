@@ -15,6 +15,7 @@ class App {
         return array(
             new Route('exemple',            'exemple',          'index'),
             new Route('test',               'test',             'index'),
+            new Route('gettest',            'test',             'get'),
         );
     }
 }

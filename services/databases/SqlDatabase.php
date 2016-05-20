@@ -44,7 +44,20 @@ class SqlDatabase implements Database
         {
             throw new Exception($e->getMessage());
         }
-        return $result;
+        return $result->fetchAll();
+    }
+
+
+    function select($table, $fields = array(), $entity = null)
+    {
+        if(count($fields)) {
+            $query = 'SELECT * FROM ' . $table . ' WHERE ' . implode(' = ?, ', array_keys($fields)) . ' = ?';
+            return $this->execute($query, array_values($fields), $entity);
+        }
+        else {
+            $query = 'SELECT * FROM ' . $table;
+            return $this->execute($query, [], $entity);
+        }
     }
 
     public function insert($table, $fields)
@@ -60,6 +73,7 @@ class SqlDatabase implements Database
 
     public function update($table, $fields)
     {
+        if(!is_array($fields) && !count($fields)) return;
         $query = 'UPDATE ' . $table . ' SET ' . implode(' = ?, ', array_keys($fields)) . ' = ? WHERE id = ?';
         $this->execute($query, array_values($fields));
     }

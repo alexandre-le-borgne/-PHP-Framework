@@ -26,10 +26,13 @@ class Kernel extends App
     
     public function getModel($model) {
         if(!isset($this->models[$model])) {
-            $class = ucfirst($model.'Model');
+            /**
+             * @var $class PersistableEntity
+             */
+            $class = ucfirst($model.'Entity');
             if(!class_exists($class))
                 throw new Exception('Class '.$class.' does not exist');
-            $this->models[$model] = new $class($this->entityManager);
+            $this->models[$model] = $class::getModel();
         }
         return $this->models[$model];
     }

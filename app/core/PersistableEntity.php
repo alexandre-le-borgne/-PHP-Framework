@@ -6,14 +6,13 @@
  * Date: 19/05/2016
  * Time: 14:25
  */
-abstract class PersistableEntity extends Entity
+abstract class PersistableEntity extends Entity implements IPersistableEntity
 {
     protected $createdAt = null;
     protected $modifiedAt = null;
-
-    abstract function getTableName();  
+    
     abstract function getFields();
-
+    
     /**
      * @return DateTime
      */

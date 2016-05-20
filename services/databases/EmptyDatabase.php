@@ -18,6 +18,11 @@ class EmptyDatabase implements Database
         throw new LogicException();
     }
 
+    function select($table, $fields = array(), $entity = null)
+    {
+        throw new LogicException();
+    }
+    
     function insert($table, $fields)
     {
         throw new LogicException();
@@ -32,4 +37,5 @@ class EmptyDatabase implements Database
     {
         throw new LogicException();
     }
+    
 }

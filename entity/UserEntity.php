@@ -12,11 +12,6 @@ class UserEntity extends PersistableEntity
     private $username;
     private $password;
 
-    function getTableName()
-    {
-        return 'users';
-    }
-
     function getFields()
     {
         return array(
@@ -25,6 +20,11 @@ class UserEntity extends PersistableEntity
         );
     }
 
+    public final static function getModel()
+    {
+        return new UserModel('UserEntity');
+    }
+    
     /**
      * @return mixed
      */

@@ -38,12 +38,12 @@ class EntityManager implements Database
              */
             $entity = $this->persistedEntities[$key];
             if($persistedEntitiesValue['insert']) {
-                $this->insert($entity->getTableName(), $persistedEntitiesValue['fields']);
+                $this->insert($entity::getModel()->getTableName(), $persistedEntitiesValue['fields']);
                 $entity->setCreatedAt(new DateTime());
                 $entity->setId($this->lastInsertId());
             }
             else {
-                $this->update($entity->getTableName(), $persistedEntitiesValue['fields']);
+                $this->update($entity::getModel()->getTableName(), $persistedEntitiesValue['fields']);
             }
             $entity->setModifiedAt(new DateTime());
         }
@@ -83,5 +83,10 @@ class EntityManager implements Database
     function getDateFormat()
     {
         return $this->database->getDateFormat();
+    }
+
+    public function select($table, $fields = array(), $entity = null)
+    {
+        return $this->database->select($table, $fields, $entity);
     }
 }
