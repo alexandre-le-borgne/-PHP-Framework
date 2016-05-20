@@ -42,7 +42,7 @@ class Kernel extends App
     }
 
     public function showException(TraceableException $e) {
-        View::getView('core/exception', $e->getData());
+        echo View::getView('core/exception', $e->getData());
     }
 
     public function response()
@@ -50,7 +50,7 @@ class Kernel extends App
         $request = Request::getInstance();
         $params = explode('/', $request->get('url'));
         $route = array_shift($params);
-        return $this->generateResponse($route, $params);
+        echo $this->generateResponse($route, $params)->getResponse();
     }
 
     public function generateResponse($route = null, $params = array(), $internal = false) {
@@ -78,7 +78,9 @@ class Kernel extends App
                     $paramsToPass[] = null;
         }
         if(!empty($paramsToPass))
-            return call_user_func_array(array($controller, $action), $paramsToPass);
-        return $controller->{$action}();
+            $response = call_user_func_array(array($controller, $action), $paramsToPass);
+        else
+            $response = $controller->{$action}();
+        return new Response($route->getController(), $route->getAction(), $response);
     }
 }

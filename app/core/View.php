@@ -35,7 +35,7 @@ class View
             }
         }
         $viewspath = __DIR__ . DIRECTORY_SEPARATOR;
-        $path = $viewspath . '../views/' . $view . '.php';
+        $path = $viewspath . '../../views/' . $view . '.php';
         if (file_exists($path))
         {
             $data['view'] = new ViewPart();
@@ -48,11 +48,11 @@ class View
             if ($data['view']->super())
             {
                 $this->data['_content'] = $content_for_layout;
-                $this->render($data['view']->super(), $this->data);
+                return $this->render($data['view']->super(), $this->data);
             }
             else
             {
-                echo $content_for_layout;
+                return $content_for_layout;
             }
         }
         else
@@ -63,7 +63,7 @@ class View
 
     public function renderControllerAction($route, $data = array())
     {
-        Kernel::getInstance()->generateResponse($route, $data, true);
+        echo Kernel::getInstance()->generateResponse($route, $data, true)->getResponse();
     }
 
     public function isGranted($role)
@@ -75,7 +75,7 @@ class View
     {
         if (self::$instance == null)
             self::$instance = new View();
-        self::$instance->render($view, $data);
+        return self::$instance->render($view, $data);
     }
 
     public static function getAsset($asset)

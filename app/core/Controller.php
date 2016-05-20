@@ -16,7 +16,7 @@ abstract class Controller
 
     public function render($view, $data = array())
     {
-        View::getView($view, $data);
+        return View::getView($view, $data);
     }
 
     public function redirect($url)

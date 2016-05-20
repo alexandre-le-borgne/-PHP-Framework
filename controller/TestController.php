@@ -24,7 +24,6 @@ class TestController extends Controller
          * @var UserModel $userModel
          */
         $userModel = $this->loadModel('user');
-        $this->render('app/test', array('user' => $userModel->find($id)));
-        $this->render('app/test', array('user' => $userModel->find()));
+        return $this->render('app/test', array('user' => $userModel->find($id)));
     }
 }
