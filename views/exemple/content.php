@@ -5,6 +5,6 @@
  * Date: 13/01/2016
  * Time: 14:36
  */
-$view->extend('exemple/contentlayout');
+View::extend('exemple/contentlayout');
 ?>
 Contenu

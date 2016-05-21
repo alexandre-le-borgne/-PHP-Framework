@@ -12,17 +12,17 @@
  * passé en paramètre.
  */
 
-$view->extend("exemple/body");
+View::extend('exemple/body');
 ?>
 <h3>Contenu</h3>
 <pre>
-    <?= $content ?>
+    <?= View::render('exemple/content') ?>
 </pre>
 <h3>Contenu pouvant ne pas avoir été précisé avec une valeur par défaut</h3>
 <pre>
-    <?= $this->output('content', 'Mon contenu par défaut') ?>
+    <?= View::output('content2', 'Mon contenu par défaut') ?>
 </pre>
 <h3>Contenu protégé</h3>
 <pre>
-    <?= $this->escape($content) ?>
+    <?= View::escape($content) ?>
 </pre>

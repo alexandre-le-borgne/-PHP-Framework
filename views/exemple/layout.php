@@ -16,9 +16,9 @@
      * On peut vérifier si l'utilisateur à un certain rang avec la fonction 'isGranted' et avec les constantes de Session.
      * La variable '$_content' contient le code html de la vue remplissant cette template.
      */
-    $this->render('exemple/head', array('title' => $title));
+    View::render('exemple/head', array('title' => $title));
     ?>
     <body>
-        <?= $this->output('_content'); ?>
+        <?= View::output('_content'); ?>
     </body>
 </html>

@@ -1,16 +1,70 @@
 <?php
 
+/**
+ * Created by PhpStorm.
+ * User: Alexandre
+ * Date: 21/05/2016
+ * Time: 22:35
+ */
 class ViewPart
 {
-    private $extend = null;
+    /**
+     * @var ViewPart $template
+     */
+    private $template;
 
-    public function extend($extend)
+    /**
+     * @var array
+     */
+    private $data;
+
+    /**
+     * @var string
+     */
+    private $childContent;
+
+    /**
+     * ViewPart constructor.
+     * @param array $data
+     * @param string $childContent
+     */
+    public function __construct($data = array(), $childContent = '')
     {
-        $this->extend = $extend;
+        $this->data = $data;
+        $this->childContent = $childContent;
+        $this->template = null;
     }
 
-    public function super()
+    /**
+     * @return ViewPart
+     */
+    public function getTemplate()
     {
-        return $this->extend;
+        return $this->template;
     }
+
+    /**
+     * @param ViewPart $template
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChildContent()
+    {
+        return $this->childContent;
+    }
+
 }

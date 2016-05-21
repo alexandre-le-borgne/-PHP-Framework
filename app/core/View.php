@@ -1,90 +1,51 @@
 <?php
 
+/**
+ * Created by PhpStorm.
+ * User: Alexandre
+ * Date: 21/05/2016
+ * Time: 22:09
+ */
 class View
 {
-    private static $instance;
-    private $data = array();
-
-    private function __construct()
-    {
+     public static function extend($view) {
+        Kernel::getInstance()->getViewManager()->getReferredViewPart()->setTemplate($view);
     }
 
-    public function output($var, $default = '')
-    {
-        if (isset($this->data[$var]))
-            return $this->data[$var];
+    public static function render($view, $data = array()) {
+        return Kernel::getInstance()->getViewManager()->render($view, $data);
+        // Lancer une nouvelle série de vue depuis le manager
+    }
+
+    public static function output($data, $default = '') {
+
+        $viewPartData = Kernel::getInstance()->getViewManager()->getReferredViewPart()->getData();
+        if (isset($viewPartData[$data]))
+            return $viewPartData[$data];
         return $default;
     }
 
-    public function escape($string)
-    {
+    public static function escape($string) {
         return Security::escape($string);
     }
 
-    public function render($view, $data = array())
-    {
-        if (!empty($data))
-        {
-            if (!empty($this->data))
-            {
-                $this->data = array_merge($data, $this->data);
-            }
-            else
-            {
-                $this->data = $data;
-            }
-        }
-        $viewspath = __DIR__ . DIRECTORY_SEPARATOR;
-        $path = $viewspath . '../../views/' . $view . '.php';
-        if (file_exists($path))
-        {
-            $data['view'] = new ViewPart();
-            extract($data);
-            ob_start();
-
-            require $path;
-
-            $content_for_layout = ob_get_clean();
-            if ($data['view']->super())
-            {
-                $this->data['_content'] = $content_for_layout;
-                return $this->render($data['view']->super(), $this->data);
-            }
-            else
-            {
-                return $content_for_layout;
-            }
-        }
-        else
-        {
-            throw new NotFoundException("VIEW NOT FOUND | " . $path . " |");
-        }
-    }
-
-    public function renderControllerAction($route, $data = array())
-    {
+    public static function renderControllerAction($route, $data=array()) {
         echo Kernel::getInstance()->generateResponse($route, $data, true)->getResponse();
     }
 
-    public function isGranted($role)
-    {
+    public static function isGranted($role) {
         return Session::getInstance()->isGranted($role);
     }
 
-    public static function getView($view, $data = array())
-    {
-        if (self::$instance == null)
-            self::$instance = new View();
-        return self::$instance->render($view, $data);
+    public static function getAsset($asset) {
+        return Kernel::getInstance()->getUrlFromPath('web/'.$asset);
     }
 
-    public static function getAsset($asset)
-    {
-        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . "://" . $_SERVER['SERVER_NAME'] . '/aaron/web/' . $asset;
+    public static function getUrlFromRoute($route) {
+        return Kernel::getInstance()->getUrlFromPath($route);
     }
 
-    public static function getUrlFromRoute($route)
-    {
-        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http') . "://" . $_SERVER['SERVER_NAME'] . '/aaron/' . $route;
+    public static function getChildContent() {
+        return Kernel::getInstance()->getViewManager()->getReferredViewPart()->getChildContent();
     }
 }

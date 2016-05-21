@@ -11,10 +11,16 @@ class Kernel extends App
      */
     private $entityManager;
 
+    /**
+     * @var ViewManager $viewManager
+     */
+    private $viewManager;
+
     private function __construct()
     {
         $this->models = array();
         $this->entityManager = new EntityManager($this->getDatabase());
+        $this->viewManager = new ViewManager();
     }
 
     public static function getInstance()
@@ -37,12 +43,27 @@ class Kernel extends App
         return $this->models[$model];
     }
 
+    public function getUrlFromPath($path) {
+        $path = str_replace(DIRECTORY_SEPARATOR,'/', $this->getPath($path));
+        $path = str_replace($_SERVER['DOCUMENT_ROOT'],'',$path);
+        $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? 'https' : 'http';
+        return $protocol.'://'.$_SERVER['HTTP_HOST'].'/'.$path;
+    }
+
+    public function getPath($path) {
+        return __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.$path;
+    }
+
     public function getEntityManager() {
         return $this->entityManager;
     }
 
+    public function getViewManager() {
+        return $this->viewManager;
+    }
+
     public function showException(TraceableException $e) {
-        echo View::getView('core/exception', $e->getData());
+        echo $this->getViewManager()->render('core/exception', $e->getData());
     }
 
     public function response()

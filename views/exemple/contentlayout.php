@@ -6,8 +6,7 @@
  * Time: 14:41
  */
 ?>
+
 <div style="border: 1px solid grey;">
-    <?= $_content ?>
+    <?=View::getChildContent() ?>
 </div>
-
-
