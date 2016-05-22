@@ -1,17 +1,25 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 21/05/2016
- * Time: 22:09
+ * Class ViewManager
  */
-class ViewManager
+final class ViewManager
 {
+    /**
+     * @var ViewPart
+     */
     private $referredViewPart;
 
-    public function render($view, $data = array(), $childContent = null) {
-        $path = Kernel::getInstance()->getPath('views/'.$view.'.php');
+    /**
+     * @param string $view
+     * @param array $data
+     * @param string|null $childContent
+     * @return string
+     * @throws NotFoundException
+     */
+    public function render($view, $data = array(), $childContent = null)
+    {
+        $path = Kernel::getInstance()->getPath('views/' . $view . '.php');
 
         if (file_exists($path))
         {

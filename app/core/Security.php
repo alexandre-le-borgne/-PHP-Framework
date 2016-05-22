@@ -1,24 +1,43 @@
 <?php
 
-class Security
+/**
+ * Class Security
+ */
+final class Security
 {
+    /**
+     * @param string $string
+     * @return string
+     */
     public static function escape($string)
     {
         return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
 
+    /**
+     * @return string
+     */
     public static function generateKey()
     {
         return md5(microtime(TRUE) * 100000);
     }
 
-    public static function encode($str)
+    /**
+     * @param string $string
+     * @return string
+     */
+    public static function encode($string)
     {
-        $key = hash('sha512', $str);
-        $encoded = crypt($str, '$6$rounds=5000$' . $key . '$');
+        $key = hash('sha512', $string);
+        $encoded = crypt($string, '$6$rounds=5000$' . $key . '$');
         return $encoded;
     }
 
+    /**
+     * @param string $hashedPassword
+     * @param string $userPassword
+     * @return bool
+     */
     public static function equals($hashedPassword, $userPassword)
     {
         if (!function_exists('hash_equals'))

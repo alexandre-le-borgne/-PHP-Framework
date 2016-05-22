@@ -1,15 +1,13 @@
 {
-    "name": "aaron/fbconnect",
-    "description": "Cuscom <maxime.junique@cuscom.fr>",
+    "name": "framework",
+    "description": "Framework",
     "authors": [
         {
-            "name": "darkicex3",
-            "email": "maxime.junique@gmail.com"
+            "name": "Alexandre LE BORGNE",
+            "email": "alex83690@live.fr"
         }
     ],
     "require" : {
-        "facebook/php-sdk-v4" : "~5.0",
-        "abraham/twitteroauth": "^0.6.2",
-        "google/apiclient" : "1.0.*@beta"
+
     }
 }

@@ -1,10 +1,20 @@
 <?php
 
+/**
+ * Class Model
+ */
 abstract class Model
 {
+    /**
+     * @var Entity
+     */
     private $entity;
-    
-    public function __construct($entity)
+
+    /**
+     * Model constructor.
+     * @param Entity $entity
+     */
+    public function __construct(Entity $entity)
     {
         $this->entity = $entity;
     }

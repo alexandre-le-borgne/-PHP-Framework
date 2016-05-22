@@ -1,14 +1,16 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 19/05/2016
- * Time: 22:04
+ * Class GenericSerializer
  */
 class GenericSerializer
 {
 
+    /**
+     * @param string $val
+     * @param string|null $prefix
+     * @return string
+     */
     public function snakeToCamel($val, $prefix = null)
     {
         $val = str_replace(' ', '', ucwords(str_replace('_', ' ', $val)));
@@ -23,6 +25,11 @@ class GenericSerializer
         return $val;
     }
 
+    /**
+     * @param string $val
+     * @param int $cut
+     * @return string
+     */
     public function camelToSnake($val, $cut = 0)
     {
         $val = substr($val, $cut);
@@ -35,6 +42,10 @@ class GenericSerializer
         return implode('_', $ret);
     }
 
+    /**
+     * @param stdClass $class
+     * @return array
+     */
     private function serializeClass($class)
     {
         $reflectionClass = new \ReflectionClass($class);
@@ -54,7 +65,13 @@ class GenericSerializer
         return $data;
     }
 
-    public function serialize($class, $fields)
+    /**
+     * @param stdClass $class
+     * @param string $fields
+     * @param bool $realObjects
+     * @return array
+     */
+    public function serialize($class, $fields, $realObjects = false)
     {
         if (!is_object($class)) return $class;
 
@@ -76,7 +93,7 @@ class GenericSerializer
                 if (is_object($return))
                 {
                     $reflectionClass = new \ReflectionClass($return);
-                    if ($reflectionClass->getShortName() == 'DateTime')
+                    if (!$realObjects && $reflectionClass->getShortName() == 'DateTime')
                     {
                         $data[$field] = $return->format('Y-m-d H:i:s');
                     }

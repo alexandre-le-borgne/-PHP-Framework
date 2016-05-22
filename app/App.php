@@ -1,16 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: GCC-MED
- * Date: 19/05/2016
- * Time: 11:28
- */
 
+/**
+ * Class App
+ */
 class App {
+    /**
+     * Return the database you want to use
+     * @return IDatabase
+     */
     public function getDatabase() {
         return new SqlDatabase('localhost', 'framework', 'root');
     }
-    
+
+    /**
+     * Return the list of your routes of your app
+     * @return array
+     */
     public function getRoutes() {
         return array(
             new Route('exemple',            'exemple',          'index'),

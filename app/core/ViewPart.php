@@ -1,15 +1,12 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 21/05/2016
- * Time: 22:35
+ * Class ViewPart
  */
-class ViewPart
+final class ViewPart
 {
     /**
-     * @var ViewPart $template
+     * @var ViewPart
      */
     private $template;
 

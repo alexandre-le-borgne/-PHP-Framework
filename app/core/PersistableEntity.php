@@ -1,18 +1,25 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: GCC-MED
- * Date: 19/05/2016
- * Time: 14:25
+ * Class PersistableEntity
  */
 abstract class PersistableEntity extends Entity implements IPersistableEntity
 {
+    /**
+     * @var string|null
+     */
     protected $created_at = null;
+
+    /**
+     * @var string|null
+     */
     protected $modified_at = null;
-    
+
+    /**
+     * @return array
+     */
     abstract function getFields();
-    
+
     /**
      * @return string
      */

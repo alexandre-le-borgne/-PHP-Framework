@@ -1,51 +1,92 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 21/05/2016
- * Time: 22:09
+ * Class View
  */
-class View
+final class View
 {
-     public static function extend($view) {
+    /**
+     * @param string $view
+     */
+    public static function extend($view)
+    {
         Kernel::getInstance()->getViewManager()->getReferredViewPart()->setTemplate($view);
     }
 
-    public static function render($view, $data = array()) {
+    /**
+     * @param string $view
+     * @param array $data
+     * @return string
+     * @throws NotFoundException
+     */
+    public static function render($view, $data = array())
+    {
         return Kernel::getInstance()->getViewManager()->render($view, $data);
-        // Lancer une nouvelle série de vue depuis le manager
     }
 
-    public static function output($data, $default = '') {
-
+    /**
+     * @param string $data
+     * @param string $default
+     * @return string
+     */
+    public static function output($data, $default = '')
+    {
         $viewPartData = Kernel::getInstance()->getViewManager()->getReferredViewPart()->getData();
         if (isset($viewPartData[$data]))
             return $viewPartData[$data];
         return $default;
     }
 
-    public static function escape($string) {
+    /**
+     * @param string $string
+     * @return string
+     */
+    public static function escape($string)
+    {
         return Security::escape($string);
     }
 
-    public static function renderControllerAction($route, $data=array()) {
+    /**
+     * @param string $route
+     * @param array $data
+     */
+    public static function renderControllerAction($route, $data = array())
+    {
         echo Kernel::getInstance()->generateResponse($route, $data, true)->getResponse();
     }
 
-    public static function isGranted($role) {
+    /**
+     * @param int $role
+     * @return bool
+     */
+    public static function isGranted($role)
+    {
         return Session::getInstance()->isGranted($role);
     }
 
-    public static function getAsset($asset) {
-        return Kernel::getInstance()->getUrlFromPath('web/'.$asset);
+    /**
+     * @param string $asset
+     * @return string
+     */
+    public static function getAsset($asset)
+    {
+        return Kernel::getInstance()->getUrlFromPath('web/' . $asset);
     }
 
-    public static function getUrlFromRoute($route) {
+    /**
+     * @param string $route
+     * @return string
+     */
+    public static function getUrlFromRoute($route)
+    {
         return Kernel::getInstance()->getUrlFromPath($route);
     }
 
-    public static function getChildContent() {
+    /**
+     * @return string
+     */
+    public static function getChildContent()
+    {
         return Kernel::getInstance()->getViewManager()->getReferredViewPart()->getChildContent();
     }
 }

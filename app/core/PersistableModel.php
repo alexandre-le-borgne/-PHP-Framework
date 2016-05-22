@@ -1,20 +1,27 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 19/05/2016
- * Time: 23:57
+ * Class PersistableModel
  */
 abstract class PersistableModel extends Model
 {
+    /**
+     * @return string
+     */
     abstract function getTableName();
-    
-    public function find($criteria = array()) {
-        if(is_numeric($criteria)) {
+
+    /**
+     * @param array $criteria
+     * @return array
+     */
+    public function find($criteria = array())
+    {
+        if (is_numeric($criteria))
+        {
             return $this->getEntityManager()->select($this->getTableName(), array('id' => $criteria), $this->getEntity());
         }
-        else {
+        else
+        {
             return $this->getEntityManager()->select($this->getTableName(), $criteria, $this->getEntity());
         }
     }

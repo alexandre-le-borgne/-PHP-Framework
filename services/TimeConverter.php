@@ -1,23 +1,42 @@
 <?php
 
+/**
+ * Class TimeConverter
+ */
 class TimeConverter
 {
-    public $defaultDateFormat = 'Y-m-d H:i:s';
+    /**
+     * @var string
+     */
+    const DEFAULT_DATE_FORMAT = 'Y-m-d H:i:s';
 
-    public function dateToTime($date, $format = null)
+    /**
+     * @param string $date
+     * @param null|string $format
+     * @return int
+     */
+    public function dateToTime($date, $format = self::DEFAULT_DATE_FORMAT)
     {
-        if (!$format)
-            $format = $this->defaultDateFormat;
-        return @date_format(date_create_from_format($format, $date), 'U');
+        return date_format(date_create_from_format($format, $date), 'U');
     }
 
-    public function timeToDate($time, $debut = "", $fin = "", $format = null)
+    /**
+     * @param int $time
+     * @param string $debut
+     * @param string $fin
+     * @param string $format
+     * @return string
+     */
+    public function timeToDate($time, $debut = "", $fin = "", $format = self::DEFAULT_DATE_FORMAT)
     {
-        if (!$format)
-            $format = $this->defaultDateFormat;
         return $debut . date($format, $time) . $fin;
     }
 
+    /**
+     * @param int $time
+     * @param bool $verbose
+     * @return string
+     */
     public function timeToDelay($time, $verbose = true)
     {
         $base = time();

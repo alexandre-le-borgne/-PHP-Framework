@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * Class Entity
+ */
 abstract class Entity
 {
+    /**
+     * @var int|null
+     */
     protected $id = null;
 
     /**
-     * @return mixed
+     * @return int|null
      */
     public function getId()
     {
@@ -13,7 +19,7 @@ abstract class Entity
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
     public function setId($id)
     {

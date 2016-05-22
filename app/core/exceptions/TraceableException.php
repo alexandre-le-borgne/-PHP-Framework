@@ -1,14 +1,27 @@
 <?php
 
+/**
+ * Class TraceableException
+ */
 class TraceableException extends Exception
 {
+    /**
+     * @var Exception
+     */
     private $exception;
 
+    /**
+     * TraceableException constructor.
+     * @param Exception $exception
+     */
     public function __construct(Exception $exception)
     {
         $this->exception = $exception;
     }
 
+    /**
+     * @return array
+     */
     public function generateCallTrace()
     {
         $trace = explode("\n", $this->exception->getTraceAsString());
@@ -24,6 +37,9 @@ class TraceableException extends Exception
         return $result;
     }
 
+    /**
+     * @return array
+     */
     public function getData()
     {
         return array(

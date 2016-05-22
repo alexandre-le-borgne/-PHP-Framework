@@ -1,19 +1,32 @@
 <?php
 
-class Session
+/**
+ * Class Session
+ */
+final class Session
 {
     const USER_IS_NOT_CONNECTED = 0;
-    const USER_IS_CONNECTED = 1;
-    const USER_IS_ADMIN = 2;
-    const USER_IS_INACTIVE = 3;
+    const USER_IS_INACTIVE = 1;
+    const USER_IS_CONNECTED = 2;
+    const USER_IS_ADMIN = 3;
 
+    /**
+     * @var Session
+     */
     private static $instance;
 
+    /**
+     * Session constructor.
+     */
     private function __construct()
     {
         session_start();
     }
 
+    /**
+     * @param string $name
+     * @return mixed|null
+     */
     public function get($name)
     {
         if (isset($_SESSION[$name]))
@@ -21,65 +34,47 @@ class Session
         return null;
     }
 
+    /**
+     * @param string $name
+     * @param mixed $value
+     */
     public function set($name, $value)
     {
         $_SESSION[$name] = $value;
     }
 
+    /**
+     * Clear the session
+     */
     public function clear()
     {
         session_destroy();
         unset($_SESSION);
     }
 
+    /**
+     * @return bool
+     */
     private function isConnected()
     {
-        $id = $this->get("id");
-        if ($id != null)
-        {
-            $userModel = new UserModel();
-            $user = $userModel->getById($id);
-            /** @var UserEntity $user */
-            if ($user)
-            {
-                if (!($user->getActive()))
-                    return false;
-                if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_PASSWORD)
-                {
-                    $password = $this->get("password");
-                    if ($password != null)
-                    {
-                        $passwordModel = new PasswordModel();
-                        $passwordEntity = $passwordModel->getByUser($user);
-                        return $passwordEntity->getPassword() === $password;
-                    }
-                }
-                else if ($user->getAuthentification() == UserModel::AUTHENTIFICATION_BY_EXTERNAL)
-                {
-                    return true;
-                }
-            }
-        }
         return false;
     }
 
+    /**
+     * @param string $role
+     * @return bool
+     */
     public function isGranted($role)
     {
         $session = Request::getInstance()->getSession();
-        $model = new UserModel();
+
         switch ($role)
         {
             case self::USER_IS_INACTIVE:
-                $user = $model->getById($session->getInstance()->get('id'));
-                if ($user)
-                    return !$user->getActive();
+                return false;
                 break;
             case self::USER_IS_ADMIN:
-                if ($session->isConnected())
-                {
-                    $user = $model->getById($session->get('id'));
-                    return ($user->getAccountLevel() == UserModel::ACCOUNT_LEVEL_ADMIN);
-                }
+                return false;
                 break;
             case self::USER_IS_CONNECTED:
                 return $session->isConnected();

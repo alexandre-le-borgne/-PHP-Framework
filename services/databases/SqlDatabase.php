@@ -1,18 +1,22 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: GCC-MED
- * Date: 19/05/2016
- * Time: 13:04
+ * Class SqlDatabase
  */
-class SqlDatabase implements Database
+class SqlDatabase implements IDatabase
 {
     /**
      * @var $pdo PDO
      */
     private $pdo;
 
+    /**
+     * SqlDatabase constructor.
+     * @param string $host
+     * @param string $database
+     * @param string $username
+     * @param string $password
+     */
     public function __construct($host, $database, $username, $password = '')
     {
         $this->pdo = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password,
@@ -20,6 +24,13 @@ class SqlDatabase implements Database
         $this->pdo->query("SET NAMES 'utf8'");
     }
 
+    /**
+     * @param string $query
+     * @param array|null $params
+     * @param string|null $entity
+     * @return PDOStatement
+     * @throws Exception
+     */
     public function execute($query, $params = null, $entity = null)
     {
         try
@@ -48,6 +59,13 @@ class SqlDatabase implements Database
     }
 
 
+    /**
+     * @param string $table
+     * @param array $fields
+     * @param string|null $entity
+     * @return array
+     * @throws Exception
+     */
     function select($table, $fields = array(), $entity = null)
     {
         if(count($fields)) {
@@ -60,6 +78,11 @@ class SqlDatabase implements Database
         }
     }
 
+    /**
+     * @param string $table
+     * @param array $fields
+     * @throws Exception
+     */
     public function insert($table, $fields)
     {
         $keys = array_keys($fields);
@@ -71,6 +94,11 @@ class SqlDatabase implements Database
         $this->execute($query, array_values($fields));
     }
 
+    /**
+     * @param string $table
+     * @param array $fields
+     * @throws Exception
+     */
     public function update($table, $fields)
     {
         if(!is_array($fields) && !count($fields)) return;
@@ -78,11 +106,17 @@ class SqlDatabase implements Database
         $this->execute($query, array_values($fields));
     }
 
+    /**
+     * @return int
+     */
     public function lastInsertId()
     {
         return $this->pdo->lastInsertId();
     }
 
+    /**
+     * @return string
+     */
     public function getDateFormat()
     {
         return 'Y-m-d H:i:s';
