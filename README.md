@@ -1,12 +1,5 @@
 # PHP-Framework
 
-* Julien Jandot
-* Theo Jeanjean
-* Maxime Junique
-* Alexandre Le Borgne
-
-## I. Architecture MVC
-
 * app
     * core
         * exceptions
