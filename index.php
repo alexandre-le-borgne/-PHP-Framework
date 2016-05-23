@@ -10,13 +10,14 @@ spl_autoload_register(function ($class_name)
     // Define an array of directories in the order of their priority to iterate through.
     $dirs = array(
         'app/',
-        'app/core/',
-        'app/core/exceptions/',
+        'app/framework/core/',
+        'app/framework/databases/',
+        'app/framework/exceptions/',
+        'app/framework/services/',
         'controller/',
         'entity/',
         'model/',
-        'services/',
-        'services/databases/'
+        'services/'
     );
 
     // Looping through each directory to load all the class files. It will only require a file once.

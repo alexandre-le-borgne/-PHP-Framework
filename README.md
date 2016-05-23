@@ -1,38 +1,40 @@
 # PHP-Framework
 
 * app
-    * core
+    * framework
+        * core
+            * Controller.php
+            * Entity.php
+            * EntityManager.php
+            * IDatabase.php
+            * IPersistableEntity.php
+            * Kernel.php
+            * Model.php
+            * PersistableEntity.php
+            * PersistableModel.php
+            * Request.php
+            * Response.php
+            * Route.php
+            * Router.php
+            * Session.php
+            * View.php
+            * ViewManager.php
+            * ViewPart.php
+        * databases
+            * EmptyDatabase.php
+            * SqlDatabase.php
         * exceptions
             * NotFoundException.php
             * TraceableException.php
-        * Controller.php
-        * Entity.php
-        * EntityManager.php
-        * IDatabase.php
-        * IPersistableEntity.php
-        * Kernel.php
-        * Model.php
-        * PersistableEntity.php
-        * PersistableModel.php
-        * Request.php
-        * Response.php
-        * Route.php
-        * Router.php
-        * Security.php
-        * Session.php
-        * View.php
-        * ViewManager.php
-        * ViewPart.php
+        * services
+            * GenericSerializer.php
+            * Security.php
+            * TimeConverter.php
     * App.php
 * controller
 * entity
 * model
 * services
-    * databases
-        * EmptyDatabase.php
-        * SqlDatabase.php
-    * GenericSerializer.php
-    * TimeConverter.php
 * vendor
 * views
     * core

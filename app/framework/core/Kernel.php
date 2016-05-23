@@ -8,7 +8,7 @@ final class Kernel extends App
     /**
      * @var Kernel|null
      */
-    private static $instance = null;
+    private static $instance;
 
     /**
      * @var array
@@ -36,11 +36,16 @@ final class Kernel extends App
     }
 
     /**
+     * Kernel clone.
+     */
+    private function __clone() {}
+
+    /**
      * @return Kernel
      */
     public static function getInstance()
     {
-        if (!(self::$instance))
+        if (!isset(self::$instance))
             self::$instance = new Kernel();
         return self::$instance;
     }
@@ -83,7 +88,7 @@ final class Kernel extends App
      */
     public function getPath($path)
     {
-        return __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $path;
+        return __DIR__ . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . $path;
     }
 
     /**
