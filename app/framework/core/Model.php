@@ -6,21 +6,21 @@
 abstract class Model
 {
     /**
-     * @var Entity
+     * @var string
      */
     private $entity;
 
     /**
      * Model constructor.
-     * @param Entity $entity
+     * @param string $entity
      */
-    public function __construct(Entity $entity)
+    public function __construct($entity)
     {
         $this->entity = $entity;
     }
 
     /**
-     * @return Entity
+     * @return string
      */
     public function getEntity()
     {

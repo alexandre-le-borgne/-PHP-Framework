@@ -6,11 +6,6 @@
 abstract class Controller
 {
     /**
-     * @var array
-     */
-    protected $models;
-
-    /**
      * @param string $model
      * @return Model
      * @throws Exception

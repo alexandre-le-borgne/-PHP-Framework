@@ -37,14 +37,14 @@ final class View
         return $default;
     }
 
-    /**
-     * @param string $string
-     * @return string
-     */
-    public static function escape($string)
-    {
-        return Security::escape($string);
-    }
+//    /**
+//     * @param string $string
+//     * @return string
+//     */
+//    public static function escape($string)
+//    {
+//        return Security::escape($string);
+//    }
 
     /**
      * @param string $route
@@ -55,14 +55,14 @@ final class View
         echo Kernel::getInstance()->generateResponse($route, $data, true)->getResponse();
     }
 
-    /**
-     * @param int $role
-     * @return bool
-     */
-    public static function isGranted($role)
-    {
-        return Session::getInstance()->isGranted($role);
-    }
+//    /**
+//     * @param int $role
+//     * @return bool
+//     */
+//    public static function isGranted($role)
+//    {
+//        return Session::getInstance()->isGranted($role);
+//    }
 
     /**
      * @param string $asset

@@ -88,7 +88,7 @@ final class Kernel extends App
      */
     public function getPath($path)
     {
-        return __DIR__ . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . $path;
+        return __DIR__ . DIRECTORY_SEPARATOR .'..'.DIRECTORY_SEPARATOR .'..'.DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR . $path;
     }
 
     /**
