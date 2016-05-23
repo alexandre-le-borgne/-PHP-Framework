@@ -5,11 +5,6 @@
  */
 final class Session
 {
-    const USER_IS_NOT_CONNECTED = 0;
-    const USER_IS_INACTIVE = 1;
-    const USER_IS_CONNECTED = 2;
-    const USER_IS_ADMIN = 3;
-
     /**
      * @var Session
      */
@@ -59,32 +54,7 @@ final class Session
     {
         return false;
     }
-
-    /**
-     * @param string $role
-     * @return bool
-     */
-    public function isGranted($role)
-    {
-        $session = Request::getInstance()->getSession();
-
-        switch ($role)
-        {
-            case self::USER_IS_INACTIVE:
-                return false;
-                break;
-            case self::USER_IS_ADMIN:
-                return false;
-                break;
-            case self::USER_IS_CONNECTED:
-                return $session->isConnected();
-            case self::USER_IS_NOT_CONNECTED:
-                return true;
-
-        }
-        return false;
-    }
-
+    
     /**
      * @return Session
      */
