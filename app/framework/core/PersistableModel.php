@@ -18,11 +18,11 @@ abstract class PersistableModel extends Model
     {
         if (is_numeric($criteria))
         {
-            return $this->getEntityManager()->select($this->getTableName(), array('id' => $criteria), $this->getEntity());
+            return $this->getEntityManager()->select($this->getTableName(), array('id' => $criteria), $this->getEntityName());
         }
         else
         {
-            return $this->getEntityManager()->select($this->getTableName(), $criteria, $this->getEntity());
+            return $this->getEntityManager()->select($this->getTableName(), $criteria, $this->getEntityName());
         }
     }
 

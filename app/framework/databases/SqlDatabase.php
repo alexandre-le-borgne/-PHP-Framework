@@ -27,11 +27,11 @@ class SqlDatabase implements IDatabase
     /**
      * @param string $query
      * @param array|null $params
-     * @param string|null $entity
+     * @param string|null $entity_name
      * @return PDOStatement
      * @throws Exception
      */
-    public function execute($query, $params = null, $entity = null)
+    public function execute($query, $params = null, $entity_name = null)
     {
         try
         {
@@ -47,9 +47,12 @@ class SqlDatabase implements IDatabase
             {
                 $result = $this->pdo->query($query);
             }
-            if ($entity)
+            if ($entity_name)
             {
-                $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $entity);
+                $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $entity_name);
+            }
+            else {
+               $result->setFetchMode(PDO::FETCH_OBJ);
             }
         } catch (PDOException $e)
         {

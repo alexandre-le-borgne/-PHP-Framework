@@ -9,21 +9,16 @@
 
 class UserEntity extends PersistableEntity
 {
-    private $username;
-    private $password;
+    protected $username;
+    protected $password;
 
-    function getFields()
-    {
-        return array(
-            'username' => $this->username,
-            'password' => $this->password
-        );
-    }
-
-    public final static function getModel()
-    {
-        return new UserModel('UserEntity');
-    }
+//    function getPersistedFields()
+//    {
+//        return array(
+//            'username' => $this->username,
+//            'password' => $this->password
+//        );
+//    }
     
     /**
      * @return mixed

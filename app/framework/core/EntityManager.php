@@ -35,7 +35,7 @@ final class EntityManager implements IDatabase
      */
     public function persist(PersistableEntity $entity)
     {
-        $fields = $entity->getFields();
+        $fields = $entity->getPersistedFields();
         if (count($fields))
         {
             $persistedEntityValues = array('fields' => $fields, 'insert' => ($entity->getId() == null));

@@ -8,22 +8,22 @@ abstract class Model
     /**
      * @var string
      */
-    private $entity;
+    private $entityName;
 
     /**
      * Model constructor.
-     * @param string $entity
+     * @param string $entityName
      */
-    public function __construct($entity)
+    public function __construct($entityName)
     {
-        $this->entity = $entity;
+        $this->entityName = $entityName;
     }
 
     /**
      * @return string
      */
-    public function getEntity()
+    public function getEntityName()
     {
-        return $this->entity;
+        return $this->entityName;
     }
 }
